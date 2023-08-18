@@ -7,7 +7,7 @@ export default function Home() {
         <title>Exceptional ALIEN - Travel Inspiration & Guides Curated by Creators & Culture Makers</title>
         <meta
           name="description"
-          content="Embark on a journey with visionary Creators. Explore extraordinary destinations Curated by 200 Artists. London, Hanoi, Berlin, Marbella, Byron Bay and much more."
+          content="Embark on a journey with visionary creators. Explore extraordinary destinations curated by over 200 culture makers. London, Tokyo, Berlin, New York, Byron Bay and much more."
         />
         <meta property="og:url" content="https://exceptionalalien.com" />
         <meta property="og:type" content="website" />
@@ -17,13 +17,13 @@ export default function Home() {
         />
         <meta
           property="og:description"
-          content="Embark on a journey with visionary Creators. Explore extraordinary destinations Curated by 200 Artists. London, Hanoi, Berlin, Marbella, Byron Bay and much more."
+          content="Embark on a journey with visionary creators. Explore extraordinary destinations curated by over 200 culture makers. London, Tokyo, Berlin, New York, Byron Bay and much more."
         />
         <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
         <meta name="robots" content="noindex" />
       </Head>
 
-      <main></main>
+      <main className="min-h-full"></main>
     </>
   );
 }
