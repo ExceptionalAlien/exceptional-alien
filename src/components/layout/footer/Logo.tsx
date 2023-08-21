@@ -8,7 +8,7 @@ export default function Logo() {
   return (
     <LogoIcon
       onClick={scrollToTop}
-      className="box-content w-12 fill-white mb-2 md:mb-0 p-4 md:p-6 absolute right-0 bottom-0"
+      className="box-content w-11 fill-white mb-2 md:mb-0 p-4 md:p-6 absolute right-0 bottom-0"
     />
   );
 }
