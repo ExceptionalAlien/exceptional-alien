@@ -3,11 +3,35 @@ import Place from "@/img/icon-place.svg";
 import Playbook from "@/img/icon-playbook.svg";
 import Person from "@/img/icon-person.svg";
 
+function Primary() {
+  return (
+    <div className="relative -top-7 group-hover/nav:-top-3 transition-[top] duration-200 ease-in-out [&>a]:inline-flex [&>a]:flex-col [&>a]:leading-none [&>a]:relative [&_span]:absolute [&_span]:h-0 [&_span]:w-[calc(100%-32px)] [&_span]:bg-black [&_span]:top-0 [&_span]:duration-200 [&_span]:ease-in-out [&_span]:transition-[height] [&_svg]:h-6 [&_svg]:mb-2 [&_svg]:opacity-0 group-hover/nav:[&_svg]:opacity-100 [&_svg]:duration-300 [&_svg]:transition-opacity [&_svg]:ease-in-out">
+      <Link href="/destinations" className="group/destinations">
+        <span className="group-hover/destinations:h-2"></span>
+        <Place />
+        Destinations
+      </Link>
+
+      <Link href="/playbooks" className="group/playbooks">
+        <span className="group-hover/playbooks:h-2"></span>
+        <Playbook />
+        Travel Playbooks
+      </Link>
+
+      <Link href="/people" className="group/people">
+        <span className="group-hover/people:h-2"></span>
+        <Person />
+        People
+      </Link>
+    </div>
+  );
+}
+
 export default function Nav(props: { scrollY: number }) {
   return (
     <nav
-      className={`group h-full overflow-hidden absolute top-0 pt-3 right-0 pr-2 [&>*]:inline-flex [&_a]:p-4 [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
-        props.scrollY > 0 && "[&>*]:text-white [&>a]:border-white"
+      className={`group/nav h-full overflow-hidden absolute top-0 pt-3 right-0 pr-2 [&>*]:inline-flex [&_a]:p-4 [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
+        props.scrollY > 0 && "[&>*]:text-white [&>a]:border-white [&_span]:bg-white"
       }`}
     >
       <Link
@@ -33,20 +57,7 @@ export default function Nav(props: { scrollY: number }) {
         Download App
       </Link>
 
-      <div className="relative -top-7 group-hover:-top-3 transition-[top] duration-300 ease-in-out [&>a]:inline-flex [&>a]:flex-col [&>a]:leading-none [&_svg]:h-6 [&_svg]:mb-2 [&_svg]:opacity-0 group-hover:[&_svg]:opacity-100 [&_svg]:duration-300 [&_svg]:transition-opacity [&_svg]:ease-in-out">
-        <Link href="/destinations">
-          <Place />
-          Destinations
-        </Link>
-        <Link href="/playbooks">
-          <Playbook />
-          Travel Playbooks
-        </Link>
-        <Link href="/people">
-          <Person />
-          People
-        </Link>
-      </div>
+      <Primary />
 
       <button className="p-4 transition-[color] duration-300 ease-in-out">
         <svg
