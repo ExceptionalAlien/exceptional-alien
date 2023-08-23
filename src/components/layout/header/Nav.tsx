@@ -5,8 +5,8 @@ import PrimaryLink from "./nav/PrimaryLink";
 function Buttons(props: { scrollY: number }) {
   return (
     <div
-      className={`absolute h-full right-0 top-0 [&>*]:p-3 [&>*]:md:p-4 [&>*]:transition-[color] [&>*]:duration-300 [&>*]:ease-in-out [&>*]:h-full ${
-        props.scrollY > 0 ? "[&>*]:text-white" : "hover:[&>*]:text-ex-light-grey"
+      className={`absolute h-full right-0 top-0 [&>*]:p-3 [&>*]:md:p-4 [&>*]:transition-[opacity] [&>*]:duration-300 [&>*]:ease-in-out [&>*]:h-full hover:[&>*]:opacity-50 ${
+        props.scrollY > 0 && "[&>*]:text-white"
       }`}
     >
       {/* Search */}

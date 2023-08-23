@@ -5,14 +5,14 @@ export default function Nav() {
   const router = useRouter();
 
   return (
-    <nav className="pl-1 md:pl-3 pt-3 text-sm [&>*]:leading-none [&>*]:text-white [&>*]:p-3 [&>*]:w-max [&>*]:block [&>*]:md:inline-block hover:[&>*]:opacity-60 [&>*]:duration-300 [&>*]:transition-opacity">
-      <Link href="/about" className={router.pathname === "/about" ? "opacity-60" : ""}>
+    <nav className="pl-1 md:pl-3 pt-3 text-sm [&>*]:leading-none [&>*]:text-white [&>*]:p-3 [&>*]:w-max [&>*]:block [&>*]:md:inline-block hover:[&>*]:opacity-50 [&>*]:duration-300 [&>*]:transition-opacity">
+      <Link href="/about" className={router.pathname === "/about" ? "opacity-50" : ""}>
         About
       </Link>
-      <Link href="/contact" className={router.pathname === "/contact" ? "opacity-60" : ""}>
+      <Link href="/contact" className={router.pathname === "/contact" ? "opacity-50" : ""}>
         Contact
       </Link>
-      <Link href="/terms-and-privacy" className={router.pathname === "/terms-and-privacy" ? "opacity-60" : ""}>
+      <Link href="/terms-and-privacy" className={router.pathname === "/terms-and-privacy" ? "opacity-50" : ""}>
         Terms &amp; Privacy
       </Link>
     </nav>
