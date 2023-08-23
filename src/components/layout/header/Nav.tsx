@@ -1,9 +1,10 @@
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import PrimaryLink from "./nav/PrimaryLink";
 import LogoIcon from "@/img/logo-icon.svg";
 
-function Buttons(props: { scrollY: number }) {
+function Buttons(props: { toggleNav: () => void; scrollY: number }) {
   return (
     <div
       className={`absolute h-full right-0 top-0 [&>*]:p-3 [&>*]:md:p-4 [&>*]:transition-[opacity] [&>*]:duration-300 [&>*]:ease-in-out [&>*]:h-full hover:[&>*]:opacity-50 ${
@@ -29,7 +30,7 @@ function Buttons(props: { scrollY: number }) {
       </button>
 
       {/* Burger */}
-      <button title="Menu" className="!pr-4 md:hidden">
+      <button onClick={props.toggleNav} title="Menu" className="!pr-4 md:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -46,14 +47,19 @@ function Buttons(props: { scrollY: number }) {
 }
 
 export default function Nav(props: { scrollY: number }) {
+  const [showingNav, setShowingNav] = useState(false);
   const router = useRouter();
+
+  const toggleNav = () => {
+    setShowingNav(!showingNav);
+  };
 
   return (
     <>
       <nav
-        className={`bg-white md:bg-transparent [&>*]:text-ex-blue z-10 group/nav w-full md:w-auto h-full overflow-hidden fixed md:absolute top-0 md:pt-3 md:right-16 [&>*]:inline-flex [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
+        className={`bg-white md:bg-transparent transition-[opacity] duration-300 [&>*]:text-ex-blue z-10 group/nav w-full md:w-auto overflow-hidden fixed md:absolute top-0 md:pt-3 md:right-16 [&>*]:inline-flex [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
           props.scrollY > 0 ? "[&>*]:md:text-white [&_span]:md:bg-white" : "[&>*]:md:text-black"
-        }`}
+        } ${showingNav ? "h-full opacity-100" : "h-0 md:h-full opacity-0 md:opacity-100"}`}
       >
         <Link
           href="/download"
@@ -97,7 +103,7 @@ export default function Nav(props: { scrollY: number }) {
         </Link>
 
         {/* Close */}
-        <button title="Close menu" className="right-0 absolute p-4 md:!hidden text-ex-blue">
+        <button onClick={toggleNav} title="Close menu" className="right-0 absolute p-4 md:!hidden text-ex-blue">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -111,7 +117,7 @@ export default function Nav(props: { scrollY: number }) {
         </button>
       </nav>
 
-      <Buttons scrollY={props.scrollY} />
+      <Buttons toggleNav={toggleNav} scrollY={props.scrollY} />
     </>
   );
 }
