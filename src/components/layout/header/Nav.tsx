@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import PrimaryLink from "./nav/PrimaryLink";
 import LogoIcon from "@/img/logo-icon.svg";
 
-function Buttons(props: { toggleNav: () => void; scrollY: number }) {
+function Buttons(props: { setShowingNav: React.Dispatch<React.SetStateAction<boolean>>; scrollY: number }) {
   return (
     <div
       className={`absolute h-full right-0 top-0 [&>*]:p-3 [&>*]:md:p-4 [&>*]:transition-[opacity] [&>*]:duration-300 [&>*]:ease-in-out [&>*]:h-full hover:[&>*]:opacity-50 ${
@@ -30,7 +30,7 @@ function Buttons(props: { toggleNav: () => void; scrollY: number }) {
       </button>
 
       {/* Burger */}
-      <button onClick={props.toggleNav} title="Menu" className="!pr-4 md:hidden">
+      <button onClick={() => props.setShowingNav(true)} title="Menu" className="!pr-4 md:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -50,19 +50,20 @@ export default function Nav(props: { scrollY: number }) {
   const [showingNav, setShowingNav] = useState(false);
   const router = useRouter();
 
-  const toggleNav = () => {
-    setShowingNav(!showingNav);
+  const hideNav = () => {
+    setShowingNav(false);
   };
 
   return (
     <>
       <nav
-        className={`bg-white md:bg-transparent transition-[opacity] duration-300 [&>*]:text-ex-blue z-10 group/nav w-full md:w-auto overflow-hidden fixed md:absolute top-0 md:pt-3 md:right-16 [&>*]:inline-flex [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
+        className={`bg-white md:bg-transparent transition-[opacity] duration-300 ease-in [&>*]:text-ex-blue z-10 group/nav w-full md:w-auto overflow-hidden fixed md:absolute top-0 md:pt-3 md:right-16 [&>*]:inline-flex [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
           props.scrollY > 0 ? "[&>*]:md:text-white [&_span]:md:bg-white" : "[&>*]:md:text-black"
         } ${showingNav ? "h-full opacity-100" : "h-0 md:h-full opacity-0 md:opacity-100"}`}
       >
         <Link
           href="/download"
+          onClick={hideNav}
           className={`landscape:!hidden md:!hidden landscape:lg:!inline-flex box-content z-10 absolute md:static left-1/2 -translate-x-1/2 md:translate-x-0 w-[calc(100%-80px)] md:w-auto max-w-xs bottom-6 justify-center border-2 border-ex-blue rounded-full p-4 md:pl-3 pt-2 pb-2 md:ml-4 mr-4 [&>svg]:mr-1 hover:md:text-white ${
             props.scrollY > 0
               ? "hover:md:bg-white md:border-white hover:md:!text-ex-blue"
@@ -92,18 +93,18 @@ export default function Nav(props: { scrollY: number }) {
         </Link>
 
         <div className="justify-center items-center flex-col md:flex-row relative w-full md:w-auto h-full md:h-auto md:-top-7 md:group-hover/nav:-top-3 transition-[top] duration-200 ease-in-out">
-          <PrimaryLink page="destinations" />
-          <PrimaryLink page="playbooks" />
-          <PrimaryLink page="people" />
+          <PrimaryLink page="destinations" hideNav={hideNav} />
+          <PrimaryLink page="playbooks" hideNav={hideNav} />
+          <PrimaryLink page="people" hideNav={hideNav} />
         </div>
 
         {/* Home */}
-        <Link href="/" className="absolute left-0 md:!hidden" title="Home">
+        <Link href="/" onClick={hideNav} className="absolute left-0 md:!hidden" title="Home">
           <LogoIcon className="h-12 p-6 box-content fill-ex-blue" />
         </Link>
 
         {/* Close */}
-        <button onClick={toggleNav} title="Close menu" className="right-0 absolute p-4 md:!hidden text-ex-blue">
+        <button onClick={hideNav} title="Close menu" className="right-0 absolute p-4 md:!hidden text-ex-blue">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -117,7 +118,7 @@ export default function Nav(props: { scrollY: number }) {
         </button>
       </nav>
 
-      <Buttons toggleNav={toggleNav} scrollY={props.scrollY} />
+      <Buttons setShowingNav={setShowingNav} scrollY={props.scrollY} />
     </>
   );
 }
