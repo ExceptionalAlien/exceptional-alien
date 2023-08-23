@@ -1,11 +1,20 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Nav() {
+  const router = useRouter();
+
   return (
-    <nav className="pl-1 md:pl-3 pt-3 text-sm [&>*]:leading-none [&>*]:text-white [&>*]:p-3 [&>*]:block [&>*]:md:inline-block">
-      <Link href="/about">About</Link>
-      <Link href="/contact">Contact</Link>
-      <Link href="/terms-and-privacy">Terms &amp; Privacy</Link>
+    <nav className="pl-1 md:pl-3 pt-3 text-sm [&>*]:leading-none [&>*]:text-white [&>*]:p-3 [&>*]:w-max [&>*]:block [&>*]:md:inline-block hover:[&>*]:opacity-60 [&>*]:duration-300 [&>*]:transition-opacity">
+      <Link href="/about" className={router.pathname === "/about" ? "opacity-60" : ""}>
+        About
+      </Link>
+      <Link href="/contact" className={router.pathname === "/contact" ? "opacity-60" : ""}>
+        Contact
+      </Link>
+      <Link href="/terms-and-privacy" className={router.pathname === "/terms-and-privacy" ? "opacity-60" : ""}>
+        Terms &amp; Privacy
+      </Link>
     </nav>
   );
 }

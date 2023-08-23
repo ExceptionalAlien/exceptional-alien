@@ -20,6 +20,9 @@ const nextConfig = {
     fileLoaderRule.exclude = /\.svg$/i;
     return config;
   },
+  experimental: {
+    scrollRestoration: true,
+  },
   reactStrictMode: true,
 };
 

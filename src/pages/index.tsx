@@ -20,6 +20,7 @@ export default function Home() {
           content="Embark on a journey with visionary creators. Explore extraordinary destinations curated by over 200 culture makers. London, Tokyo, Berlin, New York, Byron Bay and much more."
         />
         <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
+        <meta name="theme-color" content="#2220C1" />
         <meta name="robots" content="noindex" />
       </Head>
 
