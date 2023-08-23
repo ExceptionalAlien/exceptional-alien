@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import PrimaryLink from "./nav/PrimaryLink";
+import LogoIcon from "@/img/logo-icon.svg";
 
 function Buttons(props: { scrollY: number }) {
   return (
@@ -50,17 +51,21 @@ export default function Nav(props: { scrollY: number }) {
   return (
     <>
       <nav
-        className={`bg-white md:bg-transparent z-10 group/nav w-full md:w-auto h-full overflow-hidden fixed md:absolute top-0 md:pt-3 md:right-16 [&>*]:inline-flex [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
-          props.scrollY > 0 && "[&>*]:md:text-white [&_span]:md:bg-white"
+        className={`bg-white md:bg-transparent [&>*]:text-ex-blue z-10 group/nav w-full md:w-auto h-full overflow-hidden fixed md:absolute top-0 md:pt-3 md:right-16 [&>*]:inline-flex [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
+          props.scrollY > 0 ? "[&>*]:md:text-white [&_span]:md:bg-white" : "[&>*]:md:text-black"
         }`}
       >
         <Link
           href="/download"
-          className={`md:!hidden lg:!inline-flex box-content z-10 absolute md:static left-1/2 -translate-x-1/2 md:translate-x-0 w-[calc(100%-80px)] md:w-auto max-w-xs bottom-6 justify-center border border-black rounded-full p-4 md:pl-3 pt-2 pb-2 md:ml-4 mr-4 [&>svg]:mr-1 hover:bg-black hover:border-black hover:text-white ${
-            props.scrollY > 0 && "hover:md:bg-white md:!border-white hover:md:text-ex-blue"
+          className={`landscape:!hidden md:!hidden landscape:lg:!inline-flex box-content z-10 absolute md:static left-1/2 -translate-x-1/2 md:translate-x-0 w-[calc(100%-80px)] md:w-auto max-w-xs bottom-6 justify-center border-2 border-ex-blue rounded-full p-4 md:pl-3 pt-2 pb-2 md:ml-4 mr-4 [&>svg]:mr-1 hover:md:text-white ${
+            props.scrollY > 0
+              ? "hover:md:bg-white md:border-white hover:md:!text-ex-blue"
+              : "hover:md:bg-black md:border-black hover:md:border-black"
           } ${
             router.pathname === "/download" &&
-            `bg-black border-black text-white ${props.scrollY > 0 && "md:bg-white md:border-white md:!text-ex-blue"}`
+            `bg-ex-blue border-black !text-white ${
+              props.scrollY > 0 ? "md:bg-white md:border-white md:!text-ex-blue" : "md:bg-black"
+            }`
           }`}
         >
           <svg
@@ -85,6 +90,25 @@ export default function Nav(props: { scrollY: number }) {
           <PrimaryLink page="playbooks" />
           <PrimaryLink page="people" />
         </div>
+
+        {/* Home */}
+        <Link href="/" className="absolute left-0 md:!hidden" title="Home">
+          <LogoIcon className="h-12 p-6 box-content fill-ex-blue" />
+        </Link>
+
+        {/* Close */}
+        <button title="Close menu" className="right-0 absolute p-4 md:!hidden text-ex-blue">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-10 h-10"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </nav>
 
       <Buttons scrollY={props.scrollY} />
