@@ -10,13 +10,11 @@ export default function PrimaryLink(props: { page: string }) {
   return (
     <Link
       href={`/${props.page}`}
-      className={`group/${props.page} inline-flex md:flex-col items-center relative capitalize text-2xl md:text-base font-bold md:font-normal !leading-none p-6 md:p-4 [&>svg]:h-6 [&>svg]:w-6 [&>svg]:mr-3 [&>svg]:md:mr-0 [&>svg]:md:mb-2 [&>svg]:md:invisible group-hover/nav:[&>svg]:visible [&>svg]:md:opacity-0 group-hover/nav:[&>svg]:opacity-100 [&>svg]:md:duration-500 [&>svg]:md:transition-[opacity] [&>svg]:ease-in [&>svg]:-mt-1 [&>svg]:md:mt-0`}
+      className={`group/primary inline-flex md:flex-col items-center relative capitalize text-2xl md:text-base font-bold md:font-normal !leading-none p-6 md:p-4 [&>svg]:h-6 [&>svg]:w-6 [&>svg]:mr-3 [&>svg]:md:mr-0 [&>svg]:md:mb-2 [&>svg]:md:invisible group-hover/nav:[&>svg]:visible [&>svg]:md:opacity-0 group-hover/nav:[&>svg]:opacity-100 [&>svg]:md:duration-500 [&>svg]:md:transition-[opacity] [&>svg]:ease-in [&>svg]:-mt-1 [&>svg]:md:mt-0`}
     >
       <span
         className={`absolute w-[calc(100%-32px)] bg-black top-0 duration-200 ease-in-out transition-[height] ${
-          router.pathname === "/" + props.page
-            ? "md:h-5 md:group-hover/nav:h-1"
-            : `h-0 md:group-hover/${props.page}:h-1`
+          router.pathname === "/" + props.page ? "md:h-5 md:group-hover/nav:h-1" : `h-0 md:group-hover/primary:h-1`
         }`}
       ></span>
       {props.page === "destinations" ? <Place /> : props.page === "playbooks" ? <Playbook /> : <Person />}
