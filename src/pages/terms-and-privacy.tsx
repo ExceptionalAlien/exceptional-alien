@@ -10,7 +10,7 @@ export default function TermsAndPrivacy({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>Exceptional ALIEN - {page.data.meta_title ?? ""}</title>
+        <title>{`Exceptional ALIEN - ${page.data.meta_title ?? ""}`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/terms-and-privacy" />
         <meta property="og:type" content="website" />
