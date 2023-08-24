@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <header
-      className={`z-10 fixed w-full h-12 md:h-20 transition-[background-color] ease-in-out duration-300 ${
+      className={`z-10 top-0 fixed w-full h-12 md:h-20 transition-[background-color] ease-in-out duration-300 ${
         scrollY > 0 ? "bg-ex-blue" : "bg-white"
       }`}
     >
