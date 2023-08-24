@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { exitPreview } from "@prismicio/next";
+import * as prismicNext from "@prismicio/next";
 
-export async function handler(req: NextApiRequest, res: NextApiResponse) {
-  return await exitPreview({ req, res });
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  prismicNext.exitPreview({ req, res });
 }
