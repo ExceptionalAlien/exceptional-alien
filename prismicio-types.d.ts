@@ -66,23 +66,15 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type TermsAndPrivacyDocumentDataSlicesSlice = never;
+type TermsAndPrivacyDocumentDataSlicesSlice =
+  | TextWithHeadingSlice
+  | SingleHeadingSlice
+  | HighlightSlice;
 
 /**
  * Content for Terms and Privacy documents
  */
 interface TermsAndPrivacyDocumentData {
-  /**
-   * Overview field in *Terms and Privacy*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: terms_and_privacy.overview
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  overview: prismic.KeyTextField;
-
   /**
    * Slice Zone field in *Terms and Privacy*
    *
@@ -145,6 +137,151 @@ export type TermsAndPrivacyDocument<Lang extends string = string> =
 
 export type AllDocumentTypes = HomeDocument | TermsAndPrivacyDocument;
 
+/**
+ * Primary content in *Highlight → Primary*
+ */
+export interface HighlightSliceDefaultPrimary {
+  /**
+   * text field in *Highlight → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: highlight.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Highlight Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HighlightSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HighlightSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Highlight*
+ */
+type HighlightSliceVariation = HighlightSliceDefault;
+
+/**
+ * Highlight Shared Slice
+ *
+ * - **API ID**: `highlight`
+ * - **Description**: Highlight
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HighlightSlice = prismic.SharedSlice<
+  "highlight",
+  HighlightSliceVariation
+>;
+
+/**
+ * Primary content in *SingleHeading → Primary*
+ */
+export interface SingleHeadingSliceDefaultPrimary {
+  /**
+   * Heading field in *SingleHeading → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: single_heading.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Default variation for SingleHeading Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SingleHeadingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SingleHeadingSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SingleHeading*
+ */
+type SingleHeadingSliceVariation = SingleHeadingSliceDefault;
+
+/**
+ * SingleHeading Shared Slice
+ *
+ * - **API ID**: `single_heading`
+ * - **Description**: SingleHeading
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SingleHeadingSlice = prismic.SharedSlice<
+  "single_heading",
+  SingleHeadingSliceVariation
+>;
+
+/**
+ * Primary content in *TextWithHeading → Primary*
+ */
+export interface TextWithHeadingSliceDefaultPrimary {
+  /**
+   * Heading field in *TextWithHeading → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_heading.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Text field in *TextWithHeading → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_heading.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for TextWithHeading Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextWithHeadingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TextWithHeadingSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TextWithHeading*
+ */
+type TextWithHeadingSliceVariation = TextWithHeadingSliceDefault;
+
+/**
+ * TextWithHeading Shared Slice
+ *
+ * - **API ID**: `text_with_heading`
+ * - **Description**: TextWithHeading
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextWithHeadingSlice = prismic.SharedSlice<
+  "text_with_heading",
+  TextWithHeadingSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -162,6 +299,15 @@ declare module "@prismicio/client" {
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,
       AllDocumentTypes,
+      HighlightSlice,
+      HighlightSliceVariation,
+      HighlightSliceDefault,
+      SingleHeadingSlice,
+      SingleHeadingSliceVariation,
+      SingleHeadingSliceDefault,
+      TextWithHeadingSlice,
+      TextWithHeadingSliceVariation,
+      TextWithHeadingSliceDefault,
     };
   }
 }

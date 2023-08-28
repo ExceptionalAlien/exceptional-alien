@@ -2,4 +2,8 @@
 
 import dynamic from "next/dynamic";
 
-export const components = {};
+export const components = {
+  highlight: dynamic(() => import("./Highlight")),
+  single_heading: dynamic(() => import("./SingleHeading")),
+  text_with_heading: dynamic(() => import("./TextWithHeading")),
+};

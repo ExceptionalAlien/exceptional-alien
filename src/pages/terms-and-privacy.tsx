@@ -21,10 +21,8 @@ export default function TermsAndPrivacy({ page }: PageProps) {
         <meta name="robots" content="noindex" />
       </Head>
 
-      <main className="min-h-full mt-12 md:mt-20">
-        <section>
-          <p>{page.data.overview}</p>
-        </section>
+      <main className="min-h-full box-content p-4 md:p-6 pt-12 md:pt-20 pb-12 md:pb-20 md:max-w-3xl 2xl:max-w-4xl m-auto mt-0 md:mt-4 [&>[data-slice-type=highlight]]:mt-12 [&>[data-slice-type=single\_heading]]:mt-12 [&>[data-slice-type=text\_with\_heading]]:mt-6">
+        <SliceZone slices={page.data.slices} components={components} />
       </main>
     </>
   );
