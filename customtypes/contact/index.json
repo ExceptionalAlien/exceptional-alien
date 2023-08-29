@@ -1,6 +1,6 @@
 {
-  "id": "terms_and_privacy",
-  "label": "Terms and Privacy",
+  "id": "contact",
+  "label": "Contact",
   "format": "page",
   "repeatable": false,
   "status": true,
@@ -12,24 +12,14 @@
           "label": "Page Heading",
           "placeholder": "",
           "allowTargetBlank": true,
-          "single": "heading2"
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "text_with_heading": {
-              "type": "SharedSlice"
-            },
-            "single_heading": {
-              "type": "SharedSlice"
-            },
-            "highlight": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },

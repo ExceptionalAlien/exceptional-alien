@@ -1,6 +1,6 @@
 {
-  "id": "terms_and_privacy",
-  "label": "Terms and Privacy",
+  "id": "about",
+  "label": "About",
   "format": "page",
   "repeatable": false,
   "status": true,
@@ -12,7 +12,7 @@
           "label": "Page Heading",
           "placeholder": "",
           "allowTargetBlank": true,
-          "single": "heading2"
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
       "slices": {
@@ -20,13 +20,16 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "text_with_heading": {
-              "type": "SharedSlice"
-            },
-            "single_heading": {
+            "text_block": {
               "type": "SharedSlice"
             },
             "highlight": {
+              "type": "SharedSlice"
+            },
+            "text_with_heading": {
+              "type": "SharedSlice"
+            },
+            "you_tube": {
               "type": "SharedSlice"
             }
           }

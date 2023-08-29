@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Nav from "./header/Nav";
 import Logo from "@/img/logo.svg";
+import LogoIcon from "@/img/logo-icon.svg";
 
 export default function Header() {
+  const router = useRouter();
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -27,7 +30,11 @@ export default function Header() {
           href="/"
           className={`transition-[color] ease-in-out duration-300 ${scrollY > 0 ? "text-white" : "text-black"}`}
         >
-          <Logo className="box-content w-48 md:w-80 p-2 md:p-4 ml-2 mt-2" title="Exceptional ALIEN" />
+          {router.pathname === "/" ? (
+            <Logo className="box-content w-48 md:w-80 p-2 md:p-4 ml-2 mt-2" title="Exceptional ALIEN" />
+          ) : (
+            <LogoIcon className="box-content h-8 md:h-12 p-2 md:p-4 pl-4 md:pl-6" title="Exceptional ALIEN" />
+          )}
         </Link>
       </h1>
 

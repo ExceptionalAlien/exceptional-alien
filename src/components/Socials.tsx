@@ -2,9 +2,11 @@ import IG from "@/img/social-ig.svg";
 import FB from "@/img/social-fb.svg";
 import LI from "@/img/social-li.svg";
 
-export default function Socials() {
+export default function Socials(props: { classes?: string }) {
   return (
-    <div className="absolute top-0 right-0 mr-1 md:mr-3 mt-3 [&>*]:inline-block hover:[&>*]:opacity-60 [&>*]:duration-300 [&>*]:transition-opacity [&_svg]:fill-white [&_svg]:h-6 [&_svg]:box-content [&_svg]:p-3">
+    <div
+      className={`[&>*]:inline-block hover:[&>*]:opacity-60 [&>*]:duration-300 [&>*]:transition-opacity [&_svg]:fill-white [&_svg]:h-6 [&_svg]:box-content [&_svg]:p-3 ${props.classes}`}
+    >
       {/* Instagram */}
       <a href="https://www.instagram.com/exceptionalalien/" target="_blank" title="Instagram">
         <IG />

@@ -5,5 +5,7 @@ import dynamic from "next/dynamic";
 export const components = {
   highlight: dynamic(() => import("./Highlight")),
   single_heading: dynamic(() => import("./SingleHeading")),
+  text_block: dynamic(() => import("./TextBlock")),
   text_with_heading: dynamic(() => import("./TextWithHeading")),
+  you_tube: dynamic(() => import("./YouTube")),
 };

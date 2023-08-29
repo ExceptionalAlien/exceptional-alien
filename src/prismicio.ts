@@ -18,6 +18,14 @@ const routes: prismic.ClientConfig["routes"] = [
     type: "terms_and_privacy",
     path: "/terms-and-privacy",
   },
+  {
+    type: "about",
+    path: "/about",
+  },
+  {
+    type: "contact",
+    path: "/contact",
+  },
 ];
 
 /**
