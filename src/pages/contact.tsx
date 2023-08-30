@@ -5,6 +5,7 @@ import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "../slices";
 import TabHeading from "../components/TabHeading";
 import Socials from "../components/Socials";
+import Logo from "@/img/logo-alt-x.svg";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -29,10 +30,14 @@ export default function About({ page }: PageProps) {
       <main className="min-h-full p-4 md:p-6 pt-12 md:pt-20 pb-12 md:pb-20 max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl m-auto [&>section]:mt-8 [&>section]:md:mt-12">
         <TabHeading classes="!mt-16 md:!mt-24 uppercase">
           <PrismicRichText field={page.data.page_heading} />
-          <Socials classes="absolute top-0 right-0 [&_svg]:!fill-black [&_svg]:!p-2" />
+          <Socials classes="absolute top-0 right-0 [&_svg]:!fill-black" />
         </TabHeading>
 
         <SliceZone slices={page.data.slices} components={components} />
+
+        <section>
+          <Logo className="w-3/4 m-auto fill-ex-blue pt-12 md:pt-20 pb-1 md:pb-20 box-content" />
+        </section>
       </main>
     </>
   );
