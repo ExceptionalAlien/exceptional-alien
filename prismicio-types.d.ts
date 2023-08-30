@@ -8,7 +8,7 @@ type AboutDocumentDataSlicesSlice =
   | TextBlockSlice
   | HighlightSlice
   | TextWithHeadingSlice
-  | YouTubeSlice;
+  | VideoEmbedSlice;
 
 /**
  * Content for About documents
@@ -311,7 +311,7 @@ export type AllDocumentTypes =
  */
 export interface HighlightSliceDefaultPrimary {
   /**
-   * text field in *Highlight → Primary*
+   * Text field in *Highlight → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -401,7 +401,7 @@ export type SingleHeadingSlice = prismic.SharedSlice<
  */
 export interface TextBlockSliceDefaultPrimary {
   /**
-   * text field in *TextBlock → Primary*
+   * Text field in *TextBlock → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -537,48 +537,48 @@ export type TextWithHeadingSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *YouTube → Primary*
+ * Primary content in *VideoEmbed → Primary*
  */
-export interface YouTubeSliceDefaultPrimary {
+export interface VideoEmbedSliceDefaultPrimary {
   /**
-   * embed field in *YouTube → Primary*
+   * Embed field in *VideoEmbed → Primary*
    *
    * - **Field Type**: Embed
    * - **Placeholder**: *None*
-   * - **API ID Path**: you_tube.primary.embed
+   * - **API ID Path**: video_embed.primary.embed
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   embed: prismic.EmbedField;
 }
 
 /**
- * Default variation for YouTube Slice
+ * Default variation for VideoEmbed Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type YouTubeSliceDefault = prismic.SharedSliceVariation<
+export type VideoEmbedSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<YouTubeSliceDefaultPrimary>,
+  Simplify<VideoEmbedSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *YouTube*
+ * Slice variation for *VideoEmbed*
  */
-type YouTubeSliceVariation = YouTubeSliceDefault;
+type VideoEmbedSliceVariation = VideoEmbedSliceDefault;
 
 /**
- * YouTube Shared Slice
+ * VideoEmbed Shared Slice
  *
- * - **API ID**: `you_tube`
- * - **Description**: YouTube
+ * - **API ID**: `video_embed`
+ * - **Description**: VideoEmbed
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type YouTubeSlice = prismic.SharedSlice<
-  "you_tube",
-  YouTubeSliceVariation
+export type VideoEmbedSlice = prismic.SharedSlice<
+  "video_embed",
+  VideoEmbedSliceVariation
 >;
 
 declare module "@prismicio/client" {
@@ -617,9 +617,9 @@ declare module "@prismicio/client" {
       TextWithHeadingSliceVariation,
       TextWithHeadingSliceDefault,
       TextWithHeadingSliceColumns,
-      YouTubeSlice,
-      YouTubeSliceVariation,
-      YouTubeSliceDefault,
+      VideoEmbedSlice,
+      VideoEmbedSliceVariation,
+      VideoEmbedSliceDefault,
     };
   }
 }

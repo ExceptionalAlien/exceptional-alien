@@ -15,7 +15,7 @@
         "text": {
           "type": "StructuredText",
           "config": {
-            "label": "text",
+            "label": "Text",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"

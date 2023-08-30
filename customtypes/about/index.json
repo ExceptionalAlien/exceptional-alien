@@ -29,7 +29,7 @@
             "text_with_heading": {
               "type": "SharedSlice"
             },
-            "you_tube": {
+            "video_embed": {
               "type": "SharedSlice"
             }
           }

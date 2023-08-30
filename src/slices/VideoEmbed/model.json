@@ -1,8 +1,8 @@
 {
-  "id": "you_tube",
+  "id": "video_embed",
   "type": "SharedSlice",
-  "name": "YouTube",
-  "description": "YouTube",
+  "name": "VideoEmbed",
+  "description": "VideoEmbed",
   "variations": [
     {
       "id": "default",
@@ -15,7 +15,7 @@
         "embed": {
           "type": "Embed",
           "config": {
-            "label": "embed",
+            "label": "Embed",
             "placeholder": ""
           }
         }

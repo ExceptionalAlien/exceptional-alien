@@ -7,5 +7,5 @@ export const components = {
   single_heading: dynamic(() => import("./SingleHeading")),
   text_block: dynamic(() => import("./TextBlock")),
   text_with_heading: dynamic(() => import("./TextWithHeading")),
-  you_tube: dynamic(() => import("./YouTube")),
+  video_embed: dynamic(() => import("./VideoEmbed")),
 };
