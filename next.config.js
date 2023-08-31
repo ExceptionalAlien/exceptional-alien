@@ -23,6 +23,15 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.prismic.io",
+        port: "",
+      },
+    ],
+  },
   reactStrictMode: true,
 };
 

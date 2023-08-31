@@ -9,22 +9,22 @@ import Logo from "@/img/logo-alt-x.svg";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function About({ page }: PageProps) {
+export default function Contact({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ?? ""}`}</title>
+        <title>{`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/terms-and-privacy" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={`Exceptional ALIEN - ${page.data.meta_title ?? ""}`} />
+        <meta
+          property="og:title"
+          content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
+        />
         <meta property="og:description" content={page.data.meta_description ?? ""} />
         <meta
           property="og:image"
           content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
         />
-        <meta name="theme-color" content="#2220C1" />
-        <meta name="robots" content="noindex" />
       </Head>
 
       <main className="min-h-full p-4 md:p-6 pt-12 md:pt-20 pb-12 md:pb-20 max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl m-auto [&>section]:mt-8 [&>section]:md:mt-12">

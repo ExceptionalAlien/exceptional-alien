@@ -158,6 +158,138 @@ export type ContactDocument<Lang extends string = string> =
     Lang
   >;
 
+type CreatorDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Creator documents
+ */
+interface CreatorDocumentData {
+  /**
+   * First Name field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.first_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  first_name: prismic.KeyTextField;
+
+  /**
+   * Last Name field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.last_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  last_name: prismic.KeyTextField;
+
+  /**
+   * Title field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Image field in *Creator*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<"thumb" | "seo">;
+
+  /**
+   * Short Description field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 140 characters max.
+   * - **API ID Path**: creator.short_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  short_description: prismic.KeyTextField;
+
+  /**
+   * Description field in *Creator*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Creator*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<CreatorDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: creator.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Creator*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: creator.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Creator document from Prismic
+ *
+ * - **API ID**: `creator`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CreatorDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CreatorDocumentData>,
+    "creator",
+    Lang
+  >;
+
 type HomeDocumentDataSlicesSlice = never;
 
 /**
@@ -303,6 +435,7 @@ export type TermsAndPrivacyDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | AboutDocument
   | ContactDocument
+  | CreatorDocument
   | HomeDocument
   | TermsAndPrivacyDocument;
 
@@ -597,6 +730,9 @@ declare module "@prismicio/client" {
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,
+      CreatorDocument,
+      CreatorDocumentData,
+      CreatorDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,

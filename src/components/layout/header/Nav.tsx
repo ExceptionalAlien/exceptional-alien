@@ -7,7 +7,7 @@ import LogoIcon from "@/img/logo-icon.svg";
 function Buttons(props: { setShowingNav: React.Dispatch<React.SetStateAction<boolean>>; scrollY: number }) {
   return (
     <div
-      className={`absolute h-full right-0 top-0 [&>*]:p-3 [&>*]:md:p-4 [&>*]:transition-[opacity] [&>*]:duration-300 [&>*]:ease-in-out [&>*]:h-full hover:[&>*]:opacity-50 ${
+      className={`absolute h-full right-0 top-0 [&>*]:p-3 [&>*]:md:p-4 [&>*]:transition-[opacity,color] [&>*]:duration-300 [&>*]:ease-in-out [&>*]:h-full hover:[&>*]:opacity-50 ${
         props.scrollY > 0 && "[&>*]:text-white"
       }`}
     >
@@ -39,7 +39,11 @@ function Buttons(props: { setShowingNav: React.Dispatch<React.SetStateAction<boo
           stroke="currentColor"
           className="w-6 h-6"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+          />
         </svg>
       </button>
     </div>

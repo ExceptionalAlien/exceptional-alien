@@ -1,0 +1,111 @@
+{
+  "id": "creator",
+  "label": "Creator",
+  "format": "page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "Slug",
+          "placeholder": "Use name as unique ID eg. justin-drape"
+        },
+        "type": "UID"
+      },
+      "first_name": {
+        "type": "Text",
+        "config": {
+          "label": "First Name",
+          "placeholder": ""
+        }
+      },
+      "last_name": {
+        "type": "Text",
+        "config": {
+          "label": "Last Name",
+          "placeholder": ""
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {
+            "width": 1800,
+            "height": 945
+          },
+          "thumbnails": [
+            {
+              "name": "thumb",
+              "width": 630,
+              "height": 630
+            },
+            {
+              "name": "seo",
+              "width": 1200,
+              "height": 630
+            }
+          ]
+        }
+      },
+      "short_description": {
+        "type": "Text",
+        "config": {
+          "label": "Short Description",
+          "placeholder": "140 characters max."
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

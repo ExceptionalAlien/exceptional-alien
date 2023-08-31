@@ -6,7 +6,7 @@ import LI from "@/img/social-li.svg";
 export default function Socials(props: { classes?: string }) {
   return (
     <div
-      className={`[&>*]:inline-block hover:[&>*]:opacity-60 [&>*]:duration-300 [&>*]:transition-opacity [&_svg]:fill-white [&_svg]:h-6 [&_svg]:box-content [&_svg]:p-2 ${props.classes}`}
+      className={`[&>*]:inline-block hover:[&>*]:opacity-50 [&>*]:duration-300 [&>*]:transition-opacity [&_svg]:fill-white [&_svg]:h-6 [&_svg]:box-content [&_svg]:p-2 ${props.classes}`}
     >
       {/* Instagram */}
       <a href="https://www.instagram.com/exceptionalalien/" target="_blank" title="Instagram">

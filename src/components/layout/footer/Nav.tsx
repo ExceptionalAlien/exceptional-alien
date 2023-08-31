@@ -12,6 +12,9 @@ export default function Nav() {
       <Link href="/contact" className={router.pathname === "/contact" ? "opacity-50" : ""}>
         Contact
       </Link>
+      <a href="https://exceptionalalienstudio.com/" target="_blank">
+        EA Studio
+      </a>
       <Link href="/terms-and-privacy" className={router.pathname === "/terms-and-privacy" ? "opacity-50" : ""}>
         Terms &amp; Privacy
       </Link>
