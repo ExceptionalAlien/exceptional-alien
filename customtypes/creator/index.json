@@ -99,12 +99,10 @@
         }
       },
       "instagram": {
-        "type": "Link",
+        "type": "Text",
         "config": {
           "label": "Instagram",
-          "placeholder": "",
-          "allowTargetBlank": false,
-          "select": null
+          "placeholder": "@"
         }
       },
       "other_social": {

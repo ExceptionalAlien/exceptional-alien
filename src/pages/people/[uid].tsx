@@ -51,6 +51,7 @@ export default function Creator({ page }: PageProps) {
 
       <main className="min-h-full pt-12 md:pt-20 pb-12 md:pb-20 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>section]:mt-8 [&>section]:md:mt-12 [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6">
         <Title firstName={page.data.first_name} lastName={page.data.last_name} country={page.data.home_country} />
+
         <Heading
           title={page.data.title}
           homeCity={page.data.home_city}
@@ -59,6 +60,7 @@ export default function Creator({ page }: PageProps) {
           other={page.data.other_social}
           www={page.data.website}
         />
+
         <Hero image={page.data.image} />
 
         {/* Description */}

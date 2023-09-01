@@ -266,13 +266,13 @@ interface CreatorDocumentData {
   /**
    * Instagram field in *Creator*
    *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
+   * - **Field Type**: Text
+   * - **Placeholder**: @
    * - **API ID Path**: creator.instagram
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  instagram: prismic.LinkField;
+  instagram: prismic.KeyTextField;
 
   /**
    * Other Social field in *Creator*

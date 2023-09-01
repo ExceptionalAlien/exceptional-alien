@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { ImageField } from "@prismicio/client";
 import { shimmer, toBase64 } from "@/utils/shimmer";
-import windowDimensions from "@/utils/windowDimensions";
+import useWindowDimensions from "@/utils/useWindowDimensions";
 
 export default function Hero(props: { image: ImageField<"mobile"> }) {
-  const { width } = windowDimensions();
+  const { width } = useWindowDimensions();
   const crop = width && width >= 768 ? props.image : props.image.mobile;
 
   return (
