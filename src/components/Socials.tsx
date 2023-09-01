@@ -12,14 +12,17 @@ export default function Socials(props: { classes?: string }) {
       <a href="https://www.instagram.com/exceptionalalien/" target="_blank" title="Instagram">
         <IG />
       </a>
+
       {/* Facebook */}
       <a href="https://www.facebook.com/exceptionalalien" target="_blank" title="Facebook">
         <FB />
       </a>
+
       {/* YouTube */}
       <a href="https://www.youtube.com/@exceptional_alien" target="_blank" title="YouTube">
         <YT />
       </a>
+
       {/* LinkedIn */}
       <a href="https://www.linkedin.com/company/exceptional-alien" target="_blank" title="LinkedIn">
         <LI />

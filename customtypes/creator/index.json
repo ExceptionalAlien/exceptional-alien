@@ -17,7 +17,7 @@
         "type": "Text",
         "config": {
           "label": "First Name",
-          "placeholder": ""
+          "placeholder": "Required"
         }
       },
       "last_name": {
@@ -31,7 +31,7 @@
         "type": "Text",
         "config": {
           "label": "Title",
-          "placeholder": ""
+          "placeholder": "24 characters max."
         }
       },
       "image": {
@@ -39,19 +39,24 @@
         "config": {
           "label": "Image",
           "constraint": {
-            "width": 1800,
-            "height": 945
+            "width": 2400,
+            "height": 1260
           },
           "thumbnails": [
             {
-              "name": "thumb",
-              "width": 630,
-              "height": 630
+              "name": "mobile",
+              "width": 1200,
+              "height": 900
             },
             {
               "name": "seo",
               "width": 1200,
               "height": 630
+            },
+            {
+              "name": "thumb",
+              "width": 640,
+              "height": 640
             }
           ]
         }
@@ -60,7 +65,7 @@
         "type": "Text",
         "config": {
           "label": "Short Description",
-          "placeholder": "140 characters max."
+          "placeholder": "160 characters max."
         }
       },
       "description": {
@@ -70,6 +75,54 @@
           "placeholder": "",
           "allowTargetBlank": true,
           "multi": "paragraph,strong,em,hyperlink"
+        }
+      },
+      "home_country": {
+        "type": "Text",
+        "config": {
+          "label": "Home Country",
+          "placeholder": "Use 3 letter code eg. AUS"
+        }
+      },
+      "home_city": {
+        "type": "Text",
+        "config": {
+          "label": "Home City",
+          "placeholder": ""
+        }
+      },
+      "current_city": {
+        "type": "Text",
+        "config": {
+          "label": "Current City",
+          "placeholder": ""
+        }
+      },
+      "instagram": {
+        "type": "Link",
+        "config": {
+          "label": "Instagram",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
+      "other_social": {
+        "type": "Link",
+        "config": {
+          "label": "Other Social",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
+      "website": {
+        "type": "Link",
+        "config": {
+          "label": "Website",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
         }
       },
       "slices": {

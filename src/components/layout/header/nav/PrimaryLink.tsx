@@ -20,6 +20,7 @@ export default function PrimaryLink(props: { page: string; hideNav: () => void }
           router.pathname === "/" + props.page ? "md:h-5 md:group-hover/nav:h-1" : `h-0 md:group-hover/primary:h-1`
         }`}
       ></span>
+
       {props.page === "destinations" ? (
         <Place className="!mr-2 md:!mr-0" />
       ) : props.page === "playbooks" ? (
@@ -27,6 +28,7 @@ export default function PrimaryLink(props: { page: string; hideNav: () => void }
       ) : (
         <Person />
       )}
+
       {props.page === "playbooks" ? "Travel Playbooks" : props.page}
     </Link>
   );

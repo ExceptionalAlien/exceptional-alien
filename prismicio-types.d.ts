@@ -17,13 +17,13 @@ interface AboutDocumentData {
   /**
    * Page Heading field in *About*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Title
    * - **Placeholder**: *None*
    * - **API ID Path**: about.page_heading
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  page_heading: prismic.RichTextField;
+  page_heading: prismic.TitleField;
 
   /**
    * Slice Zone field in *About*
@@ -90,13 +90,13 @@ interface ContactDocumentData {
   /**
    * Page Heading field in *Contact*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Title
    * - **Placeholder**: *None*
    * - **API ID Path**: contact.page_heading
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  page_heading: prismic.RichTextField;
+  page_heading: prismic.TitleField;
 
   /**
    * Slice Zone field in *Contact*
@@ -168,7 +168,7 @@ interface CreatorDocumentData {
    * First Name field in *Creator*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Required
    * - **API ID Path**: creator.first_name
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
@@ -190,7 +190,7 @@ interface CreatorDocumentData {
    * Title field in *Creator*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: 24 characters max.
    * - **API ID Path**: creator.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
@@ -206,13 +206,13 @@ interface CreatorDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<"thumb" | "seo">;
+  image: prismic.ImageField<"mobile" | "seo" | "thumb">;
 
   /**
    * Short Description field in *Creator*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: 140 characters max.
+   * - **Placeholder**: 160 characters max.
    * - **API ID Path**: creator.short_description
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
@@ -229,6 +229,72 @@ interface CreatorDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
+
+  /**
+   * Home Country field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Use 3 letter code eg. AUS
+   * - **API ID Path**: creator.home_country
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  home_country: prismic.KeyTextField;
+
+  /**
+   * Home City field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.home_city
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  home_city: prismic.KeyTextField;
+
+  /**
+   * Current City field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.current_city
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  current_city: prismic.KeyTextField;
+
+  /**
+   * Instagram field in *Creator*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.instagram
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  instagram: prismic.LinkField;
+
+  /**
+   * Other Social field in *Creator*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.other_social
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  other_social: prismic.LinkField;
+
+  /**
+   * Website field in *Creator*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.website
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  website: prismic.LinkField;
 
   /**
    * Slice Zone field in *Creator*
