@@ -18,7 +18,7 @@ export default function Heading(props: HeadingProps) {
         <Socials ig={props.ig as string} other={asLink(props.other) as string} www={asLink(props.www) as string} />
         <h3>{props.title}</h3>
 
-        <p>
+        <p className="uppercase">
           {props.homeCity && `${props.homeCity} ${"\u2794"} `}
           {props.currentCity}
         </p>
