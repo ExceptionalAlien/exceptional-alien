@@ -2,9 +2,9 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
-import Hero from "@/components/people/Hero";
-import Title from "@/components/people/Title";
-import Heading from "@/components/people/Heading";
+import Hero from "@/components/creator/Hero";
+import Title from "@/components/creator/Title";
+import Heading from "@/components/creator/Heading";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 

@@ -17,7 +17,9 @@ export default function PrimaryLink(props: { page: string; hideNav: () => void }
     >
       <span
         className={`absolute w-[calc(100%-32px)] bg-black top-0 duration-200 ease-in-out transition-[height] ${
-          router.pathname === "/" + props.page ? "md:h-5 md:group-hover/nav:h-1" : `h-0 md:group-hover/primary:h-1`
+          router.pathname.indexOf("/" + props.page) !== -1
+            ? "md:h-5 md:group-hover/nav:h-1"
+            : `h-0 md:group-hover/primary:h-1`
         }`}
       ></span>
 

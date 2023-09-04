@@ -4,11 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type AboutDocumentDataSlicesSlice =
-  | TextBlockSlice
-  | HighlightSlice
-  | TextWithHeadingSlice
-  | VideoEmbedSlice;
+type AboutDocumentDataSlicesSlice = TextBlockSlice | HighlightSlice | TextWithHeadingSlice | VideoEmbedSlice;
 
 /**
  * Content for About documents
@@ -78,8 +74,11 @@ interface AboutDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type AboutDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
+export type AboutDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<AboutDocumentData>,
+  "about",
+  Lang
+>;
 
 type ContactDocumentDataSlicesSlice = TextWithHeadingSlice;
 
@@ -151,12 +150,11 @@ interface ContactDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ContactDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<ContactDocumentData>,
-    "contact",
-    Lang
-  >;
+export type ContactDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<ContactDocumentData>,
+  "contact",
+  Lang
+>;
 
 type CreatorDocumentDataSlicesSlice = never;
 
@@ -349,12 +347,11 @@ interface CreatorDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type CreatorDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<CreatorDocumentData>,
-    "creator",
-    Lang
-  >;
+export type CreatorDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<CreatorDocumentData>,
+  "creator",
+  Lang
+>;
 
 type HomeDocumentDataSlicesSlice = never;
 
@@ -415,13 +412,104 @@ interface HomeDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type HomeDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+export type HomeDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<HomeDocumentData>,
+  "home",
+  Lang
+>;
 
-type TermsAndPrivacyDocumentDataSlicesSlice =
-  | TextWithHeadingSlice
-  | SingleHeadingSlice
-  | HighlightSlice;
+/**
+ * Item in *People → Featured*
+ */
+export interface PeopleDocumentDataFeaturedItem {
+  /**
+   * Creator field in *People → Featured*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: people.featured[].creator
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+}
+
+type PeopleDocumentDataSlicesSlice = never;
+
+/**
+ * Content for People documents
+ */
+interface PeopleDocumentData {
+  /**
+   * Featured field in *People*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: people.featured[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  featured: prismic.GroupField<Simplify<PeopleDocumentDataFeaturedItem>>;
+
+  /**
+   * Slice Zone field in *People*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: people.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PeopleDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *People*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: people.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *People*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: people.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *People*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: people.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * People document from Prismic
+ *
+ * - **API ID**: `people`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PeopleDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<PeopleDocumentData>,
+  "people",
+  Lang
+>;
+
+type TermsAndPrivacyDocumentDataSlicesSlice = TextWithHeadingSlice | SingleHeadingSlice | HighlightSlice;
 
 /**
  * Content for Terms and Privacy documents
@@ -491,18 +579,18 @@ interface TermsAndPrivacyDocumentData {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type TermsAndPrivacyDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<TermsAndPrivacyDocumentData>,
-    "terms_and_privacy",
-    Lang
-  >;
+export type TermsAndPrivacyDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<TermsAndPrivacyDocumentData>,
+  "terms_and_privacy",
+  Lang
+>;
 
 export type AllDocumentTypes =
   | AboutDocument
   | ContactDocument
   | CreatorDocument
   | HomeDocument
+  | PeopleDocument
   | TermsAndPrivacyDocument;
 
 /**
@@ -545,10 +633,7 @@ type HighlightSliceVariation = HighlightSliceDefault;
  * - **Description**: Highlight
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HighlightSlice = prismic.SharedSlice<
-  "highlight",
-  HighlightSliceVariation
->;
+export type HighlightSlice = prismic.SharedSlice<"highlight", HighlightSliceVariation>;
 
 /**
  * Primary content in *SingleHeading → Primary*
@@ -590,10 +675,7 @@ type SingleHeadingSliceVariation = SingleHeadingSliceDefault;
  * - **Description**: SingleHeading
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type SingleHeadingSlice = prismic.SharedSlice<
-  "single_heading",
-  SingleHeadingSliceVariation
->;
+export type SingleHeadingSlice = prismic.SharedSlice<"single_heading", SingleHeadingSliceVariation>;
 
 /**
  * Primary content in *TextBlock → Primary*
@@ -635,10 +717,7 @@ type TextBlockSliceVariation = TextBlockSliceDefault;
  * - **Description**: TextBlock
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type TextBlockSlice = prismic.SharedSlice<
-  "text_block",
-  TextBlockSliceVariation
->;
+export type TextBlockSlice = prismic.SharedSlice<"text_block", TextBlockSliceVariation>;
 
 /**
  * Primary content in *TextWithHeading → Primary*
@@ -719,9 +798,7 @@ export type TextWithHeadingSliceColumns = prismic.SharedSliceVariation<
 /**
  * Slice variation for *TextWithHeading*
  */
-type TextWithHeadingSliceVariation =
-  | TextWithHeadingSliceDefault
-  | TextWithHeadingSliceColumns;
+type TextWithHeadingSliceVariation = TextWithHeadingSliceDefault | TextWithHeadingSliceColumns;
 
 /**
  * TextWithHeading Shared Slice
@@ -730,10 +807,7 @@ type TextWithHeadingSliceVariation =
  * - **Description**: TextWithHeading
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type TextWithHeadingSlice = prismic.SharedSlice<
-  "text_with_heading",
-  TextWithHeadingSliceVariation
->;
+export type TextWithHeadingSlice = prismic.SharedSlice<"text_with_heading", TextWithHeadingSliceVariation>;
 
 /**
  * Primary content in *VideoEmbed → Primary*
@@ -775,17 +849,11 @@ type VideoEmbedSliceVariation = VideoEmbedSliceDefault;
  * - **Description**: VideoEmbed
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type VideoEmbedSlice = prismic.SharedSlice<
-  "video_embed",
-  VideoEmbedSliceVariation
->;
+export type VideoEmbedSlice = prismic.SharedSlice<"video_embed", VideoEmbedSliceVariation>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
-    (
-      repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig
-    ): prismic.Client<AllDocumentTypes>;
+    (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
   }
 
   namespace Content {
@@ -802,24 +870,33 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      PeopleDocument,
+      PeopleDocumentData,
+      PeopleDocumentDataSlicesSlice,
       TermsAndPrivacyDocument,
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,
       AllDocumentTypes,
       HighlightSlice,
+      HighlightSliceDefaultPrimary,
       HighlightSliceVariation,
       HighlightSliceDefault,
       SingleHeadingSlice,
+      SingleHeadingSliceDefaultPrimary,
       SingleHeadingSliceVariation,
       SingleHeadingSliceDefault,
       TextBlockSlice,
+      TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,
       TextBlockSliceDefault,
       TextWithHeadingSlice,
+      TextWithHeadingSliceDefaultPrimary,
+      TextWithHeadingSliceColumnsPrimary,
       TextWithHeadingSliceVariation,
       TextWithHeadingSliceDefault,
       TextWithHeadingSliceColumns,
       VideoEmbedSlice,
+      VideoEmbedSliceDefaultPrimary,
       VideoEmbedSliceVariation,
       VideoEmbedSliceDefault,
     };

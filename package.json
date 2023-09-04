@@ -27,8 +27,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@slicemachine/adapter-next": "^0.3.12",
+    "@slicemachine/adapter-next": "^0.3.13",
     "@svgr/webpack": "^8.1.0",
-    "slice-machine-ui": "^1.10.0"
+    "slice-machine-ui": "^1.11.0"
   }
 }
