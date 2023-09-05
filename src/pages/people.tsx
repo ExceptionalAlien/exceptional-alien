@@ -9,7 +9,7 @@ function FeaturedPeople(props: { featured: any }) {
     <section className="!pl-0 !pr-0">
       <h3 className="ml-4 md:ml-6">Featured People</h3>
 
-      <div className="flex overflow-x-scroll scrolling-touch snap-x snap-mandatory pr-4 md:pr-6 [&>a]:flex-none [&>a]:snap-start [&>a]:snap-always [&>a]:pl-4 [&>a]:md:pl-6 [&_img]:h-60 [&_img]:md:h-96 [&_img]:w-auto">
+      <div className="slider flex overflow-x-scroll scrolling-touch no-scrollbar snap-x snap-mandatory pr-4 md:pr-6 [&>a]:flex-none [&>a]:snap-start [&>a]:snap-always [&>a]:pl-4 [&>a]:md:pl-6 [&_img]:h-60 [&_img]:md:h-96 [&_img]:w-auto">
         {props.featured.map((item: { creator: FetchLinks }, i: Key) => (
           <Creator key={i} data={item.creator.data} size="mobile" />
         ))}
