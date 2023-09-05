@@ -5,6 +5,7 @@ import { shimmer, toBase64 } from "@/utils/shimmer";
 
 interface PrismicImage {
   thumb: ImageField;
+  mobile: ImageField;
 }
 
 export interface DataProps {
@@ -14,21 +15,19 @@ export interface DataProps {
   image: PrismicImage;
 }
 
-export default function Creator(props: { data: DataProps }) {
+export default function Creator(props: { data: DataProps; size: string }) {
+  const image = props.size === "mobile" ? props.data.image.mobile : props.data.image.thumb;
+
   return (
-    <Link href={"/people/" + props.data.uid} className="flex items-center justify-center bg-red-100">
+    <Link href={"/people/" + props.data.uid}>
       <Image
-        src={props.data.image.thumb.url as string}
+        src={image.url as string}
         alt=""
-        width={props.data.image.thumb.dimensions?.width}
-        height={props.data.image.thumb.dimensions?.height}
+        width={image.dimensions?.width}
+        height={image.dimensions?.height}
         placeholder={`data:image/svg+xml;base64,${toBase64(
-          shimmer(
-            props.data.image.thumb.dimensions?.width as number,
-            props.data.image.thumb.dimensions?.height as number
-          )
+          shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
         )}`}
-        className="w-full max-w-xs"
       />
     </Link>
   );
