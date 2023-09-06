@@ -60,7 +60,7 @@ export default function CreatorThumb(props: { data: DataProps; size?: string; cl
             firstName={props.data.first_name}
             lastName={props.data.last_name}
             country={props.data.home_country}
-            classes="absolute right-2 top-[6px] !text-xs hidden md:inline"
+            classes="absolute right-[6px] top-1 !text-xs hidden md:inline"
           />
         )}
       </TabHeading>
