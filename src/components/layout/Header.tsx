@@ -47,7 +47,7 @@ export default function Header() {
           </Link>
         </h1>
 
-        <Title />
+        <Title scrollY={scrollY} />
         <Nav scrollY={scrollY} />
       </header>
     </>
