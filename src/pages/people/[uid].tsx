@@ -65,7 +65,7 @@ export default function Creator({ page }: PageProps) {
 
         {/* Description */}
         <section
-          className={`text-ex-grey [&>p]:mt-4 [&>p]:md:float-right [&>p]:md:w-3/4 [&_a]:underline hover:[&_a]:text-ex-light-grey [&_a]:transition-[color] [&_a]:duration-300 [&>*:nth-child(2)]:md:mt-0 ${
+          className={`text-ex-grey [&>p]:mt-4 [&>p]:md:float-right [&>p]:md:w-3/4 [&_a]:underline hover:[&_a]:text-ex-light-grey [&_a]:transition-[color] [&_a]:ease-in-out [&_a]:duration-300 [&>*:nth-child(2)]:md:mt-0 ${
             !page.data.description[0] && "hidden"
           }`}
         >

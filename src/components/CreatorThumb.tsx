@@ -1,0 +1,69 @@
+import Link from "next/link";
+import Image from "next/image";
+import { ImageField } from "@prismicio/client";
+import TabHeading from "@/components/TabHeading";
+import MachineCode from "@/components/MachineCode";
+import { shimmer, toBase64 } from "@/utils/shimmer";
+
+interface PrismicImage {
+  thumb: ImageField;
+  mobile: ImageField;
+}
+
+export interface DataProps {
+  first_name: string;
+  last_name: string;
+  uid: string;
+  image: PrismicImage;
+  title: string;
+  home_city: string;
+  current_city: string;
+  home_country: string;
+}
+
+export default function CreatorThumb(props: { data: DataProps; size?: string; classes?: string }) {
+  const image = props.size === "mobile" ? props.data.image.mobile : props.data.image.thumb;
+
+  return (
+    <Link href={"/people/" + props.data.uid} className={`group/link max-w-xs md:max-w-xl ${props.classes}`}>
+      <div className="bg-ex-blue">
+        <Image
+          src={image.url as string}
+          alt=""
+          width={image.dimensions?.width}
+          height={image.dimensions?.height}
+          placeholder={`data:image/svg+xml;base64,${toBase64(
+            shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
+          )}`}
+          className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
+        />
+      </div>
+
+      <p
+        className={`group-hover/link:text-ex-blue duration-300 ease-in-out font-bold mt-2 ${
+          props.size === "mobile" ? "text-xl md:text-3xl" : "text-xl"
+        }`}
+      >
+        {props.data.first_name} {props.data.last_name?.toUpperCase()}
+      </p>
+
+      <TabHeading classes="mt-1 group-hover/link:text-ex-blue group-hover/link:border-ex-blue duration-300 ease-in-out">
+        <p>{props.data.title}</p>
+
+        <p className="uppercase">
+          {props.data.home_city && props.size === "mobile" && `${props.data.home_city} ${"\u2794"} `}
+          {props.data.current_city}
+        </p>
+
+        {props.size === "mobile" && (
+          <MachineCode
+            firstName={props.data.first_name}
+            lastName={props.data.last_name}
+            country={props.data.home_country}
+            classes="absolute right-2 top-[6px] !text-xs hidden md:inline"
+          />
+        )}
+      </TabHeading>
+    </Link>
+  );
+}

@@ -1,43 +1,11 @@
-import { Key } from "react";
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
-import Creator, { DataProps } from "@/components/people/Creator";
-
-function FeaturedPeople(props: { featured: any }) {
-  return (
-    <section className="!pl-0 !pr-0">
-      <h3 className="ml-4 md:ml-6">Featured People</h3>
-
-      <div className="slider flex overflow-x-scroll scrolling-touch no-scrollbar snap-x snap-mandatory pr-4 md:pr-6 [&>a]:flex-none [&>a]:snap-start [&>a]:snap-always [&>a]:pl-4 [&>a]:md:pl-6 [&_img]:h-60 [&_img]:md:h-96 [&_img]:w-auto">
-        {props.featured.map((item: { creator: FetchLinks }, i: Key) => (
-          <Creator key={i} data={item.creator.data} size="mobile" />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function AllPeople(props: { featured: any }) {
-  return (
-    <section>
-      <h3>All People</h3>
-
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
-        {props.featured.map((item: { creator: FetchLinks }, i: Key) => (
-          <Creator key={i} data={item.creator.data} size="thumb" />
-        ))}
-      </div>
-    </section>
-  );
-}
+import { PrismicRichText } from "@prismicio/react";
+import Featured from "../components/people/Featured";
+import All from "../components/people/All";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
-
-// Needed to reslove Prismic issue where data type is missing
-interface FetchLinks {
-  data: DataProps;
-}
 
 export default function People({ page }: PageProps) {
   return (
@@ -54,9 +22,13 @@ export default function People({ page }: PageProps) {
         <meta name="robots" content="noindex" />
       </Head>
 
-      <main className="min-h-full pt-12 md:pt-20 pb-12 md:pb-20 [&>section]:mt-8 [&>section]:md:mt-12 [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&_h3]:font-bold [&_h3]:text-xl [&_h3]:md:text-3xl [&_h3]:mb-2 [&_h3]:md:mb-3">
-        <FeaturedPeople featured={page.data.featured} />
-        <AllPeople featured={page.data.featured} />
+      <main className="min-h-full pt-12 md:pt-20 pb-12 md:pb-20 [&>section]:mt-8 [&>section]:md:mt-12 [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:md:text-4xl [&_h3]:mb-2 [&_h3]:md:mb-3">
+        <section className="text-ex-blue font-bold text-xl md:text-3xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>p]:mt-4 [&>p]:md:mt-6">
+          <PrismicRichText field={page.data.overview} />
+        </section>
+
+        <Featured featured={page.data.featured} />
+        <All featured={page.data.featured} />
       </main>
     </>
   );
@@ -65,7 +37,8 @@ export default function People({ page }: PageProps) {
 export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
   const page = await client.getSingle("people", {
-    fetchLinks: "creator.first_name,creator.last_name,creator.uid,creator.image",
+    fetchLinks:
+      "creator.first_name,creator.last_name,creator.uid,creator.image,creator.title,creator.home_city,creator.current_city,creator.home_country",
   });
 
   return {

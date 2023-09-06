@@ -12,7 +12,7 @@ export type HighlightProps = SliceComponentProps<Content.HighlightSlice>;
 const Highlight = ({ slice }: HighlightProps): JSX.Element => {
   return (
     <section
-      className="text-ex-blue font-bold text-xl md:text-3xl"
+      className="text-ex-blue font-bold text-xl md:text-3xl [&>p]:mt-4 [&>p]:md:mt-6"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

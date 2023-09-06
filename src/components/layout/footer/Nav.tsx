@@ -5,7 +5,7 @@ export default function Nav() {
   const router = useRouter();
 
   return (
-    <nav className="pl-1 md:pl-3 pt-3 text-sm [&>*]:leading-none [&>*]:text-white [&>*]:p-3 [&>*]:w-max [&>*]:block [&>*]:md:inline-block hover:[&>*]:opacity-50 [&>*]:duration-300 [&>*]:transition-opacity">
+    <nav className="pl-1 md:pl-3 pt-3 text-sm [&>*]:leading-none [&>*]:text-white [&>*]:p-3 [&>*]:w-max [&>*]:block [&>*]:md:inline-block hover:[&>*]:opacity-50 [&>*]:duration-300 [&>*]:ease-in-out [&>*]:transition-opacity">
       <Link href="/about" className={router.pathname === "/about" ? "opacity-50" : ""}>
         About
       </Link>

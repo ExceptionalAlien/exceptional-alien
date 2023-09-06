@@ -8,7 +8,7 @@ function Buttons(props: { setShowingNav: React.Dispatch<React.SetStateAction<boo
   return (
     <div
       className={`absolute h-full right-0 top-0 [&>*]:p-3 [&>*]:md:p-4 [&>*]:transition-[opacity,color] [&>*]:duration-300 [&>*]:ease-in-out [&>*]:h-full hover:[&>*]:opacity-50 ${
-        props.scrollY > 0 && "[&>*]:text-white"
+        props.scrollY > 0 ? "[&>*]:text-white" : "[&>*]:text-black"
       }`}
     >
       {/* Search */}

@@ -29,7 +29,7 @@ export default function Header() {
       </Head>
 
       <header
-        className={`z-10 top-0 fixed w-full h-12 md:h-20 md:transition-[background-color,color] ease-in-out md:duration-300 ${
+        className={`z-10 top-0 fixed w-full h-12 md:h-20 md:transition-[background-color,color] md:ease-in-out md:duration-300 ${
           scrollY > 0 ? "bg-ex-blue text-white" : "bg-white"
         }`}
       >

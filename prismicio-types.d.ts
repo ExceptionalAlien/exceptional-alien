@@ -440,6 +440,17 @@ type PeopleDocumentDataSlicesSlice = never;
  */
 interface PeopleDocumentData {
   /**
+   * Overview field in *People*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: people.overview
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  overview: prismic.RichTextField;
+
+  /**
    * Featured field in *People*
    *
    * - **Field Type**: Group

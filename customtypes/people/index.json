@@ -6,6 +6,15 @@
   "status": true,
   "json": {
     "Main": {
+      "overview": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Overview",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
       "featured": {
         "type": "Group",
         "config": {
