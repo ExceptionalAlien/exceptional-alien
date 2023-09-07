@@ -27,7 +27,9 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
   return (
     <Link
       href={"/creators/" + (props.uid ? props.uid : props.data.uid)}
-      className={`group/link ${props.size === "mobile" && "max-w-xs md:max-w-xl"} ${props.classes}`}
+      className={`group/link ${props.size === "mobile" && "w-2/3 md:w-5/12 min-w-[320px] md:min-w-[512px] max-w-2xl"} ${
+        props.classes
+      }`}
     >
       {image.url && (
         <div className="bg-ex-blue">

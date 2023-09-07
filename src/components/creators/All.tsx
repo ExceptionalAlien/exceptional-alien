@@ -1,5 +1,5 @@
 import { PrismicDocument } from "@prismicio/client";
-import CreatorThumb, { DataProps } from "@/components/CreatorThumb";
+import CreatorThumb, { DataProps } from "../CreatorThumb";
 
 export default function All(props: { creators: PrismicDocument[] }) {
   return (
