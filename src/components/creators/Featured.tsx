@@ -2,7 +2,7 @@ import { GroupField } from "@prismicio/client";
 import Slider from "@/components/Slider";
 import CreatorThumb, { DataProps } from "@/components/CreatorThumb";
 
-// Needed to reslove Prismic missing type for data
+// Needed to resolve Prismic missing type for fetchLinks data
 interface FetchLinks {
   data: DataProps;
 }

@@ -7,7 +7,7 @@ import All from "../components/creators/All";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Creators({ page }: PageProps) {
+export default function Creators({ page, creators }: PageProps) {
   return (
     <>
       <Head>
@@ -31,7 +31,7 @@ export default function Creators({ page }: PageProps) {
         </section>
 
         <Featured featured={page.data.featured} />
-        <All featured={page.data.featured} />
+        <All creators={creators} />
       </main>
     </>
   );
@@ -44,9 +44,19 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
       "creator.first_name,creator.last_name,creator.uid,creator.image,creator.title,creator.home_city,creator.current_city,creator.home_country",
   });
 
+  const creators = await client.getAllByType("creator", {
+    orderings: [
+      {
+        field: "my.creator.first_name",
+        direction: "asc",
+      },
+    ],
+  });
+
   return {
     props: {
       page,
+      creators,
     },
   };
 }

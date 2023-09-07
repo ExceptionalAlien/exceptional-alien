@@ -61,7 +61,7 @@ export default function Creator({ page }: PageProps) {
           www={page.data.website}
         />
 
-        <Hero image={page.data.image} />
+        {page.data.image.url && <Hero image={page.data.image} />}
 
         {/* Description */}
         <section

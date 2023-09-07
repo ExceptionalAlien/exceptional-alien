@@ -11,9 +11,9 @@ interface PrismicImage {
 }
 
 export interface DataProps {
+  uid: string;
   first_name: string;
   last_name: string;
-  uid: string;
   image: PrismicImage;
   title: string;
   home_city: string;
@@ -21,26 +21,28 @@ export interface DataProps {
   home_country: string;
 }
 
-export default function CreatorThumb(props: { data: DataProps; size?: string; classes?: string }) {
+export default function CreatorThumb(props: { data: DataProps; uid?: string; size?: string; classes?: string }) {
   const image = props.size === "mobile" ? props.data.image.mobile : props.data.image.thumb;
 
   return (
     <Link
-      href={"/creators/" + props.data.uid}
+      href={"/creators/" + (props.uid ? props.uid : props.data.uid)}
       className={`group/link ${props.size === "mobile" && "max-w-xs md:max-w-xl"} ${props.classes}`}
     >
-      <div className="bg-ex-blue">
-        <Image
-          src={image.url as string}
-          alt=""
-          width={image.dimensions?.width}
-          height={image.dimensions?.height}
-          placeholder={`data:image/svg+xml;base64,${toBase64(
-            shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
-          )}`}
-          className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
-        />
-      </div>
+      {image.url && (
+        <div className="bg-ex-blue">
+          <Image
+            src={image.url as string}
+            alt=""
+            width={image.dimensions?.width}
+            height={image.dimensions?.height}
+            placeholder={`data:image/svg+xml;base64,${toBase64(
+              shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
+            )}`}
+            className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
+          />
+        </div>
+      )}
 
       <p
         className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${

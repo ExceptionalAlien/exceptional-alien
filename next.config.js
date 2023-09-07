@@ -32,6 +32,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/people/:slug",
+        destination: "/creators/:slug",
+        permanent: true,
+      },
+    ];
+  },
   reactStrictMode: true,
 };
 
