@@ -2,24 +2,27 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
-import Featured from "../components/people/Featured";
-import All from "../components/people/All";
+import Featured from "../components/creators/Featured";
+import All from "../components/creators/All";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function People({ page }: PageProps) {
+export default function Creators({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>Exceptional ALIEN - People</title>
-        <meta name="description" content="" />
-        <meta property="og:url" content="https://exceptionalalien.com/people" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Exceptional ALIEN - People" />
-        <meta property="og:description" content="" />
-        <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
-        <meta name="theme-color" content="#2220C1" />
-        <meta name="robots" content="noindex" />
+        <title>{`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}</title>
+        <meta name="description" content={page.data.meta_description ?? ""} />
+        <meta property="og:url" content="https://exceptionalalien.com/creators" />
+        <meta
+          property="og:title"
+          content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
+        />
+        <meta property="og:description" content={page.data.meta_description ?? ""} />
+        <meta
+          property="og:image"
+          content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
+        />
       </Head>
 
       <main className="min-h-full pt-12 md:pt-20 pb-12 md:pb-20 [&>section]:mt-8 [&>section]:md:mt-12 [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:md:text-4xl [&_h3]:mb-2 [&_h3]:md:mb-3">
@@ -36,7 +39,7 @@ export default function People({ page }: PageProps) {
 
 export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
-  const page = await client.getSingle("people", {
+  const page = await client.getSingle("creators", {
     fetchLinks:
       "creator.first_name,creator.last_name,creator.uid,creator.image,creator.title,creator.home_city,creator.current_city,creator.home_country",
   });

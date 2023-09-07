@@ -7,7 +7,7 @@ import Person from "@/img/icon-person.svg";
 export default function Title(props: { scrollY: number }) {
   const router = useRouter();
   const page = router.pathname.split("/")[1];
-  const showTitle = page === "people" || page === "playbooks" || page === "destinations" ? true : false;
+  const showTitle = page === "creators" || page === "playbooks" || page === "destinations" ? true : false;
 
   return (
     <Link

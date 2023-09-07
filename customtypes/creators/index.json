@@ -1,6 +1,6 @@
 {
-  "id": "people",
-  "label": "People",
+  "id": "creators",
+  "label": "Creators",
   "format": "page",
   "repeatable": false,
   "status": true,

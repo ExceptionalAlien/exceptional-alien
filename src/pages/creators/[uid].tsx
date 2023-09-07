@@ -22,7 +22,7 @@ export default function Creator({ page }: PageProps) {
             : ""
         }`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
-        <meta property="og:url" content={`https://exceptionalalien.com/people/${page.uid}`} />
+        <meta property="og:url" content={`https://exceptionalalien.com/creators/${page.uid}`} />
         <meta
           property="og:title"
           content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}

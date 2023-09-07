@@ -25,7 +25,10 @@ export default function CreatorThumb(props: { data: DataProps; size?: string; cl
   const image = props.size === "mobile" ? props.data.image.mobile : props.data.image.thumb;
 
   return (
-    <Link href={"/people/" + props.data.uid} className={`group/link max-w-xs md:max-w-xl ${props.classes}`}>
+    <Link
+      href={"/creators/" + props.data.uid}
+      className={`group/link ${props.size === "mobile" && "max-w-xs md:max-w-xl"} ${props.classes}`}
+    >
       <div className="bg-ex-blue">
         <Image
           src={image.url as string}
@@ -40,14 +43,18 @@ export default function CreatorThumb(props: { data: DataProps; size?: string; cl
       </div>
 
       <p
-        className={`group-hover/link:text-ex-blue duration-300 ease-in-out font-bold mt-2 ${
+        className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${
           props.size === "mobile" ? "text-xl md:text-3xl" : "text-xl"
         }`}
       >
         {props.data.first_name} {props.data.last_name?.toUpperCase()}
       </p>
 
-      <TabHeading classes="mt-1 group-hover/link:text-ex-blue group-hover/link:border-ex-blue duration-300 ease-in-out">
+      <TabHeading
+        classes={`mt-1 group-hover/link:text-ex-blue group-hover/link:border-ex-blue duration-300 ease-in-out ${
+          props.size !== "mobile" && "!pt-1 !pl-[6px] !h-9"
+        }`}
+      >
         <p>{props.data.title}</p>
 
         <p className="uppercase">
@@ -60,7 +67,7 @@ export default function CreatorThumb(props: { data: DataProps; size?: string; cl
             firstName={props.data.first_name}
             lastName={props.data.last_name}
             country={props.data.home_country}
-            classes="absolute right-[6px] top-1 !text-xs hidden md:inline"
+            classes="absolute right-2 top-[6px] !text-xs hidden md:inline"
           />
         )}
       </TabHeading>

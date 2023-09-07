@@ -353,6 +353,108 @@ export type CreatorDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
+/**
+ * Item in *Creators → Featured*
+ */
+export interface CreatorsDocumentDataFeaturedItem {
+  /**
+   * Creator field in *Creators → Featured*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creators.featured[].creator
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+}
+
+type CreatorsDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Creators documents
+ */
+interface CreatorsDocumentData {
+  /**
+   * Overview field in *Creators*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creators.overview
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  overview: prismic.RichTextField;
+
+  /**
+   * Featured field in *Creators*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creators.featured[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  featured: prismic.GroupField<Simplify<CreatorsDocumentDataFeaturedItem>>;
+
+  /**
+   * Slice Zone field in *Creators*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creators.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<CreatorsDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Creators*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: creators.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Creators*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creators.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Creators*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: creators.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Creators document from Prismic
+ *
+ * - **API ID**: `creators`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CreatorsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<CreatorsDocumentData>,
+  "creators",
+  Lang
+>;
+
 type HomeDocumentDataSlicesSlice = never;
 
 /**
@@ -415,108 +517,6 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
   Simplify<HomeDocumentData>,
   "home",
-  Lang
->;
-
-/**
- * Item in *People → Featured*
- */
-export interface PeopleDocumentDataFeaturedItem {
-  /**
-   * Creator field in *People → Featured*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: people.featured[].creator
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  creator: prismic.ContentRelationshipField<"creator">;
-}
-
-type PeopleDocumentDataSlicesSlice = never;
-
-/**
- * Content for People documents
- */
-interface PeopleDocumentData {
-  /**
-   * Overview field in *People*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: people.overview
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  overview: prismic.RichTextField;
-
-  /**
-   * Featured field in *People*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: people.featured[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  featured: prismic.GroupField<Simplify<PeopleDocumentDataFeaturedItem>>;
-
-  /**
-   * Slice Zone field in *People*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: people.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<PeopleDocumentDataSlicesSlice>
-  /**
-   * Meta Description field in *People*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: people.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *People*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: people.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *People*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: people.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * People document from Prismic
- *
- * - **API ID**: `people`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type PeopleDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
-  Simplify<PeopleDocumentData>,
-  "people",
   Lang
 >;
 
@@ -600,8 +600,8 @@ export type AllDocumentTypes =
   | AboutDocument
   | ContactDocument
   | CreatorDocument
+  | CreatorsDocument
   | HomeDocument
-  | PeopleDocument
   | TermsAndPrivacyDocument;
 
 /**
@@ -878,12 +878,12 @@ declare module "@prismicio/client" {
       CreatorDocument,
       CreatorDocumentData,
       CreatorDocumentDataSlicesSlice,
+      CreatorsDocument,
+      CreatorsDocumentData,
+      CreatorsDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
-      PeopleDocument,
-      PeopleDocumentData,
-      PeopleDocumentDataSlicesSlice,
       TermsAndPrivacyDocument,
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,
