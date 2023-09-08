@@ -1,6 +1,6 @@
-export default function Filter(props: { classes?: string }) {
+export default function Filter(props: { query: string; setQuery: React.Dispatch<React.SetStateAction<string>> }) {
   return (
-    <form className={`${props.classes}`}>
+    <form className="sm:absolute top-0 sm:right-4 md:right-6 mb-4">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 inline-block">
         <path
           fillRule="evenodd"
@@ -11,8 +11,10 @@ export default function Filter(props: { classes?: string }) {
 
       <input
         type="text"
+        value={props.query}
+        onChange={(e) => props.setQuery(e.target.value)}
         placeholder="Filter"
-        className="inline-block border-b border-black ml-1 md:ml-2 w-32 md:w-48 outline-none rounded-none"
+        className="inline-block border-b border-black ml-2 w-[calc(100%-28px)] sm:w-64 outline-none rounded-none"
       />
     </form>
   );

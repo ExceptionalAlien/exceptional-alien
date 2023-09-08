@@ -30,7 +30,7 @@ export default function Creators({ page, creators }: PageProps) {
         <Featured featured={page.data.featured} />
         <Spacer />
 
-        <section className="text-ex-blue font-bold text-xl md:text-3xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>p]:mt-4 [&>p]:md:mt-6">
+        <section className="text-ex-blue font-bold text-2xl md:text-4xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>p]:mt-4 [&>p]:md:mt-6">
           <PrismicRichText field={page.data.overview} />
         </section>
 

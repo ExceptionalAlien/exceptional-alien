@@ -65,11 +65,11 @@ export default function Creator({ page }: PageProps) {
 
         {/* Description */}
         <section
-          className={`text-ex-grey [&>p]:mt-4 [&>p]:md:float-right [&>p]:md:w-3/4 [&_a]:underline hover:[&_a]:text-ex-light-grey [&_a]:transition-[color] [&_a]:ease-in-out [&_a]:duration-300 [&>*:nth-child(2)]:md:mt-0 ${
+          className={`text-ex-grey [&>p]:mt-4 [&>p]:sm:float-right [&>p]:sm:w-3/4 [&_a]:underline hover:[&_a]:text-ex-light-grey [&_a]:transition-[color] [&_a]:ease-in-out [&_a]:duration-300 [&>*:nth-child(2)]:sm:mt-0 ${
             !page.data.description[0] && "hidden"
           }`}
         >
-          <h4 className="font-bold text-2xl md:float-left md:w-1/4 md:pr-6">About</h4>
+          <h4 className="font-bold text-2xl sm:float-left sm:w-1/4 sm:pr-6">About</h4>
           <PrismicRichText field={page.data.description} />
           <div className="clear-both"></div>
         </section>

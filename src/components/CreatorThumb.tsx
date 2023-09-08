@@ -30,7 +30,7 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
       className={`group/link ${props.size === "mobile" && "w-10/12 sm:w-5/12 md:w-2/3 max-w-2xl"} ${props.classes}`}
     >
       {image.url && (
-        <div className="bg-ex-blue">
+        <div className="group-hover/link:bg-ex-blue">
           <Image
             src={image.url as string}
             alt=""
