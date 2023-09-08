@@ -42,8 +42,8 @@ export default function Creator({ page }: PageProps) {
           content={
             page.data.meta_image.url
               ? page.data.meta_image.url
-              : page.data.image.seo.url
-              ? page.data.image.seo.url
+              : page.data.hero_image.seo.url
+              ? page.data.hero_image.seo.url
               : "https://exceptionalalien.com/img/og.png"
           }
         />
@@ -61,7 +61,7 @@ export default function Creator({ page }: PageProps) {
           www={page.data.website}
         />
 
-        {page.data.image.url && <Hero image={page.data.image} />}
+        {page.data.hero_image.url && <Hero image={page.data.hero_image} />}
 
         {/* Description */}
         <section

@@ -34,10 +34,10 @@
           "placeholder": "24 characters max."
         }
       },
-      "image": {
+      "hero_image": {
         "type": "Image",
         "config": {
-          "label": "Image",
+          "label": "Hero Image",
           "constraint": {
             "width": 2400,
             "height": 1260
@@ -52,13 +52,19 @@
               "name": "seo",
               "width": 1200,
               "height": 630
-            },
-            {
-              "name": "thumb",
-              "width": 640,
-              "height": 640
             }
           ]
+        }
+      },
+      "profile_image": {
+        "type": "Image",
+        "config": {
+          "label": "Profile Image",
+          "constraint": {
+            "width": 640,
+            "height": 640
+          },
+          "thumbnails": []
         }
       },
       "short_description": {

@@ -6,7 +6,6 @@ import MachineCode from "@/components/MachineCode";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 interface PrismicImage {
-  thumb: ImageField;
   mobile: ImageField;
 }
 
@@ -14,7 +13,8 @@ export interface DataProps {
   uid: string;
   first_name: string;
   last_name: string;
-  image: PrismicImage;
+  hero_image: PrismicImage;
+  profile_image: ImageField;
   title: string;
   home_city: string;
   current_city: string;
@@ -22,14 +22,12 @@ export interface DataProps {
 }
 
 export default function CreatorThumb(props: { data: DataProps; uid?: string; size?: string; classes?: string }) {
-  const image = props.size === "mobile" ? props.data.image.mobile : props.data.image.thumb;
+  const image = props.size === "mobile" ? props.data.hero_image.mobile : props.data.profile_image;
 
   return (
     <Link
       href={"/creators/" + (props.uid ? props.uid : props.data.uid)}
-      className={`group/link ${props.size === "mobile" && "w-2/3 md:w-5/12 min-w-[320px] md:min-w-[512px] max-w-2xl"} ${
-        props.classes
-      }`}
+      className={`group/link ${props.size === "mobile" && "w-2/3 sm:w-5/12 max-w-2xl"} ${props.classes}`}
     >
       {image.url && (
         <div className="bg-ex-blue">
@@ -71,7 +69,7 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
             firstName={props.data.first_name}
             lastName={props.data.last_name}
             country={props.data.home_country}
-            classes="absolute right-2 top-[6px] !text-xs hidden md:inline"
+            classes="absolute right-2 top-[6px] !text-xs hidden xl:inline"
           />
         )}
       </TabHeading>

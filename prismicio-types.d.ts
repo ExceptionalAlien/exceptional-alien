@@ -196,15 +196,26 @@ interface CreatorDocumentData {
   title: prismic.KeyTextField;
 
   /**
-   * Image field in *Creator*
+   * Hero Image field in *Creator*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: creator.image
+   * - **API ID Path**: creator.hero_image
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<"mobile" | "seo" | "thumb">;
+  hero_image: prismic.ImageField<"mobile" | "seo">;
+
+  /**
+   * Profile Image field in *Creator*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.profile_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  profile_image: prismic.ImageField<never>;
 
   /**
    * Short Description field in *Creator*
