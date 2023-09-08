@@ -12,7 +12,7 @@ export default function Filter(props: { classes?: string }) {
       <input
         type="text"
         placeholder="Filter"
-        className="inline-block border-b border-black ml-1 md:ml-2 w-32 md:w-48"
+        className="inline-block border-b border-black ml-1 md:ml-2 w-32 md:w-48 outline-none rounded-none"
       />
     </form>
   );
