@@ -27,7 +27,7 @@ export default function Contact({ page }: PageProps) {
         />
       </Head>
 
-      <main className="min-h-full p-4 md:p-6 pt-12 md:pt-20 pb-12 md:pb-20 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>section]:mt-8 [&>section]:md:mt-12">
+      <main className="min-h-full p-4 md:p-6 pt-12 md:pt-20 pb-12 md:pb-20 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>section]:mt-8 [&>section]:md:mt-16">
         <TabHeading classes="!mt-16 md:!mt-24 uppercase">
           <PrismicRichText field={page.data.page_heading} />
           <Socials classes="absolute top-0 right-0 [&_svg]:!fill-black" />

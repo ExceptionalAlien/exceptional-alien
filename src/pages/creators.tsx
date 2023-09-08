@@ -4,6 +4,7 @@ import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import Featured from "../components/creators/Featured";
 import All from "../components/creators/All";
+import Spacer from "../components/Spacer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -25,12 +26,15 @@ export default function Creators({ page, creators }: PageProps) {
         />
       </Head>
 
-      <main className="min-h-full pt-12 md:pt-20 pb-12 md:pb-20 [&>section]:mt-8 [&>section]:md:mt-12 [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:md:text-4xl [&_h3]:mb-2 [&_h3]:md:mb-3">
+      <main className="min-h-full pt-12 md:pt-20 pb-12 md:pb-20 [&>section]:mt-8 [&>section]:md:mt-16 [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&_h3]:font-bold [&_h3]:text-2xl [&_h3]:md:text-4xl [&_h3]:mb-2 [&_h3]:md:mb-3">
+        <Featured featured={page.data.featured} />
+        <Spacer />
+
         <section className="text-ex-blue font-bold text-xl md:text-3xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>p]:mt-4 [&>p]:md:mt-6">
           <PrismicRichText field={page.data.overview} />
         </section>
 
-        <Featured featured={page.data.featured} />
+        <Spacer />
         <All creators={creators} />
       </main>
     </>
