@@ -1,12 +1,13 @@
 const code = (first: string, last: string, country: string) => {
   const max = 40;
+
   var code = `EA<${country ? country : "WWW"}${last ? last.replace(/ /g, "") : ""}<<${first
     .replace(/ /g, "")
     .replace(/&/g, "<")}`;
 
-  // Add extra arrows
   const loop = max - code.length;
 
+  // Add extra arrows
   for (let i = 0; i < loop; i++) {
     code += "<";
   }

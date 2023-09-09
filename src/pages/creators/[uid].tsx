@@ -21,12 +21,15 @@ export default function Creator({ page }: PageProps) {
             ? " - " + page.data.first_name
             : ""
         }`}</title>
+
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content={`https://exceptionalalien.com/creators/${page.uid}`} />
+
         <meta
           property="og:title"
           content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
         />
+
         <meta
           property="og:description"
           content={
@@ -37,6 +40,7 @@ export default function Creator({ page }: PageProps) {
               : ""
           }
         />
+
         <meta
           property="og:image"
           content={
@@ -63,7 +67,7 @@ export default function Creator({ page }: PageProps) {
 
         {page.data.hero_image.url && <Hero image={page.data.hero_image} />}
 
-        {/* Description */}
+        {/* About */}
         <section
           className={`text-ex-grey [&>p]:mt-4 [&>p]:sm:float-right [&>p]:sm:w-3/4 [&_a]:underline hover:[&_a]:text-ex-light-grey [&_a]:transition-[color] [&_a]:ease-in-out [&_a]:duration-300 [&>*:nth-child(2)]:sm:mt-0 ${
             !page.data.description[0] && "hidden"

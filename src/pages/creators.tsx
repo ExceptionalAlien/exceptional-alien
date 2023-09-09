@@ -2,9 +2,9 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
-import Featured from "../components/creators/Featured";
-import All from "../components/creators/All";
-import Spacer from "../components/Spacer";
+import Featured from "@/components/creators/Featured";
+import All from "@/components/creators/All";
+import Spacer from "@/components/Spacer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -15,11 +15,14 @@ export default function Creators({ page, creators }: PageProps) {
         <title>{`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/creators" />
+
         <meta
           property="og:title"
           content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
         />
+
         <meta property="og:description" content={page.data.meta_description ?? ""} />
+
         <meta
           property="og:image"
           content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
@@ -30,6 +33,7 @@ export default function Creators({ page, creators }: PageProps) {
         <Featured featured={page.data.featured} />
         <Spacer />
 
+        {/* Overview */}
         <section className="text-ex-blue font-bold text-2xl md:text-4xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>p]:mt-4 [&>p]:md:mt-6">
           <PrismicRichText field={page.data.overview} />
         </section>

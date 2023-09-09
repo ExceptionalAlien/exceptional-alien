@@ -1,9 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ImageField } from "@prismicio/client";
-import TabHeading from "@/components/TabHeading";
-import MachineCode from "@/components/MachineCode";
 import { shimmer, toBase64 } from "@/utils/shimmer";
+import Tab from "./creator-thumb/Tab";
 
 interface PrismicImage {
   mobile: ImageField;
@@ -29,6 +28,7 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
       href={"/creators/" + (props.uid ? props.uid : props.data.uid)}
       className={`group/link ${props.size === "mobile" && "w-10/12 sm:w-5/12 md:w-2/3 max-w-2xl"} ${props.classes}`}
     >
+      {/* Image */}
       {image.url && (
         <div className="group-hover/link:bg-ex-blue">
           <Image
@@ -44,6 +44,7 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
         </div>
       )}
 
+      {/* Name */}
       <p
         className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${
           props.size === "mobile" ? "text-xl md:text-3xl" : "text-xl"
@@ -52,27 +53,15 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
         {props.data.first_name} {props.data.last_name?.toUpperCase()}
       </p>
 
-      <TabHeading
-        classes={`mt-1 group-hover/link:text-ex-blue group-hover/link:border-ex-blue duration-300 ease-in-out ${
-          props.size !== "mobile" && "!pt-1 !pl-[6px] !h-9"
-        }`}
-      >
-        <p>{props.data.title}</p>
-
-        <p className="uppercase">
-          {props.data.home_city && props.size === "mobile" && `${props.data.home_city} ${"\u2794"} `}
-          {props.data.current_city}
-        </p>
-
-        {props.size === "mobile" && (
-          <MachineCode
-            firstName={props.data.first_name}
-            lastName={props.data.last_name}
-            country={props.data.home_country}
-            classes="absolute right-2 top-[6px] !text-xs hidden xl:inline"
-          />
-        )}
-      </TabHeading>
+      <Tab
+        title={props.data.title}
+        size={props.size as string}
+        homeCity={props.data.home_city}
+        currentCity={props.data.current_city}
+        firstName={props.data.first_name}
+        lastName={props.data.last_name}
+        homeCountry={props.data.home_country}
+      />
     </Link>
   );
 }

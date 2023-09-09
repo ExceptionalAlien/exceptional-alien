@@ -1,6 +1,7 @@
 export default function Filter(props: { query: string; setQuery: React.Dispatch<React.SetStateAction<string>> }) {
   return (
     <form className="sm:absolute top-0 sm:right-4 md:right-6 mb-4">
+      {/* Search icon */}
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 inline-block">
         <path
           fillRule="evenodd"

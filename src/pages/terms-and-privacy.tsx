@@ -2,8 +2,8 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import { SliceZone, PrismicRichText } from "@prismicio/react";
-import { components } from "../slices";
-import TabHeading from "../components/TabHeading";
+import { components } from "@/slices";
+import TabHeading from "@/components/TabHeading";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -14,11 +14,14 @@ export default function TermsAndPrivacy({ page }: PageProps) {
         <title>{`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/terms-and-privacy" />
+
         <meta
           property="og:title"
           content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
         />
+
         <meta property="og:description" content={page.data.meta_description ?? ""} />
+
         <meta
           property="og:image"
           content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
