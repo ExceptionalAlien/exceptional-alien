@@ -29,8 +29,6 @@
   "devDependencies": {
     "@slicemachine/adapter-next": "^0.3.13",
     "@svgr/webpack": "^8.1.0",
-    "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.4",
     "slice-machine-ui": "^1.11.0"
   }
 }
