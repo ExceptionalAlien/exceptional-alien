@@ -22,12 +22,12 @@ export default function Socials(props: { ig: string; other: string; www: string 
 
   return (
     <div
-      className={`absolute top-0 right-0 bg-white [&_*]:inline-block hover:[&>*]:opacity-50 [&>*]:duration-300 [&>*]:ease-in-out [&>*]:transition-opacity [&_svg]:h-6 [&_svg]:box-content [&_svg]:p-2 [&_svg]:align-[-16px] [&_span]:text-xs [&_span]:ml-1 [&_span]:md:ml-2`}
+      className={`absolute top-0 right-0 bg-white [&_*]:inline-block hover:[&>a]:opacity-50 [&>a]:duration-300 [&>a]:ease-in-out [&>a]:transition-opacity [&>a>svg]:h-6 [&>a>svg]:box-content [&>a>svg]:p-2 [&>a>svg]:align-[-16px] [&>a>span]:text-xs [&>a>span]:ml-1 [&>a>span]:md:ml-2`}
     >
       {/* Instagram */}
       {props.ig && (
         <a href={`https://instagram.com/${props.ig.replace(/@/g, "")}`} target="_blank" title="Instagram">
-          <span>@{props.ig.replace(/@/g, "")}</span>
+          {otherSocial === "Instagram" && <span>@{props.ig.replace(/@/g, "")}</span>}
           <IG className="!pl-1 md:!pl-2" />
         </a>
       )}

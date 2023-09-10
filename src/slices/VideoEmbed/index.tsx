@@ -12,7 +12,7 @@ export type VideoEmbedProps = SliceComponentProps<Content.VideoEmbedSlice>;
 const VideoEmbed = ({ slice }: VideoEmbedProps): JSX.Element => {
   return (
     <section
-      className="[&_iframe]:w-full [&_iframe]:h-full"
+      className="[&>div>iframe]:w-full [&>div>iframe]:h-full"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >

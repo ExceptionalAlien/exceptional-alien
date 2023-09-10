@@ -15,6 +15,7 @@ export default function PrimaryLink(props: { page: string; hideNav: () => void }
         router.pathname === "/" + props.page && "text-ex-grey md:text-current"
       }`}
     >
+      {/* Indicator */}
       <span
         className={`absolute w-[calc(100%-32px)] bg-black top-0 duration-200 ease-in-out transition-[height] ${
           router.pathname.indexOf("/" + props.page) !== -1
@@ -23,6 +24,7 @@ export default function PrimaryLink(props: { page: string; hideNav: () => void }
         }`}
       ></span>
 
+      {/* Icon */}
       {props.page === "destinations" ? (
         <Place className="!mr-2 md:!mr-0" />
       ) : props.page === "playbooks" ? (

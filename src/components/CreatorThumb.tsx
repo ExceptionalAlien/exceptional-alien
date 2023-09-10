@@ -18,6 +18,7 @@ export interface DataProps {
   home_city: string;
   current_city: string;
   home_country: string;
+  short_description: string;
 }
 
 export default function CreatorThumb(props: { data: DataProps; uid?: string; size?: string; classes?: string }) {
@@ -53,15 +54,19 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
         {props.data.first_name} {props.data.last_name?.toUpperCase()}
       </p>
 
-      <Tab
-        title={props.data.title}
-        size={props.size as string}
-        homeCity={props.data.home_city}
-        currentCity={props.data.current_city}
-        firstName={props.data.first_name}
-        lastName={props.data.last_name}
-        homeCountry={props.data.home_country}
-      />
+      {props.size !== "mobile" ? (
+        <Tab
+          title={props.data.title}
+          size={props.size as string}
+          homeCity={props.data.home_city}
+          currentCity={props.data.current_city}
+          firstName={props.data.first_name}
+          lastName={props.data.last_name}
+          homeCountry={props.data.home_country}
+        />
+      ) : (
+        <p className=" md:text-base">{props.data.short_description}</p>
+      )}
     </Link>
   );
 }

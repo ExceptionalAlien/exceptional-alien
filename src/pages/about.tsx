@@ -4,10 +4,11 @@ import { createClient } from "@/prismicio";
 import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
 import TabHeading from "@/components/TabHeading";
+import Spacer from "@/components/Spacer";
 
 function Hello() {
   return (
-    <section className="font-bold text-3xl md:text-5xl [&>*]:mr-3 [&>*]:md:mr-5 [&>*]:inline-block">
+    <section className="font-bold text-3xl md:text-5xl [&>span]:mr-3 [&>span]:md:mr-5 [&>span]:inline-block">
       <span className="text-ex-blue">HELLO</span>
       <span>KIA ORA</span>
       <span>KONNICHIWA</span>
@@ -57,8 +58,10 @@ export default function About({ page }: PageProps) {
         />
       </Head>
 
-      <main className="min-h-full p-4 md:p-6 pt-12 md:pt-20 pb-12 md:pb-20 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>section]:mt-8 [&>section]:md:mt-16">
-        <TabHeading classes="!mt-12 md:!mt-24 uppercase">
+      <main className="p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <Spacer />
+
+        <TabHeading classes="uppercase">
           <PrismicRichText field={page.data.page_heading} />
         </TabHeading>
 

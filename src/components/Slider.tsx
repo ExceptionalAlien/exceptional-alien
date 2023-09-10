@@ -34,7 +34,7 @@ export default function Slider(props: { children: any; classes?: string }) {
   }, []);
 
   return (
-    <div className="relative [&>button]:absolute [&>button]:text-white [&>button]:hidden [&>button]:md:flex [&>button]:w-12 [&>button]:h-12 [&>button]:justify-center [&>button]:items-center [&>button]:top-1/2 [&>button]:-translate-y-1/2 [&>button]:rounded-full [&>button]:bg-black hover:[&>button]:bg-black [&>button]:transition-[background-color] [&>button]:duration-300 &>button]:ease-in-out [&>button]:bg-opacity-20 [&>button]:backdrop-blur [&_svg]:w-6 [&_svg]:h-6 [&_svg]:box-content">
+    <div className="relative [&>button]:absolute [&>button]:text-white [&>button]:hidden [&>button]:md:flex [&>button]:w-12 [&>button]:h-12 [&>button]:justify-center [&>button]:items-center [&>button]:top-1/2 [&>button]:-translate-y-1/2 [&>button]:rounded-full [&>button]:bg-black hover:[&>button]:bg-black [&>button]:transition-[background-color] [&>button]:duration-300 &>button]:ease-in-out [&>button]:bg-opacity-20 [&>button]:backdrop-blur [&>button>svg]:w-6 [&>button>svg]:h-6 [&>button>svg]:box-content">
       {/* Slider */}
       <div
         className={`slider flex overflow-x-scroll scrolling-touch no-scrollbar snap-x snap-mandatory pr-4 md:pr-6 [&>a]:flex-none [&>a]:snap-start [&>a]:snap-always [&>a]:pl-4 [&>a]:md:pl-6 ${props.classes}`}

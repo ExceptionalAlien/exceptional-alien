@@ -15,7 +15,7 @@ export default function Tab(props: TabProps) {
   return (
     <TabHeading
       classes={`mt-1 group-hover/link:text-ex-blue group-hover/link:border-ex-blue duration-300 ease-in-out ${
-        props.size !== "mobile" && "!pt-1 !pl-[6px] !h-9"
+        props.size !== "mobile" && "!pt-1 !pl-[6px] !min-h-9"
       }`}
     >
       {/* Job title */}
