@@ -9,7 +9,6 @@ import Spacer from "@/components/Spacer";
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Creators({ page, creators }: PageProps) {
-  console.log(page);
   return (
     <>
       <Head>
