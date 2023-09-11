@@ -3,7 +3,7 @@ import MachineCode from "../MachineCode";
 
 export default function Title(props: { firstName: KeyTextField; lastName: KeyTextField; country: KeyTextField }) {
   return (
-    <section>
+    <section className="mb-8 md:mb-16">
       <h2 className="md:float-left md:w-1/2 font-bold text-4xl md:text-6xl">
         {props.firstName} {props.lastName?.toUpperCase()}
       </h2>

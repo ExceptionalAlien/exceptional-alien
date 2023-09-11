@@ -306,6 +306,17 @@ interface CreatorDocumentData {
   website: prismic.LinkField;
 
   /**
+   * Nomination field in *Creator*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.nomination
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  nomination: prismic.ContentRelationshipField<"creator">;
+
+  /**
    * Slice Zone field in *Creator*
    *
    * - **Field Type**: Slice Zone
@@ -891,6 +902,7 @@ declare module "@prismicio/client" {
       CreatorDocumentDataSlicesSlice,
       CreatorsDocument,
       CreatorsDocumentData,
+      CreatorsDocumentDataFeaturedItem,
       CreatorsDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,

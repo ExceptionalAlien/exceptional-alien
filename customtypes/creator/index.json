@@ -129,6 +129,14 @@
           "select": null
         }
       },
+      "nomination": {
+        "type": "Link",
+        "config": {
+          "label": "Nomination",
+          "select": "document",
+          "customtypes": ["creator"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

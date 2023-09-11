@@ -34,7 +34,7 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
         <div className="group-hover/link:bg-ex-blue">
           <Image
             src={image.url as string}
-            alt=""
+            alt={`${props.data.first_name} ${props.data.last_name}`}
             width={image.dimensions?.width}
             height={image.dimensions?.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(

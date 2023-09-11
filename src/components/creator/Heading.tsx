@@ -13,7 +13,7 @@ interface HeadingProps {
 
 export default function Heading(props: HeadingProps) {
   return (
-    <section>
+    <section className="!mt-0">
       <TabHeading>
         <Socials ig={props.ig as string} other={asLink(props.other) as string} www={asLink(props.www) as string} />
         <h3>{props.title}</h3>

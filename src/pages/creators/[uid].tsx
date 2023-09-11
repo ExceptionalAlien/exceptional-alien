@@ -4,6 +4,7 @@ import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import Hero from "@/components/creator/Hero";
 import Title from "@/components/creator/Title";
+import Nomination, { FetchLinks } from "@/components/creator/Nomination";
 import Heading from "@/components/creator/Heading";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -55,6 +56,7 @@ export default function Creator({ page }: PageProps) {
 
       <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6">
         <Title firstName={page.data.first_name} lastName={page.data.last_name} country={page.data.home_country} />
+        {(page.data.nomination as FetchLinks).data && <Nomination nomination={page.data.nomination} />}
 
         <Heading
           title={page.data.title}
@@ -92,7 +94,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps({ params, previewData }: GetStaticPropsContext) {
   try {
     const client = createClient({ previewData });
-    const page = await client.getByUID("creator", params?.uid as string);
+    const page = await client.getByUID("creator", params?.uid as string, {
+      fetchLinks: "creator.first_name,creator.last_name,creator.profile_image",
+    });
 
     return {
       props: {
