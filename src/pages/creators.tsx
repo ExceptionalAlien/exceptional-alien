@@ -12,13 +12,13 @@ export default function Creators({ page, creators }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}</title>
+        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Creators"}`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/creators" />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
+          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Creators"}`}
         />
 
         <meta property="og:description" content={page.data.meta_description ?? ""} />

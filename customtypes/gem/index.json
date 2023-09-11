@@ -1,0 +1,126 @@
+{
+  "id": "gem",
+  "label": "Gem",
+  "format": "page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "Category",
+          "placeholder": "",
+          "options": [
+            "Food & Drink",
+            "Neighbourhoods",
+            "Nature",
+            "Retail",
+            "Culture",
+            "Events",
+            "Wellness",
+            "Design",
+            "Accommodation"
+          ],
+          "default_value": "Food & Drink"
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {
+            "width": 1200,
+            "height": 900
+          },
+          "thumbnails": []
+        }
+      },
+      "address": {
+        "type": "Text",
+        "config": {
+          "label": "Address",
+          "placeholder": ""
+        }
+      },
+      "location": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Location"
+        }
+      },
+      "google_maps_id": {
+        "type": "Text",
+        "config": {
+          "label": "Google Maps ID",
+          "placeholder": "Place ID"
+        }
+      },
+      "website": {
+        "type": "Link",
+        "config": {
+          "label": "Website",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
+      "booking_link": {
+        "type": "Link",
+        "config": {
+          "label": "Booking Link",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

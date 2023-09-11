@@ -1,0 +1,48 @@
+{
+  "id": "gem",
+  "type": "SharedSlice",
+  "name": "Gem",
+  "description": "Gem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "gem": {
+          "type": "Link",
+          "config": {
+            "label": "Gem",
+            "select": "document",
+            "customtypes": [
+              "gem"
+            ]
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph"
+          }
+        },
+        "creator": {
+          "type": "Link",
+          "config": {
+            "label": "Creator",
+            "select": "document",
+            "customtypes": [
+              "creator"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -23,12 +23,30 @@ export default function Creator({ page }: PageProps) {
             : ""
         }`}</title>
 
-        <meta name="description" content={page.data.meta_description ?? ""} />
+        <meta
+          name="description"
+          content={
+            page.data.meta_description
+              ? page.data.meta_description
+              : page.data.short_description
+              ? page.data.short_description
+              : ""
+          }
+        />
+
         <meta property="og:url" content={`https://exceptionalalien.com/creators/${page.uid}`} />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
+          content={`Exceptional ALIEN${
+            page.data.meta_title
+              ? " - " + page.data.meta_title
+              : page.data.first_name && page.data.last_name
+              ? ` - ${page.data.first_name} ${page.data.last_name}`
+              : page.data.first_name
+              ? " - " + page.data.first_name
+              : ""
+          }`}
         />
 
         <meta

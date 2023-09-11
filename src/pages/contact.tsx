@@ -14,13 +14,13 @@ export default function Contact({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}</title>
+        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Contact"}`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/terms-and-privacy" />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN${page.data.meta_title ? " - " + page.data.meta_title : ""}`}
+          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Contact"}`}
         />
 
         <meta property="og:description" content={page.data.meta_description ?? ""} />

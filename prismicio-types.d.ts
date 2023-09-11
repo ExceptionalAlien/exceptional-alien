@@ -477,6 +477,258 @@ export type CreatorsDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
+type DestinationDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Destination documents
+ */
+interface DestinationDocumentData {
+  /**
+   * Title field in *Destination*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Location field in *Destination*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  location: prismic.GeoPointField;
+
+  /**
+   * Slice Zone field in *Destination*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DestinationDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Destination*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: destination.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Destination*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Destination*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: destination.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Destination document from Prismic
+ *
+ * - **API ID**: `destination`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DestinationDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<DestinationDocumentData>,
+  "destination",
+  Lang
+>;
+
+type GemDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Gem documents
+ */
+interface GemDocumentData {
+  /**
+   * Title field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Category field in *Gem*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Food & Drink
+   * - **API ID Path**: gem.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  category: prismic.SelectField<
+    | "Food & Drink"
+    | "Neighbourhoods"
+    | "Nature"
+    | "Retail"
+    | "Culture"
+    | "Events"
+    | "Wellness"
+    | "Design"
+    | "Accommodation",
+    "filled"
+  >;
+
+  /**
+   * Image field in *Gem*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Address field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.address
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  address: prismic.KeyTextField;
+
+  /**
+   * Location field in *Gem*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  location: prismic.GeoPointField;
+
+  /**
+   * Google Maps ID field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Place ID
+   * - **API ID Path**: gem.google_maps_id
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  google_maps_id: prismic.KeyTextField;
+
+  /**
+   * Website field in *Gem*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.website
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  website: prismic.LinkField;
+
+  /**
+   * Booking Link field in *Gem*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.booking_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  booking_link: prismic.LinkField;
+
+  /**
+   * Slice Zone field in *Gem*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<GemDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: gem.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Gem*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: gem.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Gem document from Prismic
+ *
+ * - **API ID**: `gem`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type GemDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<GemDocumentData>,
+  "gem",
+  Lang
+>;
+
 type HomeDocumentDataSlicesSlice = never;
 
 /**
@@ -539,6 +791,126 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
   Simplify<HomeDocumentData>,
   "home",
+  Lang
+>;
+
+type PlaybookDocumentDataSlicesSlice = GemSlice;
+
+/**
+ * Content for Playbook documents
+ */
+interface PlaybookDocumentData {
+  /**
+   * Title field in *Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Creator field in *Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.creator
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+
+  /**
+   * Destination field in *Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.destination
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  destination: prismic.ContentRelationshipField<"destination">;
+
+  /**
+   * Image field in *Playbook*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<"seo">;
+
+  /**
+   * Description field in *Playbook*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Playbook*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PlaybookDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: playbook.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Playbook*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: playbook.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Playbook document from Prismic
+ *
+ * - **API ID**: `playbook`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PlaybookDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<PlaybookDocumentData>,
+  "playbook",
   Lang
 >;
 
@@ -623,8 +995,69 @@ export type AllDocumentTypes =
   | ContactDocument
   | CreatorDocument
   | CreatorsDocument
+  | DestinationDocument
+  | GemDocument
   | HomeDocument
+  | PlaybookDocument
   | TermsAndPrivacyDocument;
+
+/**
+ * Primary content in *Gem → Primary*
+ */
+export interface GemSliceDefaultPrimary {
+  /**
+   * Gem field in *Gem → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.primary.gem
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  gem: prismic.ContentRelationshipField<"gem">;
+
+  /**
+   * Description field in *Gem → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Creator field in *Gem → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.primary.creator
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+}
+
+/**
+ * Default variation for Gem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GemSliceDefault = prismic.SharedSliceVariation<"default", Simplify<GemSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *Gem*
+ */
+type GemSliceVariation = GemSliceDefault;
+
+/**
+ * Gem Shared Slice
+ *
+ * - **API ID**: `gem`
+ * - **Description**: Gem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GemSlice = prismic.SharedSlice<"gem", GemSliceVariation>;
 
 /**
  * Primary content in *Highlight → Primary*
@@ -904,13 +1337,26 @@ declare module "@prismicio/client" {
       CreatorsDocumentData,
       CreatorsDocumentDataFeaturedItem,
       CreatorsDocumentDataSlicesSlice,
+      DestinationDocument,
+      DestinationDocumentData,
+      DestinationDocumentDataSlicesSlice,
+      GemDocument,
+      GemDocumentData,
+      GemDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      PlaybookDocument,
+      PlaybookDocumentData,
+      PlaybookDocumentDataSlicesSlice,
       TermsAndPrivacyDocument,
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,
       AllDocumentTypes,
+      GemSlice,
+      GemSliceDefaultPrimary,
+      GemSliceVariation,
+      GemSliceDefault,
       HighlightSlice,
       HighlightSliceDefaultPrimary,
       HighlightSliceVariation,
