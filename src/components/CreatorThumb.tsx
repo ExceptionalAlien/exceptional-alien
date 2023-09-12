@@ -21,20 +21,30 @@ export interface DataProps {
   short_description: string;
 }
 
-export default function CreatorThumb(props: { data: DataProps; uid?: string; size?: string; classes?: string }) {
-  const image = props.size === "mobile" ? props.data.hero_image.mobile : props.data.profile_image;
+export default function CreatorThumb({
+  data,
+  uid,
+  size,
+  classes,
+}: {
+  data: DataProps;
+  uid?: string;
+  size?: string;
+  classes?: string;
+}) {
+  const image = size === "mobile" ? data.hero_image.mobile : data.profile_image;
 
   return (
     <Link
-      href={"/creators/" + (props.uid ? props.uid : props.data.uid)}
-      className={`group/link ${props.size === "mobile" && "w-10/12 sm:w-5/12 md:w-2/3 max-w-2xl"} ${props.classes}`}
+      href={"/creators/" + (uid ? uid : data.uid)}
+      className={`group/link ${size === "mobile" && "w-10/12 md:w-5/12 max-w-xl"} ${classes}`}
     >
       {/* Image */}
       {image.url && (
         <div className="group-hover/link:bg-ex-blue">
           <Image
             src={image.url as string}
-            alt={`${props.data.first_name} ${props.data.last_name}`}
+            alt={`${data.first_name} ${data.last_name}`}
             width={image.dimensions?.width}
             height={image.dimensions?.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(
@@ -48,24 +58,24 @@ export default function CreatorThumb(props: { data: DataProps; uid?: string; siz
       {/* Name */}
       <p
         className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${
-          props.size === "mobile" ? "text-xl md:text-3xl" : "text-xl"
+          size === "mobile" ? "text-xl md:text-3xl" : "text-xl"
         }`}
       >
-        {props.data.first_name} {props.data.last_name?.toUpperCase()}
+        {data.first_name} {data.last_name?.toUpperCase()}
       </p>
 
-      {props.size !== "mobile" ? (
+      {size !== "mobile" ? (
         <Tab
-          title={props.data.title}
-          size={props.size as string}
-          homeCity={props.data.home_city}
-          currentCity={props.data.current_city}
-          firstName={props.data.first_name}
-          lastName={props.data.last_name}
-          homeCountry={props.data.home_country}
+          title={data.title}
+          size={size as string}
+          homeCity={data.home_city}
+          currentCity={data.current_city}
+          firstName={data.first_name}
+          lastName={data.last_name}
+          homeCountry={data.home_country}
         />
       ) : (
-        <p className=" md:text-base">{props.data.short_description}</p>
+        <p className=" md:text-base">{data.short_description}</p>
       )}
     </Link>
   );

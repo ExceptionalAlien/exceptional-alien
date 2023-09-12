@@ -3,7 +3,7 @@ import { PrismicDocument } from "@prismicio/client";
 import CreatorThumb, { DataProps } from "../CreatorThumb";
 import Filter from "../Filter";
 
-export default function All(props: { creators: PrismicDocument[] }) {
+export default function All({ creators }: { creators: PrismicDocument[] }) {
   const [query, setQuery] = useState("");
   const [noResults, setNoresults] = useState(false);
   const thumbsRef = useRef<HTMLDivElement>(null);
@@ -22,7 +22,7 @@ export default function All(props: { creators: PrismicDocument[] }) {
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-4 md:gap-x-6 gap-y-6 md:gap-y-9"
         ref={thumbsRef}
       >
-        {props.creators.map((item, i) => {
+        {creators.map((item, i) => {
           if (
             query.length <= 1 ||
             (query.length > 1 &&

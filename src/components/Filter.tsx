@@ -1,10 +1,16 @@
-export default function Filter(props: { query: string; setQuery: React.Dispatch<React.SetStateAction<string>> }) {
+export default function Filter({
+  query,
+  setQuery,
+}: {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const clear = () => {
-    props.setQuery("");
+    setQuery("");
   };
 
   return (
-    <form className="sm:absolute top-0 sm:right-4 md:right-6 mb-4">
+    <form className="md:absolute top-0 md:right-6 mb-4">
       {/* Search icon */}
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 inline-block">
         <path
@@ -16,14 +22,14 @@ export default function Filter(props: { query: string; setQuery: React.Dispatch<
 
       <input
         type="text"
-        value={props.query}
-        onChange={(e) => props.setQuery(e.target.value)}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
         placeholder="Filter"
-        className="inline-block border-b border-black ml-2 w-[calc(100%-28px)] sm:w-64 outline-none rounded-none pr-5"
+        className="inline-block border-b border-black ml-2 w-[calc(100%-28px)] md:w-64 outline-none rounded-none pr-5"
       />
 
       {/* Clear */}
-      {props.query && (
+      {query && (
         <button
           type="button"
           onClick={clear}

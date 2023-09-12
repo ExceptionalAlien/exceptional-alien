@@ -3,10 +3,10 @@ import FB from "@/img/social-fb.svg";
 import YT from "@/img/social-yt.svg";
 import LI from "@/img/social-li.svg";
 
-export default function Socials(props: { classes?: string }) {
+export default function Socials({ classes }: { classes?: string }) {
   return (
     <div
-      className={`[&>a]:inline-block hover:[&>a]:opacity-50 [&>a]:duration-300 [&>a]:ease-in-out [&>a]:transition-opacity [&>a>svg]:fill-white [&>a>svg]:h-6 [&>a>svg]:box-content [&>a>svg]:p-2 ${props.classes}`}
+      className={`[&>a]:inline-block hover:[&>a]:opacity-50 [&>a]:duration-300 [&>a]:ease-in-out [&>a]:transition-opacity [&>a>svg]:fill-white [&>a>svg]:h-6 [&>a>svg]:box-content [&>a>svg]:p-2 ${classes}`}
     >
       {/* Instagram */}
       <a href="https://www.instagram.com/exceptionalalien/" target="_blank" title="Instagram">

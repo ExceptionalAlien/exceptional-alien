@@ -14,13 +14,13 @@ export interface FetchLinks {
   uid: string;
 }
 
-export default function Nomination(props: { nomination: ContentRelationshipField }) {
-  const data = (props.nomination as FetchLinks).data;
+export default function Nomination({ nomination }: { nomination: ContentRelationshipField }) {
+  const data = (nomination as FetchLinks).data;
 
   return (
     <section className="text-right !mt-0 mb-3">
       <Link
-        href={"/creators/" + (props.nomination as FetchLinks).uid}
+        href={"/creators/" + (nomination as FetchLinks).uid}
         className="[&>*]:inline-block hover:opacity-50 duration-300 ease-in-out transition-opacity"
       >
         <p className="text-sm leading-snug">

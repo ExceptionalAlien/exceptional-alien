@@ -4,11 +4,17 @@ import { useRouter } from "next/router";
 import PrimaryLink from "./nav/PrimaryLink";
 import LogoIcon from "@/img/logo-icon.svg";
 
-function Buttons(props: { setShowingNav: React.Dispatch<React.SetStateAction<boolean>>; scrollY: number }) {
+function Buttons({
+  setShowingNav,
+  scrollY,
+}: {
+  setShowingNav: React.Dispatch<React.SetStateAction<boolean>>;
+  scrollY: number;
+}) {
   return (
     <div
       className={`absolute h-full right-0 top-0 [&>button]:p-3 [&>button]:md:p-4 [&>button]:transition-[opacity,color] [&>button]:duration-300 [&>button]:ease-in-out [&>button]:h-full hover:[&>button]:opacity-50 ${
-        props.scrollY > 0 ? "[&>button]:text-white" : "[&>button]:text-black"
+        scrollY > 0 ? "[&>button]:text-white" : "[&>button]:text-black"
       }`}
     >
       {/* Search */}
@@ -30,7 +36,7 @@ function Buttons(props: { setShowingNav: React.Dispatch<React.SetStateAction<boo
       </button>
 
       {/* Burger */}
-      <button onClick={() => props.setShowingNav(true)} title="Menu" className="!pr-4 md:hidden">
+      <button onClick={() => setShowingNav(true)} title="Menu" className="!pr-4 md:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -46,7 +52,7 @@ function Buttons(props: { setShowingNav: React.Dispatch<React.SetStateAction<boo
   );
 }
 
-export default function Nav(props: { scrollY: number }) {
+export default function Nav({ scrollY }: { scrollY: number }) {
   const [showingNav, setShowingNav] = useState(false);
   const router = useRouter();
 
@@ -58,20 +64,20 @@ export default function Nav(props: { scrollY: number }) {
     <>
       <nav
         className={`bg-white md:bg-transparent transition-[opacity] duration-300 ease-in [&>*]:text-ex-blue z-10 group/nav w-full md:w-auto overflow-hidden fixed md:absolute top-0 md:pt-3 md:right-16 [&>*]:inline-flex [&_a]:transition-[color,border-color,background-color] [&_a]:duration-300 [&_a]:ease-in-out ${
-          props.scrollY > 0 ? "[&>*]:md:text-white [&>div>a>span]:md:bg-white" : "[&>*]:md:text-black"
+          scrollY > 0 ? "[&>*]:md:text-white [&>div>a>span]:md:bg-white" : "[&>*]:md:text-black"
         } ${showingNav ? "h-full opacity-100" : "h-0 md:h-full opacity-0 md:opacity-100"}`}
       >
         <Link
           href="/download"
           onClick={hideNav}
           className={`landscape:!hidden md:!hidden landscape:lg:!inline-flex box-content z-10 absolute md:static left-1/2 -translate-x-1/2 md:translate-x-0 w-[calc(100%-80px)] md:w-auto max-w-xs bottom-6 justify-center border-2 border-ex-blue rounded-full p-4 md:pl-3 pt-2 pb-2 md:ml-4 mr-4 [&>svg]:mr-1 hover:md:text-white ${
-            props.scrollY > 0
+            scrollY > 0
               ? "hover:md:bg-white md:border-white hover:md:!text-ex-blue"
               : "hover:md:bg-black md:border-black hover:md:border-black"
           } ${
             router.pathname === "/download" &&
             `bg-ex-blue border-black !text-white ${
-              props.scrollY > 0 ? "md:bg-white md:border-white md:!text-ex-blue" : "md:bg-black"
+              scrollY > 0 ? "md:bg-white md:border-white md:!text-ex-blue" : "md:bg-black"
             }`
           }`}
         >
@@ -118,7 +124,7 @@ export default function Nav(props: { scrollY: number }) {
         </button>
       </nav>
 
-      <Buttons setShowingNav={setShowingNav} scrollY={props.scrollY} />
+      <Buttons setShowingNav={setShowingNav} scrollY={scrollY} />
     </>
   );
 }

@@ -15,7 +15,14 @@ const code = (first: string, last: string, country: string) => {
   return code.substring(0, max); // Trim if more than max
 };
 
-export default function MachineCode(props: { firstName: string; lastName: string; country: string; classes?: string }) {
+interface MachineCodeProps {
+  firstName: string;
+  lastName: string;
+  country: string;
+  classes?: string;
+}
+
+export default function MachineCode(props: MachineCodeProps) {
   return (
     <p className={`font-mono text-xs md:text-sm uppercase ${props.classes}`}>
       {code(props.firstName as string, props.lastName as string, props.country as string)}
