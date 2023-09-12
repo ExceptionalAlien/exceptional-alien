@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
-import Map from "@/components/Map";
+import Viewer from "@/components/playbook/Viewer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -41,9 +41,7 @@ export default function Creator({ page }: PageProps) {
         />
       </Head>
 
-      <main className="">
-        <Map />
-      </main>
+      <Viewer center={{ lat: -33.865143, lng: 151.2099 }} zoom={15} />
     </>
   );
 }
