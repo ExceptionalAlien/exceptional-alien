@@ -12,6 +12,8 @@ export default function Viewer({ data, center, zoom }: { data: any; center: goog
       const height = ref.current!.offsetTop + ref.current!.clientHeight;
       const scroll = window.scrollY + window.innerHeight;
       const offset = window.scrollY - ref.current!.clientHeight;
+
+      // Let map know when viewer scroll has ended so it can scroll too
       setScrollEndLandscape(scroll >= height ? true : false);
       setScrollEndPortrait(offset >= -256 ? true : false);
     };
@@ -22,7 +24,7 @@ export default function Viewer({ data, center, zoom }: { data: any; center: goog
   }, []);
 
   return (
-    <section className="!mt-0 flex justify-end relative" ref={ref}>
+    <section className="!mt-0 flex justify-end items-end" ref={ref}>
       <List data={data} />
       <Map center={center} zoom={zoom} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
     </section>

@@ -38,7 +38,7 @@ export default function Slider({ children, classes }: { children: any; classes?:
       {/* Slider */}
       <div
         className={`slider flex overflow-x-scroll scrolling-touch no-scrollbar snap-x snap-mandatory pr-4 md:pr-6 [&>a]:flex-none [&>a]:snap-start [&>a]:snap-always [&>a]:pl-4 [&>a]:md:pl-6 ${classes}`}
-        ref={sliderRef}
+        ref={ref}
       >
         {children}
       </div>
