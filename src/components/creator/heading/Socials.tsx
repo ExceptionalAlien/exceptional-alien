@@ -27,7 +27,7 @@ export default function Socials({ ig, other, www }: { ig: string; other: string;
       {/* Instagram */}
       {ig && (
         <a href={`https://instagram.com/${ig.replace(/@/g, "")}`} target="_blank" title="Instagram">
-          {otherSocial === "Instagram" && <span>@{ig.replace(/@/g, "")}</span>}
+          {otherSocial === "Instagram" && <span className="max-[320px]:!hidden">@{ig.replace(/@/g, "")}</span>}
           <IG className="!pl-1 md:!pl-2" />
         </a>
       )}
@@ -35,7 +35,9 @@ export default function Socials({ ig, other, www }: { ig: string; other: string;
       {/* Other */}
       {other && (
         <a href={other} target="_blank" title={otherSocial}>
-          {otherSocial === "Instagram" && <span>@{other.split(".com")[1].replace(/\//g, "")}</span>}
+          {otherSocial === "Instagram" && (
+            <span className="max-[320px]:!hidden">@{other.split(".com")[1].replace(/\//g, "")}</span>
+          )}
 
           {/* Icon */}
           {otherSocial === "Instagram" ? (

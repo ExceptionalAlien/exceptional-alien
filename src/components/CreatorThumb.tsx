@@ -1,25 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ImageField } from "@prismicio/client";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 import Tab from "./creator-thumb/Tab";
-
-interface PrismicImage {
-  mobile: ImageField;
-}
-
-export interface DataProps {
-  uid: string;
-  first_name: string;
-  last_name: string;
-  hero_image: PrismicImage;
-  profile_image: ImageField;
-  title: string;
-  home_city: string;
-  current_city: string;
-  home_country: string;
-  short_description: string;
-}
 
 export default function CreatorThumb({
   data,
@@ -27,7 +9,7 @@ export default function CreatorThumb({
   size,
   classes,
 }: {
-  data: DataProps;
+  data: Record<string, any>;
   uid?: string;
   size?: string;
   classes?: string;
@@ -43,12 +25,12 @@ export default function CreatorThumb({
       {image.url && (
         <div className="group-hover/link:bg-ex-blue">
           <Image
-            src={image.url as string}
-            alt={`${data.first_name} ${data.last_name}`}
-            width={image.dimensions?.width}
-            height={image.dimensions?.height}
+            src={image.url}
+            alt={image.alt}
+            width={image.dimensions.width}
+            height={image.dimensions.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
+              shimmer(image.dimensions.width, image.dimensions.height)
             )}`}
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
@@ -75,7 +57,7 @@ export default function CreatorThumb({
           homeCountry={data.home_country}
         />
       ) : (
-        <p className=" md:text-base">{data.short_description}</p>
+        <p>{data.short_description.substring(0, 160)}</p>
       )}
     </Link>
   );

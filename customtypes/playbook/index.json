@@ -16,7 +16,7 @@
         "type": "Text",
         "config": {
           "label": "Title",
-          "placeholder": ""
+          "placeholder": " 50 characters max."
         }
       },
       "creator": {
@@ -40,14 +40,14 @@
         "config": {
           "label": "Image",
           "constraint": {
-            "width": 900,
-            "height": 1200
+            "width": 1200,
+            "height": 630
           },
           "thumbnails": [
             {
-              "name": "seo",
+              "name": "thumb",
               "width": 1200,
-              "height": 630
+              "height": 900
             }
           ]
         }

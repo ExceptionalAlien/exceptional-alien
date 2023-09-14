@@ -25,7 +25,7 @@ interface MachineCodeProps {
 export default function MachineCode(props: MachineCodeProps) {
   return (
     <p className={`font-mono text-xs md:text-sm uppercase ${props.classes}`}>
-      {code(props.firstName as string, props.lastName as string, props.country as string)}
+      {code(props.firstName, props.lastName, props.country)}
     </p>
   );
 }

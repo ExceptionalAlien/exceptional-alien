@@ -34,14 +34,16 @@ export default function Creator({ page }: PageProps) {
           content={
             page.data.meta_image.url
               ? page.data.meta_image.url
-              : page.data.image.seo.url
-              ? page.data.image.seo.url
+              : page.data.image.url
+              ? page.data.image.url
               : "https://exceptionalalien.com/img/og.png"
           }
         />
       </Head>
 
-      <Viewer center={{ lat: -33.865143, lng: 151.2099 }} zoom={15} />
+      <main className="!pb-0">
+        <Viewer data={page.data} center={{ lat: -33.865143, lng: 151.2099 }} zoom={15} />
+      </main>
     </>
   );
 }

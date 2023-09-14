@@ -2,35 +2,35 @@ import { useRef, useState, useEffect } from "react";
 
 export default function Slider({ children, classes }: { children: any; classes?: string }) {
   const [scrollPos, setScrollPos] = useState("start");
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const scrollBack = () => {
-    sliderRef.current!.scrollTo({
-      left: sliderRef.current!.scrollLeft - sliderRef.current!.offsetWidth / 2,
+    ref.current!.scrollTo({
+      left: ref.current!.scrollLeft - ref.current!.offsetWidth / 2,
       behavior: "smooth",
     }); // Half of slider
   };
 
   const scrollForward = () => {
-    sliderRef.current!.scrollTo({
-      left: sliderRef.current!.scrollLeft + sliderRef.current!.offsetWidth / 2,
+    ref.current!.scrollTo({
+      left: ref.current!.scrollLeft + ref.current!.offsetWidth / 2,
       behavior: "smooth",
     }); // Half of slider
   };
 
   useEffect(() => {
-    function handleScroll() {
-      const slider = sliderRef.current!;
+    const handleScroll = () => {
+      const slider = ref.current!;
 
       // Detect if scroll at start or end
       setScrollPos(
         slider.scrollLeft === 0 ? "start" : slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth ? "end" : ""
       );
-    }
+    };
 
     handleScroll();
-    sliderRef.current!.addEventListener("scroll", handleScroll);
-    return () => sliderRef.current! && sliderRef.current!.removeEventListener("scroll", handleScroll); // Fire only if slider is in DOM
+    ref.current!.addEventListener("scroll", handleScroll);
+    return () => ref.current! && ref.current!.removeEventListener("scroll", handleScroll); // Fire only if slider is in DOM
   }, []);
 
   return (

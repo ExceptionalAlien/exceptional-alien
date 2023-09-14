@@ -17,6 +17,7 @@ const config: Config = {
         "ex-blue": "var(--color-blue)",
         "ex-grey": "var(--color-grey)",
         "ex-light-grey": "var(--color-light-grey)",
+        "ex-extra-light-grey": "var(--color-extra-light-grey)",
         "ex-red": "var(--color-red)",
       },
     },

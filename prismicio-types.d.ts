@@ -804,7 +804,7 @@ interface PlaybookDocumentData {
    * Title field in *Playbook*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**:  50 characters max.
    * - **API ID Path**: playbook.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
@@ -842,7 +842,7 @@ interface PlaybookDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<"seo">;
+  image: prismic.ImageField<"thumb">;
 
   /**
    * Description field in *Playbook*

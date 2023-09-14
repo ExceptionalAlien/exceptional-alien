@@ -1,11 +1,6 @@
 import { GroupField } from "@prismicio/client";
 import Slider from "@/components/Slider";
-import CreatorThumb, { DataProps } from "@/components/CreatorThumb";
-
-// Needed to resolve Prismic missing type for fetchLinks data
-interface FetchLinks {
-  data: DataProps;
-}
+import CreatorThumb from "@/components/CreatorThumb";
 
 export default function Featured({ featured }: { featured: GroupField }) {
   return (
@@ -14,7 +9,7 @@ export default function Featured({ featured }: { featured: GroupField }) {
 
       <Slider>
         {featured.map((item, i) => (
-          <CreatorThumb key={i} data={(item.creator as FetchLinks).data} size="mobile" />
+          <CreatorThumb key={i} data={(item.creator as any).data} size="mobile" />
         ))}
       </Slider>
     </section>
