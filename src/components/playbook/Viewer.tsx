@@ -9,13 +9,15 @@ export default function Viewer({ data, center, zoom }: { data: any; center: goog
 
   useEffect(() => {
     const handleScroll = () => {
-      const height = ref.current!.offsetTop + ref.current!.clientHeight;
+      const viewer = ref.current!;
+      const height = viewer.offsetTop + viewer.clientHeight;
       const scroll = window.scrollY + window.innerHeight;
-      const offset = window.scrollY - ref.current!.clientHeight;
+      const offset = window.scrollY - viewer.clientHeight;
+      const portraitMapHeight = 256;
 
-      // Let map know when viewer scroll has ended so it can scroll too
+      // Let map know when viewer scroll is not longer below fold so it can scroll too
       setScrollEndLandscape(scroll >= height ? true : false);
-      setScrollEndPortrait(offset >= -256 ? true : false);
+      setScrollEndPortrait(offset >= -portraitMapHeight ? true : false);
     };
 
     handleScroll();

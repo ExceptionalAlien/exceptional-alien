@@ -1,21 +1,25 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Title from "./header/Title";
+import Share from "./header/Share";
+import Gems from "./header/Gems";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function Header({ data }: { data: any }) {
-  const [top, setTop] = useState(0);
+  const [stickyTop, setStickyTop] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth >= 768 ? false : true;
+      const isMobile = window.innerWidth >= 768 ? false : true;
       const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
-      const offset = !mobile || orientation === "landscape" ? 80 : 72;
-      const top = orientation === "landscape" ? 80 : mobile ? 304 : 336;
+      const titleHeight = !isMobile || orientation === "landscape" ? 80 : 72;
+      const globalHeaderheight = !isMobile ? 80 : 48;
+      const portraitMapHeight = 256;
+      const top = orientation === "landscape" ? globalHeaderheight : portraitMapHeight + globalHeaderheight;
 
-      // Set top position for sticky header
-      setTop(offset - ref.current!.clientHeight + top);
+      // Set top position value for sticky header
+      setStickyTop(titleHeight - ref.current!.clientHeight + top);
     };
 
     handleResize();
@@ -24,7 +28,7 @@ export default function Header({ data }: { data: any }) {
   }, []);
 
   return (
-    <div className={`sticky bg-black`} style={{ top: top }} ref={ref}>
+    <div className="sticky text-white" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={data.image.url}
         alt={data.image.alt}
@@ -33,9 +37,15 @@ export default function Header({ data }: { data: any }) {
         placeholder={`data:image/svg+xml;base64,${toBase64(
           shimmer(data.image.dimensions.width, data.image.dimensions.height)
         )}`}
-        className="w-full opacity-90"
+        className="w-full"
       />
 
+      {/* Layered shadows */}
+      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-35% absolute w-full h-full top-0"></div>
+      <div className="bg-gradient-to-b from-black/25 from-0% to-black/0 to-25% absolute w-full h-full top-0"></div>
+
+      <Gems count={data.slices.length} />
+      <Share title={data.title} />
       <Title data={data} />
     </div>
   );

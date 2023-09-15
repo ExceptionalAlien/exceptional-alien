@@ -32,12 +32,11 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/people/:slug",
         destination: "/creators/:slug",
-        permanent: true,
       },
     ];
   },
