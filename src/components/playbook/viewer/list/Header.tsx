@@ -37,11 +37,11 @@ export default function Header({ data }: { data: any }) {
         placeholder={`data:image/svg+xml;base64,${toBase64(
           shimmer(data.image.dimensions.width, data.image.dimensions.height)
         )}`}
-        className="w-full opacity-1"
+        className="w-full"
       />
 
       {/* Layered shadow */}
-      <div className="bg-gradient-to-t from-black/20 via-black/0 to-black/20 absolute w-full h-full top-0"></div>
+      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-30% absolute w-full h-full top-0"></div>
 
       <Gems count={data.slices.length} />
       <Share title={data.title} />
