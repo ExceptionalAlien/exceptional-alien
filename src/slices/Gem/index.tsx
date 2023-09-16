@@ -14,7 +14,7 @@ export type GemProps = SliceComponentProps<Content.GemSlice>;
 const Gem = ({ slice }: any): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-      <a href="" className="p-2 md:p-3 aspect-[3/2] m-3 md:m-4 border-2 border-black flex">
+      <a href="" className="aspect-video m-3 md:m-4 flex">
         <Image
           src={slice.primary.gem.data.image.url}
           alt={slice.primary.gem.data.image.alt}
@@ -27,7 +27,7 @@ const Gem = ({ slice }: any): JSX.Element => {
         />
 
         <div className="ml-2 md:ml-3">
-          <h4 className="font-bold text-xl leading-tight">{slice.primary.gem.data.title}</h4>
+          <h4 className="font-bold text-xl md:text-2xl leading-tight">{slice.primary.gem.data.title}</h4>
         </div>
       </a>
     </section>
