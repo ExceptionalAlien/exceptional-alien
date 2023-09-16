@@ -43,8 +43,8 @@
         "config": {
           "label": "Image",
           "constraint": {
-            "width": 1200,
-            "height": 900
+            "width": 900,
+            "height": 1200
           },
           "thumbnails": []
         }

@@ -13,7 +13,7 @@ export default function Header({ data }: { data: any }) {
     const handleResize = () => {
       const isMobile = window.innerWidth >= 768 ? false : true;
       const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
-      const titleHeight = !isMobile || orientation === "landscape" ? 80 : 72;
+      const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 72;
       const globalHeaderheight = !isMobile ? 80 : 48;
       const portraitMapHeight = 256;
       const top = orientation === "landscape" ? globalHeaderheight : portraitMapHeight + globalHeaderheight;
@@ -37,12 +37,11 @@ export default function Header({ data }: { data: any }) {
         placeholder={`data:image/svg+xml;base64,${toBase64(
           shimmer(data.image.dimensions.width, data.image.dimensions.height)
         )}`}
-        className="w-full"
+        className="w-full opacity-1"
       />
 
-      {/* Layered shadows */}
-      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-35% absolute w-full h-full top-0"></div>
-      <div className="bg-gradient-to-b from-black/25 from-0% to-black/0 to-25% absolute w-full h-full top-0"></div>
+      {/* Layered shadow */}
+      <div className="bg-gradient-to-t from-black/20 via-black/0 to-black/20 absolute w-full h-full top-0"></div>
 
       <Gems count={data.slices.length} />
       <Share title={data.title} />

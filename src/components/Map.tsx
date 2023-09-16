@@ -20,7 +20,7 @@ function GoogleMap(props: MapProps) {
   return (
     <div
       ref={ref}
-      className={`!fixed top-12 md:top-20 left-0 w-1/2 lg:w-3/5 xl:w-2/3 min-[1680px]:w-3/4 portrait:w-full h-64 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+      className={`!fixed top-12 md:top-20 left-0 w-1/2 xl:w-[calc(100%-640px)] portrait:w-full h-64 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         props.scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${props.scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />
