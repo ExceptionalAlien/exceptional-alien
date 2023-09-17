@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import TabHeading from "@/components/TabHeading";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 /**
@@ -14,7 +15,7 @@ export type GemProps = SliceComponentProps<Content.GemSlice>;
 const Gem = ({ slice }: any): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-      <a href="" className="aspect-video m-3 md:m-4 flex">
+      <a href="" className="aspect-[40/21] flex">
         <Image
           src={slice.primary.gem.data.image.url}
           alt={slice.primary.gem.data.image.alt}
@@ -26,8 +27,12 @@ const Gem = ({ slice }: any): JSX.Element => {
           className="h-full w-auto"
         />
 
-        <div className="ml-2 md:ml-3">
+        <div className="ml-3 md:ml-4 w-full relative">
           <h4 className="font-bold text-xl md:text-2xl leading-tight">{slice.primary.gem.data.title}</h4>
+
+          <TabHeading classes="!absolute bottom-0 w-full">
+            <p>Hello</p>
+          </TabHeading>
         </div>
       </a>
     </section>

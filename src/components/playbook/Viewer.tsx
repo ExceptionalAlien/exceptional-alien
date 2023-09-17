@@ -13,7 +13,7 @@ export default function Viewer({ data, center, zoom }: { data: any; center: goog
       const height = viewer.offsetTop + viewer.clientHeight;
       const scroll = window.scrollY + window.innerHeight;
       const offset = window.scrollY - viewer.clientHeight;
-      const portraitMapHeight = 256;
+      const portraitMapHeight = 224;
 
       // Let map know when viewer scroll is not longer below fold so it can scroll too
       setScrollEndLandscape(scroll >= height ? true : false);

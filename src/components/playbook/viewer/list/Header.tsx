@@ -15,7 +15,7 @@ export default function Header({ data }: { data: any }) {
       const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
       const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 72;
       const globalHeaderheight = !isMobile ? 80 : 48;
-      const portraitMapHeight = 256;
+      const portraitMapHeight = 224;
       const top = orientation === "landscape" ? globalHeaderheight : portraitMapHeight + globalHeaderheight;
 
       // Set top position value for sticky header
@@ -28,7 +28,7 @@ export default function Header({ data }: { data: any }) {
   }, []);
 
   return (
-    <div className="sticky text-white" style={{ top: stickyTop }} ref={ref}>
+    <div className="sticky text-white z-10" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={data.image.url}
         alt={data.image.alt}
@@ -41,7 +41,7 @@ export default function Header({ data }: { data: any }) {
       />
 
       {/* Layered shadow */}
-      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-30% absolute w-full h-full top-0"></div>
+      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
 
       <Gems count={data.slices.length} />
       <Share title={data.title} />
