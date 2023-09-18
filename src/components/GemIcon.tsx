@@ -4,7 +4,7 @@ import Nature from "@/img/icon-gem-nature.svg";
 
 export default function GemIcon({ category, classes }: { category: string; classes?: string }) {
   return (
-    <div className={`relative [&>svg]:absolute ${classes}`}>
+    <div className={`absolute [&>svg]:absolute ${classes}`}>
       <BG />
       {category === "Food & Drink" && <Food />}
       {category === "Nature" && <Nature />}

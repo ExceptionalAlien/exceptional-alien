@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import TabButton from "@/components/TabButton";
 import Credit from "@/components/Credit";
 import GemIcon from "@/components/GemIcon";
@@ -16,9 +16,17 @@ export type GemProps = SliceComponentProps<Content.GemSlice>;
  */
 const Gem = ({ slice }: any): JSX.Element => {
   return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-      <div className="aspect-[40/21] flex">
-        <div className="relative aspect-[3/4] h-full">
+    <section
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+      className="relative m-2 md:m-4 mt-4 md:mt-8"
+    >
+      <GemIcon category={slice.primary.gem.data.category} classes="right-0 w-10 md:w-11" />
+      <p className="text-sm text-ex-grey font-bold">{slice.primary.gem.data.category}</p>
+      <h4 className="font-bold text-xl md:text-2xl leading-tight mr-11 md:mr-12">{slice.primary.gem.data.title}</h4>
+
+      <div className="mt-1 md:mt-2">
+        <div className="relative w-2/5 float-left">
           <Image
             src={slice.primary.gem.data.image.url}
             alt={slice.primary.gem.data.image.alt}
@@ -32,13 +40,12 @@ const Gem = ({ slice }: any): JSX.Element => {
           <Credit text={slice.primary.gem.data.image.copyright ? slice.primary.gem.data.image.copyright : ""} />
         </div>
 
-        <div className="ml-2 md:ml-4 w-full relative">
-          <GemIcon category={slice.primary.gem.data.category} classes="!absolute right-0 w-10" />
-          <p className="text-sm text-ex-grey font-bold">{slice.primary.gem.data.category}</p>
-          <h4 className="font-bold text-xl md:text-2xl leading-tight mr-10">{slice.primary.gem.data.title}</h4>
-
-          <TabButton text="MORE INFO" route="/" classes="!absolute bottom-0 w-full" />
+        <div className="float-left pl-2 md:pl-4 w-3/5 [&>p]:text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:leading-normal">
+          <PrismicRichText field={slice.primary.description} />
+          <TabButton text="MORE INFO" route="/" classes="mt-2 md:mt-4" />
         </div>
+
+        <div className="clear-both"></div>
       </div>
     </section>
   );
