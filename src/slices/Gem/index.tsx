@@ -27,11 +27,11 @@ const Gem = ({ slice }: any): JSX.Element => {
           className="h-full w-auto"
         />
 
-        <div className="ml-3 md:ml-4 w-full relative">
+        <div className="ml-2 md:ml-4 w-full relative">
           <h4 className="font-bold text-xl md:text-2xl leading-tight">{slice.primary.gem.data.title}</h4>
 
           <TabHeading classes="!absolute bottom-0 w-full">
-            <p>Hello</p>
+            <p>MORE INFO</p>
           </TabHeading>
         </div>
       </a>

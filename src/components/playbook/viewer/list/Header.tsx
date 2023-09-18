@@ -13,7 +13,7 @@ export default function Header({ data }: { data: any }) {
     const handleResize = () => {
       const isMobile = window.innerWidth >= 768 ? false : true;
       const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
-      const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 72;
+      const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
       const globalHeaderheight = !isMobile ? 80 : 48;
       const portraitMapHeight = 224;
       const top = orientation === "landscape" ? globalHeaderheight : portraitMapHeight + globalHeaderheight;
