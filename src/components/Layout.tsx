@@ -29,7 +29,7 @@ const helveticaMonospaced = localFont({
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full [&>main]:min-h-full [&>main]:pt-12 [&>main]:md:pt-20 [&>main]:pb-12 [&>main]:md:pb-20 [&>main]:m-auto [&>main>section]:mt-8 [&>main>section]:md:mt-16`}
+      className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full [&_main]:min-h-full [&_main]:bg-white [&_main]:pt-12 [&_main]:md:pt-20 [&_main]:pb-12 [&_main]:md:pb-20 [&_main]:m-auto [&_main>section]:mt-8 [&_main>section]:md:mt-16`}
     >
       <Header />
       {children}
