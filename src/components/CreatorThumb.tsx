@@ -40,7 +40,7 @@ export default function CreatorThumb({
       {/* Name */}
       <p
         className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${
-          size === "mobile" ? "text-xl md:text-3xl" : "text-xl"
+          size === "mobile" ? "text-2xl md:text-3xl" : "text-xl"
         }`}
       >
         {data.first_name} {data.last_name?.toUpperCase()}

@@ -11,7 +11,11 @@ export type SingleHeadingProps = SliceComponentProps<Content.SingleHeadingSlice>
  */
 const SingleHeading = ({ slice }: SingleHeadingProps): JSX.Element => {
   return (
-    <section className="font-bold text-2xl" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+    <section
+      className="font-bold text-xl md:text-2xl"
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+    >
       <PrismicRichText field={slice.primary.heading} />
     </section>
   );

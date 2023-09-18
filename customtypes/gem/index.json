@@ -46,7 +46,13 @@
             "width": 900,
             "height": 1200
           },
-          "thumbnails": []
+          "thumbnails": [
+            {
+              "name": "thumb",
+              "width": 1200,
+              "height": 900
+            }
+          ]
         }
       },
       "address": {
@@ -67,24 +73,6 @@
         "config": {
           "label": "Google Maps ID",
           "placeholder": "Place ID"
-        }
-      },
-      "website": {
-        "type": "Link",
-        "config": {
-          "label": "Website",
-          "placeholder": "",
-          "allowTargetBlank": false,
-          "select": null
-        }
-      },
-      "booking_link": {
-        "type": "Link",
-        "config": {
-          "label": "Booking Link",
-          "placeholder": "",
-          "allowTargetBlank": false,
-          "select": null
         }
       },
       "slices": {

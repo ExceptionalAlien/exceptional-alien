@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ImageField } from "@prismicio/client";
+import Credit from "../Credit";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function Hero({ image }: { image: ImageField<"mobile"> }) {
@@ -28,10 +29,7 @@ export default function Hero({ image }: { image: ImageField<"mobile"> }) {
         )}`}
       />
 
-      {/* Credit */}
-      <p className="absolute bg-black text-white backdrop-blur bg-opacity-20 bottom-0 right-0 p-1 pl-2 pr-2 font-mono text-xs">
-        {image.copyright ? image.copyright : "Photo: " + crop.alt}
-      </p>
+      <Credit text={image.copyright ? image.copyright : "Photo: " + crop.alt} />
     </section>
   );
 }

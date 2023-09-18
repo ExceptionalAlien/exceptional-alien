@@ -613,7 +613,7 @@ interface GemDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  image: prismic.ImageField<"thumb">;
 
   /**
    * Address field in *Gem*
@@ -647,28 +647,6 @@ interface GemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   google_maps_id: prismic.KeyTextField;
-
-  /**
-   * Website field in *Gem*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gem.website
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  website: prismic.LinkField;
-
-  /**
-   * Booking Link field in *Gem*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gem.booking_link
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  booking_link: prismic.LinkField;
 
   /**
    * Slice Zone field in *Gem*

@@ -93,7 +93,7 @@ export default function Creator({ page }: PageProps) {
             !page.data.description[0] && "hidden"
           }`}
         >
-          <h4 className="font-bold text-2xl md:float-left md:w-1/4 md:pr-6">About</h4>
+          <h4 className="font-bold text-xl md:text-2xl md:float-left md:w-1/4 md:pr-6">About</h4>
           <PrismicRichText field={page.data.description} />
           <div className="clear-both"></div>
         </section>

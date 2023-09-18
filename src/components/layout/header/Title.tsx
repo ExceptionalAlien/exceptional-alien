@@ -12,7 +12,7 @@ export default function Title({ scrollY }: { scrollY: number }) {
   return (
     <Link
       href={"/" + page}
-      className={`transition-[color] ease-in-out duration-300 inline-block align-middle font-bold text-xl md:text-3xl ml-2 md:ml-4 capitalize [&>svg]:h-4 [&>svg]:md:h-6 [&>svg]:inline-block [&>svg]:ml-2 [&>svg]:md:ml-3 [&>svg]:align-[-2px] [&>svg]:md:align-[-3px] ${
+      className={`transition-[color] ease-in-out duration-300 inline-block align-[-4px] md:align-[-6px] font-bold text-2xl md:text-3xl ml-2 md:ml-4 capitalize [&>svg]:h-5 [&>svg]:md:h-6 [&>svg]:inline-block [&>svg]:ml-2 [&>svg]:md:ml-3 [&>svg]:align-[-3px] ${
         scrollY > 0 ? "text-white" : "text-black"
       } ${!showTitle && "hidden"}`}
     >
