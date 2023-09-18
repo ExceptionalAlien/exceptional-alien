@@ -5,6 +5,8 @@ function GoogleMap(props: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth >= 768 ? false : true;
+
     new window.google.maps.Map(ref.current!, {
       center: props.center,
       zoom: props.zoom,
@@ -14,6 +16,8 @@ function GoogleMap(props: MapProps) {
       mapTypeControl: false,
       clickableIcons: false,
       backgroundColor: "#FFFFFF",
+      gestureHandling: "none",
+      zoomControl: isMobile ? false : true,
     });
   }, []);
 
