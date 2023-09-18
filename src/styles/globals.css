@@ -20,8 +20,6 @@ body,
 body {
   color: black;
   background: white;
-  transition: background 0.3s;
-  transition-timing-function: ease-in-out;
 }
 
 .slider::-webkit-scrollbar {

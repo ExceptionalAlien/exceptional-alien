@@ -58,18 +58,16 @@ export default function About({ page }: PageProps) {
         />
       </Head>
 
-      <div className="bg-white">
-        <main className="p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-          <Spacer />
+      <main className="p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <Spacer />
 
-          <TabHeading classes="uppercase">
-            <PrismicRichText field={page.data.page_heading} />
-          </TabHeading>
+        <TabHeading classes="uppercase">
+          <PrismicRichText field={page.data.page_heading} />
+        </TabHeading>
 
-          <Hello />
-          <SliceZone slices={page.data.slices} components={components} />
-        </main>
-      </div>
+        <Hello />
+        <SliceZone slices={page.data.slices} components={components} />
+      </main>
     </>
   );
 }

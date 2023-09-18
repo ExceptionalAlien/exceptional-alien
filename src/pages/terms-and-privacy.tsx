@@ -29,17 +29,15 @@ export default function TermsAndPrivacy({ page }: PageProps) {
         />
       </Head>
 
-      <div className="bg-white">
-        <main className="p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>[data-slice-type=text\_with\_heading]]:mt-5">
-          <Spacer />
+      <main className="p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>[data-slice-type=text\_with\_heading]]:mt-5">
+        <Spacer />
 
-          <TabHeading classes="!mt-12 md:!mt-24 uppercase">
-            <PrismicRichText field={page.data.page_heading} />
-          </TabHeading>
+        <TabHeading classes="!mt-12 md:!mt-24 uppercase">
+          <PrismicRichText field={page.data.page_heading} />
+        </TabHeading>
 
-          <SliceZone slices={page.data.slices} components={components} />
-        </main>
-      </div>
+        <SliceZone slices={page.data.slices} components={components} />
+      </main>
     </>
   );
 }

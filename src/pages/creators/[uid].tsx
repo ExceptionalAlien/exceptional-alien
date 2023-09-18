@@ -72,34 +72,32 @@ export default function Creator({ page }: PageProps) {
         />
       </Head>
 
-      <div className="bg-white">
-        <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6">
-          <Title firstName={page.data.first_name} lastName={page.data.last_name} country={page.data.home_country} />
-          {(page.data.nomination as any).data && <Nomination nomination={page.data.nomination} />}
+      <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6">
+        <Title firstName={page.data.first_name} lastName={page.data.last_name} country={page.data.home_country} />
+        {(page.data.nomination as any).data && <Nomination nomination={page.data.nomination} />}
 
-          <Heading
-            title={page.data.title}
-            homeCity={page.data.home_city}
-            currentCity={page.data.current_city}
-            ig={page.data.instagram}
-            other={page.data.other_social}
-            www={page.data.website}
-          />
+        <Heading
+          title={page.data.title}
+          homeCity={page.data.home_city}
+          currentCity={page.data.current_city}
+          ig={page.data.instagram}
+          other={page.data.other_social}
+          www={page.data.website}
+        />
 
-          {page.data.hero_image.url && <Hero image={page.data.hero_image} />}
+        {page.data.hero_image.url && <Hero image={page.data.hero_image} />}
 
-          {/* About */}
-          <section
-            className={`text-ex-grey [&>p]:mt-4 [&>p]:md:float-right [&>p]:md:w-3/4 [&>p>a]:underline hover:[&>p>a]:text-ex-light-grey [&>p>a]:transition-[color] [&>p>a]:ease-in-out [&>p>a]:duration-300 [&>*:nth-child(2)]:md:mt-0 ${
-              !page.data.description[0] && "hidden"
-            }`}
-          >
-            <h4 className="font-bold text-2xl md:float-left md:w-1/4 md:pr-6">About</h4>
-            <PrismicRichText field={page.data.description} />
-            <div className="clear-both"></div>
-          </section>
-        </main>
-      </div>
+        {/* About */}
+        <section
+          className={`text-ex-grey [&>p]:mt-4 [&>p]:md:float-right [&>p]:md:w-3/4 [&>p>a]:underline hover:[&>p>a]:text-ex-light-grey [&>p>a]:transition-[color] [&>p>a]:ease-in-out [&>p>a]:duration-300 [&>*:nth-child(2)]:md:mt-0 ${
+            !page.data.description[0] && "hidden"
+          }`}
+        >
+          <h4 className="font-bold text-2xl md:float-left md:w-1/4 md:pr-6">About</h4>
+          <PrismicRichText field={page.data.description} />
+          <div className="clear-both"></div>
+        </section>
+      </main>
     </>
   );
 }

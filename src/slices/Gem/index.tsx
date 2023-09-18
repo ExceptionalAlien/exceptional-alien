@@ -17,16 +17,17 @@ const Gem = ({ slice }: any): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
       <div className="aspect-[40/21] flex">
-        <Image
-          src={slice.primary.gem.data.image.url}
-          alt={slice.primary.gem.data.image.alt}
-          width={slice.primary.gem.data.image.dimensions.width}
-          height={slice.primary.gem.data.image.dimensions.height}
-          placeholder={`data:image/svg+xml;base64,${toBase64(
-            shimmer(slice.primary.gem.data.image.dimensions.width, slice.primary.gem.data.image.dimensions.height)
-          )}`}
-          className="h-full w-auto"
-        />
+        <div className="relative aspect-[3/4]">
+          <Image
+            src={slice.primary.gem.data.image.url}
+            alt={slice.primary.gem.data.image.alt}
+            width={slice.primary.gem.data.image.dimensions.width}
+            height={slice.primary.gem.data.image.dimensions.height}
+            placeholder={`data:image/svg+xml;base64,${toBase64(
+              shimmer(slice.primary.gem.data.image.dimensions.width, slice.primary.gem.data.image.dimensions.height)
+            )}`}
+          />
+        </div>
 
         <div className="ml-2 md:ml-4 w-full relative">
           <p className="text-sm text-ex-grey font-bold">{slice.primary.gem.data.category}</p>

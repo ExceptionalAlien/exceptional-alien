@@ -14,7 +14,6 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => {
       setScrollY(window.scrollY);
-      document.body.style.backgroundColor = window.scrollY > 0 ? "#2220C1" : "#FFFFFF";
     };
 
     window.addEventListener("scroll", onScroll);
@@ -24,12 +23,13 @@ export default function Header() {
   return (
     <>
       <Head>
+        <meta name="theme-color" content={scrollY > 0 ? "#2220C1" : "#FFFFFF"} />
         <meta name="robots" content="noindex" />
         <meta property="og:type" content="website" />
       </Head>
 
       <header
-        className={`z-30 top-0 fixed w-full h-12 md:h-20 transition-[background-color,color] ease-in-out duration-300 ${
+        className={`z-30 top-0 fixed w-full h-12 md:h-20 md:transition-[background-color,color] md:ease-in-out md:duration-300 ${
           scrollY > 0 ? "bg-ex-blue text-white" : "bg-white"
         }`}
       >
