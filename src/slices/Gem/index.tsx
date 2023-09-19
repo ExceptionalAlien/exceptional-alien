@@ -16,14 +16,10 @@ export type GemProps = SliceComponentProps<Content.GemSlice>;
  */
 const Gem = ({ slice }: any): JSX.Element => {
   return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="relative m-2 md:m-4 mt-4 md:mt-8"
-    >
-      <GemIcon category={slice.primary.gem.data.category} classes="right-0 w-10 md:w-11" />
+    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="relative">
+      <GemIcon category={slice.primary.gem.data.category} classes="right-0 w-9 md:w-10" />
       <p className="text-sm text-ex-grey font-bold">{slice.primary.gem.data.category}</p>
-      <h4 className="font-bold text-xl md:text-2xl leading-tight mr-11 md:mr-12">{slice.primary.gem.data.title}</h4>
+      <h4 className="font-bold text-xl md:text-2xl mr-10 md:mr-11">{slice.primary.gem.data.title}</h4>
 
       <div className="mt-1 md:mt-2">
         <div className="relative w-2/5 float-left">
@@ -40,9 +36,10 @@ const Gem = ({ slice }: any): JSX.Element => {
           <Credit text={slice.primary.gem.data.image.copyright ? slice.primary.gem.data.image.copyright : ""} />
         </div>
 
-        <div className="float-left pl-2 md:pl-4 w-3/5 [&>p]:text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:leading-normal">
+        <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-grey [&>p]:md:text-lg">
           <PrismicRichText field={slice.primary.description} />
-          <TabButton text="MORE INFO" route="/" classes="mt-2 md:mt-4" />
+          <p className="mt-2 md:mt-3 font-bold">Milan RING</p>
+          {/*<TabButton text="MORE INFO" route="/" classes="mt-3 md:mt-4" />*/}
         </div>
 
         <div className="clear-both"></div>
