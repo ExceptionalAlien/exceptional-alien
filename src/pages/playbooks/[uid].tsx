@@ -59,7 +59,8 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
   try {
     const client = createClient({ previewData });
     const page = await client.getByUID("playbook", params?.uid as string, {
-      fetchLinks: "creator.first_name,creator.last_name,creator.profile_image,gem.title,gem.image,gem.category",
+      fetchLinks:
+        "creator.first_name,creator.last_name,creator.profile_image,gem.title,gem.image,gem.category,gem.address",
     });
 
     return {

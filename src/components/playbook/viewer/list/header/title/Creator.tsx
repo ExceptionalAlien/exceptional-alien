@@ -5,9 +5,9 @@ export default function Creator({ data }: { data: any }) {
   return (
     <Link
       href={"/creators/" + data.uid}
-      className="flex items-center p-2 pr-3 pl-1 md:p-4 hover:opacity-80 duration-300 ease-in-out transition-opacity"
+      className="flex w-2/5 items-center justify-end p-3 md:p-4 hover:opacity-80 duration-300 ease-in-out transition-opacity"
     >
-      <p className="text-sm whitespace-nowrap max-[320px]:!hidden landscape:!hidden md:landscape:!inline-block">
+      <p className="text-sm text-right max-[320px]:!hidden landscape:!hidden md:landscape:!inline">
         {data.data.first_name} {data.data.last_name.toUpperCase()}
       </p>
 
@@ -16,7 +16,7 @@ export default function Creator({ data }: { data: any }) {
         alt={data.data.profile_image.alt}
         width={48}
         height={48}
-        className="rounded-full ml-2 border border-white"
+        className="rounded-full ml-2 border border-white w-10 md:w-auto"
       />
     </Link>
   );

@@ -24,7 +24,7 @@ function GoogleMap(props: MapProps) {
   return (
     <div
       ref={ref}
-      className={`z-20 bg-ex-light-grey touch-none !fixed top-12 md:top-20 left-0 w-1/2 xl:w-[calc(100%-640px)] portrait:w-full h-56 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+      className={`z-20 touch-none !fixed top-12 md:top-20 left-0 w-1/2 xl:w-[calc(100%-640px)] portrait:w-full h-56 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         props.scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${props.scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />
