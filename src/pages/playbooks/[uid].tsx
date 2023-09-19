@@ -41,21 +41,8 @@ export default function Creator({ page }: PageProps) {
         />
       </Head>
 
-      <main>
+      <main className="!pb-0">
         <Viewer data={page.data} center={{ lat: -33.865143, lng: 151.2099 }} zoom={15} />
-
-        <section>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam laoreet libero id magna varius, nec vehicula
-            urna sagittis. Donec enim dui, gravida ac risus at, pharetra gravida ex. Phasellus vel lacus accumsan metus
-            tincidunt cursus. Proin vel accumsan lectus. Sed pulvinar et velit a porttitor. Cras gravida, turpis nec
-            pharetra convallis, urna lectus porta augue, et molestie purus dolor id dui. Fusce condimentum quis nisl at
-            blandit. Pellentesque fermentum, dolor sed tempor mattis, felis augue blandit ligula, non congue tellus
-            sapien eu nisi. Fusce fermentum velit nibh, a aliquam orci hendrerit in. Aliquam quis libero pretium,
-            lobortis ipsum ac, bibendum quam. Proin nunc erat, hendrerit quis leo molestie, tempor dapibus dui.
-            Pellentesque rutrum gravida mollis. Duis leo ex, rhoncus sit amet convallis at, auctor at tellus.
-          </p>
-        </section>
       </main>
     </>
   );

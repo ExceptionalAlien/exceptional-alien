@@ -49,7 +49,6 @@ export default function CreatorThumb({
       {size !== "mobile" ? (
         <Tab
           title={data.title}
-          size={size as string}
           homeCity={data.home_city}
           currentCity={data.current_city}
           firstName={data.first_name}

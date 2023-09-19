@@ -22,12 +22,12 @@ export default function Socials({ ig, other, www }: { ig: string; other: string;
 
   return (
     <div
-      className={`absolute top-0 right-0 bg-white [&_*]:inline-block hover:[&>a]:opacity-50 [&>a]:duration-300 [&>a]:ease-in-out [&>a]:transition-opacity [&>a>svg]:h-6 [&>a>svg]:box-content [&>a>svg]:p-2 [&>a>svg]:align-[-16px] [&>a>span]:text-xs [&>a>span]:ml-1 [&>a>span]:md:ml-2`}
+      className={`absolute top-0 right-0 bg-white [&_*]:inline-block hover:[&>a]:opacity-50 [&>a]:duration-300 [&>a]:ease-in-out [&>a]:transition-opacity [&>a>svg]:h-6 [&>a>svg]:box-content [&>a>svg]:p-2 [&>a>svg]:align-[-16px] [&>a>p]:text-xs [&>a>p]:ml-1 [&>a>p]:md:ml-2`}
     >
       {/* Instagram */}
       {ig && (
         <a href={`https://instagram.com/${ig.replace(/@/g, "")}`} target="_blank" title="Instagram">
-          {otherSocial === "Instagram" && <span className="max-[320px]:!hidden">@{ig.replace(/@/g, "")}</span>}
+          {otherSocial === "Instagram" && <p className="max-[320px]:!hidden">@{ig.replace(/@/g, "")}</p>}
           <IG className="!pl-1 md:!pl-2" />
         </a>
       )}
@@ -36,7 +36,7 @@ export default function Socials({ ig, other, www }: { ig: string; other: string;
       {other && (
         <a href={other} target="_blank" title={otherSocial}>
           {otherSocial === "Instagram" && (
-            <span className="max-[320px]:!hidden">@{other.split(".com")[1].replace(/\//g, "")}</span>
+            <p className="max-[320px]:!hidden">@{other.split(".com")[1].replace(/\//g, "")}</p>
           )}
 
           {/* Icon */}

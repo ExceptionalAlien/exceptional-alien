@@ -8,29 +8,29 @@ import Spacer from "@/components/Spacer";
 
 function Hello() {
   return (
-    <section className="font-bold text-3xl md:text-5xl [&>span]:mr-3 [&>span]:md:mr-5 [&>span]:inline-block">
-      <span className="text-ex-blue">HELLO</span>
-      <span>KIA ORA</span>
-      <span>KONNICHIWA</span>
-      <span>CIAO</span>
-      <span>BONJOUR</span>
-      <span>HEI</span>
-      <span>SALUT</span>
-      <span>GUTEN TAG</span>
-      <span>AHLAN</span>
-      <span>NI HAO</span>
-      <span>SELAM</span>
-      <span>HEJ</span>
-      <span>YASSOU</span>
-      <span>HOI</span>
-      <span>ANYOUNG</span>
-      <span>HALLO</span>
-      <span>AHOJ</span>
-      <span>OLA</span>
-      <span>NAMASTE</span>
-      <span>XIN CHAO</span>
-      <span>SHALOM</span>
-      <span>HAI</span>
+    <section className="font-bold text-3xl md:text-5xl [&>p]:mr-3 [&>p]:md:mr-5 [&>p]:inline-block">
+      <p className="text-ex-blue">HELLO</p>
+      <p>KIA ORA</p>
+      <p>KONNICHIWA</p>
+      <p>CIAO</p>
+      <p>BONJOUR</p>
+      <p>HEI</p>
+      <p>SALUT</p>
+      <p>GUTEN TAG</p>
+      <p>AHLAN</p>
+      <p>NI HAO</p>
+      <p>SELAM</p>
+      <p>HEJ</p>
+      <p>YASSOU</p>
+      <p>HOI</p>
+      <p>ANYOUNG</p>
+      <p>HALLO</p>
+      <p>AHOJ</p>
+      <p>OLA</p>
+      <p>NAMASTE</p>
+      <p>XIN CHAO</p>
+      <p>SHALOM</p>
+      <p>HAI</p>
     </section>
   );
 }

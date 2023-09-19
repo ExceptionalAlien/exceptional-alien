@@ -34,7 +34,7 @@ export default function All({ creators }: { creators: PrismicDocument[] }) {
       </div>
 
       {/* No filtered results */}
-      <p className={`m-6 md:m-12 text-center ${!noResults && "hidden"}`}>No results found</p>
+      <p className={`m-8 md:m-16 text-center ${!noResults && "hidden"}`}>No results found</p>
     </section>
   );
 }

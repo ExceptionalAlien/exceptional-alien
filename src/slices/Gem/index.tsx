@@ -18,8 +18,12 @@ const Gem = ({ slice }: any): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="relative">
       <GemIcon category={slice.primary.gem.data.category} classes="right-0 w-9 md:w-10" />
-      <p className="text-sm text-ex-grey font-bold">{slice.primary.gem.data.category}</p>
-      <h4 className="font-bold text-xl md:text-2xl mr-10 md:mr-11">{slice.primary.gem.data.title}</h4>
+
+      <h4 className="font-bold text-xl md:text-2xl mr-10 md:mr-11">
+        {" "}
+        <span className="text-sm text-ex-grey font-bold block">{slice.primary.gem.data.category}</span>
+        {slice.primary.gem.data.title}
+      </h4>
 
       <div className="mt-1 md:mt-2">
         <div className="relative w-2/5 float-left">
@@ -32,11 +36,9 @@ const Gem = ({ slice }: any): JSX.Element => {
               shimmer(slice.primary.gem.data.image.dimensions.width, slice.primary.gem.data.image.dimensions.height)
             )}`}
           />
-
-          <Credit text={slice.primary.gem.data.image.copyright ? slice.primary.gem.data.image.copyright : ""} />
         </div>
 
-        <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-grey [&>p]:md:text-lg">
+        <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-grey text-sm [&>p]:md:text-base">
           <PrismicRichText field={slice.primary.description} />
           <p className="mt-2 md:mt-3 font-bold">Milan RING</p>
           {/*<TabButton text="MORE INFO" route="/" classes="mt-3 md:mt-4" />*/}

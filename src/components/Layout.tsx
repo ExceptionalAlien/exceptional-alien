@@ -31,9 +31,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div
       className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full [&>main]:min-h-full [&>main]:pt-12 [&>main]:md:pt-20 [&>main]:pb-12 [&>main]:md:pb-20 [&>main]:m-auto [&>main>section]:mt-8 [&>main>section]:md:mt-16`}
     >
-      <Header />
       {children}
       <Footer />
+      <Header />
     </div>
   );
 }

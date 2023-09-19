@@ -28,7 +28,7 @@ export default function Header({ data }: { data: any }) {
   }, []);
 
   return (
-    <div className="sticky text-white z-10" style={{ top: stickyTop }} ref={ref}>
+    <div className="z-10 sticky text-white" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={data.image.url}
         alt={data.image.alt}

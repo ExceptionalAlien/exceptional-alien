@@ -12,7 +12,7 @@ export default function Title({
 }) {
   return (
     <section className="mb-8 md:mb-16">
-      <h2 className="md:float-left md:w-1/2 font-bold text-4xl md:text-6xl">
+      <h2 className="md:float-left md:w-1/2 font-bold text-3xl md:text-6xl">
         {firstName} {lastName?.toUpperCase()}
       </h2>
 

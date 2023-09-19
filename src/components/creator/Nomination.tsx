@@ -11,7 +11,7 @@ export default function Nomination({ nomination }: { nomination: ContentRelation
         href={"/creators/" + (nomination as any).uid}
         className="[&>*]:inline-block hover:opacity-50 duration-300 ease-in-out transition-opacity"
       >
-        <p className="text-sm leading-snug">
+        <p className="text-sm">
           <span className="block text-xs">Nominated by</span>
           {data.first_name} {data.last_name.toUpperCase()}
         </p>

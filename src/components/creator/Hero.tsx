@@ -6,6 +6,7 @@ import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function Hero({ image }: { image: ImageField<"mobile"> }) {
   const [crop, setCrop] = useState(image.mobile);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -14,6 +15,7 @@ export default function Hero({ image }: { image: ImageField<"mobile"> }) {
 
     handleResize();
     window.addEventListener("resize", handleResize);
+    setMounted(true);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -27,6 +29,7 @@ export default function Hero({ image }: { image: ImageField<"mobile"> }) {
         placeholder={`data:image/svg+xml;base64,${toBase64(
           shimmer(crop.dimensions?.width as number, crop.dimensions?.height as number)
         )}`}
+        className={!mounted ? "hidden" : ""}
       />
 
       <Credit text={image.copyright ? image.copyright : "Photo: " + crop.alt} />
