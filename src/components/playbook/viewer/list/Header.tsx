@@ -51,7 +51,7 @@ export default function Header({ data }: { data: any }) {
         placeholder={`data:image/svg+xml;base64,${toBase64(
           shimmer(data.image.dimensions.width, data.image.dimensions.height)
         )}`}
-        className="w-full scale-110"
+        className="w-full scale-110 opacity-0"
         style={{ filter: `blur(${blur}px)` }}
       />
 
