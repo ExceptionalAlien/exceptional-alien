@@ -11,14 +11,7 @@ function GoogleMap(props: MapProps) {
     new window.google.maps.Map(ref.current!, {
       center: props.center,
       zoom: props.zoom,
-      mapId: "af32fa6e44e05e0a",
-      streetViewControl: false,
-      fullscreenControl: false,
-      mapTypeControl: false,
-      clickableIcons: false,
-      backgroundColor: "#C5C5C5",
-      gestureHandling: isMobile ? "greedy" : "none",
-      zoomControl: isMobile ? false : true,
+      mapId: "a558980281942a22",
     });
   }, []);
 
