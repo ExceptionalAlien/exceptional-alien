@@ -8,11 +8,10 @@ import { shimmer, toBase64 } from "@/utils/shimmer";
 export default function Header({ data }: { data: any }) {
   const [stickyTop, setStickyTop] = useState(0);
   const [blur, setBlur] = useState(0);
-  const [sticking, setSticking] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleResizeAndScroll = () => {
+    const handleResizeAndScroll = (e?: Event) => {
       const header = ref.current!;
       const isMobile = window.innerWidth >= 768 ? false : true;
       const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
@@ -21,11 +20,16 @@ export default function Header({ data }: { data: any }) {
       const portraitMapHeight = 224;
       const top = orientation === "landscape" ? globalHeaderheight : portraitMapHeight + globalHeaderheight;
       const stickyPos = titleHeight - header.clientHeight + top;
-      setStickyTop(stickyPos); // Set top position value for sticky header
+
+      // Set top position value for sticky header
+      if (!e || e.type === "resize") {
+        setStickyTop(stickyPos);
+      }
+
+      // Set amount of header image blur on scroll
       const offset = 0 - window.scrollY + header.offsetTop;
-      setSticking(Math.floor(offset) === stickyPos ? true : false); // Show shadow when header is sticking
       const blurPixels = ((offset - header.offsetTop) / (stickyPos - header.offsetTop)) * 10;
-      setBlur(parseFloat(blurPixels.toFixed(1))); // Set amount of header image blur on scroll
+      setBlur(parseFloat(blurPixels.toFixed(1)));
     };
 
     handleResizeAndScroll();
@@ -39,11 +43,7 @@ export default function Header({ data }: { data: any }) {
   }, []);
 
   return (
-    <div
-      className={`z-10 bg-white sticky text-white overflow-hidden ${sticking && "shadow-md shadow-black/20"}`}
-      style={{ top: stickyTop }}
-      ref={ref}
-    >
+    <div className="z-10 bg-white sticky text-white overflow-hidden" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={data.image.url}
         alt={data.image.alt}
