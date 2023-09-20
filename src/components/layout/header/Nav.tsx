@@ -67,7 +67,7 @@ export default function Nav({ scrollY }: { scrollY: number }) {
           scrollY > 0 ? "[&>*]:md:text-white [&>div>a>span]:md:bg-white" : "[&>*]:md:text-black"
         } ${showingNav ? "h-full opacity-100" : "h-0 md:h-full opacity-0 md:opacity-100"}`}
       >
-        <Link
+        {/* <Link
           href="/download"
           onClick={hideNav}
           className={`landscape:!hidden md:!hidden landscape:lg:!inline-flex box-content z-10 absolute md:static left-1/2 -translate-x-1/2 md:translate-x-0 w-[calc(100%-80px)] md:w-auto max-w-xs bottom-6 justify-center border-2 border-ex-blue rounded-full p-4 md:pl-3 pt-2 pb-2 md:ml-4 mr-4 [&>svg]:mr-1 hover:md:text-white ${
@@ -96,7 +96,7 @@ export default function Nav({ scrollY }: { scrollY: number }) {
             />
           </svg>
           Download App
-        </Link>
+        </Link> */}
 
         <div className="justify-center items-center flex-col md:flex-row relative w-full md:w-auto h-full md:h-auto md:-top-7 md:group-hover/nav:-top-3 transition-[top] duration-200 ease-in-out">
           <PrimaryLink page="destinations" hideNav={hideNav} />

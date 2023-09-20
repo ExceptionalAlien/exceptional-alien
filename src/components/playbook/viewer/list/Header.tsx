@@ -7,28 +7,43 @@ import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function Header({ data }: { data: any }) {
   const [stickyTop, setStickyTop] = useState(0);
+  const [blur, setBlur] = useState(0);
+  const [sticking, setSticking] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResizeAndScroll = () => {
+      const header = ref.current!;
       const isMobile = window.innerWidth >= 768 ? false : true;
       const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
       const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
       const globalHeaderheight = !isMobile ? 80 : 48;
       const portraitMapHeight = 224;
       const top = orientation === "landscape" ? globalHeaderheight : portraitMapHeight + globalHeaderheight;
-
-      // Set top position value for sticky header
-      setStickyTop(titleHeight - ref.current!.clientHeight + top);
+      const stickyPos = titleHeight - header.clientHeight + top;
+      setStickyTop(stickyPos); // Set top position value for sticky header
+      const offset = 0 - window.scrollY + header.offsetTop;
+      setSticking(Math.floor(offset) === stickyPos ? true : false); // Show shadow when header is sticking
+      const blurPixels = ((offset - header.offsetTop) / (stickyPos - header.offsetTop)) * 10;
+      setBlur(parseFloat(blurPixels.toFixed(1))); // Set amount of header image blur on scroll
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    handleResizeAndScroll();
+    window.addEventListener("resize", handleResizeAndScroll);
+    window.addEventListener("scroll", handleResizeAndScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResizeAndScroll);
+      window.removeEventListener("scroll", handleResizeAndScroll);
+    };
   }, []);
 
   return (
-    <div className="z-10 sticky text-white" style={{ top: stickyTop }} ref={ref}>
+    <div
+      className={`z-10 bg-white sticky text-white overflow-hidden ${sticking && "shadow-lg"}`}
+      style={{ top: stickyTop }}
+      ref={ref}
+    >
       <Image
         src={data.image.url}
         alt={data.image.alt}
@@ -37,7 +52,8 @@ export default function Header({ data }: { data: any }) {
         placeholder={`data:image/svg+xml;base64,${toBase64(
           shimmer(data.image.dimensions.width, data.image.dimensions.height)
         )}`}
-        className="w-full"
+        className="w-full scale-110"
+        style={{ filter: `blur(${blur}px)` }}
       />
 
       {/* Layered shadow */}
