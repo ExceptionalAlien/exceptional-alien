@@ -52,7 +52,12 @@ export default function Header({ data }: { data: any }) {
           shimmer(data.image.dimensions.width, data.image.dimensions.height)
         )}`}
         className="w-full scale-110"
-        style={{ filter: `blur(${blur}px)`, backfaceVisibility: "hidden" }}
+        style={{
+          filter: `blur(${blur}px)`,
+          backfaceVisibility: "hidden",
+          transform: "translateZ(0)",
+          perspective: 1000,
+        }}
       />
 
       {/* Layered shadow */}
