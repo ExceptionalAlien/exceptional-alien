@@ -6,6 +6,7 @@ function GoogleMap(props: MapProps) {
 
   useEffect(() => {
     const isMobile = window.innerWidth >= 768 ? false : true;
+    console.log(1);
 
     new window.google.maps.Map(ref.current!, {
       center: props.center,
@@ -27,6 +28,7 @@ function GoogleMap(props: MapProps) {
       className={`z-20 touch-none !fixed top-12 md:top-20 left-0 w-1/2 min-[1200px]:w-[calc(100%-600px)] portrait:w-full h-56 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         props.scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${props.scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
+      style={{ transform: "translateZ(0)" }}
     />
   );
 }

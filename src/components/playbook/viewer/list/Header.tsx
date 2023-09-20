@@ -28,8 +28,7 @@ export default function Header({ data }: { data: any }) {
 
       // Set amount of header image blur on scroll
       const blurPixels = ((window.scrollY / Math.abs(stickyPos - top)) * 100) / 10;
-      const blah = blurPixels / 2;
-      setBlur(blah >= 5 ? 5 : blah);
+      setBlur(blurPixels >= 10 ? 10 : blurPixels);
     };
 
     handleResizeAndScroll();
@@ -55,7 +54,6 @@ export default function Header({ data }: { data: any }) {
         className="w-full !scale-110"
         style={{
           filter: `blur(${blur}px)`,
-          transform: "translateZ(0)",
         }}
       />
 
