@@ -37,6 +37,7 @@ const Gem = ({ slice, context }: any): JSX.Element => {
 
         <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-blue text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:!leading-normal">
           <PrismicRichText field={slice.primary.description} />
+
           <p className="mt-2 md:mt-3 font-bold">
             {slice.primary.creator.data ? slice.primary.creator.data.first_name : context.creator.first_name}{" "}
             {slice.primary.creator.data ? slice.primary.creator.data.last_name : context.creator.last_name}
