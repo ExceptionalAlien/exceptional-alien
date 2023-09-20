@@ -40,7 +40,7 @@ export default function Header({ data }: { data: any }) {
 
   return (
     <div
-      className={`z-10 bg-white sticky text-white overflow-hidden ${sticking && "shadow-lg"}`}
+      className={`z-10 bg-white sticky text-white overflow-hidden ${sticking && "shadow-md shadow-black/20"}`}
       style={{ top: stickyTop }}
       ref={ref}
     >
