@@ -11,7 +11,7 @@ function GoogleMap(props: MapProps) {
     new window.google.maps.Map(ref.current!, {
       center: props.center,
       zoom: props.zoom,
-      mapId: "a558980281942a22",
+      mapId: "af32fa6e44e05e0a",
       streetViewControl: false,
       fullscreenControl: false,
       mapTypeControl: false,
