@@ -7,6 +7,7 @@ import Culture from "@/img/icon-gem-culture.svg";
 import Events from "@/img/icon-gem-events.svg";
 import Retail from "@/img/icon-gem-retail.svg";
 import Wellness from "@/img/icon-gem-wellness.svg";
+import Neighbourhoods from "@/img/icon-gem-neighbourhoods.svg";
 
 export default function GemIcon({ category, classes }: { category: string; classes?: string }) {
   return (
@@ -20,6 +21,7 @@ export default function GemIcon({ category, classes }: { category: string; class
       {category === "Events" && <Events />}
       {category === "Retail" && <Retail />}
       {category === "Wellness" && <Wellness />}
+      {category === "Neighbourhoods" && <Neighbourhoods />}
     </div>
   );
 }
