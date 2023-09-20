@@ -26,14 +26,13 @@
           "placeholder": "",
           "options": [
             "Food & Drink",
-            "Neighbourhoods",
             "Nature",
             "Retail",
             "Culture",
             "Events",
             "Wellness",
-            "Design",
-            "Accommodation"
+            "Accommodation",
+            "Neighbourhoods"
           ],
           "default_value": "Food & Drink"
         }

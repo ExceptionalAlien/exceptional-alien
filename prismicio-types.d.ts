@@ -592,15 +592,7 @@ interface GemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   category: prismic.SelectField<
-    | "Food & Drink"
-    | "Neighbourhoods"
-    | "Nature"
-    | "Retail"
-    | "Culture"
-    | "Events"
-    | "Wellness"
-    | "Design"
-    | "Accommodation",
+    "Food & Drink" | "Nature" | "Retail" | "Culture" | "Events" | "Wellness" | "Accommodation" | "Neighbourhoods",
     "filled"
   >;
 

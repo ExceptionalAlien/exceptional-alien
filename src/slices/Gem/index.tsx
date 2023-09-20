@@ -14,7 +14,7 @@ export type GemProps = SliceComponentProps<Content.GemSlice>;
 /**
  * Component for "Gem" Slices.
  */
-const Gem = ({ slice }: any): JSX.Element => {
+const Gem = ({ slice, context }: any): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="relative">
       <GemIcon category={slice.primary.gem.data.category} classes="right-0 w-9 md:w-11" />
@@ -37,7 +37,10 @@ const Gem = ({ slice }: any): JSX.Element => {
 
         <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-blue text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:!leading-normal">
           <PrismicRichText field={slice.primary.description} />
-          <p className="mt-2 md:mt-3 font-bold">Milan RING</p>
+          <p className="mt-2 md:mt-3 font-bold">
+            {slice.primary.creator.data ? slice.primary.creator.data.first_name : context.creator.first_name}{" "}
+            {slice.primary.creator.data ? slice.primary.creator.data.last_name : context.creator.last_name}
+          </p>
           {/*<TabButton text="MORE INFO" route="/" classes="mt-3 md:mt-4" />*/}
         </div>
 

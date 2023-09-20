@@ -8,7 +8,7 @@ export default function List({ data }: { data: any }) {
       <Header data={data} />
 
       <div className="grid grid-cols-1 mx-3 md:mx-4 my-6 md:my-8 gap-y-6 md:gap-y-8">
-        <SliceZone slices={data.slices} components={components} />
+        <SliceZone slices={data.slices} components={components} context={{ creator: data.creator.data }} />
       </div>
     </div>
   );
