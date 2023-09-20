@@ -28,7 +28,8 @@ export default function Header({ data }: { data: any }) {
 
       // Set amount of header image blur on scroll
       const blurPixels = ((window.scrollY / Math.abs(stickyPos - top)) * 100) / 10;
-      setBlur(blurPixels >= 10 ? 10 : blurPixels);
+      const blah = blurPixels / 2;
+      setBlur(blah >= 5 ? 5 : blah);
     };
 
     handleResizeAndScroll();
