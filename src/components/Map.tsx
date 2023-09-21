@@ -16,7 +16,6 @@ function GoogleMap(props: MapProps) {
       mapTypeControl: false,
       clickableIcons: false,
       backgroundColor: "#C5C5C5",
-      gestureHandling: isMobile ? "greedy" : "none",
       zoomControl: isMobile ? false : true,
     });
   }, []);

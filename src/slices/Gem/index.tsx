@@ -34,7 +34,7 @@ const Gem = ({ slice, context }: any): JSX.Element => {
           />
         </div>
 
-        <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-blue [&>p]:text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:!leading-normal">
+        <div className="float-left pb-6 mb-6 md:mb-8 pl-3 md:pl-4 w-3/5 [&>p]:text-ex-blue [&>p]:text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:!leading-normal">
           <PrismicRichText field={slice.primary.description} />
 
           <Link
@@ -63,11 +63,13 @@ const Gem = ({ slice, context }: any): JSX.Element => {
               } ${!slice.primary.creator.data && !context.creator.data.last_name && "hidden"}`}
             />
           </Link>
-
-          {/*<TabButton text="MORE INFO" route="/" classes="mt-3 md:mt-4" />*/}
         </div>
 
         <div className="clear-both"></div>
+
+        <div className="w-3/5 !absolute bottom-0 right-0">
+          <TabButton text="MORE INFO" route="/" classes="ml-3 md:ml-4" />
+        </div>
       </div>
     </section>
   );
