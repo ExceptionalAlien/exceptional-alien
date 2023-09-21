@@ -42,7 +42,7 @@ export default function Header({ data }: { data: any }) {
   }, []);
 
   return (
-    <div className="z-10 bg-black sticky text-white overflow-hidden" style={{ top: stickyTop }} ref={ref}>
+    <div className="z-10 sticky text-white overflow-hidden" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={data.image.url}
         alt={data.image.alt}
@@ -54,7 +54,7 @@ export default function Header({ data }: { data: any }) {
         className="w-full"
         style={{
           filter: `blur(${blur}px)`,
-          transform: "translateZ(0)",
+          transform: "scale3d(1.1, 1.1, 1.1)",
         }}
       />
 

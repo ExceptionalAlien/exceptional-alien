@@ -1,8 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import TabButton from "@/components/TabButton";
-import Credit from "@/components/Credit";
 import GemIcon from "@/components/GemIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
@@ -18,7 +18,6 @@ const Gem = ({ slice, context }: any): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="relative">
       <GemIcon category={slice.primary.gem.data.category} classes="right-0 w-9 md:w-11" />
-
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">{slice.primary.gem.data.title}</h4>
       <p className="text-ex-grey text-sm md:text-base">{slice.primary.gem.data.address}</p>
 
@@ -35,13 +34,36 @@ const Gem = ({ slice, context }: any): JSX.Element => {
           />
         </div>
 
-        <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-blue text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:!leading-normal">
+        <div className="float-left pl-3 md:pl-4 w-3/5 [&>p]:text-ex-blue [&>p]:text-sm [&>p]:md:text-base [&>p]:leading-snug [&>p]:md:!leading-normal">
           <PrismicRichText field={slice.primary.description} />
 
-          <p className="mt-2 md:mt-3 font-bold">
-            {slice.primary.creator.data ? slice.primary.creator.data.first_name : context.creator.first_name}{" "}
-            {slice.primary.creator.data ? slice.primary.creator.data.last_name : context.creator.last_name}
-          </p>
+          <Link
+            href={`/creators/${slice.primary.creator.data ? slice.primary.creator.uid : context.creator.data.uid}`}
+            className="text-sm md:text-base block max-w-full w-max mt-2 md:mt-3 font-bold text-ex-blue hover:opacity-50 duration-300 ease-in-out transition-opacity"
+          >
+            {slice.primary.creator.data ? slice.primary.creator.data.first_name : context.creator.data.first_name}{" "}
+            {slice.primary.creator.data
+              ? slice.primary.creator.data.last_name?.toUpperCase()
+              : context.creator.data.last_name.toUpperCase()}
+            <Image
+              src={
+                slice.primary.creator.data
+                  ? slice.primary.creator.data.profile_image.url
+                  : context.creator.data.profile_image.url
+              }
+              alt={
+                slice.primary.creator.data
+                  ? slice.primary.creator.data.profile_image.alt
+                  : context.creator.data.profile_image.alt
+              }
+              width={40}
+              height={40}
+              className={`inline-block rounded-full ml-2 align-[-12px] md:align-[-14px] w-8 md:w-10 ${
+                slice.primary.creator.data && !slice.primary.creator.data.last_name && "hidden"
+              } ${!slice.primary.creator.data && !context.creator.data.last_name && "hidden"}`}
+            />
+          </Link>
+
           {/*<TabButton text="MORE INFO" route="/" classes="mt-3 md:mt-4" />*/}
         </div>
 
