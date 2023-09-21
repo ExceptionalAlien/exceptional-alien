@@ -19,7 +19,7 @@ body,
 
 body {
   color: black;
-  background: white;
+  background-image: url("/img/blue.png"); /* Hack to avoid weird bottom gap on iPhone with notch/island */
 }
 
 .slider::-webkit-scrollbar {
