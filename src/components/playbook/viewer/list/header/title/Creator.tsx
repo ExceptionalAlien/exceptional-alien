@@ -7,7 +7,7 @@ export default function Creator({ data }: { data: any }) {
       href={"/creators/" + data.uid}
       className="flex w-2/5 items-center justify-end p-3 md:p-4 hover:opacity-50 duration-300 ease-in-out transition-opacity"
     >
-      <p className="text-sm text-right max-[320px]:!hidden landscape:!hidden md:landscape:!inline">
+      <p className="text-sm md:text-base text-right max-[320px]:!hidden landscape:!hidden md:landscape:!inline">
         {data.data.first_name} {data.data.last_name.toUpperCase()}
       </p>
 

@@ -8,20 +8,24 @@ import Events from "@/img/icon-gem-events.svg";
 import Retail from "@/img/icon-gem-retail.svg";
 import Wellness from "@/img/icon-gem-wellness.svg";
 import Neighbourhoods from "@/img/icon-gem-neighbourhoods.svg";
+import styles from "./gem-icon/styles.module.css";
 
 export default function GemIcon({ category, classes }: { category: string; classes?: string }) {
   return (
-    <div className={`absolute [&>svg]:absolute [&>svg]:fill-ex-blue ${classes}`}>
-      <BG className="!fill-white" />
+    <div className={[styles.gemIcon, classes].join(" ")}>
+      <BG className={styles.gemIconBg} />
       <Border />
-      {category === "Food & Drink" && <Food />}
-      {category === "Nature" && <Nature />}
-      {category === "Accomm" && <Accomm />}
-      {category === "Culture" && <Culture />}
-      {category === "Events" && <Events />}
-      {category === "Retail" && <Retail />}
-      {category === "Wellness" && <Wellness />}
-      {category === "Neighbourhoods" && <Neighbourhoods />}
+
+      <div className={styles.gemIconCat}>
+        {category === "Food & Drink" && <Food />}
+        {category === "Nature" && <Nature />}
+        {category === "Accomm" && <Accomm />}
+        {category === "Culture" && <Culture />}
+        {category === "Events" && <Events />}
+        {category === "Retail" && <Retail />}
+        {category === "Wellness" && <Wellness />}
+        {category === "Neighbourhoods" && <Neighbourhoods />}
+      </div>
     </div>
   );
 }
