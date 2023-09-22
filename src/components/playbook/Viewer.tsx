@@ -28,7 +28,13 @@ export default function Viewer({ data, center, zoom }: { data: any; center: goog
   return (
     <section className="!mt-0 flex justify-end items-end" ref={ref}>
       <List data={data} />
-      <Map center={center} zoom={zoom} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
+      <Map
+        center={center}
+        zoom={zoom}
+        gems={data.slices}
+        scrollEndLandscape={scrollEndLandscape}
+        scrollEndPortrait={scrollEndPortrait}
+      />
     </section>
   );
 }

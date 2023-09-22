@@ -22,18 +22,33 @@ function GoogleMap(props: MapProps) {
       zoomControl: isMobile ? false : true,
     });
 
-    const div = document.createElement("div");
-    createRoot(div).render(<GemIcon category="Nature" />);
+    var bounds = new window.google.maps.LatLngBounds();
 
-    const marker = new window.google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: { lat: -33.865143, lng: 151.2099 },
-      content: div,
-    });
+    for (let x = 0; x < props.gems.length; x++) {
+      const gem = props.gems[x].primary.gem.data;
+      const div = document.createElement("div");
+      createRoot(div).render(<GemIcon category={gem.category} />);
 
-    marker.addListener("click", () => {
-      (marker.content as HTMLElement).firstElementChild?.classList.add(`${styles.selected}`);
-    });
+      const marker = new window.google.maps.marker.AdvancedMarkerElement({
+        map,
+        position: {
+          lat: gem.location.latitude,
+          lng: gem.location.longitude,
+        },
+        content: div,
+      });
+
+      bounds.extend({
+        lat: gem.location.latitude,
+        lng: gem.location.longitude,
+      });
+
+      marker.addListener("click", () => {
+        (marker.content as HTMLElement).firstElementChild?.classList.add(`${styles.selected}`);
+      });
+    }
+
+    map.fitBounds(bounds);
   }, []);
 
   return (
@@ -49,6 +64,7 @@ function GoogleMap(props: MapProps) {
 interface MapProps {
   center: google.maps.LatLngLiteral;
   zoom: number;
+  gems: any;
   scrollEndLandscape: boolean;
   scrollEndPortrait: boolean;
 }
