@@ -28,12 +28,10 @@ const helveticaMonospaced = localFont({
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full [&>main]:min-h-full [&>main]:pt-12 [&>main]:md:pt-20 [&>main]:pb-12 [&>main]:md:pb-20 [&>main]:m-auto [&>main>section]:mt-8 [&>main>section]:md:mt-16`}
-    >
-      {/* Hack to avoid weird bottom gap on iPhone with notch/island */}
-      <div className="bg-white w-full h-full fixed -z-10"></div>
-      {children}
+    <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full`}>
+      <div className="bg-white [&>main]:min-h-full [&>main]:pt-12 [&>main]:md:pt-20 [&>main]:pb-12 [&>main]:md:pb-20 [&>main]:m-auto [&>main>section]:mt-8 [&>main>section]:md:mt-16">
+        {children}
+      </div>
       <Footer />
       <Header />
     </div>

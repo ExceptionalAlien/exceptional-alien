@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/GemIcon";
-import styles from "./gem-icon/styles.module.css";
 
 function GoogleMap(props: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -44,7 +43,7 @@ function GoogleMap(props: MapProps) {
       });
 
       marker.addListener("click", () => {
-        (marker.content as HTMLElement).firstElementChild?.classList.add(`${styles.selected}`);
+        //(marker.content as HTMLElement).firstElementChild?.classList.add(`${styles.selected}`);
       });
     }
 
