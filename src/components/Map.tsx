@@ -1,8 +1,14 @@
 import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { useRouter } from "next/router";
+import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/GemIcon";
+
+interface Gem {
+  uid: string;
+  data: Content.GemDocumentData;
+}
 
 function GoogleMap(props: MapProps) {
   const router = useRouter();
@@ -22,7 +28,8 @@ function GoogleMap(props: MapProps) {
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
     const globalHeaderheight = !isMobile ? 80 : 48;
-    const margin = !isMobile ? 12 : 16;
+    const portraitMapHeight = 224;
+    const margin = !isMobile ? 16 : 12 + portraitMapHeight;
     const pos =
       (document.querySelector("section#" + router.query.gem) as HTMLElement)?.offsetTop -
       (globalHeaderheight + titleHeight + margin);
@@ -46,7 +53,7 @@ function GoogleMap(props: MapProps) {
 
     // Loop playbook gems and add to map
     for (let i = 0; i < props.gems.length; i++) {
-      const gem = props.gems[i].primary.gem;
+      const gem = props.gems[i].primary.gem as Gem;
       const div = document.createElement("div");
       div.setAttribute("id", gem.uid);
       div.classList.add("gem");
@@ -100,7 +107,7 @@ function GoogleMap(props: MapProps) {
 }
 
 interface MapProps {
-  gems: any;
+  gems: SliceZone<Content.GemSlice>;
   scrollEndLandscape: boolean;
   scrollEndPortrait: boolean;
 }

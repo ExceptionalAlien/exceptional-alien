@@ -1,14 +1,15 @@
+import { KeyTextField } from "@prismicio/client";
 import { useRouter } from "next/router";
 
-export default function Share({ title }: { title: string }) {
+export default function Share({ title }: { title: KeyTextField }) {
   const router = useRouter();
 
   const share = () => {
     if (navigator.share) {
       navigator
         .share({
-          title: title,
-          text: title,
+          title: title as string,
+          text: title as string,
           url: "https://exceptionalalien.com/playbooks/" + router.query.uid,
         })
         .then(() => console.log("Successful share"))

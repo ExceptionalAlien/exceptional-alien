@@ -22,6 +22,10 @@ body {
   background-image: url("/img/blue.png"); /* Hack to avoid weird bottom gap on iPhone with notch/island */
 }
 
+* {
+  outline: none;
+}
+
 /* Slider */
 
 .slider::-webkit-scrollbar {
@@ -34,10 +38,6 @@ body {
 }
 
 /* Gems */
-
-.gem {
-  outline: none;
-}
 
 .selectedGem .gemBg {
   fill: var(--color-blue) !important;

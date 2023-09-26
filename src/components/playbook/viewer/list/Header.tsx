@@ -1,11 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import { Content } from "@prismicio/client";
 import Title from "./header/Title";
 import Share from "./header/Share";
 import Gems from "./header/Gems";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function Header({ data }: { data: any }) {
+export default function Header({ data }: { data: Content.PlaybookDocumentData }) {
   const [stickyTop, setStickyTop] = useState(0);
   const [blur, setBlur] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -44,12 +45,12 @@ export default function Header({ data }: { data: any }) {
   return (
     <div className="z-10 sticky bg-ex-light-grey text-white overflow-hidden" style={{ top: stickyTop }} ref={ref}>
       <Image
-        src={data.image.url}
-        alt={data.image.alt}
-        width={data.image.dimensions.width}
-        height={data.image.dimensions.height}
+        src={data.image.url as string}
+        alt={data.image.alt as string}
+        width={data.image.dimensions!.width}
+        height={data.image.dimensions!.height}
         placeholder={`data:image/svg+xml;base64,${toBase64(
-          shimmer(data.image.dimensions.width, data.image.dimensions.height)
+          shimmer(data.image.dimensions!.width, data.image.dimensions!.height)
         )}`}
         className="w-full"
         style={{

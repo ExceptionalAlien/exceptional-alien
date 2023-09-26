@@ -1,10 +1,11 @@
+import { Content } from "@prismicio/client";
 import Creator from "./title/Creator";
 
-export default function Title({ data }: { data: any }) {
+export default function Title({ data }: { data: Content.PlaybookDocumentData }) {
   return (
     <div className="absolute w-full h-16 md:h-20 overflow-hidden bottom-0 flex justify-between items-center">
       <h2 className="w-3/5 font-bold pl-3 md:pl-4 max-[320px]:text-lg text-xl md:text-2xl !leading-tight">
-        {data.title.substring(0, 50)}
+        {data.title?.substring(0, 50)}
       </h2>
 
       <Creator data={data.creator} />
