@@ -17,7 +17,16 @@ function GoogleMap(props: MapProps) {
     }
 
     // Set selected gem
-    document.querySelector("#" + router.query.gem)?.classList.add("selectedGem");
+    document.querySelector("div#" + router.query.gem)?.classList.add("selectedGem"); // Map icon
+    const isMobile = window.innerWidth >= 768 ? false : true;
+    const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
+    const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
+    const globalHeaderheight = !isMobile ? 80 : 48;
+    const margin = !isMobile ? 12 : 16;
+    const pos =
+      (document.querySelector("section#" + router.query.gem) as HTMLElement)?.offsetTop -
+      (globalHeaderheight + titleHeight + margin);
+    window.scrollTo({ top: pos, behavior: "smooth" });
   }, [router.query.gem]);
 
   useEffect(() => {
@@ -49,6 +58,7 @@ function GoogleMap(props: MapProps) {
           lat: gem.data.location.latitude,
           lng: gem.data.location.longitude,
         },
+        title: gem.data.title,
         content: div,
       });
 
@@ -59,10 +69,14 @@ function GoogleMap(props: MapProps) {
 
       marker.addListener("click", () => {
         // Set gem URL param
-        router.push({
-          pathname: router.pathname,
-          query: { ...router.query, gem: gem.uid },
-        });
+        router.push(
+          {
+            pathname: router.pathname,
+            query: { ...router.query, gem: gem.uid },
+          },
+          undefined,
+          { scroll: false }
+        );
       });
 
       if (router.query.gem === gem.uid) {
@@ -70,7 +84,9 @@ function GoogleMap(props: MapProps) {
       }
     }
 
-    map.fitBounds(bounds); // All gems visible on map
+    if (props.gems.length) {
+      map.fitBounds(bounds); // All gems visible on map
+    }
   }, []);
 
   return (

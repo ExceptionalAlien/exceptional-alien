@@ -16,7 +16,12 @@ export type GemProps = SliceComponentProps<Content.GemSlice>;
  */
 const Gem = ({ slice, context }: any): JSX.Element => {
   return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="relative">
+    <section
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+      className="relative"
+      id={slice.primary.gem.uid}
+    >
       <GemIcon category={slice.primary.gem.data.category} classes="right-0 !w-9 md:!w-11" />
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">{slice.primary.gem.data.title}</h4>
       <p className="text-ex-grey text-sm md:text-base">{slice.primary.gem.data.address}</p>
