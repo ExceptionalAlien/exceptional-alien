@@ -36,7 +36,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       className="relative"
       id={(slice.primary.gem as Gem).uid}
     >
-      <GemIcon category={(slice.primary.gem as Gem).data.category} classes="right-0 !w-9 md:!w-11" />
+      <GemIcon category={(slice.primary.gem as Gem).data.category} classes="right-0" />
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">
         {(slice.primary.gem as Gem).data.title}
       </h4>
