@@ -35,6 +35,10 @@ body {
 
 /* Gems */
 
+.gem {
+  border: none;
+}
+
 .selectedGem .gemBg {
   fill: var(--color-blue) !important;
 }
