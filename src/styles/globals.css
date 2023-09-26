@@ -39,10 +39,10 @@ body {
 
 /* Gems */
 
-.selectedGem .gemBg {
+.selected-gem .gem-icon-bg {
   fill: var(--color-blue) !important;
 }
 
-.selectedGem .gemIcon {
+.selected-gem .gem-icon-symbol {
   fill: white;
 }

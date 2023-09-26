@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import { useRouter } from "next/router";
 import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/GemIcon";
@@ -11,33 +10,16 @@ interface Gem {
 }
 
 function GoogleMap(props: MapProps) {
-  const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Reset all gems
-    const gems = document.querySelectorAll(".gem");
-
-    for (let i = 0; i < gems.length; i++) {
-      gems[i].classList.remove("selectedGem");
-    }
-
-    // Set selected gem
-    document.querySelector("div#" + router.query.gem)?.classList.add("selectedGem"); // Map icon
     const isMobile = window.innerWidth >= 768 ? false : true;
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
-    const globalHeaderheight = !isMobile ? 80 : 48;
     const portraitMapHeight = 224;
-    const margin = !isMobile ? 16 : 12 + portraitMapHeight;
-    const pos =
-      (document.querySelector("section#" + router.query.gem) as HTMLElement)?.offsetTop -
-      (globalHeaderheight + titleHeight + margin);
-    window.scrollTo({ top: pos, behavior: "smooth" });
-  }, [router.query.gem]);
-
-  useEffect(() => {
-    const isMobile = window.innerWidth >= 768 ? false : true;
+    const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
+    const margin = !isMobile ? 16 : 12;
+    const top = globalHeaderheight + titleHeight;
 
     const map = new window.google.maps.Map(ref.current!, {
       mapId: "a558980281942a22",
@@ -57,8 +39,8 @@ function GoogleMap(props: MapProps) {
     for (let i = 0; i < props.gems.length; i++) {
       const gem = props.gems[i].primary.gem as Gem;
       const div = document.createElement("div");
-      div.setAttribute("id", gem.uid);
-      div.classList.add("gem");
+      div.setAttribute("id", "map-gem-" + gem.uid);
+      div.classList.add("map-gem");
       createRoot(div).render(<GemIcon category={gem.data.category} />);
 
       const marker = new window.google.maps.marker.AdvancedMarkerElement({
@@ -77,25 +59,44 @@ function GoogleMap(props: MapProps) {
       });
 
       marker.addListener("click", () => {
-        // Set gem URL param
-        router.push(
-          {
-            pathname: router.pathname,
-            query: { ...router.query, gem: gem.uid },
-          },
-          undefined,
-          { scroll: false }
-        );
+        window.scrollTo({
+          top: (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin),
+          behavior: "smooth",
+        });
       });
+    }
 
-      if (router.query.gem === gem.uid) {
-        div.classList.add("selectedGem"); // Gem selected on load
+    const selectGem = (id: string) => {
+      // Reset all gems
+      const gems = document.querySelectorAll(".map-gem");
+
+      for (let i = 0; i < gems.length; i++) {
+        gems[i].classList.remove("selected-gem");
       }
-    }
 
-    if (props.gems.length) {
-      map.fitBounds(bounds); // All gems visible on map
-    }
+      document.querySelector("div#map-gem-" + id)?.classList.add("selected-gem"); // Select
+    };
+
+    const handleScroll = () => {
+      const gems = document.querySelectorAll("section");
+      var focusedGem = "";
+
+      // Loop gems in list and detect which is in focus
+      for (let i = 0; i < gems.length; i++) {
+        const gem = gems[i] as HTMLElement;
+        const pos = gem.offsetTop + (gem.querySelector(".gem-content") as HTMLElement).offsetTop - window.scrollY;
+
+        if (pos >= top && pos < window.innerHeight && !focusedGem) {
+          focusedGem = gems[i].id.replace("gem-", "");
+        }
+      }
+
+      focusedGem && selectGem(focusedGem);
+    };
+
+    props.gems.length && map.fitBounds(bounds); // All gems visible on map
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (

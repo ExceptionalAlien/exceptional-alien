@@ -33,16 +33,18 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative"
-      id={(slice.primary.gem as Gem).uid}
+      className="gem relative"
+      id={`gem-${(slice.primary.gem as Gem).uid}`}
     >
       <GemIcon category={(slice.primary.gem as Gem).data.category} classes="right-0" />
+
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">
         {(slice.primary.gem as Gem).data.title}
       </h4>
+
       <p className="text-ex-grey text-sm md:text-base">{(slice.primary.gem as Gem).data.address}</p>
 
-      <div className="mt-2 md:mt-3">
+      <div className="gem-content mt-2 md:mt-3">
         <Image
           src={(slice.primary.gem as Gem).data.image.url as string}
           alt={(slice.primary.gem as Gem).data.image.alt as string}
