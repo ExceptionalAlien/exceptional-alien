@@ -42,7 +42,7 @@ export default function Creator({ page }: PageProps) {
       </Head>
 
       <main className="!pb-0">
-        <Viewer data={page.data} center={{ lat: -33.865143, lng: 151.2099 }} zoom={15} />
+        <Viewer data={page.data} />
       </main>
     </>
   );

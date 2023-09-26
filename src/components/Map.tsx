@@ -1,17 +1,29 @@
 import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
+import { useRouter } from "next/router";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/GemIcon";
 
 function GoogleMap(props: MapProps) {
+  const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Reset all gems
+    const gems = document.querySelectorAll(".gem");
+
+    for (let i = 0; i < gems.length; i++) {
+      gems[i].classList.remove("selectedGem");
+    }
+
+    // Set selected gem
+    document.querySelector("#" + router.query.gem)?.classList.add("selectedGem");
+  }, [router.query.gem]);
 
   useEffect(() => {
     const isMobile = window.innerWidth >= 768 ? false : true;
 
     const map = new window.google.maps.Map(ref.current!, {
-      center: props.center,
-      zoom: props.zoom,
       mapId: "a558980281942a22",
       streetViewControl: false,
       fullscreenControl: false,
@@ -21,33 +33,44 @@ function GoogleMap(props: MapProps) {
       zoomControl: isMobile ? false : true,
     });
 
-    var bounds = new window.google.maps.LatLngBounds();
+    const bounds = new window.google.maps.LatLngBounds();
 
-    for (let x = 0; x < props.gems.length; x++) {
-      const gem = props.gems[x].primary.gem.data;
+    // Loop playbook gems and add to map
+    for (let i = 0; i < props.gems.length; i++) {
+      const gem = props.gems[i].primary.gem;
       const div = document.createElement("div");
-      createRoot(div).render(<GemIcon category={gem.category} />);
+      div.setAttribute("id", gem.uid);
+      div.classList.add("gem");
+      createRoot(div).render(<GemIcon category={gem.data.category} />);
 
       const marker = new window.google.maps.marker.AdvancedMarkerElement({
         map,
         position: {
-          lat: gem.location.latitude,
-          lng: gem.location.longitude,
+          lat: gem.data.location.latitude,
+          lng: gem.data.location.longitude,
         },
         content: div,
       });
 
       bounds.extend({
-        lat: gem.location.latitude,
-        lng: gem.location.longitude,
+        lat: gem.data.location.latitude,
+        lng: gem.data.location.longitude,
       });
 
       marker.addListener("click", () => {
-        //(marker.content as HTMLElement).firstElementChild?.classList.add(`${styles.selected}`);
+        // Set gem URL param
+        router.push({
+          pathname: router.pathname,
+          query: { ...router.query, gem: gem.uid },
+        });
       });
+
+      if (router.query.gem === gem.uid) {
+        div.classList.add("selectedGem"); // Gem selected on load
+      }
     }
 
-    map.fitBounds(bounds);
+    map.fitBounds(bounds); // All gems visible on map
   }, []);
 
   return (
@@ -61,8 +84,6 @@ function GoogleMap(props: MapProps) {
 }
 
 interface MapProps {
-  center: google.maps.LatLngLiteral;
-  zoom: number;
   gems: any;
   scrollEndLandscape: boolean;
   scrollEndPortrait: boolean;

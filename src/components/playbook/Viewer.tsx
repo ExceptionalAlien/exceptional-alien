@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import Map from "../Map";
 import List from "./viewer/List";
 
-export default function Viewer({ data, center, zoom }: { data: any; center: google.maps.LatLngLiteral; zoom: number }) {
+export default function Viewer({ data }: { data: any }) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -28,13 +28,7 @@ export default function Viewer({ data, center, zoom }: { data: any; center: goog
   return (
     <section className="!mt-0 flex justify-end items-end" ref={ref}>
       <List data={data} />
-      <Map
-        center={center}
-        zoom={zoom}
-        gems={data.slices}
-        scrollEndLandscape={scrollEndLandscape}
-        scrollEndPortrait={scrollEndPortrait}
-      />
+      <Map gems={data.slices} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
     </section>
   );
 }
