@@ -36,7 +36,7 @@ body {
 /* Gems */
 
 .gem {
-  border: none;
+  outline: none;
 }
 
 .selectedGem .gemBg {
