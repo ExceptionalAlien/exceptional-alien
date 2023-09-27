@@ -3,7 +3,9 @@ import Border from "@/img/icon-gem-border.svg";
 
 export default function gemIcon({ category, classes }: { category: string; classes?: string }) {
   return (
-    <div className={`gem-icon absolute w-9 md:w-11 [&>svg]:absolute [&>svg]:fill-ex-blue ${classes}`}>
+    <div
+      className={`gem-icon absolute -ml-[18px] md:-ml-[22px] -mt-[18px] md:-mt-[22px] w-9 md:w-11 [&>svg]:absolute [&>svg]:fill-ex-blue ${classes}`}
+    >
       <BG className="gem-icon-bg !fill-white transition-[fill] duration-300 ease-in-out" />
       <Border />
 
