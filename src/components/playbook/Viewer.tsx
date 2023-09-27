@@ -1,9 +1,8 @@
 import { useRef, useState, useEffect } from "react";
-import { Content } from "@prismicio/client";
 import Map from "../Map";
 import List from "./viewer/List";
 
-export default function Viewer({ data }: { data: Content.PlaybookDocumentData }) {
+export default function Viewer({ data }: { data: any }) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
   const ref = useRef<HTMLElement>(null);
