@@ -826,6 +826,17 @@ interface PlaybookDocumentData {
   description: prismic.RichTextField;
 
   /**
+   * Audio field in *Playbook*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: MP3 file URL
+   * - **API ID Path**: playbook.audio
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  audio: prismic.LinkField;
+
+  /**
    * Slice Zone field in *Playbook*
    *
    * - **Field Type**: Slice Zone

@@ -33,7 +33,25 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       <GemIcon category={gem.data.category} classes="right-0 !m-0" />
 
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">{gem.data.title}</h4>
-      <p className="text-ex-grey text-sm md:text-base">{gem.data.address}</p>
+      <a
+        href={`https://www.google.com/maps/place/?q=place_id:${gem.data.google_maps_id}`}
+        target="_blank"
+        className="text-ex-grey text-sm md:text-base hover:text-ex-light-grey duration-300 ease-in-out transition-[color]"
+      >
+        {gem.data.address}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="w-4 md:w-5 h-4 md:h-5 inline-block ml-1 md:ml-[6px] align-[-3px] md:align-[-4px]"
+        >
+          <path
+            fillRule="evenodd"
+            d="M12.207 2.232a.75.75 0 00.025 1.06l4.146 3.958H6.375a5.375 5.375 0 000 10.75H9.25a.75.75 0 000-1.5H6.375a3.875 3.875 0 010-7.75h10.003l-4.146 3.957a.75.75 0 001.036 1.085l5.5-5.25a.75.75 0 000-1.085l-5.5-5.25a.75.75 0 00-1.06.025z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </a>
 
       <div className="gem-content mt-2 md:mt-3">
         <Image

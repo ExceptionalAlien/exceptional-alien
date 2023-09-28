@@ -61,6 +61,15 @@
           "multi": "paragraph"
         }
       },
+      "audio": {
+        "type": "Link",
+        "config": {
+          "label": "Audio",
+          "placeholder": "MP3 file URL",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
