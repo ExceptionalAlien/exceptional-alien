@@ -30,6 +30,11 @@ const nextConfig = {
         hostname: "images.prismic.io",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "prismic-io.s3.amazonaws.com",
+        port: "",
+      },
     ],
   },
   async rewrites() {

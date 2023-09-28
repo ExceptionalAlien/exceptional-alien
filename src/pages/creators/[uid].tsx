@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
+import { Content, asLink } from "@prismicio/client";
 import Hero from "@/components/creator/Hero";
 import Title from "@/components/creator/Title";
 import Nomination from "@/components/creator/Nomination";
@@ -73,19 +74,26 @@ export default function Creator({ page }: PageProps) {
       </Head>
 
       <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6">
-        <Title firstName={page.data.first_name} lastName={page.data.last_name} country={page.data.home_country} />
-        {(page.data.nomination as any).data && <Nomination nomination={page.data.nomination} />}
-
-        <Heading
-          title={page.data.title}
-          homeCity={page.data.home_city}
-          currentCity={page.data.current_city}
-          ig={page.data.instagram}
-          other={page.data.other_social}
-          www={page.data.website}
+        <Title
+          firstName={page.data.first_name as string}
+          lastName={page.data.last_name as string}
+          country={page.data.home_country as string}
         />
 
-        {page.data.hero_image.url && <Hero image={page.data.hero_image} />}
+        {(page.data.nomination as any).data && (
+          <Nomination creator={page.data.nomination as unknown as Content.CreatorDocument} />
+        )}
+
+        <Heading
+          title={page.data.title as string}
+          homeCity={page.data.home_city as string}
+          currentCity={page.data.current_city as string}
+          ig={page.data.instagram as string}
+          other={asLink(page.data.other_social) as string}
+          www={asLink(page.data.website) as string}
+        />
+
+        <Hero image={page.data.hero_image} />
 
         {/* About */}
         <section

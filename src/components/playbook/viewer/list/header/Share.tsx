@@ -15,7 +15,9 @@ export default function Share({ title }: { title: string }) {
         .catch((error) => console.log("Error sharing", error));
     } else {
       console.log("Share not supported");
-      window.location.href = `mailto:?subject=${title}&body=https://exceptionalalien.com/playbooks/${router.query.uid}`;
+      window.location.href = `mailto:?subject=${encodeURIComponent(
+        title
+      )}&body=https://exceptionalalien.com/playbooks/${router.query.uid}`;
     }
   };
 

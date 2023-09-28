@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { PrismicDocument } from "@prismicio/client";
+import { PrismicDocument, Content } from "@prismicio/client";
 import CreatorThumb from "../CreatorThumb";
 import Filter from "../Filter";
 
@@ -28,7 +28,7 @@ export default function All({ creators }: { creators: PrismicDocument[] }) {
             (query.length > 1 &&
               `${item.data.first_name} ${item.data.last_name}`.match(new RegExp(query, "gi")) !== null)
           ) {
-            return <CreatorThumb key={i} data={item.data} uid={item.uid as string} />;
+            return <CreatorThumb key={i} creator={item as Content.CreatorDocument} />;
           }
         })}
       </div>

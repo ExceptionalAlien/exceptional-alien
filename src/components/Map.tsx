@@ -15,7 +15,7 @@ function GoogleMap(props: MapProps) {
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 16 : 12;
     const top = globalHeaderheight + titleHeight;
-    var initZoom: number;
+    var initZoom: number | undefined;
     var initCenter: google.maps.LatLng | undefined;
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
@@ -25,12 +25,13 @@ function GoogleMap(props: MapProps) {
 
       for (let i = 0; i < mapGems.length; i++) {
         mapGems[i].classList.remove("selected-gem");
+        (mapGems[i].parentNode?.parentNode as HTMLElement).style.zIndex = "auto";
       }
     };
 
     const setGems = () => {
+      focusedGem = ""; // Reset
       const gems = document.querySelectorAll("section.gem");
-      focusedGem = "";
 
       // Loop gems in list and detect which is currently in view/focus
       for (let i = 0; i < gems.length; i++) {
@@ -43,7 +44,14 @@ function GoogleMap(props: MapProps) {
       }
 
       resetMapGems();
-      document.querySelector("div#map-gem-" + focusedGem)?.classList.add("selected-gem"); // Select map gem
+
+      // Select map gem
+      const mapGem = document.querySelector("div#map-gem-" + focusedGem);
+      mapGem?.classList.add("selected-gem");
+
+      if (mapGem?.parentNode?.parentNode) {
+        (mapGem.parentNode.parentNode as HTMLElement).style.zIndex = "1";
+      }
 
       // Reset all list gem icons
       const listGems = document.querySelectorAll(".gem-icon");
@@ -56,7 +64,7 @@ function GoogleMap(props: MapProps) {
 
       // Reset zoom and center
       if (clickedGem && clickedGem !== focusedGem) {
-        map.setZoom(initZoom);
+        initZoom && map.setZoom(initZoom);
         map.setCenter(initCenter as google.maps.LatLng);
         clickedGem = "";
       }
@@ -75,13 +83,14 @@ function GoogleMap(props: MapProps) {
 
     setGems(); // Init
 
+    // Create map
     const map = new window.google.maps.Map(ref.current!, {
       mapId: "a558980281942a22",
       streetViewControl: false,
       fullscreenControl: false,
       mapTypeControl: false,
       clickableIcons: false,
-      backgroundColor: "#C5C5C5",
+      backgroundColor: "#CCCCCC",
       scrollwheel: false,
       gestureHandling: "greedy",
       zoomControl: isMobile ? false : true,
@@ -108,7 +117,11 @@ function GoogleMap(props: MapProps) {
         content: div,
       });
 
-      focusedGem === gem.uid && div.classList.add("selected-gem"); // List gem is already in view
+      // List gem is already in view
+      if (focusedGem === gem.uid) {
+        div.classList.add("selected-gem");
+        marker.zIndex = 1;
+      }
 
       // Include marker in init map boundary
       bounds.extend({
@@ -126,7 +139,7 @@ function GoogleMap(props: MapProps) {
         if (!clickedGem) {
           resetMapGems(); // Needed because markers can't be styled if not visible on map
           map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
-          map.setZoom(initZoom + 2);
+          initZoom && map.setZoom(initZoom + 2);
         }
 
         clickedGem = gem.uid;
@@ -137,12 +150,12 @@ function GoogleMap(props: MapProps) {
 
     google.maps.event.addListener(map, "idle", () => {
       if (!initZoom) {
-        // Save initial zoom number and center position
-        initZoom = map.getZoom() as number;
+        // Save initial zoom number and center position for map reset
+        initZoom = map.getZoom();
         initCenter = map.getCenter();
       }
 
-      setGems(); // Needed to set map gems after zoom
+      setGems(); // Set gems after map zoom
     });
 
     window.addEventListener("scroll", handleScroll);

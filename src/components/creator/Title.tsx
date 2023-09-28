@@ -1,4 +1,3 @@
-import { KeyTextField } from "@prismicio/client";
 import MachineCode from "../MachineCode";
 
 export default function Title({
@@ -6,9 +5,9 @@ export default function Title({
   lastName,
   country,
 }: {
-  firstName: KeyTextField;
-  lastName: KeyTextField;
-  country: KeyTextField;
+  firstName: string;
+  lastName: string;
+  country: string;
 }) {
   return (
     <section className="mb-8 md:mb-16">
@@ -17,9 +16,9 @@ export default function Title({
       </h2>
 
       <MachineCode
-        firstName={firstName as string}
-        lastName={lastName as string}
-        country={country as string}
+        firstName={firstName}
+        lastName={lastName}
+        country={country}
         classes="md:float-right md:w-1/2 md:text-right"
       />
 

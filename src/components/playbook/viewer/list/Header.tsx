@@ -1,11 +1,19 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import { Content, ImageField } from "@prismicio/client";
 import Title from "./header/Title";
 import Share from "./header/Share";
 import Gems from "./header/Gems";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function Header({ data }: { data: any }) {
+interface HeaderProps {
+  image: ImageField;
+  sliceCount: number;
+  title: string;
+  creator: Content.CreatorDocument;
+}
+
+export default function Header(props: HeaderProps) {
   const [stickyTop, setStickyTop] = useState(0);
   const [blur, setBlur] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -44,12 +52,12 @@ export default function Header({ data }: { data: any }) {
   return (
     <div className="z-10 sticky bg-ex-light-grey text-white overflow-hidden" style={{ top: stickyTop }} ref={ref}>
       <Image
-        src={data.image.url}
-        alt={data.image.alt}
-        width={data.image.dimensions.width}
-        height={data.image.dimensions.height}
+        src={props.image.url as string}
+        alt={props.image.alt as string}
+        width={props.image.dimensions!.width}
+        height={props.image.dimensions!.height}
         placeholder={`data:image/svg+xml;base64,${toBase64(
-          shimmer(data.image.dimensions.width, data.image.dimensions.height)
+          shimmer(props.image.dimensions!.width, props.image.dimensions!.height)
         )}`}
         className="w-full"
         style={{
@@ -61,9 +69,9 @@ export default function Header({ data }: { data: any }) {
       {/* Layered shadow */}
       <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
 
-      <Gems count={data.slices.length} />
-      <Share title={data.title} />
-      <Title data={data} />
+      <Gems count={props.sliceCount} />
+      <Share title={props.title} />
+      <Title creator={props.creator} text={props.title} />
     </div>
   );
 }

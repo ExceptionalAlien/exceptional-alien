@@ -1,21 +1,20 @@
-import { KeyTextField, LinkField, asLink } from "@prismicio/client";
 import TabHeading from "@/components/TabHeading";
 import Socials from "./heading/Socials";
 
 interface HeadingProps {
-  title: KeyTextField;
-  homeCity: KeyTextField;
-  currentCity: KeyTextField;
-  ig: KeyTextField;
-  other: LinkField;
-  www: LinkField;
+  title: string;
+  homeCity: string;
+  currentCity: string;
+  ig: string;
+  other: string;
+  www: string;
 }
 
 export default function Heading(props: HeadingProps) {
   return (
     <section className="!mt-0">
       <TabHeading>
-        <Socials ig={props.ig as string} other={asLink(props.other) as string} www={asLink(props.www) as string} />
+        <Socials ig={props.ig as string} other={props.other} www={props.www} />
         <h3>{props.title}</h3>
 
         <p className="uppercase">

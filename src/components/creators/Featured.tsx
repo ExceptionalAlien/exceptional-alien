@@ -1,4 +1,4 @@
-import { GroupField } from "@prismicio/client";
+import { GroupField, Content } from "@prismicio/client";
 import Slider from "@/components/Slider";
 import CreatorThumb from "@/components/CreatorThumb";
 
@@ -9,7 +9,7 @@ export default function Featured({ featured }: { featured: GroupField }) {
 
       <Slider>
         {featured.map((item, i) => (
-          <CreatorThumb key={i} data={(item.creator as any).data} size="mobile" />
+          <CreatorThumb key={i} creator={item.creator as Content.CreatorDocument} size="mobile" />
         ))}
       </Slider>
     </section>
