@@ -46,3 +46,10 @@ body {
 .selected-gem .gem-icon-symbol {
   fill: white;
 }
+
+/* Audio player */
+
+audio::-webkit-media-controls-enclosure {
+  border-radius: 0;
+  background-color: var(--color-light-grey);
+}
