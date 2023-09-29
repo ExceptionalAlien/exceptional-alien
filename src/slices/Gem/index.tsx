@@ -34,7 +34,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
 
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">{gem.data.title}</h4>
       <a
-        href={`https://www.google.com/maps/place/?q=place_id:${gem.data.google_maps_id}`}
+        href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
         target="_blank"
         className="text-ex-grey text-sm md:text-base hover:text-ex-light-grey duration-300 ease-in-out transition-[color]"
       >
