@@ -51,5 +51,5 @@ body {
 
 audio::-webkit-media-controls-enclosure {
   border-radius: 0;
-  background-color: var(--color-light-grey);
+  background-color: transparent;
 }
