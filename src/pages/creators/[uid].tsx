@@ -3,7 +3,7 @@ import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } f
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import { Content, asLink } from "@prismicio/client";
-import Hero from "@/components/creator/Hero";
+import Hero from "@/components/Hero";
 import Title from "@/components/creator/Title";
 import Nomination from "@/components/creator/Nomination";
 import Heading from "@/components/creator/Heading";

@@ -1,7 +1,7 @@
 import BG from "@/img/icon-gem-bg.svg";
 import Border from "@/img/icon-gem-border.svg";
 
-export default function gemIcon({ category, classes }: { category: string; classes?: string }) {
+export default function GemIcon({ category, classes }: { category: string; classes?: string }) {
   return (
     <div
       className={`gem-icon absolute -ml-[18px] md:-ml-[22px] -mt-[18px] md:-mt-[22px] w-9 md:w-11 [&>svg]:absolute [&>svg]:fill-ex-blue [&>svg]:transition-[fill] [&>svg]:duration-300 [&>svg]:ease-in-out ${classes}`}

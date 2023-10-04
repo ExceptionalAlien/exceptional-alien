@@ -42,16 +42,34 @@
         "config": {
           "label": "Image",
           "constraint": {
-            "width": 900,
-            "height": 1200
+            "width": 2400,
+            "height": 1260
           },
           "thumbnails": [
             {
-              "name": "thumb",
+              "name": "mobile",
               "width": 1200,
               "height": 900
+            },
+            {
+              "name": "thumb",
+              "width": 900,
+              "height": 1200
+            },
+            {
+              "name": "seo",
+              "width": 1200,
+              "height": 630
             }
           ]
+        }
+      },
+      "destination": {
+        "type": "Link",
+        "config": {
+          "label": "Destination",
+          "select": "document",
+          "customtypes": ["destination"]
         }
       },
       "address": {
@@ -72,6 +90,24 @@
         "config": {
           "label": "Google Maps ID",
           "placeholder": "Place ID"
+        }
+      },
+      "about": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "website": {
+        "type": "Link",
+        "config": {
+          "label": "Website",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
         }
       },
       "slices": {

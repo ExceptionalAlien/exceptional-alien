@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { EmptyImageFieldImage, FilledImageFieldImage, ImageField } from "@prismicio/client";
-import Credit from "../Credit";
+import Credit from "./Credit";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function Hero({ image }: { image: ImageField<"mobile"> }) {

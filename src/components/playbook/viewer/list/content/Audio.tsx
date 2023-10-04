@@ -25,7 +25,7 @@ export default function Audio({ file }: { file: string }) {
 
       {mounted && (
         <audio
-          className={`ml-2 w-full ${isChrome ? "h-10 invert" : "grayscale mix-blend-lighten"}`}
+          className={`ml-2 w-full grayscale mix-blend-lighten ${isChrome && "h-8 invert"}`}
           controls
           controlsList="nodownload"
         >

@@ -28,9 +28,9 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@slicemachine/adapter-next": "^0.3.16",
+    "@slicemachine/adapter-next": "^0.3.18",
     "@svgr/webpack": "^8.1.0",
     "@types/google.maps": "^3.54.1",
-    "slice-machine-ui": "^1.14.0"
+    "slice-machine-ui": "^1.15.0"
   }
 }

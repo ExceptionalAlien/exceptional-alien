@@ -605,7 +605,18 @@ interface GemDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<"thumb">;
+  image: prismic.ImageField<"mobile" | "thumb" | "seo">;
+
+  /**
+   * Destination field in *Gem*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.destination
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  destination: prismic.ContentRelationshipField<"destination">;
 
   /**
    * Address field in *Gem*
@@ -639,6 +650,28 @@ interface GemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   google_maps_id: prismic.KeyTextField;
+
+  /**
+   * About field in *Gem*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.about
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  about: prismic.RichTextField;
+
+  /**
+   * Website field in *Gem*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.website
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  website: prismic.LinkField;
 
   /**
    * Slice Zone field in *Gem*

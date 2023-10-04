@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Content, ContentRelationshipField } from "@prismicio/client";
+import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import TabButton from "@/components/TabButton";
 import GemIcon from "@/components/GemIcon";
@@ -55,12 +55,12 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
 
       <div className="gem-content mt-2 md:mt-3">
         <Image
-          src={gem.data.image.url as string}
-          alt={gem.data.image.alt as string}
-          width={gem.data.image.dimensions!.width}
-          height={gem.data.image.dimensions!.height}
+          src={gem.data.image.thumb.url as string}
+          alt={gem.data.image.thumb.alt as string}
+          width={gem.data.image.thumb.dimensions!.width}
+          height={gem.data.image.thumb.dimensions!.height}
           placeholder={`data:image/svg+xml;base64,${toBase64(
-            shimmer(gem.data.image.dimensions!.width, gem.data.image.dimensions!.height)
+            shimmer(gem.data.image.thumb.dimensions!.width, gem.data.image.thumb.dimensions!.height)
           )}`}
           className="relative w-2/5 float-left"
         />
@@ -94,7 +94,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
         <div className="clear-both"></div>
 
         <div className="w-3/5 !absolute bottom-0 right-0">
-          <TabButton text="MORE INFO" route="/" classes="ml-3 md:ml-4" />
+          <TabButton text="MORE INFO" route={"/gems/" + gem.uid} classes="ml-3 md:ml-4" />
         </div>
       </div>
     </section>
