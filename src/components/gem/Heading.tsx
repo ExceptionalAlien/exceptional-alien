@@ -1,3 +1,4 @@
+import Link from "next/link";
 import TabHeading from "@/components/TabHeading";
 import GemIcon from "../GemIcon";
 import Globe from "@/img/globe.svg";
@@ -7,6 +8,7 @@ interface HeadingProps {
   placesID: string;
   address: string;
   category: string;
+  destination: string;
   www: string;
 }
 
@@ -45,8 +47,13 @@ export default function Heading(props: HeadingProps) {
           </svg>
         </a>
 
-        <GemIcon category={props.category} hideBg={true} classes="box-content pt-[9px] pl-2" />
-        <p className="uppercase pl-5 text-ex-blue">{props.category}</p>
+        <Link
+          href={`/destinations/${props.destination}?filter=${props.category.toLowerCase()}`}
+          className="hover:opacity-50 duration-300 ease-in-out transition-opacity"
+        >
+          <GemIcon category={props.category} hideBg={true} classes="box-content pt-[9px] pl-2" />
+          <span className="uppercase pl-5 text-ex-blue">{props.category}</span>
+        </Link>
       </TabHeading>
     </section>
   );

@@ -7,6 +7,7 @@ import Title from "@/components/creator/Title";
 import Nomination from "@/components/creator/Nomination";
 import Heading from "@/components/creator/Heading";
 import About from "@/components/About";
+import PlaybooksGrid from "@/components/PlaybooksGrid";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -91,6 +92,7 @@ export default function Creator({ page }: PageProps) {
 
         <Hero image={page.data.hero_image} />
         <About text={page.data.description} />
+        {page.data.slices.length > 0 && <PlaybooksGrid heading="Creator Playbooks" list={page.data.slices} />}
       </main>
     </>
   );
@@ -107,7 +109,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
   try {
     const client = createClient({ previewData });
     const page = await client.getByUID("creator", params?.uid as string, {
-      fetchLinks: "creator.first_name,creator.last_name,creator.profile_image",
+      fetchLinks: "creator.first_name,creator.last_name,creator.profile_image,playbook.title,playbook.image",
     });
 
     return {

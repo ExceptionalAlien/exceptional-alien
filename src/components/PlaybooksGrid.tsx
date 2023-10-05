@@ -1,7 +1,7 @@
 import { SliceZone, Content } from "@prismicio/client";
 import PlaybookThumb from "@/components/PlaybookThumb";
 
-export default function Playbooks({
+export default function PlaybooksGrid({
   heading,
   list,
   classes,

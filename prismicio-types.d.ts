@@ -156,7 +156,7 @@ export type ContactDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
-type CreatorDocumentDataSlicesSlice = never;
+type CreatorDocumentDataSlicesSlice = PlaybookSlice;
 
 /**
  * Content for Creator documents
@@ -504,6 +504,17 @@ interface DestinationDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#geopoint
    */
   location: prismic.GeoPointField;
+
+  /**
+   * About field in *Destination*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.about
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  about: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Destination*

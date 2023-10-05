@@ -1,12 +1,12 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
-import { asLink, asText } from "@prismicio/client";
+import { Content, asLink, asText } from "@prismicio/client";
 import Hero from "@/components/Hero";
 import Title from "@/components/gem/Title";
 import Heading from "@/components/gem/Heading";
 import About from "@/components/About";
-import Playbooks from "@/components/Playbooks";
+import PlaybooksGrid from "@/components/PlaybooksGrid";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -53,12 +53,13 @@ export default function Gem({ page }: PageProps) {
           placesID={page.data.google_maps_id as string}
           address={page.data.address as string}
           category={page.data.category}
+          destination={(page.data.destination as unknown as Content.DestinationDocument).uid}
           www={asLink(page.data.website) as string}
         />
 
         <Hero image={page.data.image} />
         <About text={page.data.about} />
-        <Playbooks heading="Featured In" list={page.data.slices} />
+        {page.data.slices.length > 0 && <PlaybooksGrid heading="Featured In" list={page.data.slices} />}
       </main>
     </>
   );

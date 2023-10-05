@@ -25,6 +25,15 @@
           "label": "Location"
         }
       },
+      "about": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
