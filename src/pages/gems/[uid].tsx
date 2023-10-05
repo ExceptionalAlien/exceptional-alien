@@ -1,7 +1,7 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
-import { asLink } from "@prismicio/client";
+import { asLink, asText } from "@prismicio/client";
 import Hero from "@/components/Hero";
 import Title from "@/components/gem/Title";
 import Heading from "@/components/gem/Heading";
@@ -16,7 +16,7 @@ export default function Creator({ page }: PageProps) {
 
         <meta
           name="description"
-          content={page.data.meta_description ? page.data.meta_description : (page.data.address as string)}
+          content={page.data.meta_description ? page.data.meta_description : asText(page.data.about)}
         />
 
         <meta property="og:url" content={`https://exceptionalalien.com/gems/${page.uid}`} />
@@ -28,7 +28,7 @@ export default function Creator({ page }: PageProps) {
 
         <meta
           property="og:description"
-          content={page.data.meta_description ? page.data.meta_description : (page.data.address as string)}
+          content={page.data.meta_description ? page.data.meta_description : asText(page.data.about)}
         />
 
         <meta

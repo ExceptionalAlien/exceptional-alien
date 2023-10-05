@@ -1,4 +1,5 @@
 import TabHeading from "@/components/TabHeading";
+import GemIcon from "../GemIcon";
 import Globe from "@/img/globe.svg";
 
 interface HeadingProps {
@@ -11,7 +12,7 @@ interface HeadingProps {
 
 export default function Heading(props: HeadingProps) {
   return (
-    <section className="!mt-0">
+    <section>
       <TabHeading>
         {props.www && (
           <a
@@ -34,7 +35,7 @@ export default function Heading(props: HeadingProps) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-[14px] h-[14px] inline-block ml-1 align-[-1px]"
+            className="h-[14px] inline-block ml-1 align-[-1px]"
           >
             <path
               fillRule="evenodd"
@@ -44,7 +45,8 @@ export default function Heading(props: HeadingProps) {
           </svg>
         </a>
 
-        <p className="uppercase">{props.category}</p>
+        <GemIcon category={props.category} hideBg={true} classes="box-content pt-[9px] pl-2 [&>svg]:fill-black" />
+        <p className="uppercase pl-5">{props.category}</p>
       </TabHeading>
     </section>
   );

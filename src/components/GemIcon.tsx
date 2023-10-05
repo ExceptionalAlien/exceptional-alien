@@ -1,13 +1,21 @@
 import BG from "@/img/icon-gem-bg.svg";
 import Border from "@/img/icon-gem-border.svg";
 
-export default function GemIcon({ category, classes }: { category: string; classes?: string }) {
+export default function GemIcon({
+  category,
+  hideBg,
+  classes,
+}: {
+  category: string;
+  hideBg?: boolean;
+  classes?: string;
+}) {
   return (
     <div
       className={`gem-icon absolute -ml-[18px] md:-ml-[22px] -mt-[18px] md:-mt-[22px] w-9 md:w-11 [&>svg]:absolute [&>svg]:fill-ex-blue [&>svg]:transition-[fill] [&>svg]:duration-300 [&>svg]:ease-in-out ${classes}`}
     >
-      <BG className="gem-icon-bg !fill-white" />
-      <Border />
+      <BG className={`gem-icon-bg !fill-white ${hideBg && "hidden"}`} />
+      <Border className={hideBg && "hidden"} />
 
       {category === "Food & Drink" && (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.99 48.96" className="gem-icon-symbol">
