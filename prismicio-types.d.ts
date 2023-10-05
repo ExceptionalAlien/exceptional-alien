@@ -564,7 +564,7 @@ export type DestinationDocument<Lang extends string = string> = prismic.PrismicD
   Lang
 >;
 
-type GemDocumentDataSlicesSlice = never;
+type GemDocumentDataSlicesSlice = PlaybookSlice;
 
 /**
  * Content for Gem documents
@@ -1116,6 +1116,48 @@ type HighlightSliceVariation = HighlightSliceDefault;
 export type HighlightSlice = prismic.SharedSlice<"highlight", HighlightSliceVariation>;
 
 /**
+ * Primary content in *Playbook → Primary*
+ */
+export interface PlaybookSliceDefaultPrimary {
+  /**
+   * Playbook field in *Playbook → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.primary.playbook
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+}
+
+/**
+ * Default variation for Playbook Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PlaybookSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PlaybookSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Playbook*
+ */
+type PlaybookSliceVariation = PlaybookSliceDefault;
+
+/**
+ * Playbook Shared Slice
+ *
+ * - **API ID**: `playbook`
+ * - **Description**: Playbook
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PlaybookSlice = prismic.SharedSlice<"playbook", PlaybookSliceVariation>;
+
+/**
  * Primary content in *SingleHeading → Primary*
  */
 export interface SingleHeadingSliceDefaultPrimary {
@@ -1375,6 +1417,10 @@ declare module "@prismicio/client" {
       HighlightSliceDefaultPrimary,
       HighlightSliceVariation,
       HighlightSliceDefault,
+      PlaybookSlice,
+      PlaybookSliceDefaultPrimary,
+      PlaybookSliceVariation,
+      PlaybookSliceDefault,
       SingleHeadingSlice,
       SingleHeadingSliceDefaultPrimary,
       SingleHeadingSliceVariation,

@@ -47,6 +47,7 @@ export default function Creators({ page, creators }: PageProps) {
 
 export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
+
   const page = await client.getSingle("creators", {
     fetchLinks:
       "creator.first_name,creator.last_name,creator.uid,creator.hero_image,creator.profile_image,creator.title,creator.home_city,creator.current_city,creator.home_country,creator.short_description",

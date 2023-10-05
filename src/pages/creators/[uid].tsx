@@ -1,12 +1,12 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
-import { PrismicRichText } from "@prismicio/react";
 import { Content, asLink } from "@prismicio/client";
 import Hero from "@/components/Hero";
 import Title from "@/components/creator/Title";
 import Nomination from "@/components/creator/Nomination";
 import Heading from "@/components/creator/Heading";
+import About from "@/components/About";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -14,15 +14,13 @@ export default function Creator({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN${
+        <title>{`${
           page.data.meta_title
-            ? " - " + page.data.meta_title
+            ? page.data.meta_title
             : page.data.first_name && page.data.last_name
-            ? ` - ${page.data.first_name} ${page.data.last_name}`
-            : page.data.first_name
-            ? " - " + page.data.first_name
-            : ""
-        }`}</title>
+            ? `${page.data.first_name} ${page.data.last_name}`
+            : page.data.first_name && page.data.first_name
+        } | Exceptional ALIEN`}</title>
 
         <meta
           name="description"
@@ -39,15 +37,13 @@ export default function Creator({ page }: PageProps) {
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN${
+          content={`${
             page.data.meta_title
-              ? " - " + page.data.meta_title
+              ? page.data.meta_title
               : page.data.first_name && page.data.last_name
-              ? ` - ${page.data.first_name} ${page.data.last_name}`
-              : page.data.first_name
-              ? " - " + page.data.first_name
-              : ""
-          }`}
+              ? `${page.data.first_name} ${page.data.last_name}`
+              : page.data.first_name && page.data.first_name
+          } | Exceptional ALIEN`}
         />
 
         <meta
@@ -94,17 +90,7 @@ export default function Creator({ page }: PageProps) {
         />
 
         <Hero image={page.data.hero_image} />
-
-        {/* About */}
-        <section
-          className={`text-ex-grey [&>p]:mt-4 [&>p]:md:float-right [&>p]:md:w-3/4 [&>p>a]:underline hover:[&>p>a]:text-ex-light-grey [&>p>a]:transition-[color] [&>p>a]:ease-in-out [&>p>a]:duration-300 [&>*:nth-child(2)]:md:mt-0 ${
-            !page.data.description[0] && "hidden"
-          }`}
-        >
-          <h4 className="font-bold text-xl md:text-2xl md:float-left md:w-1/4 md:pr-6">About</h4>
-          <PrismicRichText field={page.data.description} />
-          <div className="clear-both"></div>
-        </section>
+        <About text={page.data.description} />
       </main>
     </>
   );

@@ -19,7 +19,7 @@ export default function Title({
         firstName={firstName}
         lastName={lastName}
         country={country}
-        classes="md:float-right md:w-1/2 md:text-right"
+        classes="md:float-right md:w-1/2 md:text-right mt-1 md:mt-0"
       />
 
       <div className="clear-both"></div>

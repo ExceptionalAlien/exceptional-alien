@@ -45,8 +45,8 @@ export default function Heading(props: HeadingProps) {
           </svg>
         </a>
 
-        <GemIcon category={props.category} hideBg={true} classes="box-content pt-[9px] pl-2 [&>svg]:fill-black" />
-        <p className="uppercase pl-5">{props.category}</p>
+        <GemIcon category={props.category} hideBg={true} classes="box-content pt-[9px] pl-2" />
+        <p className="uppercase pl-5 text-ex-blue">{props.category}</p>
       </TabHeading>
     </section>
   );

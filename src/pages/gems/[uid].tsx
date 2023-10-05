@@ -5,14 +5,16 @@ import { asLink, asText } from "@prismicio/client";
 import Hero from "@/components/Hero";
 import Title from "@/components/gem/Title";
 import Heading from "@/components/gem/Heading";
+import About from "@/components/About";
+import Playbooks from "@/components/Playbooks";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Creator({ page }: PageProps) {
+export default function Gem({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : page.data.title}`}</title>
+        <title>{`${page.data.meta_title ? page.data.meta_title : page.data.title} | Exceptional ALIEN`}</title>
 
         <meta
           name="description"
@@ -23,7 +25,7 @@ export default function Creator({ page }: PageProps) {
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : page.data.title}`}
+          content={`${page.data.meta_title ? page.data.meta_title : page.data.title} | Exceptional ALIEN`}
         />
 
         <meta
@@ -55,6 +57,8 @@ export default function Creator({ page }: PageProps) {
         />
 
         <Hero image={page.data.image} />
+        <About text={page.data.about} />
+        <Playbooks heading="Featured In" list={page.data.slices} />
       </main>
     </>
   );
@@ -70,8 +74,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps({ params, previewData }: GetStaticPropsContext) {
   try {
     const client = createClient({ previewData });
+
     const page = await client.getByUID("gem", params?.uid as string, {
-      fetchLinks: "creator.first_name,creator.last_name,creator.profile_image",
+      fetchLinks: "playbook.title,playbook.image",
     });
 
     return {

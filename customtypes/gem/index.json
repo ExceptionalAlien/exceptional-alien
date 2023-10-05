@@ -114,7 +114,11 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "playbook": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

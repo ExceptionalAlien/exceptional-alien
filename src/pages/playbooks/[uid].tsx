@@ -5,17 +5,29 @@ import Viewer from "@/components/playbook/Viewer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Creator({ page }: PageProps) {
+export default function Playbook({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : page.data.title}`}</title>
+        <title>{`${
+          page.data.meta_title
+            ? page.data.meta_title
+            : `${page.data.title} | ${(page.data.creator as any).data.first_name} ${
+                (page.data.creator as any).data.last_name
+              }`
+        } | Exceptional ALIEN`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content={`https://exceptionalalien.com/playbooks/${page.uid}`} />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : page.data.title}`}
+          content={`${
+            page.data.meta_title
+              ? page.data.meta_title
+              : `${page.data.title} | ${(page.data.creator as any).data.first_name} ${
+                  (page.data.creator as any).data.last_name
+                }`
+          } | Exceptional ALIEN`}
         />
 
         <meta
@@ -58,6 +70,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps({ params, previewData }: GetStaticPropsContext) {
   try {
     const client = createClient({ previewData });
+
     const page = await client.getByUID("playbook", params?.uid as string, {
       fetchLinks:
         "creator.first_name,creator.last_name,creator.profile_image,creator.uid,gem.title,gem.image,gem.category,gem.address,gem.location,gem.google_maps_id",
