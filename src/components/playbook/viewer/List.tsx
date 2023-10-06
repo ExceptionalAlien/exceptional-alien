@@ -1,6 +1,6 @@
-import Header from "./list/content/Header";
 import { Content } from "@prismicio/client";
-import ListContent from "./list/Content";
+import Header from "./list/content/Header";
+import ListContent from "./list/ListContent";
 
 export default function List({ data }: { data: Content.PlaybookDocumentData }) {
   return (
@@ -12,7 +12,13 @@ export default function List({ data }: { data: Content.PlaybookDocumentData }) {
         creator={data.creator as unknown as Content.CreatorDocument}
       />
 
-      <ListContent description={data.description} audio={data.audio} slices={data.slices} creator={data.creator} />
+      <ListContent
+        description={data.description}
+        audio={data.audio}
+        destination={data.destination as unknown as Content.DestinationDocument}
+        slices={data.slices}
+        creator={data.creator}
+      />
     </div>
   );
 }

@@ -24,11 +24,7 @@ export default function Audio({ file }: { file: string }) {
       </p>
 
       {mounted && (
-        <audio
-          className={`ml-2 w-full grayscale mix-blend-lighten ${isChrome && "h-8 invert"}`}
-          controls
-          controlsList="nodownload"
-        >
+        <audio className={`ml-2 w-full ${isChrome && "h-8 invert"}`} controls controlsList="nodownload noplaybackrate">
           <source src={file} type="audio/mpeg" />
           Your browser does not support the audio tag.
         </audio>

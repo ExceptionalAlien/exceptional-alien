@@ -49,7 +49,7 @@ export default function Heading(props: HeadingProps) {
 
         <Link
           href={`/destinations/${props.destination}?filter=${props.category.toLowerCase()}`}
-          className="hover:opacity-50 duration-300 ease-in-out transition-opacity"
+          className="hover:opacity-50 duration-300 ease-in-out transition-opacity block"
         >
           <GemIcon category={props.category} hideBg={true} classes="box-content pt-[9px] pl-2" />
           <span className="uppercase pl-5 text-ex-blue">{props.category}</span>

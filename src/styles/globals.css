@@ -50,6 +50,5 @@ body {
 /* Audio player */
 
 audio::-webkit-media-controls-enclosure {
-  border-radius: 10px;
-  background-color: #ccc;
+  background-color: transparent;
 }
