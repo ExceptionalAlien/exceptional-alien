@@ -156,7 +156,22 @@ export type ContactDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
-type CreatorDocumentDataSlicesSlice = PlaybookSlice;
+/**
+ * Item in *Creator → Playbooks*
+ */
+export interface CreatorDocumentDataPlaybooksItem {
+  /**
+   * Playbook field in *Creator → Playbooks*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.playbooks[].playbook
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+}
+
+type CreatorDocumentDataSlicesSlice = never;
 
 /**
  * Content for Creator documents
@@ -315,6 +330,17 @@ interface CreatorDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   nomination: prismic.ContentRelationshipField<"creator">;
+
+  /**
+   * Playbooks field in *Creator*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: creator.playbooks[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  playbooks: prismic.GroupField<Simplify<CreatorDocumentDataPlaybooksItem>>;
 
   /**
    * Slice Zone field in *Creator*
@@ -575,7 +601,22 @@ export type DestinationDocument<Lang extends string = string> = prismic.PrismicD
   Lang
 >;
 
-type GemDocumentDataSlicesSlice = PlaybookSlice;
+/**
+ * Item in *Gem → Playbooks*
+ */
+export interface GemDocumentDataPlaybooksItem {
+  /**
+   * Playbook field in *Gem → Playbooks*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.playbooks[].playbook
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+}
+
+type GemDocumentDataSlicesSlice = never;
 
 /**
  * Content for Gem documents
@@ -683,6 +724,17 @@ interface GemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   website: prismic.LinkField;
+
+  /**
+   * Playbooks field in *Gem*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.playbooks[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  playbooks: prismic.GroupField<Simplify<GemDocumentDataPlaybooksItem>>;
 
   /**
    * Slice Zone field in *Gem*
@@ -939,6 +991,97 @@ export type PlaybookDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
+/**
+ * Item in *Playbooks → Featured*
+ */
+export interface PlaybooksDocumentDataFeaturedItem {
+  /**
+   * Playbook field in *Playbooks → Featured*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.featured[].playbook
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+}
+
+type PlaybooksDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Playbooks documents
+ */
+interface PlaybooksDocumentData {
+  /**
+   * Featured field in *Playbooks*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.featured[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  featured: prismic.GroupField<Simplify<PlaybooksDocumentDataFeaturedItem>>;
+
+  /**
+   * Slice Zone field in *Playbooks*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PlaybooksDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Playbooks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: playbooks.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Playbooks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Playbooks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: playbooks.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Playbooks document from Prismic
+ *
+ * - **API ID**: `playbooks`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PlaybooksDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<PlaybooksDocumentData>,
+  "playbooks",
+  Lang
+>;
+
 type TermsAndPrivacyDocumentDataSlicesSlice = TextWithHeadingSlice | SingleHeadingSlice | HighlightSlice;
 
 /**
@@ -1024,6 +1167,7 @@ export type AllDocumentTypes =
   | GemDocument
   | HomeDocument
   | PlaybookDocument
+  | PlaybooksDocument
   | TermsAndPrivacyDocument;
 
 /**
@@ -1125,48 +1269,6 @@ type HighlightSliceVariation = HighlightSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HighlightSlice = prismic.SharedSlice<"highlight", HighlightSliceVariation>;
-
-/**
- * Primary content in *Playbook → Primary*
- */
-export interface PlaybookSliceDefaultPrimary {
-  /**
-   * Playbook field in *Playbook → Primary*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: playbook.primary.playbook
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  playbook: prismic.ContentRelationshipField<"playbook">;
-}
-
-/**
- * Default variation for Playbook Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type PlaybookSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<PlaybookSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Playbook*
- */
-type PlaybookSliceVariation = PlaybookSliceDefault;
-
-/**
- * Playbook Shared Slice
- *
- * - **API ID**: `playbook`
- * - **Description**: Playbook
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type PlaybookSlice = prismic.SharedSlice<"playbook", PlaybookSliceVariation>;
 
 /**
  * Primary content in *SingleHeading → Primary*
@@ -1399,6 +1501,7 @@ declare module "@prismicio/client" {
       ContactDocumentDataSlicesSlice,
       CreatorDocument,
       CreatorDocumentData,
+      CreatorDocumentDataPlaybooksItem,
       CreatorDocumentDataSlicesSlice,
       CreatorsDocument,
       CreatorsDocumentData,
@@ -1409,6 +1512,7 @@ declare module "@prismicio/client" {
       DestinationDocumentDataSlicesSlice,
       GemDocument,
       GemDocumentData,
+      GemDocumentDataPlaybooksItem,
       GemDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
@@ -1416,6 +1520,10 @@ declare module "@prismicio/client" {
       PlaybookDocument,
       PlaybookDocumentData,
       PlaybookDocumentDataSlicesSlice,
+      PlaybooksDocument,
+      PlaybooksDocumentData,
+      PlaybooksDocumentDataFeaturedItem,
+      PlaybooksDocumentDataSlicesSlice,
       TermsAndPrivacyDocument,
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,
@@ -1428,10 +1536,6 @@ declare module "@prismicio/client" {
       HighlightSliceDefaultPrimary,
       HighlightSliceVariation,
       HighlightSliceDefault,
-      PlaybookSlice,
-      PlaybookSliceDefaultPrimary,
-      PlaybookSliceVariation,
-      PlaybookSliceDefault,
       SingleHeadingSlice,
       SingleHeadingSliceDefaultPrimary,
       SingleHeadingSliceVariation,

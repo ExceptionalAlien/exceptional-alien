@@ -92,7 +92,7 @@ export default function Creator({ page }: PageProps) {
 
         <Hero image={page.data.hero_image} />
         <About text={page.data.description} />
-        {page.data.slices.length > 0 && <PlaybooksGrid heading="Creator Playbooks" list={page.data.slices} />}
+        {page.data.playbooks.length > 0 && <PlaybooksGrid heading="Creator Playbooks" list={page.data.playbooks} />}
       </main>
     </>
   );

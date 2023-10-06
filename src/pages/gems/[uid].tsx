@@ -53,13 +53,13 @@ export default function Gem({ page }: PageProps) {
           placesID={page.data.google_maps_id as string}
           address={page.data.address as string}
           category={page.data.category}
-          destination={(page.data.destination as unknown as Content.DestinationDocument).uid}
+          destination={page.data.destination}
           www={asLink(page.data.website) as string}
         />
 
         <Hero image={page.data.image} />
         <About text={page.data.about} />
-        {page.data.slices.length > 0 && <PlaybooksGrid heading="Featured In" list={page.data.slices} />}
+        {page.data.playbooks.length > 0 && <PlaybooksGrid heading="Featured In" list={page.data.playbooks} />}
       </main>
     </>
   );

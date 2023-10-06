@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 export const components = {
   gem: dynamic(() => import("./Gem")),
   highlight: dynamic(() => import("./Highlight")),
-  playbook: dynamic(() => import("./Playbook")),
   single_heading: dynamic(() => import("./SingleHeading")),
   text_block: dynamic(() => import("./TextBlock")),
   text_with_heading: dynamic(() => import("./TextWithHeading")),

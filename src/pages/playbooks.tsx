@@ -1,21 +1,55 @@
 import Head from "next/head";
+import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
+import { createClient } from "@/prismicio";
 
-export default function Playbooks() {
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+export default function Playbooks({ page, playbooks }: PageProps) {
   return (
     <>
       <Head>
-        <title>Exceptional ALIEN - Travel Playbooks</title>
-        <meta name="description" content="" />
+        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Playbooks"}`}</title>
+        <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/playbooks" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Exceptional ALIEN - Travel Playbooks" />
-        <meta property="og:description" content="" />
-        <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
-        <meta name="theme-color" content="#2220C1" />
-        <meta name="robots" content="noindex" />
+
+        <meta
+          property="og:title"
+          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Playbooks"}`}
+        />
+
+        <meta property="og:description" content={page.data.meta_description ?? ""} />
+
+        <meta
+          property="og:image"
+          content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
+        />
       </Head>
 
       <main className="min-h-full"></main>
     </>
   );
+}
+
+export async function getStaticProps({ previewData }: GetStaticPropsContext) {
+  const client = createClient({ previewData });
+
+  const page = await client.getSingle("playbooks", {
+    fetchLinks: "playbook.title",
+  });
+
+  const playbooks = await client.getAllByType("playbook", {
+    orderings: [
+      {
+        field: "my.playbook.title",
+        direction: "asc",
+      },
+    ],
+  });
+
+  return {
+    props: {
+      page,
+      playbooks,
+    },
+  };
 }

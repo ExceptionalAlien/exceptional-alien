@@ -1,6 +1,6 @@
-import Link from "next/link";
+import { Content, ContentRelationshipField } from "@prismicio/client";
 import TabHeading from "@/components/TabHeading";
-import GemIcon from "../GemIcon";
+import Category from "./heading/Category";
 import Globe from "@/img/globe.svg";
 
 interface HeadingProps {
@@ -8,7 +8,7 @@ interface HeadingProps {
   placesID: string;
   address: string;
   category: string;
-  destination: string;
+  destination: ContentRelationshipField<"destination">;
   www: string;
 }
 
@@ -37,7 +37,7 @@ export default function Heading(props: HeadingProps) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="h-[14px] inline-block ml-1 align-[-1px]"
+            className="h-4 inline-block ml-1 align-[-2px]"
           >
             <path
               fillRule="evenodd"
@@ -47,13 +47,10 @@ export default function Heading(props: HeadingProps) {
           </svg>
         </a>
 
-        <Link
-          href={`/destinations/${props.destination}?filter=${props.category.toLowerCase()}`}
-          className="hover:opacity-50 duration-300 ease-in-out transition-opacity block"
-        >
-          <GemIcon category={props.category} hideBg={true} classes="box-content pt-[9px] pl-2" />
-          <span className="uppercase pl-5 text-ex-blue">{props.category}</span>
-        </Link>
+        <Category
+          category={props.category}
+          destination={(props.destination as unknown as Content.DestinationDocument).uid}
+        />
       </TabHeading>
     </section>
   );

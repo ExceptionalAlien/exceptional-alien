@@ -3,9 +3,9 @@ import Image from "next/image";
 import { Content } from "@prismicio/client";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function CreatorThumb({ playbook, classes }: { playbook: Content.PlaybookDocument; classes?: string }) {
+export default function PlaybookThumb({ playbook, classes }: { playbook: Content.PlaybookDocument; classes?: string }) {
   return (
-    <Link href={"/playbooks/" + playbook.uid} className={`group/link ${classes}`}>
+    <Link href={"/playbooks/" + playbook.uid} className={`relative group/link ${classes}`}>
       {/* Image */}
       {playbook.data.image.thumb.url && (
         <div className="group-hover/link:bg-ex-blue">
@@ -22,12 +22,11 @@ export default function CreatorThumb({ playbook, classes }: { playbook: Content.
         </div>
       )}
 
+      {/* Layered shadow */}
+      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
+
       {/* Title */}
-      <p
-        className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold text-xl md:text-2xl mt-2`}
-      >
-        {playbook.data.title}
-      </p>
+      <p className={`absolute text-white bottom-0 font-bold text-xl md:text-2xl p-4`}>{playbook.data.title}</p>
     </Link>
   );
 }

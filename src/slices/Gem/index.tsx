@@ -43,7 +43,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="w-[14px] md:w-4 h-[14px] md:h-4 inline-block ml-1 md:ml-[6px] align-[-1px] md:align-[-2px]"
+          className="w-4 h-4 inline-block ml-1 align-[-2px]"
         >
           <path
             fillRule="evenodd"
