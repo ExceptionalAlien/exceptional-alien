@@ -1,16 +1,17 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Content, ImageField } from "@prismicio/client";
 import Title from "./header/Title";
 import Share from "./header/Share";
-import Gems from "./header/Gems";
 import { shimmer, toBase64 } from "@/utils/shimmer";
+import Place from "@/img/icon-place.svg";
 
 interface HeaderProps {
   image: ImageField;
-  sliceCount: number;
   title: string;
   creator: Content.CreatorDocument;
+  destination: Content.DestinationDocument;
 }
 
 export default function Header(props: HeaderProps) {
@@ -69,7 +70,15 @@ export default function Header(props: HeaderProps) {
       {/* Layered shadow */}
       <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
 
-      <Gems count={props.sliceCount} />
+      {/* Destination */}
+      <Link
+        href={"/destinations/" + props.destination.uid}
+        className="flex absolute top-3 md:top-4 left-3 md:left-4 bg-black hover:bg-black duration-300 ease-in-out transition-[background-color] backdrop-blur bg-opacity-25 rounded-full p-2 pl-3 pr-3 text-sm font-bold"
+      >
+        <Place className="h-5 mr-2" />
+        {props.destination.data.title}
+      </Link>
+
       <Share title={props.title} />
       <Title creator={props.creator} text={props.title} />
     </div>
