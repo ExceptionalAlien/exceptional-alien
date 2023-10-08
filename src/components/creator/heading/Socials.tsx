@@ -22,7 +22,7 @@ export default function Socials({ ig, other, www }: { ig: string; other: string;
 
   return (
     <div
-      className={`absolute top-0 right-0 bg-white [&_*]:inline-block hover:[&>a]:opacity-50 [&>a]:duration-300 [&>a]:ease-in-out [&>a]:transition-opacity [&>a>svg]:h-6 [&>a>svg]:box-content [&>a>svg]:p-2 [&>a>svg]:align-[-16px] [&>a>p]:text-xs [&>a>p]:ml-1 [&>a>p]:md:ml-2`}
+      className={`absolute top-0 right-0 bg-white [&_*]:inline-block hover:[&>a]:text-ex-light-grey [&>a]:duration-300 [&>a]:ease-in-out [&>a]:transition-[color] [&>a>svg]:h-6 [&>a>svg]:box-content [&>a>svg]:p-2 [&>a>svg]:align-[-16px] [&>a>p]:text-xs [&>a>p]:ml-1 [&>a>p]:md:ml-2`}
     >
       {/* Instagram */}
       {ig && (

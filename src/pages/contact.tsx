@@ -36,7 +36,7 @@ export default function Contact({ page }: PageProps) {
 
         <TabHeading classes="!mt-12 md:!mt-24 uppercase">
           <PrismicRichText field={page.data.page_heading} />
-          <Socials classes="absolute top-0 right-0 [&>a>svg]:!fill-black" />
+          <Socials classes="absolute top-0 right-0 [&>a]:!text-black" />
         </TabHeading>
 
         <SliceZone slices={page.data.slices} components={components} />

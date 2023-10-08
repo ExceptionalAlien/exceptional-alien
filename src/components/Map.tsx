@@ -13,7 +13,7 @@ function GoogleMap(props: MapProps) {
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
     const portraitMapHeight = 224;
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
-    const margin = !isMobile ? 16 : 12;
+    const margin = !isMobile ? 24 : 20;
     const top = globalHeaderheight + titleHeight;
     var initZoom: number | undefined;
     var initCenter: google.maps.LatLng | undefined;

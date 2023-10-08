@@ -73,9 +73,9 @@ export default function Header(props: HeaderProps) {
       {/* Destination */}
       <Link
         href={"/destinations/" + props.destination.uid}
-        className="flex absolute top-3 md:top-4 left-3 md:left-4 bg-black hover:bg-black duration-300 ease-in-out transition-[background-color] backdrop-blur bg-opacity-25 rounded-full p-2 pl-3 pr-3 text-sm font-bold"
+        className="h-5 box-content absolute top-3 md:top-4 left-3 md:left-4 bg-black hover:bg-black duration-300 ease-in-out transition-[background-color] backdrop-blur bg-opacity-25 rounded-full p-2 pl-3 pr-3 text-sm font-bold"
       >
-        <Place className="h-5 mr-2" />
+        <Place className="h-full mr-2 inline-block align-[-5px]" />
         {props.destination.data.title}
       </Link>
 

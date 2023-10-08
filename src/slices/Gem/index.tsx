@@ -31,12 +31,12 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       id={`gem-${gem.uid}`}
     >
       <GemIcon category={gem.data.category} classes="right-0 !m-0" />
-
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">{gem.data.title}</h4>
+
       <a
         href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
         target="_blank"
-        className="text-ex-grey text-sm md:text-base hover:text-ex-light-grey duration-300 ease-in-out transition-[color]"
+        className="text-ex-grey text-sm md:text-base hover:text-ex-light-grey duration-300 ease-in-out transition-[color] inline-block mr-10 md:mr-12"
       >
         {gem.data.address}
         <svg
@@ -75,7 +75,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
           ) : (
             <Link
               href={`/creators/${creator.uid}`}
-              className="block max-w-full w-max mt-3 md:mt-4 hover:opacity-50 duration-300 ease-in-out transition-opacity"
+              className="group/link block max-w-full w-max mt-3 md:mt-4 hover:text-ex-light-grey duration-300 ease-in-out transition-[color]"
             >
               {creator.data.first_name} {creator.data.last_name?.toUpperCase()}
               <Image
@@ -83,7 +83,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
                 alt={creator.data.profile_image.alt as string}
                 width={40}
                 height={40}
-                className={`inline-block rounded-full ml-2 w-8 md:w-10 align-[-11px] md:align-[-14px] ${
+                className={`inline-block rounded-full ml-2 w-8 md:w-10 align-[-11px] md:align-[-14px] group-hover/link:opacity-50 duration-300 ease-in-out transition-[opacity] ${
                   !creator.data.last_name && "hidden"
                 }`}
               />

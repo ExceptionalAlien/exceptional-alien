@@ -21,7 +21,7 @@ export default function Heading(props: HeadingProps) {
             href={props.www}
             target="_blank"
             title="Website"
-            className="absolute top-0 right-0 hover:opacity-50 duration-300 ease-in-out transition-opacity [&>svg]:h-6 [&>svg]:box-content [&>svg]:p-2"
+            className="absolute top-0 right-0 hover:text-ex-light-grey duration-300 ease-in-out transition-[color] [&>svg]:h-6 [&>svg]:box-content [&>svg]:p-2"
           >
             <Globe />
           </a>
@@ -30,7 +30,7 @@ export default function Heading(props: HeadingProps) {
         <a
           href={`https://www.google.com/maps/search/?api=1&query=${props.title}&query_place_id=${props.placesID}`}
           target="_blank"
-          className="hover:text-ex-light-grey duration-300 ease-in-out transition-[color] pr-8 block"
+          className="hover:text-ex-light-grey duration-300 ease-in-out transition-[color] mr-8 inline-block"
         >
           {props.address}
           <svg
