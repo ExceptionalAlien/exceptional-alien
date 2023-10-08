@@ -13,12 +13,12 @@ export default function CreatorThumb({
   size?: string;
   classes?: string;
 }) {
-  const image = size === "mobile" ? creator.data.hero_image.mobile : creator.data.profile_image;
+  const image = size === "featured" ? creator.data.hero_image.mobile : creator.data.profile_image;
 
   return (
     <Link
       href={"/creators/" + creator.uid}
-      className={`group/link ${size === "mobile" && "w-10/12 md:w-5/12 max-w-xl"} ${classes}`}
+      className={`group/link ${size === "featured" && "w-10/12 md:w-5/12 max-w-xl"} ${classes}`}
     >
       {/* Image */}
       {image.url && (
@@ -39,13 +39,13 @@ export default function CreatorThumb({
       {/* Name */}
       <p
         className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${
-          size === "mobile" ? "text-2xl md:text-3xl" : "text-xl"
+          size === "featured" ? "text-2xl md:text-3xl" : "text-xl"
         }`}
       >
         {creator.data.first_name} {creator.data.last_name?.toUpperCase()}
       </p>
 
-      {size !== "mobile" ? (
+      {size !== "featured" ? (
         <Tab title={creator.data.title as string} currentCity={creator.data.current_city as string} />
       ) : (
         <p>{creator.data.short_description?.substring(0, 160)}</p>

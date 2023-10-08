@@ -1,6 +1,7 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
+import Featured from "@/components/playbooks/Featured";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -25,7 +26,9 @@ export default function Playbooks({ page, playbooks }: PageProps) {
         />
       </Head>
 
-      <main className="min-h-full"></main>
+      <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-3">
+        <Featured playbooks={page.data.featured} />
+      </main>
     </>
   );
 }
@@ -34,7 +37,7 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
 
   const page = await client.getSingle("playbooks", {
-    fetchLinks: "playbook.title",
+    fetchLinks: "playbook.title,playbook.image",
   });
 
   const playbooks = await client.getAllByType("playbook", {
