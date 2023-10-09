@@ -48,7 +48,7 @@ export default function PlaybookThumb({
 
           {/* Title */}
           <p
-            className={`absolute text-white bottom-0 font-bold leading-tight ${
+            className={`absolute text-white bottom-0 font-bold !leading-tight ${
               size === "featured" || size === "grid"
                 ? "text-xl md:text-3xl p-3 md:p-4"
                 : "text-base md:text-2xl p-2 md:p-3"
@@ -64,11 +64,11 @@ export default function PlaybookThumb({
 
       {size !== "featured" && size !== "grid" && (
         <ThumbTab
-          title={`${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${
-            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name
-          }`}
+          title={`${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${(
+            playbook.data.creator as unknown as Content.CreatorDocument
+          ).data.last_name?.toUpperCase()}`}
           location={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
-          classes="mt-3"
+          classes="mt-2 md:mt-3"
         />
       )}
     </Link>

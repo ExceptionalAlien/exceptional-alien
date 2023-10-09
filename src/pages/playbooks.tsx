@@ -1,8 +1,10 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
+import { PrismicRichText } from "@prismicio/react";
 import Featured from "@/components/playbooks/Featured";
 import All from "@/components/playbooks/All";
+import Spacer from "@/components/Spacer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -29,6 +31,14 @@ export default function Playbooks({ page, playbooks }: PageProps) {
 
       <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-3">
         <Featured playbooks={page.data.featured} />
+        <Spacer />
+
+        {/* Overview */}
+        <section className="text-ex-blue font-bold text-2xl md:text-4xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>p]:mt-4 [&>p]:md:mt-6">
+          <PrismicRichText field={page.data.overview} />
+        </section>
+
+        <Spacer />
         <All playbooks={playbooks} />
       </main>
     </>

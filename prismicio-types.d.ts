@@ -1035,6 +1035,17 @@ type PlaybooksDocumentDataSlicesSlice = never;
  */
 interface PlaybooksDocumentData {
   /**
+   * Overview field in *Playbooks*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.overview
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  overview: prismic.RichTextField;
+
+  /**
    * Featured field in *Playbooks*
    *
    * - **Field Type**: Group
