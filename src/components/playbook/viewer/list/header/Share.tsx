@@ -24,7 +24,7 @@ export default function Share({ title }: { title: string }) {
   return (
     <button
       onClick={share}
-      className="bg-black hover:bg-black duration-300 ease-in-out transition-[background-color] backdrop-blur bg-opacity-25 rounded-full absolute top-3 md:top-4 right-3 md:right-4 p-2 pb-[9px] pt-[7px]"
+      className="bg-black hover:bg-black duration-300 ease-in-out transition-[background-color] backdrop-blur bg-opacity-20 rounded-full absolute top-3 md:top-4 right-3 md:right-4 p-2 pb-[9px] pt-[7px]"
       title="Share"
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">

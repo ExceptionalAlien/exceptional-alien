@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Content, ImageField } from "@prismicio/client";
 import Title from "./header/Title";
 import Share from "./header/Share";
+import Destination from "@/components/Destination";
 import { shimmer, toBase64 } from "@/utils/shimmer";
-import Place from "@/img/icon-place.svg";
 
 interface HeaderProps {
   image: ImageField;
@@ -73,10 +73,9 @@ export default function Header(props: HeaderProps) {
       {/* Destination */}
       <Link
         href={"/destinations/" + props.destination.uid}
-        className="h-5 box-content absolute top-3 md:top-4 left-3 md:left-4 bg-black hover:bg-black duration-300 ease-in-out transition-[background-color] backdrop-blur bg-opacity-25 rounded-full p-2 pl-3 pr-3 text-sm font-bold"
+        className="hover:[&>div]:bg-black [&>div]:duration-300 [&>div]:ease-in-out [&>div]:transition-[background-color]"
       >
-        <Place className="h-full mr-2 inline-block align-[-5px]" />
-        {props.destination.data.title}
+        <Destination name={props.destination.data.title as string} />
       </Link>
 
       <Share title={props.title} />

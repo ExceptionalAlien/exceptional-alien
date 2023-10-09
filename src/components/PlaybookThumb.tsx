@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Content } from "@prismicio/client";
+import { Content, asText } from "@prismicio/client";
+import Destination from "./Destination";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function PlaybookThumb({
@@ -37,11 +38,20 @@ export default function PlaybookThumb({
 
           {/* Layered shadow */}
           <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
+
+          <Destination
+            name={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+          />
+
+          {/* Title */}
+          <p className={`absolute text-white bottom-0 font-bold text-xl md:text-2xl p-3 md:p-4`}>
+            {playbook.data.title}
+          </p>
         </div>
       )}
 
-      {/* Title */}
-      <p className={`absolute text-white bottom-0 font-bold text-xl md:text-2xl p-4`}>{playbook.data.title}</p>
+      {/* Description */}
+      {size === "featured" && <p className="mt-2">{asText(playbook.data.description)?.substring(0, 160)}</p>}
     </Link>
   );
 }

@@ -37,7 +37,7 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
 
   const page = await client.getSingle("playbooks", {
-    fetchLinks: "playbook.title,playbook.image",
+    fetchLinks: "playbook.title,playbook.image,playbook.destination,playbook.description,destination.title",
   });
 
   const playbooks = await client.getAllByType("playbook", {
