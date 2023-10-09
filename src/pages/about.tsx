@@ -58,7 +58,7 @@ export default function About({ page }: PageProps) {
         />
       </Head>
 
-      <main className="p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+      <main className="box-content p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <Spacer />
 
         <TabHeading classes="uppercase">

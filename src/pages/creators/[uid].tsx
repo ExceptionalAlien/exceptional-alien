@@ -92,7 +92,9 @@ export default function Creator({ page }: PageProps) {
 
         <Hero
           image={page.data.hero_image}
-          alt={`${page.data.first_name} ${page.data.last_name}`}
+          alt={
+            page.data.last_name ? `${page.data.first_name} ${page.data.last_name}` : (page.data.first_name as string)
+          }
           credit={page.data.photo_credit as string}
         />
         <About text={page.data.description} />

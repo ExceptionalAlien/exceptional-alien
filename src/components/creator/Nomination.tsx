@@ -16,7 +16,9 @@ export default function Nomination({ creator }: { creator: Content.CreatorDocume
           alt={
             creator.data.profile_image.alt
               ? (creator.data.profile_image.alt as string)
-              : `${creator.data.first_name} ${creator.data.last_name}`
+              : creator.data.last_name
+              ? `${creator.data.first_name} ${creator.data.last_name}`
+              : (creator.data.first_name as string)
           }
           width={40}
           height={40}

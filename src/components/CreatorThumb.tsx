@@ -25,7 +25,13 @@ export default function CreatorThumb({
         <div className="group-hover/link:bg-ex-blue">
           <Image
             src={image.url}
-            alt={image.alt ? (image.alt as string) : `${creator.data.first_name} ${creator.data.last_name}`}
+            alt={
+              image.alt
+                ? (image.alt as string)
+                : creator.data.last_name
+                ? `${creator.data.first_name} ${creator.data.last_name}`
+                : (creator.data.first_name as string)
+            }
             width={image.dimensions.width}
             height={image.dimensions.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(

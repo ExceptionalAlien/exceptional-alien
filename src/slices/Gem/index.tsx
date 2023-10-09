@@ -33,6 +33,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       <GemIcon category={gem.data.category} classes="right-0 !m-0" />
       <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">{gem.data.title}</h4>
 
+      {/* Address */}
       <a
         href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
         target="_blank"
@@ -53,6 +54,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
         </svg>
       </a>
 
+      {/* Details */}
       <div className="gem-content mt-2 md:mt-3">
         <Image
           src={gem.data.image.thumb.url as string}
@@ -83,7 +85,9 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
                 alt={
                   creator.data.profile_image.alt
                     ? (creator.data.profile_image.alt as string)
-                    : `${creator.data.first_name} ${creator.data.last_name}`
+                    : creator.data.last_name
+                    ? `${creator.data.first_name} ${creator.data.last_name}`
+                    : (creator.data.first_name as string)
                 }
                 width={40}
                 height={40}
