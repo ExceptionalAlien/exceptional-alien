@@ -56,7 +56,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       <div className="gem-content mt-2 md:mt-3">
         <Image
           src={gem.data.image.thumb.url as string}
-          alt={gem.data.image.thumb.alt as string}
+          alt={gem.data.image.thumb.alt ? (gem.data.image.thumb.alt as string) : (gem.data.title as string)}
           width={gem.data.image.thumb.dimensions!.width}
           height={gem.data.image.thumb.dimensions!.height}
           placeholder={`data:image/svg+xml;base64,${toBase64(
@@ -80,7 +80,11 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
               {creator.data.first_name} {creator.data.last_name?.toUpperCase()}
               <Image
                 src={creator.data.profile_image.url as string}
-                alt={creator.data.profile_image.alt as string}
+                alt={
+                  creator.data.profile_image.alt
+                    ? (creator.data.profile_image.alt as string)
+                    : `${creator.data.first_name} ${creator.data.last_name}`
+                }
                 width={40}
                 height={40}
                 className={`inline-block rounded-full ml-2 w-8 md:w-10 align-[-11px] md:align-[-14px] group-hover/link:opacity-50 duration-300 ease-in-out transition-[opacity] ${

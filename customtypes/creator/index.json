@@ -56,6 +56,13 @@
           ]
         }
       },
+      "photo_credit": {
+        "type": "Text",
+        "config": {
+          "label": "Photo Credit",
+          "placeholder": "Photographer name"
+        }
+      },
       "profile_image": {
         "type": "Image",
         "config": {

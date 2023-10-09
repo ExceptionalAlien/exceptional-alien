@@ -57,7 +57,7 @@ export default function Gem({ page }: PageProps) {
           www={asLink(page.data.website) as string}
         />
 
-        <Hero image={page.data.image} />
+        <Hero image={page.data.image} alt={page.data.title as string} credit={page.data.photo_credit as string} />
         <About text={page.data.about} />
         {page.data.playbooks.length > 0 && <PlaybooksGrid heading="Featured In" list={page.data.playbooks} />}
       </main>

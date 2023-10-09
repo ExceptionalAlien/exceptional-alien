@@ -22,7 +22,11 @@ export default function PlaybookThumb({
         <div className="group-hover/link:bg-ex-blue relative">
           <Image
             src={playbook.data.image.thumb.url}
-            alt={playbook.data.image.thumb.alt as string}
+            alt={
+              playbook.data.image.thumb.alt
+                ? (playbook.data.image.thumb.alt as string)
+                : (playbook.data.title as string)
+            }
             width={playbook.data.image.thumb.dimensions.width}
             height={playbook.data.image.thumb.dimensions.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(

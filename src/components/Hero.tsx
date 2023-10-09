@@ -4,7 +4,7 @@ import { EmptyImageFieldImage, FilledImageFieldImage, ImageField } from "@prismi
 import Credit from "./Credit";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function Hero({ image }: { image: ImageField<"mobile"> }) {
+export default function Hero({ image, alt, credit }: { image: ImageField<"mobile">; alt: string; credit: string }) {
   const [crop, setCrop] = useState<FilledImageFieldImage | EmptyImageFieldImage>();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Hero({ image }: { image: ImageField<"mobile"> }) {
       {crop && (
         <Image
           src={crop.url as string}
-          alt={crop.alt as string}
+          alt={crop.alt ? (crop.alt as string) : alt}
           width={crop.dimensions!.width}
           height={crop.dimensions!.height}
           placeholder={`data:image/svg+xml;base64,${toBase64(
@@ -31,7 +31,7 @@ export default function Hero({ image }: { image: ImageField<"mobile"> }) {
         />
       )}
 
-      <Credit text={image.copyright ? image.copyright : "Photo: " + crop?.alt} />
+      <Credit text={credit ? credit : alt} />
     </section>
   );
 }

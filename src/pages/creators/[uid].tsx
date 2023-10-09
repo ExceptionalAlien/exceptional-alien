@@ -90,7 +90,11 @@ export default function Creator({ page }: PageProps) {
           www={asLink(page.data.website) as string}
         />
 
-        <Hero image={page.data.hero_image} />
+        <Hero
+          image={page.data.hero_image}
+          alt={`${page.data.first_name} ${page.data.last_name}`}
+          credit={page.data.photo_credit as string}
+        />
         <About text={page.data.description} />
         {page.data.playbooks.length > 0 && <PlaybooksGrid heading="Creator Playbooks" list={page.data.playbooks} />}
       </main>

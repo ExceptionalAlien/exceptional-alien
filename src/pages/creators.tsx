@@ -56,7 +56,7 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const creators = await client.getAllByType("creator", {
     orderings: [
       {
-        field: "my.creator.first_name",
+        field: "my.creator.uid",
         direction: "asc",
       },
     ],

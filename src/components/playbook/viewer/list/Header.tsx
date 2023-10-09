@@ -54,7 +54,7 @@ export default function Header(props: HeaderProps) {
     <div className="z-10 sticky bg-ex-light-grey text-white overflow-hidden" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={props.image.url as string}
-        alt={props.image.alt as string}
+        alt={props.image.alt ? (props.image.alt as string) : props.title}
         width={props.image.dimensions!.width}
         height={props.image.dimensions!.height}
         placeholder={`data:image/svg+xml;base64,${toBase64(

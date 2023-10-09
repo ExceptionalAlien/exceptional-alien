@@ -5,7 +5,7 @@ export default function Credit({ text }: { text: string }) {
         !text && "hidden"
       }`}
     >
-      {text}
+      Photo: {text}
     </p>
   );
 }

@@ -21,7 +21,7 @@ export default function Creator(props: CreatorProps) {
 
       <Image
         src={props.image.url as string}
-        alt={props.image.alt as string}
+        alt={props.image.alt ? (props.image.alt as string) : `${props.firstName} ${props.lastName}`}
         width={48}
         height={48}
         className="rounded-full ml-2 border-[1.5px] border-white w-10 md:w-auto"

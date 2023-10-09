@@ -222,6 +222,17 @@ interface CreatorDocumentData {
   hero_image: prismic.ImageField<"mobile" | "seo">;
 
   /**
+   * Photo Credit field in *Creator*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Photographer name
+   * - **API ID Path**: creator.photo_credit
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  photo_credit: prismic.KeyTextField;
+
+  /**
    * Profile Image field in *Creator*
    *
    * - **Field Type**: Image
@@ -658,6 +669,17 @@ interface GemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<"mobile" | "thumb" | "seo">;
+
+  /**
+   * Photo Credit field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Photographer name
+   * - **API ID Path**: gem.photo_credit
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  photo_credit: prismic.KeyTextField;
 
   /**
    * Destination field in *Gem*

@@ -13,7 +13,11 @@ export default function Nomination({ creator }: { creator: Content.CreatorDocume
 
         <Image
           src={creator.data.profile_image.url as string}
-          alt={creator.data.profile_image.alt as string}
+          alt={
+            creator.data.profile_image.alt
+              ? (creator.data.profile_image.alt as string)
+              : `${creator.data.first_name} ${creator.data.last_name}`
+          }
           width={40}
           height={40}
           className="rounded-full ml-2 align-[-7px] group-hover/link:opacity-50 duration-300 ease-in-out transition-[opacity]"
