@@ -64,7 +64,9 @@ export default function PlaybookThumb({
 
       {size !== "featured" && size !== "grid" && (
         <ThumbTab
-          title={`${playbook.data.creator.data.first_name} ${playbook.data.creator.data.last_name}`}
+          title={`${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${
+            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name
+          }`}
           location={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
           classes="mt-3"
         />
