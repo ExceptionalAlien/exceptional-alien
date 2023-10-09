@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Content } from "@prismicio/client";
-import Tab from "./creator-thumb/Tab";
+import ThumbTab from "./ThumbTab";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function CreatorThumb({
@@ -52,7 +52,7 @@ export default function CreatorThumb({
       </p>
 
       {size !== "featured" ? (
-        <Tab title={creator.data.title as string} currentCity={creator.data.current_city as string} />
+        <ThumbTab title={creator.data.title as string} location={creator.data.current_city as string} />
       ) : (
         <p>{creator.data.short_description?.substring(0, 160)}</p>
       )}

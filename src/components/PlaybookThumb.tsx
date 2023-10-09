@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Content, asText } from "@prismicio/client";
 import Destination from "./Destination";
+import ThumbTab from "./ThumbTab";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function PlaybookThumb({
@@ -39,12 +40,20 @@ export default function PlaybookThumb({
           {/* Layered shadow */}
           <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
 
-          <Destination
-            name={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
-          />
+          {(size === "featured" || size === "grid") && (
+            <Destination
+              name={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+            />
+          )}
 
           {/* Title */}
-          <p className={`absolute text-white bottom-0 font-bold text-xl md:text-2xl p-3 md:p-4`}>
+          <p
+            className={`absolute text-white bottom-0 font-bold leading-tight ${
+              size === "featured" || size === "grid"
+                ? "text-xl md:text-3xl p-3 md:p-4"
+                : "text-base md:text-2xl p-2 md:p-3"
+            }`}
+          >
             {playbook.data.title}
           </p>
         </div>
@@ -52,6 +61,14 @@ export default function PlaybookThumb({
 
       {/* Description */}
       {size === "featured" && <p className="mt-2">{asText(playbook.data.description)?.substring(0, 160)}</p>}
+
+      {size !== "featured" && size !== "grid" && (
+        <ThumbTab
+          title={`${playbook.data.creator.data.first_name} ${playbook.data.creator.data.last_name}`}
+          location={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+          classes="mt-3"
+        />
+      )}
     </Link>
   );
 }

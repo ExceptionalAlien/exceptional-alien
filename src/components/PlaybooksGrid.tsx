@@ -20,7 +20,7 @@ export default function PlaybooksGrid({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-6 gap-y-6 md:gap-y-9">
         {list.map((item, i) => (
-          <PlaybookThumb key={i} playbook={item.playbook as Content.PlaybookDocument} />
+          <PlaybookThumb key={i} playbook={item.playbook as Content.PlaybookDocument} size="grid" />
         ))}
       </div>
     </section>

@@ -5,7 +5,7 @@ import PlaybookThumb from "@/components/PlaybookThumb";
 export default function Featured({ playbooks }: { playbooks: GroupField }) {
   return (
     <section className="!pl-0 !pr-0">
-      <h3 className="ml-4 md:ml-6">Featured Playbooks</h3>
+      <h3 className="ml-4 md:ml-6">Featured Travel Playbooks</h3>
 
       <Slider>
         {playbooks.map((item, i) => (
