@@ -23,7 +23,18 @@ export default function All({ playbooks }: { playbooks: Content.PlaybookDocument
         ref={ref}
       >
         {playbooks.map((item, i) => {
-          if (query.length <= 1 || (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null)) {
+          if (
+            query.length <= 1 ||
+            (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
+            (query.length > 1 &&
+              (item.data.destination as unknown as Content.DestinationDocument).data.title?.match(
+                new RegExp(query, "gi")
+              ) !== null) ||
+            (query.length > 1 &&
+              `${(item.data.creator as unknown as Content.CreatorDocument).data.first_name} ${
+                (item.data.creator as unknown as Content.CreatorDocument).data.last_name
+              }`.match(new RegExp(query, "gi")) !== null)
+          ) {
             return <PlaybookThumb key={i} playbook={item as Content.PlaybookDocument} />;
           }
         })}
