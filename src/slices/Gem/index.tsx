@@ -31,7 +31,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       id={`gem-${gem.uid}`}
     >
       <GemIcon category={gem.data.category} classes="right-0 !m-0" />
-      <h4 className="font-bold text-xl md:text-2xl !leading-tight mr-10 md:mr-12">{gem.data.title}</h4>
+      <h4 className="font-bold text-xl md:text-2xl mr-10 md:mr-12">{gem.data.title}</h4>
 
       {/* Address */}
       <a
@@ -67,7 +67,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
           className="relative w-2/5 float-left"
         />
 
-        <div className="float-left pb-6 mb-6 md:mb-8 pl-3 md:pl-4 w-3/5 [&>*]:text-ex-blue [&>*]:text-sm [&>*]:md:text-base [&>*]:font-bold [&>*]:leading-snug [&>*]:md:!leading-normal">
+        <div className="float-left pb-6 mb-6 md:mb-8 pl-3 md:pl-4 w-3/5 [&>*]:text-ex-blue [&>*]:text-sm [&>*]:md:text-base [&>*]:font-bold">
           <PrismicRichText field={slice.primary.description} />
 
           {!creator.data ? (

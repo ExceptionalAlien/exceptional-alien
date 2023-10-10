@@ -97,6 +97,7 @@ export default function Creator({ page }: PageProps) {
           }
           credit={page.data.photo_credit as string}
         />
+
         <About text={page.data.description} />
         {page.data.playbooks.length > 0 && <PlaybooksGrid heading="Creator Playbooks" list={page.data.playbooks} />}
       </main>
