@@ -51,7 +51,7 @@ export default function PlaybookThumb({
             className={`absolute text-white bottom-0 font-bold !leading-tight ${
               size === "featured" || size === "grid"
                 ? "text-xl md:text-3xl p-3 md:p-4"
-                : "text-base md:text-2xl p-2 md:p-3"
+                : "text-base md:text-xl p-2 md:p-3"
             }`}
           >
             {playbook.data.title}

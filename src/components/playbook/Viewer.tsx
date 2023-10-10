@@ -11,9 +11,9 @@ export default function Viewer({ data }: { data: Content.PlaybookDocumentData })
   useEffect(() => {
     const handleScroll = () => {
       const viewer = ref.current!;
-      const height = viewer.offsetTop + viewer.clientHeight;
+      const height = viewer?.offsetTop + viewer?.clientHeight;
       const scroll = window.scrollY + window.innerHeight;
-      const offset = window.scrollY - viewer.clientHeight;
+      const offset = window.scrollY - viewer?.clientHeight;
       const portraitMapHeight = 224;
 
       // Let map know when viewer scroll is not longer below fold so it can scroll too
