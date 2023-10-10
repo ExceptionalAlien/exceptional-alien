@@ -9,7 +9,7 @@ export default function Footer() {
       <Socials classes="absolute top-0 right-0 mr-2 md:mr-4 mt-4" />
 
       {/* Copyright */}
-      <p className="text-white font-mono text-xs absolute bottom-0 mb-10 md:mb-6 ml-4 md:ml-6 leading-none">
+      <p className="pb-safe text-white font-mono text-xs absolute bottom-0 m-4 md:m-6 leading-none">
         © {new Date().getFullYear()} Exceptional ALIEN
       </p>
 

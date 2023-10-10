@@ -25,6 +25,10 @@ body {
   outline: none;
 }
 
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* Slider */
 
 .slider::-webkit-scrollbar {
