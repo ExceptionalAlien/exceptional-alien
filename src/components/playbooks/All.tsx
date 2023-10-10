@@ -19,7 +19,7 @@ export default function All({ playbooks }: { playbooks: Content.PlaybookDocument
 
       {/* Thumbs */}
       <div
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-4 md:gap-x-6 gap-y-6 md:gap-y-9"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-3 md:gap-x-4 gap-y-6 md:gap-y-9"
         ref={ref}
       >
         {playbooks.map((item, i) => {
