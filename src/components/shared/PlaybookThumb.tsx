@@ -18,7 +18,7 @@ export default function PlaybookThumb({
   return (
     <Link
       href={"/playbooks/" + playbook.uid}
-      className={`relative group/link ${size === "featured" && "w-10/12 md:w-5/12 max-w-xl"} ${classes}`}
+      className={`relative group/link ${size === "featured" && "w-11/12 lg:w-5/12 max-w-xl"} ${classes}`}
     >
       {/* Image */}
       {playbook.data.image.thumb.url && (
@@ -53,7 +53,7 @@ export default function PlaybookThumb({
               firstName={(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes="absolute bottom-0 right-0 w-2/5 [&>p]:text-xs [&>p]:md:text-sm [&>img]:w-9 [&>img]:md:w-10"
+              classes="absolute bottom-0 w-2/5 right-0 !pl-0 [&>p]:text-xs [&>p]:md:text-sm [&>img]:w-9 [&>img]:md:w-10"
             />
           )}
 
@@ -61,8 +61,8 @@ export default function PlaybookThumb({
           <p
             className={`absolute text-white bottom-0 font-bold !leading-tight ${size === "featured" && "w-3/5"} ${
               size === "featured" || size === "grid"
-                ? "text-xl md:text-2xl p-3 md:p-4"
-                : "text-base md:text-xl p-2 md:p-3"
+                ? "text-lg md:text-3xl p-3 md:p-4"
+                : "text-base md:text-2xl p-2 md:p-3"
             }`}
           >
             {playbook.data.title}
