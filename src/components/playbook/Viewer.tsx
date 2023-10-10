@@ -17,7 +17,7 @@ export default function Viewer({ data }: { data: Content.PlaybookDocumentData })
       const portraitMapHeight = 224;
 
       // Let map know when viewer scroll is not longer below fold so it can scroll too
-      setScrollEndLandscape(scroll >= height ? true : false);
+      setScrollEndLandscape(window.scrollY && scroll >= height ? true : false);
       setScrollEndPortrait(offset >= -portraitMapHeight ? true : false);
     };
 
