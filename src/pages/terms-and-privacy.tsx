@@ -3,8 +3,8 @@ import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
-import TabHeading from "@/components/TabHeading";
-import Spacer from "@/components/Spacer";
+import TabHeading from "@/components/shared/TabHeading";
+import Spacer from "@/components/shared/Spacer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 

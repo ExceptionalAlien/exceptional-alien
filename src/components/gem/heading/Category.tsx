@@ -1,5 +1,5 @@
 import Link from "next/link";
-import GemIcon from "@/components/GemIcon";
+import GemIcon from "@/components/shared/GemIcon";
 
 export default function Heading({ category, destination }: { category: string; destination: string }) {
   return (

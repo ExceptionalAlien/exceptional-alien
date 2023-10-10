@@ -2,11 +2,11 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
 import { Content, asLink, asText } from "@prismicio/client";
-import Hero from "@/components/Hero";
+import Hero from "@/components/shared/Hero";
 import Title from "@/components/gem/Title";
 import Heading from "@/components/gem/Heading";
-import About from "@/components/About";
-import PlaybooksGrid from "@/components/PlaybooksGrid";
+import About from "@/components/shared/About";
+import PlaybooksGrid from "@/components/shared/PlaybooksGrid";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 

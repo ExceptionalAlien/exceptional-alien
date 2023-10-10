@@ -3,8 +3,8 @@ import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import Featured from "@/components/playbooks/Featured";
 import All from "@/components/playbooks/All";
-import Spacer from "@/components/Spacer";
-import Overview from "@/components/Overview";
+import Spacer from "@/components/shared/Spacer";
+import Overview from "@/components/shared/Overview";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -44,7 +44,8 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
 
   const page = await client.getSingle("playbooks", {
-    fetchLinks: "playbook.title,playbook.image,playbook.destination,playbook.description,destination.title",
+    fetchLinks:
+      "playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,destination.title,creator.first_name,creator.last_name,creator.profile_image",
   });
 
   const playbooks = await client.getAllByType("playbook", {

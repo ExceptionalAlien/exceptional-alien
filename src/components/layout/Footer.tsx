@@ -1,6 +1,6 @@
 import Logo from "./footer/Logo";
 import Nav from "./footer/Nav";
-import Socials from "../Socials";
+import Socials from "../shared/Socials";
 
 export default function Footer() {
   return (

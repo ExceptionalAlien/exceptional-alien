@@ -3,8 +3,8 @@ import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import Featured from "@/components/creators/Featured";
 import All from "@/components/creators/All";
-import Spacer from "@/components/Spacer";
-import Overview from "@/components/Overview";
+import Spacer from "@/components/shared/Spacer";
+import Overview from "@/components/shared/Overview";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 

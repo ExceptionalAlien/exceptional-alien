@@ -1,21 +1,17 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ImageField } from "@prismicio/client";
 
-interface CreatorProps {
-  uid: string;
+interface CreatorIconProps {
   firstName: string;
   lastName: string;
   image: ImageField;
+  classes?: string;
 }
 
-export default function Creator(props: CreatorProps) {
+export default function CreatorIcon(props: CreatorIconProps) {
   return (
-    <Link
-      href={"/creators/" + props.uid}
-      className="flex max-w-2/5 box-content items-center justify-end p-3 md:p-4 hover:opacity-50 duration-300 ease-in-out transition-[opacity]"
-    >
-      <p className="text-sm md:text-base text-right max-[320px]:!hidden landscape:!hidden md:landscape:!inline">
+    <div className={`flex items-center justify-end p-3 md:p-4 ${props.classes}`}>
+      <p className="text-sm md:text-base text-white text-right max-[320px]:!hidden landscape:!hidden md:landscape:!inline">
         {props.firstName} {props.lastName.toUpperCase()}
       </p>
 
@@ -30,8 +26,8 @@ export default function Creator(props: CreatorProps) {
         }
         width={48}
         height={48}
-        className="rounded-full ml-2 border-[1.5px] border-white w-10 md:w-auto"
+        className="rounded-full box-content ml-2 border-[1.5px] border-white w-10 md:w-auto"
       />
-    </Link>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Content } from "@prismicio/client";
-import PlaybookThumb from "../PlaybookThumb";
-import Filter from "../Filter";
+import PlaybookThumb from "../shared/PlaybookThumb";
+import Filter from "../shared/Filter";
 
 export default function All({ playbooks }: { playbooks: Content.PlaybookDocument[] }) {
   const [query, setQuery] = useState("");

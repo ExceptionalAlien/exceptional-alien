@@ -1,6 +1,6 @@
 import { GroupField, Content } from "@prismicio/client";
-import Slider from "@/components/Slider";
-import PlaybookThumb from "@/components/PlaybookThumb";
+import Slider from "@/components/shared/Slider";
+import PlaybookThumb from "@/components/shared/PlaybookThumb";
 
 export default function Featured({ playbooks }: { playbooks: GroupField }) {
   return (

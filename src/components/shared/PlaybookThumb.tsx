@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Content, asText } from "@prismicio/client";
 import Destination from "./Destination";
 import ThumbTab from "./ThumbTab";
+import CreatorIcon from "./CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function PlaybookThumb({
@@ -43,14 +44,24 @@ export default function PlaybookThumb({
           {(size === "featured" || size === "grid") && (
             <Destination
               name={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+              hideBg={size === "featured" ? false : false}
+            />
+          )}
+
+          {size === "featured" && (
+            <CreatorIcon
+              firstName={(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
+              lastName={(playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
+              image={(playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
+              classes="absolute bottom-0 right-0 w-2/5 [&>p]:text-xs [&>p]:md:text-sm [&>img]:w-9 [&>img]:md:w-10"
             />
           )}
 
           {/* Title */}
           <p
-            className={`absolute text-white bottom-0 font-bold !leading-tight ${
+            className={`absolute text-white bottom-0 font-bold !leading-tight ${size === "featured" && "w-3/5"} ${
               size === "featured" || size === "grid"
-                ? "text-xl md:text-3xl p-3 md:p-4"
+                ? "text-xl md:text-2xl p-3 md:p-4"
                 : "text-base md:text-xl p-2 md:p-3"
             }`}
           >

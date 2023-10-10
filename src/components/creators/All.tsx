@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Content } from "@prismicio/client";
-import CreatorThumb from "../CreatorThumb";
-import Filter from "../Filter";
+import CreatorThumb from "../shared/CreatorThumb";
+import Filter from "../shared/Filter";
 
 export default function All({ creators }: { creators: Content.CreatorDocument[] }) {
   const [query, setQuery] = useState("");

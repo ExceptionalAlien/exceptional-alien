@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Content, ImageField } from "@prismicio/client";
 import Title from "./header/Title";
 import Share from "./header/Share";
-import Destination from "@/components/Destination";
+import Destination from "@/components/shared/Destination";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 interface HeaderProps {
@@ -51,7 +51,7 @@ export default function Header(props: HeaderProps) {
   }, []);
 
   return (
-    <div className="z-10 sticky bg-ex-light-grey text-white overflow-hidden" style={{ top: stickyTop }} ref={ref}>
+    <div className="z-10 sticky bg-ex-light-grey overflow-hidden" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={props.image.url as string}
         alt={props.image.alt ? (props.image.alt as string) : props.title}
@@ -73,7 +73,7 @@ export default function Header(props: HeaderProps) {
       {/* Destination */}
       <Link
         href={"/destinations/" + props.destination.uid}
-        className="hover:[&>div]:bg-black [&>div]:duration-300 [&>div]:ease-in-out [&>div]:transition-[background-color]"
+        className="hover:[&>div]:bg-opacity-50 [&>div]:duration-300 [&>div]:ease-in-out [&>div]:transition-[background-color]"
       >
         <Destination name={props.destination.data.title as string} />
       </Link>

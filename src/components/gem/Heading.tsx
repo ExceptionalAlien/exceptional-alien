@@ -1,5 +1,5 @@
 import { Content, ContentRelationshipField } from "@prismicio/client";
-import TabHeading from "@/components/TabHeading";
+import TabHeading from "@/components/shared/TabHeading";
 import Category from "./heading/Category";
 import Globe from "@/img/globe.svg";
 

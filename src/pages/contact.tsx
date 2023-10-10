@@ -3,9 +3,9 @@ import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
-import TabHeading from "@/components/TabHeading";
-import Socials from "@/components/Socials";
-import Spacer from "@/components/Spacer";
+import TabHeading from "@/components/shared/TabHeading";
+import Socials from "@/components/shared/Socials";
+import Spacer from "@/components/shared/Spacer";
 import Logo from "@/img/logo-alt-x.svg";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;

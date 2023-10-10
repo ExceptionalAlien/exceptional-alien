@@ -1,6 +1,6 @@
 import { GroupField, Content } from "@prismicio/client";
-import Slider from "@/components/Slider";
-import CreatorThumb from "@/components/CreatorThumb";
+import Slider from "@/components/shared/Slider";
+import CreatorThumb from "@/components/shared/CreatorThumb";
 
 export default function Featured({ creators }: { creators: GroupField }) {
   return (

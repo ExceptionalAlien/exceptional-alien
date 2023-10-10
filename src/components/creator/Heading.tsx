@@ -1,4 +1,4 @@
-import TabHeading from "@/components/TabHeading";
+import TabHeading from "@/components/shared/TabHeading";
 import Socials from "./heading/Socials";
 
 interface HeadingProps {

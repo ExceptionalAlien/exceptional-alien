@@ -1,4 +1,4 @@
-import TabHeading from "@/components/TabHeading";
+import TabHeading from "@/components/shared/TabHeading";
 
 export default function Tab({ title, location, classes }: { title: string; location: string; classes?: string }) {
   return (

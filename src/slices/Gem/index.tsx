@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import TabButton from "@/components/TabButton";
-import GemIcon from "@/components/GemIcon";
+import GemIcon from "@/components/shared/GemIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 /**

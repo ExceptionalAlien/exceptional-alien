@@ -1,5 +1,5 @@
 import { Content, GroupField } from "@prismicio/client";
-import PlaybookThumb from "@/components/PlaybookThumb";
+import PlaybookThumb from "@/components/shared/PlaybookThumb";
 import Playbook from "@/img/icon-playbook.svg";
 
 export default function PlaybooksGrid({

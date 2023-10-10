@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
-import GemIcon from "@/components/GemIcon";
+import GemIcon from "@/components/shared/GemIcon";
 
 function GoogleMap(props: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
