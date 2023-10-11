@@ -21,7 +21,7 @@ export default function PlaybookThumb({
       className={`relative group/link ${size === "featured" && "w-11/12 lg:w-5/12 max-w-xl"} ${classes}`}
     >
       {/* Image */}
-      {playbook.data.image.thumb.url && (
+      {playbook.data.image && playbook.data.image.thumb.url && (
         <div className="group-hover/link:bg-ex-blue relative">
           <Image
             src={playbook.data.image.thumb.url}

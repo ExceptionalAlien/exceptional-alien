@@ -26,7 +26,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
         }
         width={48}
         height={48}
-        className="rounded-full box-content ml-2 border-[1.5px] border-white w-10 md:w-auto"
+        className="rounded-full box-content ml-2 border-[1.5px] border-white w-10 md:w-12"
       />
     </div>
   );
