@@ -1,21 +1,56 @@
 import Head from "next/head";
+import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
+import { createClient } from "@/prismicio";
 
-export default function Destinations() {
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+export default function Destinations({ page, destinations }: PageProps) {
   return (
     <>
       <Head>
-        <title>Exceptional ALIEN - Destinations</title>
-        <meta name="description" content="" />
+        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Destinations"}`}</title>
+        <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/destinations" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Exceptional ALIEN - Destinations" />
-        <meta property="og:description" content="" />
-        <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
-        <meta name="theme-color" content="#2220C1" />
-        <meta name="robots" content="noindex" />
+
+        <meta
+          property="og:title"
+          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Destinations"}`}
+        />
+
+        <meta property="og:description" content={page.data.meta_description ?? ""} />
+
+        <meta
+          property="og:image"
+          content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
+        />
       </Head>
 
-      <main className="min-h-full"></main>
+      <main className=""></main>
     </>
   );
+}
+
+export async function getStaticProps({ previewData }: GetStaticPropsContext) {
+  const client = createClient({ previewData });
+
+  const page = await client.getSingle("destinations", {
+    fetchLinks: "",
+  });
+
+  const destinations = await client.getAllByType("playbook", {
+    fetchLinks: "",
+    orderings: [
+      {
+        field: "my.playbook.first_publication_date",
+        direction: "asc",
+      },
+    ],
+  });
+
+  return {
+    props: {
+      page,
+      destinations,
+    },
+  };
 }

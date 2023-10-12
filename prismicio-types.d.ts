@@ -613,6 +613,97 @@ export type DestinationDocument<Lang extends string = string> = prismic.PrismicD
 >;
 
 /**
+ * Item in *Destinations → Trending*
+ */
+export interface DestinationsDocumentDataTrendingItem {
+  /**
+   * Destination field in *Destinations → Trending*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destinations.trending[].destination
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  destination: prismic.ContentRelationshipField<"destination">;
+}
+
+type DestinationsDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Destinations documents
+ */
+interface DestinationsDocumentData {
+  /**
+   * Trending field in *Destinations*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destinations.trending[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  trending: prismic.GroupField<Simplify<DestinationsDocumentDataTrendingItem>>;
+
+  /**
+   * Slice Zone field in *Destinations*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destinations.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DestinationsDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Destinations*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: destinations.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Destinations*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destinations.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Destinations*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: destinations.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Destinations document from Prismic
+ *
+ * - **API ID**: `destinations`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DestinationsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<DestinationsDocumentData>,
+  "destinations",
+  Lang
+>;
+
+/**
  * Item in *Gem → Playbooks*
  */
 export interface GemDocumentDataPlaybooksItem {
@@ -1197,6 +1288,7 @@ export type AllDocumentTypes =
   | CreatorDocument
   | CreatorsDocument
   | DestinationDocument
+  | DestinationsDocument
   | GemDocument
   | HomeDocument
   | PlaybookDocument
@@ -1543,6 +1635,10 @@ declare module "@prismicio/client" {
       DestinationDocument,
       DestinationDocumentData,
       DestinationDocumentDataSlicesSlice,
+      DestinationsDocument,
+      DestinationsDocumentData,
+      DestinationsDocumentDataTrendingItem,
+      DestinationsDocumentDataSlicesSlice,
       GemDocument,
       GemDocumentData,
       GemDocumentDataPlaybooksItem,
