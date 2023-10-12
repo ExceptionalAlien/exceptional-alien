@@ -14,7 +14,7 @@ export default function All({ creators }: { creators: Content.CreatorDocument[] 
 
   return (
     <section className="relative">
-      <h3>All Creators</h3>
+      <h3 className="!mb-0 md:!mb-3">All Creators</h3>
       <Filter query={query} setQuery={setQuery} />
 
       {/* Thumbs */}
