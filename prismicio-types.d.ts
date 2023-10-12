@@ -930,7 +930,7 @@ interface PlaybookDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<"thumb">;
+  image: prismic.ImageField<"mobile" | "thumb">;
 
   /**
    * Description field in *Playbook*

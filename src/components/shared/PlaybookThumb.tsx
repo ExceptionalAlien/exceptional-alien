@@ -15,31 +15,29 @@ export default function PlaybookThumb({
   size?: string;
   classes?: string;
 }) {
+  const image = size === "featured" || size === "grid" ? playbook.data.image.mobile : playbook.data.image.thumb;
+
   return (
     <Link
       href={"/playbooks/" + playbook.uid}
       className={`relative group/link ${size === "featured" && "w-11/12 lg:w-5/12 max-w-xl"} ${classes}`}
     >
       {/* Image */}
-      {playbook.data.image && playbook.data.image.thumb.url && (
+      {playbook.data.image && image.url && (
         <div className="group-hover/link:bg-ex-blue relative">
           <Image
-            src={playbook.data.image.thumb.url}
-            alt={
-              playbook.data.image.thumb.alt
-                ? (playbook.data.image.thumb.alt as string)
-                : (playbook.data.title as string)
-            }
-            width={playbook.data.image.thumb.dimensions.width}
-            height={playbook.data.image.thumb.dimensions.height}
+            src={image.url}
+            alt={image.alt ? (image.alt as string) : (playbook.data.title as string)}
+            width={image.dimensions.width}
+            height={image.dimensions.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(playbook.data.image.thumb.dimensions.width, playbook.data.image.thumb.dimensions.height)
+              shimmer(image.dimensions.width, image.dimensions.height)
             )}`}
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
 
           {/* Layered shadow */}
-          <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0"></div>
+          <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
 
           {(size === "featured" || size === "grid") && (
             <Destination

@@ -45,9 +45,14 @@
           },
           "thumbnails": [
             {
-              "name": "thumb",
+              "name": "mobile",
               "width": 1200,
               "height": 900
+            },
+            {
+              "name": "thumb",
+              "width": 960,
+              "height": 960
             }
           ]
         }
