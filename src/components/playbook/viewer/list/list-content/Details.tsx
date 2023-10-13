@@ -6,7 +6,7 @@ import Story from "@/img/icon-story.svg";
 
 export default function ListContent({ description, audio }: { description: RichTextField; audio: string }) {
   return (
-    <section className="grid grid-cols-1 gap-y-5 md:gap-y-6 [&>p]:text-base [&>p]:text-ex-grey">
+    <section className="grid gap-y-5 md:gap-y-6 [&>p]:text-base [&>p]:text-ex-grey">
       {description.length !== 0 && <PrismicRichText field={description} />}
       {audio && <Audio file={audio} />}
 

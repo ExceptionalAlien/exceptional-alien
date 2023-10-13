@@ -1,16 +1,18 @@
 export default function Filter({
   query,
   setQuery,
+  classes,
 }: {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
+  classes?: string;
 }) {
   const clear = () => {
     setQuery("");
   };
 
   return (
-    <form className="z-10 bg-white sticky md:absolute top-12 md:top-0 md:right-6 pb-4 pt-3 md:pt-0">
+    <form className={`z-10 bg-white sticky md:absolute top-12 md:top-0 md:right-6 pb-4 pt-3 md:pt-0 ${classes}`}>
       {/* Search icon */}
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 inline-block">
         <path

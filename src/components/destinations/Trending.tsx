@@ -3,23 +3,23 @@ import { GroupField, Content } from "@prismicio/client";
 
 export default function Trending({ destinations }: { destinations: GroupField }) {
   return (
-    <section className="bg-red-100 w-1/2">
-      <h3 className="text-sm">TRENDING</h3>
+    <section className="md:sticky top-[176px] md:w-1/2 md:float-left md:pr-3">
+      <h3 className="text-sm">TRENDING NOW</h3>
 
       {destinations.map((item, i) => (
         <Link
           href={"/destinations/" + (item.destination as Content.DestinationDocument).uid}
           key={i}
-          className="text-6xl font-bold block uppercase hover:text-ex-blue duration-300 ease-in-out transition-[color]"
+          className="text-4xl md:text-6xl font-bold uppercase hover:text-ex-blue duration-300 ease-in-out transition-[color] flex items-center"
         >
           {(item.destination as Content.DestinationDocument).data.title}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={0.25}
+            strokeWidth={1.5}
             stroke="currentColor"
-            className="w-16 h-16 inline align-[-10px]"
+            className="w-9 md:w-16 h-9 md:h-16 stroke-[0.5] md:stroke-[0.25]"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>

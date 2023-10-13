@@ -3,6 +3,7 @@ import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import Trending from "@/components/destinations/Trending";
 import All from "@/components/destinations/All";
+import Spacer from "@/components/shared/Spacer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -28,8 +29,10 @@ export default function Destinations({ page, destinations }: PageProps) {
       </Head>
 
       <main className="box-content p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <Spacer />
         <Trending destinations={page.data.trending} />
         <All destinations={destinations} />
+        <div className="clear-both"></div>
       </main>
     </>
   );
