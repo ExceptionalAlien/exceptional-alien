@@ -1,6 +1,7 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
+import Trending from "@/components/destinations/Trending";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -25,7 +26,9 @@ export default function Destinations({ page, destinations }: PageProps) {
         />
       </Head>
 
-      <main className=""></main>
+      <main className="box-content p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <Trending destinations={page.data.trending} />
+      </main>
     </>
   );
 }
@@ -34,14 +37,14 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
 
   const page = await client.getSingle("destinations", {
-    fetchLinks: "",
+    fetchLinks: "destination.title",
   });
 
-  const destinations = await client.getAllByType("playbook", {
+  const destinations = await client.getAllByType("destination", {
     fetchLinks: "",
     orderings: [
       {
-        field: "my.playbook.first_publication_date",
+        field: "my.destination.title",
         direction: "asc",
       },
     ],
