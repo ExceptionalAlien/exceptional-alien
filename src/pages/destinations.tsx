@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import Trending from "@/components/destinations/Trending";
+import All from "@/components/destinations/All";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -28,6 +29,7 @@ export default function Destinations({ page, destinations }: PageProps) {
 
       <main className="box-content p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <Trending destinations={page.data.trending} />
+        <All destinations={destinations} />
       </main>
     </>
   );
