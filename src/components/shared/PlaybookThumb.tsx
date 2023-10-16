@@ -20,8 +20,8 @@ export default function PlaybookThumb({
   return (
     <Link
       href={"/playbooks/" + playbook.uid}
-      className={`relative group/link ${size === "featured" && "w-11/12 lg:w-5/12 max-w-xl"} ${
-        size === "destination" && "w-10/12 lg:w-4/12 max-w-xl"
+      className={`relative group/link max-w-xl ${size === "featured" && "w-11/12 lg:w-5/12"} ${
+        size === "destination" && "w-10/12 lg:w-4/12"
       } ${classes}`}
     >
       {/* Image */}
@@ -39,7 +39,11 @@ export default function PlaybookThumb({
           />
 
           {/* Layered shadow */}
-          <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
+          <div
+            className={`bg-gradient-to-t from-black/50 from-0% absolute w-full h-full top-0 ${
+              size === "destination" ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"
+            }`}
+          ></div>
 
           {(size === "featured" || size === "grid") && (
             <Destination

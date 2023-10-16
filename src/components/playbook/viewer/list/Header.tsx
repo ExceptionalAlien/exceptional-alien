@@ -68,7 +68,7 @@ export default function Header(props: HeaderProps) {
       />
 
       {/* Layered shadow */}
-      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-40% absolute w-full h-full top-0"></div>
+      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0"></div>
 
       {/* Destination */}
       <Link

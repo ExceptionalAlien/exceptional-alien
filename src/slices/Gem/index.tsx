@@ -31,14 +31,21 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       id={`gem-${gem.uid}`}
     >
       <GemIcon category={gem.data.category} classes="right-0 !m-0" />
-      <h4 className="font-bold text-xl md:text-2xl mr-10 md:mr-12 leading-tight">{gem.data.title}</h4>
-      <h5 className="text-sm md:text-base leading-tight">{gem.data.description}</h5>
+
+      <hgroup className="mr-10 md:mr-12">
+        <h4 className="font-bold text-xl md:text-2xl">{gem.data.title}</h4>
+
+        <h5>
+          {gem.data.description?.charAt(0).toUpperCase()}
+          {gem.data.description?.substring(1).toLowerCase()}
+        </h5>
+      </hgroup>
 
       {/* Address */}
       <a
         href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
         target="_blank"
-        className="leading-tight text-ex-grey text-sm md:text-base hover:text-ex-light-grey duration-300 ease-in-out transition-[color] inline-block mr-10 md:mr-12"
+        className="text-ex-grey text-sm md:text-base hover:text-ex-light-grey duration-300 ease-in-out transition-[color] inline-block mr-10 md:mr-12"
       >
         {gem.data.address}
         <svg
