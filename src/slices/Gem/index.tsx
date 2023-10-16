@@ -32,7 +32,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
     >
       <GemIcon category={gem.data.category} classes="right-0 !m-0" />
 
-      <hgroup className="mr-10 md:mr-12">
+      <hgroup className="mr-10 md:mr-12 [&>*]:leading-snug">
         <h4 className="font-bold text-xl md:text-2xl">{gem.data.title}</h4>
 
         <h5>
