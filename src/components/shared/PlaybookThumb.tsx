@@ -15,12 +15,14 @@ export default function PlaybookThumb({
   size?: string;
   classes?: string;
 }) {
-  const image = size === "featured" || size === "grid" ? playbook.data.image.mobile : playbook.data.image.thumb;
+  const image = size ? playbook.data.image.mobile : playbook.data.image.thumb;
 
   return (
     <Link
       href={"/playbooks/" + playbook.uid}
-      className={`relative group/link ${size === "featured" && "w-11/12 lg:w-5/12 max-w-xl"} ${classes}`}
+      className={`relative group/link ${size === "featured" && "w-11/12 lg:w-5/12 max-w-xl"} ${
+        size === "destination" && "w-10/12 lg:w-4/12 max-w-xl"
+      } ${classes}`}
     >
       {/* Image */}
       {playbook.data.image && image.url && (
@@ -45,12 +47,12 @@ export default function PlaybookThumb({
             />
           )}
 
-          {size === "featured" && (
+          {(size === "featured" || size === "destination") && (
             <CreatorIcon
               firstName={(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes="absolute bottom-0 w-2/5 md:w-1/3 right-0"
+              classes={`absolute right-0 ${size === "featured" ? "w-2/5 md:w-1/3 bottom-0" : "top-0"}`}
             />
           )}
 
@@ -59,7 +61,7 @@ export default function PlaybookThumb({
             className={`absolute text-white bottom-0 font-bold leading-tight ${
               size === "featured" && "pr-0 w-3/5 md:w-2/3"
             } ${
-              size === "featured" || size === "grid"
+              size
                 ? `${size === "grid" ? "text-2xl" : "text-xl"} md:text-3xl p-3 md:p-4`
                 : "text-base md:text-2xl p-2 md:p-3"
             }`}
@@ -72,11 +74,12 @@ export default function PlaybookThumb({
       {/* Description */}
       {size === "featured" && <p className="mt-2">{asText(playbook.data.description)?.substring(0, 160)}</p>}
 
-      {size !== "featured" && size !== "grid" && (
+      {!size && (
         <ThumbTab
-          title={`${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${(
-            playbook.data.creator as unknown as Content.CreatorDocument
-          ).data.last_name?.toUpperCase()}`}
+          title={`${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${
+            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name !== undefined &&
+            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name?.toUpperCase()
+          }`}
           location={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
           classes="mt-2 md:mt-3"
         />

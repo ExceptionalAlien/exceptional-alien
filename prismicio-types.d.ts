@@ -514,6 +514,21 @@ export type CreatorsDocument<Lang extends string = string> = prismic.PrismicDocu
   Lang
 >;
 
+/**
+ * Item in *Destination → Featured*
+ */
+export interface DestinationDocumentDataFeaturedItem {
+  /**
+   * Playbook field in *Destination → Featured*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.featured[].playbook
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+}
+
 type DestinationDocumentDataSlicesSlice = never;
 
 /**
@@ -563,6 +578,17 @@ interface DestinationDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   country: prismic.KeyTextField;
+
+  /**
+   * Featured field in *Destination*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.featured[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  featured: prismic.GroupField<Simplify<DestinationDocumentDataFeaturedItem>>;
 
   /**
    * Slice Zone field in *Destination*
@@ -1645,6 +1671,7 @@ declare module "@prismicio/client" {
       CreatorsDocumentDataSlicesSlice,
       DestinationDocument,
       DestinationDocumentData,
+      DestinationDocumentDataFeaturedItem,
       DestinationDocumentDataSlicesSlice,
       DestinationsDocument,
       DestinationsDocumentData,

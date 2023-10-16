@@ -34,6 +34,26 @@ const routes: prismic.ClientConfig["routes"] = [
     type: "creator",
     path: "/creators/:uid",
   },
+  {
+    type: "playbooks",
+    path: "/playbooks",
+  },
+  {
+    type: "playbook",
+    path: "/playbooks/:uid",
+  },
+  {
+    type: "destinations",
+    path: "/destinations",
+  },
+  {
+    type: "destination",
+    path: "/destinations/:uid",
+  },
+  {
+    type: "gem",
+    path: "/gems/:uid",
+  },
 ];
 
 /**
