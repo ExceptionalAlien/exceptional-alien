@@ -99,6 +99,13 @@
           "placeholder": "Place ID"
         }
       },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description",
+          "placeholder": "Max. 3 words"
+        }
+      },
       "about": {
         "type": "StructuredText",
         "config": {

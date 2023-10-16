@@ -854,6 +854,17 @@ interface GemDocumentData {
   google_maps_id: prismic.KeyTextField;
 
   /**
+   * Description field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Max. 3 words
+   * - **API ID Path**: gem.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
    * About field in *Gem*
    *
    * - **Field Type**: Rich Text

@@ -59,8 +59,12 @@ export default function Gem({ page }: PageProps) {
 
         <Hero image={page.data.image} alt={page.data.title as string} credit={page.data.photo_credit as string} />
         <About text={page.data.about} />
-        {(page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data && (
+
+        {page.data.playbooks.length &&
+        (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
           <PlaybooksGrid heading="Featured In" list={page.data.playbooks} />
+        ) : (
+          <></>
         )}
       </main>
     </>

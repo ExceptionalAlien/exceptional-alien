@@ -99,8 +99,12 @@ export default function Creator({ page }: PageProps) {
         />
 
         <About text={page.data.description} />
-        {(page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data && (
+
+        {page.data.playbooks.length &&
+        (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
           <PlaybooksGrid heading="Creator Playbooks" list={page.data.playbooks} />
+        ) : (
+          <></>
         )}
       </main>
     </>

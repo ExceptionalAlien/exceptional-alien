@@ -76,10 +76,13 @@ export default function PlaybookThumb({
 
       {!size && (
         <ThumbTab
-          title={`${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${
-            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name !== undefined &&
-            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name?.toUpperCase()
-          }`}
+          title={
+            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name
+              ? `${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${(
+                  playbook.data.creator as unknown as Content.CreatorDocument
+                ).data.last_name?.toUpperCase()}`
+              : ((playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string)
+          }
           location={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
           classes="mt-2 md:mt-3"
         />
