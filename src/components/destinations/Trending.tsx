@@ -4,7 +4,7 @@ import { GroupField, Content } from "@prismicio/client";
 export default function Trending({ destinations }: { destinations: GroupField }) {
   return (
     <section className="md:sticky top-[176px] md:w-1/2 md:float-left md:pr-3">
-      <h3 className="text-sm">TRENDING NOW</h3>
+      <h3 className="text-sm">TRENDING</h3>
 
       {destinations.map((item, i) => (
         <Link
@@ -19,7 +19,7 @@ export default function Trending({ destinations }: { destinations: GroupField })
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-9 md:w-16 h-9 md:h-16 stroke-[0.5] md:stroke-[0.25]"
+            className="w-10 md:w-14 h-10 md:h-14 stroke-[0.5]"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>

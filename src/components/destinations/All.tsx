@@ -19,12 +19,16 @@ export default function All({ destinations }: { destinations: Content.Destinatio
       {/* List */}
       <div ref={ref}>
         {destinations.map((item, i) => {
-          if (query.length <= 1 || (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null)) {
+          if (
+            query.length <= 1 ||
+            (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
+            (query.length > 1 && item.data.country?.match(new RegExp(query, "gi")) !== null)
+          ) {
             return (
               <Link
                 href={"/destinations/" + item.uid}
                 key={i}
-                className="uppercase font-bold text-2xl md:text-4xl hover:text-ex-blue duration-300 ease-in-out transition-[color] flex items-center"
+                className="uppercase font-bold text-3xl md:text-5xl hover:text-ex-blue duration-300 ease-in-out transition-[color] flex items-center"
               >
                 {item.data.title}
                 <svg
@@ -33,7 +37,7 @@ export default function All({ destinations }: { destinations: Content.Destinatio
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 md:w-9 h-6 md:h-9 stroke-[0.75] md:stroke-[0.5]"
+                  className="w-8 md:w-12 h-8 md:h-12 stroke-[0.5]"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>

@@ -554,6 +554,17 @@ interface DestinationDocumentData {
   about: prismic.RichTextField;
 
   /**
+   * Country field in *Destination*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: destination.country
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  country: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Destination*
    *
    * - **Field Type**: Slice Zone
