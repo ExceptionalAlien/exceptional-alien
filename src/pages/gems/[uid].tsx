@@ -46,7 +46,11 @@ export default function Gem({ page }: PageProps) {
       </Head>
 
       <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6">
-        <Title text={page.data.title as string} latLng={page.data.location} />
+        <Title
+          text={page.data.title as string}
+          description={page.data.description as string}
+          latLng={page.data.location}
+        />
 
         <Heading
           title={page.data.title as string}
