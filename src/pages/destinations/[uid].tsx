@@ -4,6 +4,7 @@ import { createClient } from "@/prismicio";
 import { asText } from "@prismicio/client";
 import Featured from "@/components/destination/Featured";
 import Title from "@/components/destination/Title";
+import Overview from "@/components/shared/Overview";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -39,6 +40,7 @@ export default function Creator({ page }: PageProps) {
       <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-3">
         <Title text={page.data.title as string} latLng={page.data.location} />
         {page.data.featured.length > 0 && <Featured playbooks={page.data.featured} />}
+        <Overview text={page.data.about} />
       </main>
     </>
   );
