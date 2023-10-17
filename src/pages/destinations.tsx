@@ -46,7 +46,7 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   });
 
   const destinations = await client.getAllByType("destination", {
-    fetch: "destination.title",
+    fetch: "destination.title,destination.country",
     orderings: [
       {
         field: "my.destination.title",

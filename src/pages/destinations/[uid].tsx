@@ -1,14 +1,32 @@
+import { useEffect, useContext } from "react";
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
-import { asText } from "@prismicio/client";
+import { GemsContext, GemsContextType } from "@/context/GemsContext";
+import { asText, filter } from "@prismicio/client";
 import Featured from "@/components/destination/Featured";
+import All from "@/components/destination/All";
 import Title from "@/components/destination/Title";
 import Overview from "@/components/shared/Overview";
+import Loading from "@/components/shared/Loading";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Creator({ page }: PageProps) {
+  const { gems, setGems } = useContext<GemsContextType>(GemsContext);
+
+  const loadGems = async () => {
+    const data = await getData(page.id);
+    setGems(data); // Store in context
+  };
+
+  useEffect(() => {
+    // Only get data once
+    if (!gems.length) {
+      loadGems();
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -41,6 +59,14 @@ export default function Creator({ page }: PageProps) {
         <Title text={page.data.title as string} latLng={page.data.location} />
         {page.data.featured.length > 0 && <Featured playbooks={page.data.featured} />}
         <Overview text={page.data.about} />
+
+        {gems.length !== 0 ? (
+          <All gems={gems} />
+        ) : (
+          <section>
+            <Loading text="Loading gems" />
+          </section>
+        )}
       </main>
     </>
   );
@@ -70,3 +96,20 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
     return { notFound: true };
   }
 }
+
+const getData = async (id: string) => {
+  const client = createClient();
+
+  const data = await client.getAllByType("gem", {
+    fetch: "gem.title,gem.image,gem.category",
+    filters: [filter.at("my.gem.destination", id)],
+    orderings: [
+      {
+        field: "my.gem.title",
+        direction: "asc",
+      },
+    ],
+  });
+
+  return data;
+};

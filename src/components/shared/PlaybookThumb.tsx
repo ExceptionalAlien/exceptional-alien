@@ -15,7 +15,8 @@ export default function PlaybookThumb({
   size?: string;
   classes?: string;
 }) {
-  const image = size ? playbook.data.image.mobile : playbook.data.image.thumb;
+  const image =
+    size && playbook.data.image ? playbook.data.image.mobile : playbook.data.image ? playbook.data.image.thumb : null;
 
   return (
     <Link
@@ -25,15 +26,15 @@ export default function PlaybookThumb({
       } ${classes}`}
     >
       {/* Image */}
-      {playbook.data.image && image.url && (
+      {image && (
         <div className="group-hover/link:bg-ex-blue relative">
           <Image
-            src={image.url}
+            src={image.url as string}
             alt={image.alt ? (image.alt as string) : (playbook.data.title as string)}
-            width={image.dimensions.width}
-            height={image.dimensions.height}
+            width={image.dimensions?.width}
+            height={image.dimensions?.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(image.dimensions.width, image.dimensions.height)
+              shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />

@@ -87,7 +87,7 @@ const getData = async () => {
     fetchLinks: "destination.title,creator.first_name,creator.last_name",
     orderings: [
       {
-        field: "my.creator.uid",
+        field: "my.playbook.first_publication_date",
         direction: "asc",
       },
     ],

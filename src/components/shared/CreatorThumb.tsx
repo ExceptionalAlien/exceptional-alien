@@ -13,7 +13,12 @@ export default function CreatorThumb({
   size?: string;
   classes?: string;
 }) {
-  const image = size === "featured" ? creator.data.hero_image.mobile : creator.data.profile_image;
+  const image =
+    size === "featured" && creator.data.hero_image
+      ? creator.data.hero_image.mobile
+      : creator.data.profile_image
+      ? creator.data.profile_image
+      : null;
 
   return (
     <Link
@@ -21,10 +26,10 @@ export default function CreatorThumb({
       className={`group/link ${size === "featured" && "w-10/12 md:w-5/12 max-w-xl"} ${classes}`}
     >
       {/* Image */}
-      {image && image.url && (
+      {image && (
         <div className="group-hover/link:bg-ex-blue">
           <Image
-            src={image.url}
+            src={image.url as string}
             alt={
               image.alt
                 ? (image.alt as string)
@@ -32,10 +37,10 @@ export default function CreatorThumb({
                 ? `${creator.data.first_name} ${creator.data.last_name}`
                 : (creator.data.first_name as string)
             }
-            width={image.dimensions.width}
-            height={image.dimensions.height}
+            width={image.dimensions?.width}
+            height={image.dimensions?.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(image.dimensions.width, image.dimensions.height)
+              shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
