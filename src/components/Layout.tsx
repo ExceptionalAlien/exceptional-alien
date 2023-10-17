@@ -2,6 +2,7 @@ import { useState } from "react";
 import localFont from "next/font/local";
 import { Content } from "@prismicio/client";
 import { CreatorsContext } from "@/context/CreatorsContext";
+import { PlaybooksContext } from "@/context/PlaybooksContext";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 
@@ -31,11 +32,14 @@ const helveticaMonospaced = localFont({
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [creators, setCreators] = useState<Content.CreatorDocument<string>[]>([]);
+  const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
 
   return (
     <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full`}>
       <div className="bg-white min-h-full [&>main]:min-h-full [&>main]:pt-12 [&>main]:md:pt-20 [&>main]:pb-12 [&>main]:md:pb-20 [&>main]:m-auto [&>main>section]:mt-8 [&>main>section]:md:mt-16">
-        <CreatorsContext.Provider value={{ creators, setCreators }}>{children}</CreatorsContext.Provider>
+        <CreatorsContext.Provider value={{ creators, setCreators }}>
+          <PlaybooksContext.Provider value={{ playbooks, setPlaybooks }}>{children}</PlaybooksContext.Provider>
+        </CreatorsContext.Provider>
       </div>
 
       <Footer />
