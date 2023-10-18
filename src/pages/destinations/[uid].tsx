@@ -17,12 +17,12 @@ export default function Creator({ page }: PageProps) {
 
   const loadGems = async () => {
     const data = await getData(page.id);
-    setGems(data); // Store in context
+    setGems({ ...gems, [page.uid as string]: data }); // Store in context with destination as key name
   };
 
   useEffect(() => {
-    // Only get data once
-    if (!gems.length) {
+    // Only get data once for destination
+    if (!gems[page.uid]) {
       loadGems();
     }
   }, []);
@@ -60,8 +60,8 @@ export default function Creator({ page }: PageProps) {
         {page.data.featured.length > 0 && <Featured playbooks={page.data.featured} />}
         <Overview text={page.data.about} />
 
-        {gems.length !== 0 ? (
-          <All gems={gems} />
+        {gems[page.uid] ? (
+          <All gems={gems[page.uid]} />
         ) : (
           <section>
             <Loading text="Loading gems" />

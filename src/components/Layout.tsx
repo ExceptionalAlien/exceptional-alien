@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { Content } from "@prismicio/client";
 import { CreatorsContext } from "@/context/CreatorsContext";
 import { PlaybooksContext } from "@/context/PlaybooksContext";
-import { GemsContext } from "@/context/GemsContext";
+import { GemsContext, Gems } from "@/context/GemsContext";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 
@@ -34,7 +34,7 @@ const helveticaMonospaced = localFont({
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [creators, setCreators] = useState<Content.CreatorDocument<string>[]>([]);
   const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
-  const [gems, setGems] = useState<Content.GemDocument<string>[]>([]);
+  const [gems, setGems] = useState<Gems>({});
 
   return (
     <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full`}>
