@@ -44,6 +44,11 @@ const nextConfig = {
         destination: "/creators/:slug",
       },
       {
+        source: "/playbooks/(.*)",
+        has: [{ type: "query", key: "b", value: "(?<slug>.*)" }],
+        destination: "/travel-playbooks/:slug",
+      },
+      {
         source: "/playbooks/:slug",
         destination: "/destinations/:slug",
       },
