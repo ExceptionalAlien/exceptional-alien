@@ -1,22 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Content } from "@prismicio/client";
+import GemIcon from "../shared/GemIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function GemThumb({
-  gem,
-  size,
-  classes,
-}: {
-  gem: Content.GemDocument;
-  size?: string;
-  classes?: string;
-}) {
+export default function GemThumb({ gem, classes }: { gem: Content.GemDocument; classes?: string }) {
   return (
     <Link href={"/gems/" + gem.uid} className={`group/link ${classes}`}>
       {/* Image */}
       {gem.data.image && (
-        <div className="group-hover/link:bg-ex-blue">
+        <div className="group-hover/link:bg-ex-blue relative">
           <Image
             src={gem.data.image.mobile.url as string}
             alt={gem.data.image.mobile.alt ? (gem.data.image.mobile.alt as string) : (gem.data.title as string)}
@@ -30,6 +23,8 @@ export default function GemThumb({
             )}`}
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
+
+          <GemIcon category={gem.data.category} classes="top-2 right-2 !m-0" />
         </div>
       )}
 

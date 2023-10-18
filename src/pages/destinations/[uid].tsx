@@ -108,8 +108,8 @@ const getData = async (id: string) => {
     filters: [filter.at("my.gem.destination", id)],
     orderings: [
       {
-        field: "my.gem.title",
-        direction: "asc",
+        field: "document.first_publication_date",
+        direction: "desc",
       },
     ],
   });
