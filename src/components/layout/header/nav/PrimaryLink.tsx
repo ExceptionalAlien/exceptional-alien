@@ -33,7 +33,7 @@ export default function PrimaryLink({ page, hideNav }: { page: string; hideNav: 
         <Person />
       )}
 
-      {page === "playbooks" ? "Travel Playbooks" : page}
+      {page.replace("-", " ")}
     </Link>
   );
 }

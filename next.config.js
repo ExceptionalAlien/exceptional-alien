@@ -43,6 +43,10 @@ const nextConfig = {
         source: "/people/:slug",
         destination: "/creators/:slug",
       },
+      {
+        source: "/playbooks/:slug",
+        destination: "/destinations/:slug",
+      },
     ];
   },
   reactStrictMode: true,

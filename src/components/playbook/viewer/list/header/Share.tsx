@@ -9,7 +9,7 @@ export default function Share({ title }: { title: string }) {
         .share({
           title: title,
           text: title,
-          url: "https://exceptionalalien.com/playbooks/" + router.query.uid,
+          url: "https://exceptionalalien.com/travel-playbooks/" + router.query.uid,
         })
         .then(() => console.log("Successful share"))
         .catch((error) => console.log("Error sharing", error));
@@ -17,7 +17,7 @@ export default function Share({ title }: { title: string }) {
       console.log("Share not supported");
       window.location.href = `mailto:?subject=${encodeURIComponent(
         title
-      )}&body=https://exceptionalalien.com/playbooks/${router.query.uid}`;
+      )}&body=https://exceptionalalien.com/travel-playbooks/${router.query.uid}`;
     }
   };
 

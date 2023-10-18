@@ -20,7 +20,7 @@ export default function PlaybookThumb({
 
   return (
     <Link
-      href={"/playbooks/" + playbook.uid}
+      href={"/travel-playbooks/" + playbook.uid}
       className={`relative group/link max-w-xl ${size === "featured" && "w-11/12 lg:w-5/12"} ${
         size === "destination" && "w-10/12 lg:w-4/12"
       } ${classes}`}

@@ -17,7 +17,7 @@ export default function Playbook({ page }: PageProps) {
               }`
         } | Exceptional ALIEN`}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
-        <meta property="og:url" content={`https://exceptionalalien.com/playbooks/${page.uid}`} />
+        <meta property="og:url" content={`https://exceptionalalien.com/travel-playbooks/${page.uid}`} />
 
         <meta
           property="og:title"

@@ -100,7 +100,7 @@ export default function Nav({ scrollY }: { scrollY: number }) {
 
         <div className="justify-center items-center flex-col md:flex-row relative w-full md:w-auto h-full md:h-auto md:-top-7 md:group-hover/nav:-top-3 transition-[top] duration-200 ease-in-out">
           <PrimaryLink page="destinations" hideNav={hideNav} />
-          <PrimaryLink page="playbooks" hideNav={hideNav} />
+          <PrimaryLink page="travel-playbooks" hideNav={hideNav} />
           <PrimaryLink page="creators" hideNav={hideNav} />
         </div>
 
