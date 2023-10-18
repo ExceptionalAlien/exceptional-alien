@@ -12,7 +12,7 @@ export default function ListContent({ description, audio }: { description: RichT
 
       <Link
         href="/"
-        className="text-ex-blue hover:bg-ex-blue hover:text-white duration-300 ease-in-out transition-[background-color, color] rounded-full p-2 pl-4 pr-4 border-[1.5px] border-ex-blue flex items-center justify-center md:w-max"
+        className="text-ex-blue hover:bg-ex-blue hover:text-white duration-300 ease-in-out transition-[background-color,color] rounded-full p-2 pl-4 pr-4 border-[1.5px] border-ex-blue flex items-center justify-center md:w-max"
       >
         <Story className="h-5 w-5 inline mr-2" />
         Read the Interview

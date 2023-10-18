@@ -14,7 +14,7 @@ export default function All({ playbooks }: { playbooks: Content.PlaybookDocument
 
   return (
     <section className="relative">
-      <h3>
+      <h3 className="!mb-0 md:!mb-4">
         All Travel Playbooks <span className={`text-base md:text-xl ${query && "hidden"}`}>({playbooks.length})</span>
       </h3>
 

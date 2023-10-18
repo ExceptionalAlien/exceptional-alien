@@ -13,7 +13,7 @@ export default function Filter({
 
   return (
     <form
-      className={`z-10 bg-white sticky md:absolute top-12 md:top-0 md:right-6 pb-4 pt-3 md:pt-0 ${classes}`}
+      className={`z-10 bg-white sticky md:absolute top-12 md:top-0 md:right-6 pb-4 pt-4 md:pt-0 ${classes}`}
       onSubmit={(e) => {
         e.preventDefault();
       }}

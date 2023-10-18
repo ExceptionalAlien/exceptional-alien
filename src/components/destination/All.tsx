@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Content } from "@prismicio/client";
 import GemThumb from "./GemThumb";
+import Categories from "./all/Categories";
 import Filter from "../shared/Filter";
 
 export default function All({ gems }: { gems: Content.GemDocument[] }) {
@@ -14,10 +15,11 @@ export default function All({ gems }: { gems: Content.GemDocument[] }) {
 
   return (
     <section className="relative">
-      <h3 className="!mb-0 md:!mb-3">
+      <h3 className="!mb-0 md:!mb-2">
         All Gems <span className={`text-base md:text-xl ${query && "hidden"}`}>({gems.length})</span>
       </h3>
 
+      <Categories />
       <Filter query={query} setQuery={setQuery} />
 
       {/* Thumbs */}
