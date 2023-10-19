@@ -19,7 +19,7 @@ export default function Category({
       <GemIcon
         category={name}
         hideBg={true}
-        classes="group-hover/link:[&>svg]:fill-white relative overflow-hidden !w-4 md:!w-5 h-4 md:h-5 !m-0 !mr-1 [&>svg]:-top-[10px] [&>svg]:md:-top-[12px] [&>svg]:-left-[10px] [&>svg]:md:-left-[12px] [&>svg]:!w-9 [&>svg]:md:!w-11"
+        classes="group-hover/link:[&>svg]:fill-white relative overflow-hidden !w-4 md:!w-5 h-4 md:h-5 !m-0 !mr-1 [&>svg]:-top-[10px] [&>svg]:md:-top-[12px] [&>svg]:-left-[10px] [&>svg]:md:-left-[12px] [&>svg]:!w-9 [&>svg]:md:!w-11 [&>svg]:mt-0"
       />
       {name}
     </button>

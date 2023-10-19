@@ -7,7 +7,7 @@ export default function Heading({ category, destination }: { category: string; d
       <GemIcon
         category={category}
         hideBg={true}
-        classes="!-ml-5 !-mt-5 !w-10 pl-2 pt-[9px] box-content group-hover/link:[&>svg]:fill-ex-light-grey"
+        classes="!-ml-5 !-mt-5 !w-10 pl-2 pt-[9px] box-content group-hover/link:[&>svg]:fill-ex-light-grey [&>svg]:mt-0"
       />
 
       <span className="uppercase pl-5 text-ex-blue group-hover/link:text-ex-light-grey duration-300 ease-in-out transition-[color]">

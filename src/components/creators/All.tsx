@@ -5,17 +5,17 @@ import Filter from "../shared/Filter";
 
 export default function All({ creators }: { creators: Content.CreatorDocument[] }) {
   const [query, setQuery] = useState("");
-  const [noResults, setNoresults] = useState(false);
+  const [results, setResults] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setNoresults(ref.current!.children.length > 0 ? false : true);
+    setResults(ref.current!.children.length);
   }, [query]);
 
   return (
     <section className="relative">
       <h3 className="!mb-0 md:!mb-4">
-        All Creators <span className={`text-base md:text-xl ${query && "hidden"}`}>({creators.length})</span>
+        All Creators <span className="text-base md:text-xl">({query.length > 1 ? results : creators.length})</span>
       </h3>
 
       <Filter query={query} setQuery={setQuery} />
@@ -37,7 +37,7 @@ export default function All({ creators }: { creators: Content.CreatorDocument[] 
       </div>
 
       {/* No filtered results */}
-      <p className={`m-8 md:m-16 text-center ${!noResults && "hidden"}`}>No results found</p>
+      <p className={`m-8 md:m-16 text-center ${(query.length <= 1 || results) && "hidden"}`}>No results found</p>
     </section>
   );
 }
