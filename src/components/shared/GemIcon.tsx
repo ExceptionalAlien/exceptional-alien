@@ -33,7 +33,7 @@ export default function GemIcon({
         </svg>
       )}
       {category === "Culture" && (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.99 48.96" className="gem-icon-symbol">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.99 48.96" className="gem-icon-symbol -mt-[1px]">
           <path d="M32.99 33.02h-17v-3h2v-8h-3.24l9.74-6.09 9.74 6.09h-3.24v8h2v3Zm-16-1h15v-1h-15v1Zm12-2h1v-8h-1v8Zm-3 0h2v-8h-2v8Zm-2 0h1v-8h-1v8Zm-3 0h2v-8h-2v8Zm-2 0h1v-8h-1v8Zm-.76-9h12.51l-6.26-3.91-6.26 3.91Z" />
         </svg>
       )}
@@ -43,7 +43,7 @@ export default function GemIcon({
         </svg>
       )}
       {category === "Retail" && (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.99 48.96" className="gem-icon-symbol">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.99 48.96" className="gem-icon-symbol -mt-[2px]">
           <path d="M33.45 33.48H15.53l.72-11.65h4.34v-2.44h1v2.44h5.81v-2.44h1v2.44h4.33l.72 11.65Zm-16.85-1h15.79l-.6-9.65H28.4v4.03h-1v-4.03h-5.81v4.03h-1v-4.03h-3.4l-.6 9.65Zm11.8-13.1h-1c0-.76-.31-1.51-.85-2.05-1.09-1.09-3.02-1.09-4.11 0-.55.55-.85 1.28-.85 2.05h-1c0-1.04.41-2.02 1.14-2.76.74-.74 1.72-1.14 2.76-1.14s2.03.42 2.76 1.14c.74.74 1.14 1.72 1.14 2.76Z" />
         </svg>
       )}

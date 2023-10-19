@@ -6,20 +6,22 @@ import Filter from "../shared/Filter";
 
 export default function All({ gems }: { gems: Content.GemDocument[] }) {
   const [query, setQuery] = useState("");
-  const [noResults, setNoresults] = useState(false);
+  const [results, setResults] = useState(0);
+  const [categories, setCategories] = useState<string[]>([]);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setNoresults(ref.current!.children.length > 0 ? false : true);
-  }, [query]);
+    setResults(ref.current!.children.length);
+  }, [query, categories]);
 
   return (
     <section className="relative">
       <h3 className="!mb-0 md:!mb-2">
-        All Gems <span className={`text-base md:text-xl ${query && "hidden"}`}>({gems.length})</span>
+        All Gems{" "}
+        <span className="text-base md:text-xl">({query.length > 1 || categories.length ? results : gems.length})</span>
       </h3>
 
-      <Categories />
+      <Categories categories={categories} setCategories={setCategories} />
       <Filter query={query} setQuery={setQuery} />
 
       {/* Thumbs */}
@@ -28,14 +30,24 @@ export default function All({ gems }: { gems: Content.GemDocument[] }) {
         ref={ref}
       >
         {gems.map((item, i) => {
-          if (query.length <= 1 || (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null)) {
+          if (
+            (query.length <= 1 && !categories.length) ||
+            (categories.length &&
+              query.length > 1 &&
+              item.data.title?.match(new RegExp(query, "gi")) !== null &&
+              categories.includes(item.data.category)) ||
+            (query.length > 1 && !categories.length && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
+            (categories.length && query.length <= 1 && categories.includes(item.data.category))
+          ) {
             return <GemThumb key={i} gem={item as Content.GemDocument} />;
           }
         })}
       </div>
 
       {/* No filtered results */}
-      <p className={`m-8 md:m-16 text-center ${!noResults && "hidden"}`}>No results found</p>
+      <p className={`m-8 md:m-16 text-center ${((query.length <= 1 && !categories.length) || results) && "hidden"}`}>
+        No results found
+      </p>
     </section>
   );
 }
