@@ -104,8 +104,9 @@ const getData = async (id: string) => {
   const client = createClient();
 
   const data = await client.getAllByType("gem", {
-    fetch: "gem.title,gem.image,gem.category",
+    fetch: "gem.title,gem.image,gem.category,gem.playbooks",
     filters: [filter.at("my.gem.destination", id)],
+    fetchLinks: "playbook.creator,creator.profile_image",
     orderings: [
       {
         field: "document.first_publication_date",

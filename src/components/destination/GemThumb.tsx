@@ -24,7 +24,7 @@ export default function GemThumb({ gem, classes }: { gem: Content.GemDocument; c
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
 
-          <GemIcon category={gem.data.category} classes="top-2 right-2 !m-0" />
+          <GemIcon category={gem.data.category} classes="top-2 left-2 !m-0" />
         </div>
       )}
 
