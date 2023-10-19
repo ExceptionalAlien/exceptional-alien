@@ -3,6 +3,7 @@ import { Content } from "@prismicio/client";
 import GemThumb from "./GemThumb";
 import Categories from "./all/Categories";
 import Filter from "../shared/Filter";
+import Gem from "@/img/icon-gem.svg";
 
 export default function All({ gems }: { gems: Content.GemDocument[] }) {
   const [query, setQuery] = useState("");
@@ -17,6 +18,7 @@ export default function All({ gems }: { gems: Content.GemDocument[] }) {
   return (
     <section className="relative">
       <h3 className="!mb-0 md:!mb-2">
+        <Gem className="h-5 md:h-7 inline mr-2 align-[-1px]" />
         All Gems{" "}
         <span className="text-base md:text-xl">({query.length > 1 || categories.length ? results : gems.length})</span>
       </h3>

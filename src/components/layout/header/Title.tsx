@@ -9,7 +9,7 @@ export default function Title({ scrollY }: { scrollY: number }) {
   const router = useRouter();
   const page = router.pathname.split("/")[1];
   const showTitle =
-    page === "creators" || page === "playbooks" || page === "destinations" || page === "gems" ? true : false;
+    page === "creators" || page === "travel-playbooks" || page === "destinations" || page === "gems" ? true : false;
 
   return (
     <Link
@@ -21,7 +21,7 @@ export default function Title({ scrollY }: { scrollY: number }) {
       {page}
       {page === "destinations" ? (
         <Place />
-      ) : page === "playbooks" ? (
+      ) : page === "travel-playbooks" ? (
         <Playbook />
       ) : page === "creators" ? (
         <Person />
