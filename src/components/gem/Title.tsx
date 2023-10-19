@@ -13,7 +13,10 @@ export default function Title({
     <section>
       <hgroup className="md:float-left md:w-1/2 ">
         <h2 className="font-bold text-3xl md:text-6xl">{text}</h2>
-        <h3>{description}</h3>
+        <h3 className="text-lg md:text-xl">
+          {description.charAt(0).toUpperCase()}
+          {description.substring(1).toLowerCase()}
+        </h3>
       </hgroup>
 
       <p className="font-mono text-sm float-right w-1/2 text-right hidden md:inline">
