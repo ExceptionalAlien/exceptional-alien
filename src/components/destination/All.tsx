@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Content } from "@prismicio/client";
 import GemThumb from "./GemThumb";
 import Categories from "./all/Categories";
@@ -6,13 +7,51 @@ import Filter from "../shared/Filter";
 import Gem from "@/img/icon-gem.svg";
 
 export default function All({ gems }: { gems: Content.GemDocument[] }) {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState(0);
   const [categories, setCategories] = useState<string[]>([]);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setResults(ref.current!.children.length);
+    // Set query if URL param exist
+    if (router.query.q) {
+      setQuery(router.query.q as string);
+    }
+
+    // Set categories if URL param exist
+    if (router.query.c) {
+      setCategories((router.query.c as string).split(","));
+    }
+  }, []);
+
+  useEffect(() => {
+    const params = router.query;
+
+    // Set query param
+    if (query.length > 1) {
+      params.q = query;
+    } else {
+      delete params.q;
+    }
+
+    // Set categories param
+    if (categories.length) {
+      params.c = categories.toString();
+    } else {
+      delete params.c;
+    }
+
+    // Update router
+    router.replace(
+      {
+        query: params,
+      },
+      undefined,
+      { shallow: true }
+    );
+
+    setResults(ref.current!.children.length); // Count results
   }, [query, categories]);
 
   return (
@@ -37,9 +76,9 @@ export default function All({ gems }: { gems: Content.GemDocument[] }) {
             (categories.length &&
               query.length > 1 &&
               item.data.title?.match(new RegExp(query, "gi")) !== null &&
-              categories.includes(item.data.category)) ||
+              categories.includes(item.data.category.toLowerCase())) ||
             (query.length > 1 && !categories.length && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
-            (categories.length && query.length <= 1 && categories.includes(item.data.category))
+            (categories.length && query.length <= 1 && categories.includes(item.data.category.toLowerCase()))
           ) {
             return <GemThumb key={i} gem={item as Content.GemDocument} />;
           }

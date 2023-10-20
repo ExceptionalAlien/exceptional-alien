@@ -11,9 +11,9 @@ export default function Category({
 }) {
   return (
     <button
-      onClick={() => categoryClick(name)}
+      onClick={() => categoryClick(name.toLowerCase())}
       className={`group/link text-sm md:text-base text-ex-blue hover:bg-ex-blue hover:text-white duration-300 ease-in-out transition-[background-color,color] rounded-full pb-1 md:pb-2 pt-[6px] md:pt-[9px] pl-2 md:pl-4 pr-2 md:pr-4 border-[1.5px] border-ex-blue inline-flex items-center mt-2 mr-2 ${
-        categories.includes(name) && "bg-ex-blue text-white [&>div>svg]:fill-white"
+        categories.includes(name.toLowerCase()) && "bg-ex-blue text-white [&>div>svg]:fill-white"
       }`}
     >
       <GemIcon

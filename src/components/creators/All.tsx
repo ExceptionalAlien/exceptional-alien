@@ -9,7 +9,7 @@ export default function All({ creators }: { creators: Content.CreatorDocument[] 
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setResults(ref.current!.children.length);
+    setResults(ref.current!.children.length); // Count results
   }, [query]);
 
   return (

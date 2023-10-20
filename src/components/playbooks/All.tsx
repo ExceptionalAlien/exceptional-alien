@@ -9,7 +9,7 @@ export default function All({ playbooks }: { playbooks: Content.PlaybookDocument
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setResults(ref.current!.children.length);
+    setResults(ref.current!.children.length); // Count results
   }, [query]);
 
   return (

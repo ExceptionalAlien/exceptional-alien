@@ -3,7 +3,10 @@ import GemIcon from "@/components/shared/GemIcon";
 
 export default function Heading({ category, destination }: { category: string; destination: string }) {
   return (
-    <Link href={`/destinations/${destination}?filter=${category.toLowerCase()}`} className="group/link block w-max">
+    <Link
+      href={`/destinations/${destination}?c=${category.toLowerCase().replace("&", "%26")}`}
+      className="group/link block w-max"
+    >
       <GemIcon
         category={category}
         hideBg={true}
