@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Content } from "@prismicio/client";
 import GemIcon from "../shared/GemIcon";
+import CreatorIcon from "../shared/CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 export default function GemThumb({ gem, classes }: { gem: Content.GemDocument; classes?: string }) {
@@ -25,6 +26,25 @@ export default function GemThumb({ gem, classes }: { gem: Content.GemDocument; c
           />
 
           <GemIcon category={gem.data.category} classes="top-2 left-2 !m-0" />
+
+          {/* Creators */}
+          {gem.data.playbooks.map(
+            (item, i) =>
+              (item.playbook as unknown as Content.PlaybookDocument).data && (
+                <CreatorIcon
+                  key={i}
+                  firstName=""
+                  lastName=""
+                  image={
+                    (
+                      (item.playbook as unknown as Content.PlaybookDocument).data
+                        .creator as unknown as Content.CreatorDocument
+                    ).data.profile_image
+                  }
+                  classes={`absolute right-0 bottom-0 !p-2 [&>img]:w-8 [&>img]:md:w-10 mr-${i * 2}`}
+                />
+              )
+          )}
         </div>
       )}
 
