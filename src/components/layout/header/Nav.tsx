@@ -11,6 +11,10 @@ function Buttons({
   setShowingNav: React.Dispatch<React.SetStateAction<boolean>>;
   scrollY: number;
 }) {
+  const searchClick = () => {
+    alert("Search coming soon");
+  };
+
   return (
     <div
       className={`absolute h-full right-0 top-0 [&>button]:p-3 [&>button]:md:p-4 [&>button]:transition-[opacity,color] [&>button]:duration-300 [&>button]:ease-in-out [&>button]:h-full hover:[&>button]:opacity-50 ${
@@ -18,7 +22,7 @@ function Buttons({
       }`}
     >
       {/* Search */}
-      <button title="Search" className="md:!pr-6">
+      <button onClick={searchClick} title="Search" className="md:!pr-6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

@@ -14,8 +14,8 @@ export default function Title({
       <hgroup className="md:float-left md:w-1/2 ">
         <h2 className="font-bold text-3xl md:text-6xl">{text}</h2>
         <h3 className="text-lg md:text-xl">
-          {description.charAt(0).toUpperCase()}
-          {description.substring(1).toLowerCase()}
+          {description?.charAt(0).toUpperCase()}
+          {description?.substring(1).toLowerCase()}
         </h3>
       </hgroup>
 

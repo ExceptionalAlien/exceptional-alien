@@ -110,8 +110,8 @@ function GoogleMap(props: MapProps) {
       const marker = new window.google.maps.marker.AdvancedMarkerElement({
         map,
         position: {
-          lat: gem.data.location.latitude,
-          lng: gem.data.location.longitude,
+          lat: gem.data.location?.latitude,
+          lng: gem.data.location?.longitude,
         },
         title: gem.data.title,
         content: div,
@@ -125,8 +125,8 @@ function GoogleMap(props: MapProps) {
 
       // Include marker in init map boundary
       bounds.extend({
-        lat: gem.data.location.latitude,
-        lng: gem.data.location.longitude,
+        lat: gem.data.location?.latitude,
+        lng: gem.data.location?.longitude,
       });
 
       marker.addListener("click", () => {
