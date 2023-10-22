@@ -75,11 +75,11 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
           className="relative w-2/5 float-left"
         />
 
-        <div className="float-left pb-6 mb-6 md:mb-8 pl-3 md:pl-4 w-3/5 [&>*]:text-ex-blue [&>*]:text-sm [&>*]:md:text-base [&>*]:font-bold">
+        <div className="float-left pb-6 mb-6 md:mb-8 pl-3 md:pl-4 w-3/5 [&>*]:text-ex-blue [&>*]:text-sm [&>*]:md:text-base [&>p]:font-bold">
           <PrismicRichText field={slice.primary.description} />
 
           {!creator.data ? (
-            <p className="mt-3 md:mt-4">
+            <p className="mt-3 md:mt-4 !font-normal">
               {context.creator.data.first_name} {context.creator.data.last_name?.toUpperCase()}
             </p>
           ) : (
