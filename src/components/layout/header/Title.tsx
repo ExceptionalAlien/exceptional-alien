@@ -18,7 +18,7 @@ export default function Title({ scrollY }: { scrollY: number }) {
         scrollY > 0 ? "text-white" : "text-black"
       } ${!showTitle && "hidden"}`}
     >
-      {page}
+      {page.replace("travel-playbooks", "Playbooks")}
       {page === "destinations" ? (
         <Place />
       ) : page === "travel-playbooks" ? (
