@@ -7,6 +7,7 @@ import Title from "@/components/gem/Title";
 import Heading from "@/components/gem/Heading";
 import About from "@/components/shared/About";
 import PlaybooksGrid from "@/components/shared/PlaybooksGrid";
+import Quotes from "@/components/gem/quotes";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -63,6 +64,7 @@ export default function Gem({ page }: PageProps) {
 
         <Hero image={page.data.image} alt={page.data.title as string} credit={page.data.photo_credit as string} />
         <About text={page.data.about} />
+        <Quotes playbooks={page.data.playbooks} gem={page.uid} />
 
         {page.data.playbooks.length &&
         (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
@@ -88,7 +90,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
 
     const page = await client.getByUID("gem", params?.uid as string, {
       fetchLinks:
-        "playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,creator.first_name,creator.last_name,creator.profile_image,destination.title",
+        "playbook.title,playbook.image,playbook.destination,playbook.creator,playbook.slices,creator.first_name,creator.last_name,creator.profile_image,destination.title",
     });
 
     return {

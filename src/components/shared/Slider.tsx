@@ -1,15 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 
-export default function Slider({
-  children,
-  itemCount,
-  classes,
-}: {
-  children: any;
-  itemCount?: number;
-  classes?: string;
-}) {
+export default function Slider({ children, classes }: { children: any; classes?: string }) {
   const [scrollPos, setScrollPos] = useState("start");
+  const [itemCount, setItemCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   const scrollBack = () => {
@@ -27,6 +20,8 @@ export default function Slider({
   };
 
   useEffect(() => {
+    setItemCount(children.length);
+
     const handleScroll = () => {
       const slider = ref.current!;
 

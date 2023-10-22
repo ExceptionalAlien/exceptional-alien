@@ -11,7 +11,7 @@ export default function Featured({ playbooks }: { playbooks: GroupField }) {
         Travel Playbooks
       </h3>
 
-      <Slider itemCount={playbooks.length}>
+      <Slider>
         {playbooks.map((item, i) => (
           <PlaybookThumb key={i} playbook={item.playbook as Content.PlaybookDocument} size="destination" />
         ))}

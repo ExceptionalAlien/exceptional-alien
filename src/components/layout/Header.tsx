@@ -23,7 +23,6 @@ export default function Header() {
   return (
     <>
       <Head>
-        <title>Exceptional ALIEN</title>
         <meta name="theme-color" content={scrollY > 0 ? "#2220C1" : "#FFFFFF"} />
         <meta name="robots" content="noindex" />
         <meta property="og:type" content="website" />
