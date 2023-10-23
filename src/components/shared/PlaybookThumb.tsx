@@ -51,7 +51,7 @@ export default function PlaybookThumb({
           <div
             className={`bg-gradient-to-t from-black/50 from-0% absolute w-full h-full top-0 ${
               !imageLoaded && "hidden"
-            } ${size ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"}`}
+            } ${size === "destination" ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"}`}
           ></div>
 
           {(size === "featured" || size === "grid") && (
