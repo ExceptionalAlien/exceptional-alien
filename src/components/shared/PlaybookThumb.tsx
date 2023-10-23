@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content, asText } from "@prismicio/client";
@@ -15,8 +16,14 @@ export default function PlaybookThumb({
   size?: string;
   classes?: string;
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const image =
     size && playbook.data.image ? playbook.data.image.mobile : playbook.data.image ? playbook.data.image.thumb : null;
+
+  const imageLoadComplete = () => {
+    setImageLoaded(true);
+  };
 
   return (
     <Link
@@ -36,14 +43,15 @@ export default function PlaybookThumb({
             placeholder={`data:image/svg+xml;base64,${toBase64(
               shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
+            onLoad={imageLoadComplete}
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
 
           {/* Layered shadow */}
           <div
             className={`bg-gradient-to-t from-black/50 from-0% absolute w-full h-full top-0 ${
-              size ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"
-            }`}
+              !imageLoaded && "hidden"
+            } ${size ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"}`}
           ></div>
 
           {(size === "featured" || size === "grid") && (

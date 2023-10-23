@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content } from "@prismicio/client";
@@ -13,6 +14,12 @@ interface GemThumbProps {
 }
 
 export default function GemThumb(props: GemThumbProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const imageLoadComplete = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <Link
       href={"/gems/" + props.gem.uid}
@@ -36,12 +43,15 @@ export default function GemThumb(props: GemThumbProps) {
                 props.gem.data.image.mobile.dimensions?.height as number
               )
             )}`}
+            onLoad={imageLoadComplete}
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
 
           {props.size && (
             <div
-              className={`bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0`}
+              className={`bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0 ${
+                !imageLoaded && "hidden"
+              }`}
             ></div>
           )}
 

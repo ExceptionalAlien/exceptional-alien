@@ -17,7 +17,12 @@ interface HeaderProps {
 export default function Header(props: HeaderProps) {
   const [stickyTop, setStickyTop] = useState(0);
   const [blur, setBlur] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  const imageLoadComplete = () => {
+    setImageLoaded(true);
+  };
 
   useEffect(() => {
     const handleResizeAndScroll = (e?: Event) => {
@@ -60,6 +65,7 @@ export default function Header(props: HeaderProps) {
         placeholder={`data:image/svg+xml;base64,${toBase64(
           shimmer(props.image.dimensions!.width, props.image.dimensions!.height)
         )}`}
+        onLoad={imageLoadComplete}
         className="w-full"
         style={{
           filter: `blur(${blur}px)`,
@@ -68,7 +74,11 @@ export default function Header(props: HeaderProps) {
       />
 
       {/* Layered shadow */}
-      <div className="bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0"></div>
+      <div
+        className={`bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0 ${
+          !imageLoaded && "hidden"
+        }`}
+      ></div>
 
       {/* Destination */}
       <Link
