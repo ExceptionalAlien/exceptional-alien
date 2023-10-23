@@ -57,13 +57,15 @@ export default function PlaybookThumb({
               firstName={(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes={`absolute right-0 top-0 ${size !== "destination" && "w-1/2"}`}
+              classes={`absolute right-0 ${size === "featured" ? "w-2/5 md:w-1/3 bottom-0" : "w-1/2 top-0"}`}
             />
           )}
 
           {/* Title */}
           <p
             className={`absolute text-white bottom-0 font-bold leading-tight ${
+              size === "featured" && "!pr-0 w-3/5 md:w-2/3"
+            } ${
               size
                 ? `${size === "grid" ? "text-2xl" : "text-xl"} md:text-3xl p-3 md:p-4`
                 : "text-base md:text-2xl p-2 md:p-3"
