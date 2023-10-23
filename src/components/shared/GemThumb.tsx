@@ -47,13 +47,11 @@ export default function GemThumb(props: GemThumbProps) {
             className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
           />
 
-          {props.size && (
-            <div
-              className={`bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0 ${
-                !imageLoaded && "hidden"
-              }`}
-            ></div>
-          )}
+          <div
+            className={`bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0 ${
+              (!imageLoaded || !props.size) && "hidden"
+            }`}
+          ></div>
 
           <GemIcon
             category={props.gem.data.category}

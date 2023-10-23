@@ -19,7 +19,11 @@ export default function PlaybookThumb({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const image =
-    size && playbook.data.image ? playbook.data.image.mobile : playbook.data.image ? playbook.data.image.thumb : null;
+    size && playbook.data && playbook.data.image
+      ? playbook.data.image.mobile
+      : playbook.data && playbook.data.image
+      ? playbook.data.image.thumb
+      : null;
 
   const imageLoadComplete = () => {
     setImageLoaded(true);
@@ -51,7 +55,7 @@ export default function PlaybookThumb({
           <div
             className={`bg-gradient-to-t from-black/50 from-0% absolute w-full h-full top-0 ${
               !imageLoaded && "hidden"
-            } ${size === "destination" ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"}`}
+            } ${size && size !== "featured" ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"}`}
           ></div>
 
           {(size === "featured" || size === "grid") && (
