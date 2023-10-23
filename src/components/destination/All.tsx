@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Content } from "@prismicio/client";
-import GemThumb from "./GemThumb";
+import GemThumb from "../shared/GemThumb";
 import Categories from "./all/Categories";
 import Filter from "../shared/Filter";
 import Gem from "@/img/icon-gem.svg";

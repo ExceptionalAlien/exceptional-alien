@@ -1,32 +1,44 @@
 import Head from "next/head";
+import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
+import { createClient } from "@/prismicio";
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
-export default function Home() {
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+export default function Home({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>Exceptional ALIEN - Travel Inspiration & Guides Curated by Exceptional Creators</title>
-
-        <meta
-          name="description"
-          content="Explore extraordinary destinations curated by exceptional creators, including London, Tokyo, New York, Sydney, and more."
-        />
-
+        <title>{`Exceptional ALIEN${" - " + page.data.meta_title ?? ""}`}</title>
+        <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com" />
+        <meta property="og:title" content={`Exceptional ALIEN${" - " + page.data.meta_title ?? ""}`} />
+        <meta property="og:description" content={page.data.meta_description ?? ""} />
 
         <meta
-          property="og:title"
-          content="Exceptional ALIEN - Travel Inspiration & Guides Curated by Exceptional Creators"
+          property="og:image"
+          content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
         />
-
-        <meta
-          property="og:description"
-          content="Explore extraordinary destinations curated by exceptional creators, including London, Tokyo, New York, Sydney, and more."
-        />
-
-        <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
       </Head>
 
-      <main className="min-h-full"></main>
+      <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-4">
+        <SliceZone slices={page.data.slices} components={components} />
+      </main>
     </>
   );
+}
+
+export async function getStaticProps({ previewData }: GetStaticPropsContext) {
+  const client = createClient({ previewData });
+  const page = await client.getSingle("home", {
+    fetchLinks:
+      "playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,playbook.slices,destination.title,creator.first_name,creator.last_name,creator.profile_image,gem.title,gem.image,gem.category",
+  });
+
+  return {
+    props: {
+      page,
+    },
+  };
 }

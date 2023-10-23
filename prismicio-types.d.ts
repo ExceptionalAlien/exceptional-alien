@@ -956,7 +956,7 @@ export type GemDocument<Lang extends string = string> = prismic.PrismicDocumentW
   Lang
 >;
 
-type HomeDocumentDataSlicesSlice = never;
+type HomeDocumentDataSlicesSlice = PlaybooksSlice;
 
 /**
  * Content for Home documents
@@ -1444,6 +1444,74 @@ type HighlightSliceVariation = HighlightSliceDefault;
 export type HighlightSlice = prismic.SharedSlice<"highlight", HighlightSliceVariation>;
 
 /**
+ * Primary content in *Playbooks → Primary*
+ */
+export interface PlaybooksSliceDefaultPrimary {
+  /**
+   * Title field in *Playbooks → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Size field in *Playbooks → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: playbooks.primary.size
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  size: prismic.BooleanField;
+}
+
+/**
+ * Primary content in *Playbooks → Items*
+ */
+export interface PlaybooksSliceDefaultItem {
+  /**
+   * Playbook field in *Playbooks → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.items[].playbook
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+}
+
+/**
+ * Default variation for Playbooks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PlaybooksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PlaybooksSliceDefaultPrimary>,
+  Simplify<PlaybooksSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Playbooks*
+ */
+type PlaybooksSliceVariation = PlaybooksSliceDefault;
+
+/**
+ * Playbooks Shared Slice
+ *
+ * - **API ID**: `playbooks`
+ * - **Description**: Playbooks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PlaybooksSlice = prismic.SharedSlice<"playbooks", PlaybooksSliceVariation>;
+
+/**
  * Primary content in *SingleHeading → Primary*
  */
 export interface SingleHeadingSliceDefaultPrimary {
@@ -1714,6 +1782,11 @@ declare module "@prismicio/client" {
       HighlightSliceDefaultPrimary,
       HighlightSliceVariation,
       HighlightSliceDefault,
+      PlaybooksSlice,
+      PlaybooksSliceDefaultPrimary,
+      PlaybooksSliceDefaultItem,
+      PlaybooksSliceVariation,
+      PlaybooksSliceDefault,
       SingleHeadingSlice,
       SingleHeadingSliceDefaultPrimary,
       SingleHeadingSliceVariation,

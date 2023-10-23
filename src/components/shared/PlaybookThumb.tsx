@@ -57,7 +57,7 @@ export default function PlaybookThumb({
               firstName={(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes="absolute right-0 top-0 w-1/2"
+              classes={`absolute right-0 top-0 ${size !== "destination" && "w-1/2"}`}
             />
           )}
 
@@ -86,7 +86,7 @@ export default function PlaybookThumb({
                 ).data.last_name?.toUpperCase()}`
               : ((playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string)
           }
-          location={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+          location={(playbook.data.destination as unknown as Content.DestinationDocument).data?.title as string}
           classes="mt-2 md:mt-3"
         />
       )}

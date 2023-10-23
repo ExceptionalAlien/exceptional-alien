@@ -1,0 +1,46 @@
+{
+  "id": "playbooks",
+  "type": "SharedSlice",
+  "name": "Playbooks",
+  "description": "Playbooks",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "size": {
+          "type": "Boolean",
+          "config": {
+            "label": "Size",
+            "placeholder_false": "Default",
+            "placeholder_true": "Large",
+            "default_value": false
+          }
+        }
+      },
+      "items": {
+        "playbook": {
+          "type": "Link",
+          "config": {
+            "label": "Playbook",
+            "select": "document",
+            "customtypes": [
+              "playbook"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
