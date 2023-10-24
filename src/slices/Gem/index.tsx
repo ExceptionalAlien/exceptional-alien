@@ -64,16 +64,18 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
 
       {/* Details */}
       <div className="gem-content mt-2 md:mt-3">
-        <Image
-          src={gem.data.image.thumb.url as string}
-          alt={gem.data.image.thumb.alt ? (gem.data.image.thumb.alt as string) : (gem.data.title as string)}
-          width={gem.data.image.thumb.dimensions!.width}
-          height={gem.data.image.thumb.dimensions!.height}
-          placeholder={`data:image/svg+xml;base64,${toBase64(
-            shimmer(gem.data.image.thumb.dimensions!.width, gem.data.image.thumb.dimensions!.height)
-          )}`}
-          className="relative w-2/5 float-left"
-        />
+        {gem.data.image && (
+          <Image
+            src={gem.data.image.thumb.url as string}
+            alt={gem.data.image.thumb.alt ? (gem.data.image.thumb.alt as string) : (gem.data.title as string)}
+            width={gem.data.image.thumb.dimensions!.width}
+            height={gem.data.image.thumb.dimensions!.height}
+            placeholder={`data:image/svg+xml;base64,${toBase64(
+              shimmer(gem.data.image.thumb.dimensions!.width, gem.data.image.thumb.dimensions!.height)
+            )}`}
+            className="relative w-2/5 float-left"
+          />
+        )}
 
         <div className="float-left pb-6 mb-6 md:mb-8 pl-3 md:pl-4 w-3/5 [&>*]:text-ex-blue [&>*]:text-sm [&>*]:md:text-base [&>p]:font-bold">
           <PrismicRichText field={slice.primary.description} />
