@@ -46,7 +46,7 @@ export default function Search() {
         <meta property="og:title" content="Exceptional ALIEN - Search" />
         <meta
           property="og:description"
-          content="Search exceptional destinations, Travel Playbooks, Gems and Creators."
+          content="Search exceptional Destinations, Travel Playbooks, Gems and Creators."
         />
         <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
       </Head>
