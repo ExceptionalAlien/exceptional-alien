@@ -37,7 +37,7 @@ export default function Quotes({ playbooks, gem }: { playbooks: GroupField; gem:
 
   return (
     <section className="!pl-0 !pr-0">
-      <Slider>
+      <Slider minItems={3}>
         {quotes.map((item, i) => (
           <Quote
             key={i}

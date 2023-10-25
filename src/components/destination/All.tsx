@@ -14,12 +14,12 @@ export default function All({ gems }: { gems: Content.GemDocument[] }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Set query if URL param exist
+    // Set query on load if URL param exists
     if (router.query.q) {
       setQuery(router.query.q as string);
     }
 
-    // Set categories if URL param exist
+    // Set categories on load if URL param exists
     if (router.query.c) {
       setCategories((router.query.c as string).split(","));
     }

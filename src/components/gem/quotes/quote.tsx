@@ -13,8 +13,8 @@ export interface QuoteProps {
 
 export default function Quote(props: QuoteProps) {
   return (
-    <div className="w-3/4 md:w-1/3">
-      <div className="aspect-video relative border border-ex-blue p-3 md:p-4 [&_p]:text-ex-blue [&>p]:font-bold [&>p]:text-base [&>p]:md:text-lg [&>p]:mb-3 [&>p]:md:mb-4 [&>p]:pb-10 [&>p]:md:pb-12">
+    <div className="w-4/5 md:w-[calc((100%/3)-24px)]">
+      <div className="aspect-square relative border border-ex-blue p-3 md:p-4 [&_p]:text-ex-blue [&>p]:font-bold text-base [&>p]:mb-3 [&>p]:md:mb-4 [&>p]:pb-10 [&>p]:md:pb-12">
         <PrismicRichText field={props.text} />
 
         <Link href={`/creators/${props.uid}`}>

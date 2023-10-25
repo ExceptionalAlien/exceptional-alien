@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "highlight": {
+              "type": "SharedSlice"
+            },
             "playbooks": {
               "type": "SharedSlice"
             }

@@ -956,7 +956,7 @@ export type GemDocument<Lang extends string = string> = prismic.PrismicDocumentW
   Lang
 >;
 
-type HomeDocumentDataSlicesSlice = PlaybooksSlice;
+type HomeDocumentDataSlicesSlice = HighlightSlice | PlaybooksSlice;
 
 /**
  * Content for Home documents

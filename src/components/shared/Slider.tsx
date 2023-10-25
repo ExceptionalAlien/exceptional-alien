@@ -1,6 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 
-export default function Slider({ children, classes }: { children: any; classes?: string }) {
+export default function Slider({
+  children,
+  minItems = 2,
+  classes,
+}: {
+  children: any;
+  minItems?: number;
+  classes?: string;
+}) {
   const [scrollPos, setScrollPos] = useState("start");
   const [itemCount, setItemCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -63,7 +71,7 @@ export default function Slider({ children, classes }: { children: any; classes?:
       {/* Right arrow */}
       <button
         onClick={scrollForward}
-        className={`right-3 ${(scrollPos === "end" || (itemCount && itemCount <= 2)) && "!hidden"}`}
+        className={`right-3 ${(scrollPos === "end" || (itemCount && itemCount <= minItems)) && "!hidden"}`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
