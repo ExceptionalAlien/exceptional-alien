@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 export default function Field() {
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const [focused, setFocused] = useState(false);
 
   const clear = () => {
     setQuery("");
@@ -40,7 +39,7 @@ export default function Field() {
   };
 
   return (
-    <form name="searchBox" onSubmit={submit} className="relative text-ex-blue">
+    <form name="searchBox" onSubmit={submit} className="relative">
       {/* Search icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +47,7 @@ export default function Field() {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-5 md:w-6 h-5 md:h-6 inline align-[-3px] md:align-[-1px]"
+        className="w-5 md:w-6 h-5 md:h-6 inline align-[-1px]"
       >
         <path
           strokeLinecap="round"
@@ -61,10 +60,8 @@ export default function Field() {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        placeholder="Destinations, Playbooks & Creators"
-        className="max-[320px]:w-64 w-80 md:w-[480px] ml-1 md:ml-2 border-b border-ex-blue outline-none rounded-none text-xl md:text-3xl pr-5 md:pr-[26px] pb-[2px] md:pb-1 text-ex-blue"
+        placeholder="Destinations, Creators & more"
+        className="max-[320px]:w-64 w-80 md:w-[440px] ml-1 md:ml-2 border-b border-black outline-none rounded-none text-2xl md:text-3xl pr-5 md:pr-7"
       />
 
       {/* Clear */}
@@ -72,7 +69,7 @@ export default function Field() {
         <button
           type="button"
           onClick={clear}
-          className="bottom-[2px] md:bottom-1 -right-2 md:-right-[10px] absolute p-1 md:p-[6px] hover:opacity-50 duration-300 ease-in-out transition-[opacity]"
+          className="bottom-[2px] md:bottom-[-2px] -right-2 md:-right-3 absolute p-1 md:p-2 hover:text-ex-light-grey duration-300 ease-in-out transition-[color]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

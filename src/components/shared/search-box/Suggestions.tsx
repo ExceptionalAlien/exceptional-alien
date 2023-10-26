@@ -19,16 +19,16 @@ export default function Suggestions() {
   }, []);
 
   return (
-    <div className="mt-2 md:mt-3 pl-4 md:pl-6 pr-4 md:pr-6 text-center">
-      {destinations.map((item, i) => (
+    <div className="mt-2 md:mt-4 pl-4 md:pl-6 pr-4 md:pr-6 md:text-center min-h-[76px] md:min-h-[46px]">
+      {destinations.slice(0, 6).map((item, i) => (
         <Link
           href={`/destinations/${(item.destination as unknown as Content.DestinationDocument).uid}`}
           key={i}
-          className="inline-block mt-2 md:mt-[10px] ml-1 md:ml-[6px] mr-1 md:mr-[6px]"
+          className="inline-block mt-2 ml-1 mr-1"
         >
           <Destination
             name={(item.destination as unknown as Content.DestinationDocument).data.title as string}
-            classes="!static border-[1.5px] font-normal border-ex-blue !text-ex-blue bg-white !p-[6px] !pl-[10px] !pr-[10px]"
+            classes="!static border font-normal border-ex-blue !text-ex-blue bg-white !p-[6px] md:!p-2 !pl-2 md:!pl-3 !pr-3 md:!pr-4 text-xs md:text-sm !h-4 md:!h-5 [&>svg]:align-[-4px] [&>svg]:md:align-[-5px]"
           />
         </Link>
       ))}

@@ -74,7 +74,7 @@ export default function Nav({ scrollY }: { scrollY: number }) {
         {/* <Link
           href="/download"
           onClick={hideNav}
-          className={`landscape:!hidden md:!hidden landscape:lg:!inline-flex box-content z-10 absolute md:static left-1/2 -translate-x-1/2 md:translate-x-0 w-[calc(100%-80px)] md:w-auto max-w-xs bottom-6 justify-center border-[1.5px] border-ex-blue rounded-full p-4 pt-2 pb-2 md:ml-4 mr-4 [&>svg]:mr-1 hover:md:text-white ${
+          className={`landscape:!hidden md:!hidden landscape:lg:!inline-flex box-content z-10 absolute md:static left-1/2 -translate-x-1/2 md:translate-x-0 w-[calc(100%-80px)] md:w-auto max-w-xs bottom-6 justify-center border border-ex-blue rounded-full p-4 pt-2 pb-2 md:ml-4 mr-4 [&>svg]:mr-1 hover:md:text-white ${
             scrollY > 0
               ? "hover:md:bg-white md:border-white hover:md:!text-ex-blue"
               : "hover:md:bg-black md:border-black hover:md:border-black"

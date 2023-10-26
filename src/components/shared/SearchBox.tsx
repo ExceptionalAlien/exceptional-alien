@@ -1,15 +1,23 @@
 import Field from "./search-box/Field";
 import Suggestions from "./search-box/Suggestions";
 
-export default function SearchBox({ fixed, classes }: { fixed?: boolean; classes?: string }) {
+export default function SearchBox({
+  fixed,
+  suggestions,
+  classes,
+}: {
+  fixed?: boolean;
+  suggestions?: boolean;
+  classes?: string;
+}) {
   return (
     <div
-      className={`flex flex-col justify-center items-center top-12 md:top-20 overflow-hidden ${
-        fixed ? "fixed h-0" : "h-80 md:h-96"
+      className={`max-w-sm md:max-w-none m-auto flex flex-col justify-center items-center top-12 md:top-20 ${
+        fixed ? "fixed h-0 overflow-hidden" : "h-72 md:h-80"
       } ${classes}`}
     >
       <Field />
-      <Suggestions />
+      {suggestions && <Suggestions />}
     </div>
   );
 }

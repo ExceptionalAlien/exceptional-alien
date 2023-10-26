@@ -24,7 +24,7 @@ export default function Home({ page }: PageProps) {
       </Head>
 
       <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-4 [&>[data-slice-type=highlight]]:md:text-4xl [&>[data-slice-type=highlight]]:pt-4 [&>[data-slice-type=highlight]]:md:pt-8 [&>[data-slice-type=highlight]]:pb-4 [&>[data-slice-type=highlight]]:md:pb-8 [&>*:nth-child(2)]:!mt-0">
-        <SearchBox />
+        <SearchBox suggestions={true} />
         <SliceZone slices={page.data.slices} components={components} />
       </main>
     </>
