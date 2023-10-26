@@ -40,20 +40,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [search, setSearch] = useState<Search>({ destinations: [], playbooks: [], gems: [], creators: [] });
 
   return (
-    <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans h-full`}>
-      <div className="bg-white min-h-full [&>main]:min-h-full [&>main]:pt-12 [&>main]:md:pt-20 [&>main]:pb-12 [&>main]:md:pb-20 [&>main]:m-auto [&>main>section]:mt-8 [&>main>section]:md:mt-16">
-        <CreatorsContext.Provider value={{ creators, setCreators }}>
-          <PlaybooksContext.Provider value={{ playbooks, setPlaybooks }}>
-            <GemsContext.Provider value={{ gems, setGems }}>
-              <SearchContext.Provider value={{ search, setSearch }}>{children}</SearchContext.Provider>
-            </GemsContext.Provider>
-          </PlaybooksContext.Provider>
-        </CreatorsContext.Provider>
-      </div>
+    <CreatorsContext.Provider value={{ creators, setCreators }}>
+      <PlaybooksContext.Provider value={{ playbooks, setPlaybooks }}>
+        <GemsContext.Provider value={{ gems, setGems }}>
+          <SearchContext.Provider value={{ search, setSearch }}>
+            <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
+              <div className="bg-white [&>main]:pt-12 [&>main]:md:pt-20 [&>main]:pb-12 [&>main]:md:pb-20 [&>main]:m-auto [&>main>section]:mt-8 [&>main>section]:md:mt-16">
+                {children}
+              </div>
 
-      <Footer />
-      <Header />
-      <SearchBox fixed={true} />
-    </div>
+              <Footer />
+              <Header />
+              <SearchBox fixed={true} />
+            </div>
+          </SearchContext.Provider>
+        </GemsContext.Provider>
+      </PlaybooksContext.Provider>
+    </CreatorsContext.Provider>
   );
 }

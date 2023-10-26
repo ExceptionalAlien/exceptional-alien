@@ -5,5 +5,10 @@ export default function Logo() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  return <LogoIcon onClick={scrollToTop} className="pb-safe h-12 fill-white m-4 md:m-6 absolute right-0 bottom-0" />;
+  return (
+    <LogoIcon
+      onClick={scrollToTop}
+      className="pb-safe h-12 text-white absolute right-4 md:right-6 bottom-4 md:bottom-6 box-content"
+    />
+  );
 }

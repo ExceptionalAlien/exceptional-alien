@@ -9,19 +9,13 @@
   --color-red: rgb(255, 60, 0);
 }
 
-html,
-body,
-#__next {
-  height: 100%;
-  -webkit-tap-highlight-color: transparent;
-}
-
 body {
   color: black;
   background-image: url("/img/blue.png"); /* Hack to avoid weird bottom gap on iPhone with notch/island */
 }
 
 * {
+  -webkit-tap-highlight-color: transparent;
   outline: none;
 }
 

@@ -4,12 +4,12 @@ import Socials from "../shared/Socials";
 
 export default function Footer() {
   return (
-    <footer className="bg-ex-blue relative width-full h-72 md:h-80">
+    <footer className="relative h-72 md:h-80">
       <Nav />
-      <Socials classes="absolute top-0 right-0 mr-2 md:mr-4 mt-4" />
+      <Socials classes="absolute top-2 md:top-4 right-2 md:right-4" />
 
       {/* Copyright */}
-      <p className="pb-safe text-white font-mono text-xs absolute bottom-0 m-4 md:m-6 leading-none">
+      <p className="pb-safe text-white font-mono text-xs absolute bottom-0 m-4 md:m-6">
         © {new Date().getFullYear()} Exceptional ALIEN
       </p>
 
