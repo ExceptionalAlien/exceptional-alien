@@ -32,13 +32,14 @@ export default function Header() {
   return (
     <>
       <Head>
-        <meta name="theme-color" content={scrollY > 0 ? "#2220C1" : "#FFFFFF"} />
+        <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
+        <meta name="theme-color" content={scrollY > 0 && !showingNav ? "#2220C1" : "#FFFFFF"} />
         <meta name="robots" content="noindex" />
         <meta property="og:type" content="website" />
       </Head>
 
       <header
-        className={`fixed top-0 z-50 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
+        className={`p-safe fixed top-0 z-50 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
           scrollY > 0 ? "bg-ex-blue" : "bg-white"
         }`}
       >

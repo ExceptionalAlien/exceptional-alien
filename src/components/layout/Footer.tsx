@@ -11,7 +11,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative h-72 md:h-80">
+    <footer className="p-safe relative h-72 md:h-80">
       <nav className="absolute m-2 md:m-3 [&>a]:block [&>a]:w-max [&>a]:p-2 [&>a]:text-sm [&>a]:text-white [&>a]:transition-[color] [&>a]:duration-300 [&>a]:ease-in-out hover:[&>a]:text-ex-light-grey [&>a]:md:inline-block [&>a]:md:p-3">
         <Link href="/about" className={router.pathname === "/about" ? "!text-ex-light-grey" : ""}>
           About

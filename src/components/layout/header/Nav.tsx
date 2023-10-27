@@ -20,12 +20,12 @@ export default function Nav({
 
   return (
     <nav
-      className={`group/nav fixed top-0 flex w-full flex-col items-center justify-center overflow-hidden bg-white transition-[opacity] duration-300 ease-in md:static md:ml-auto md:w-auto md:flex-row md:bg-transparent ${
-        showingNav ? "h-full opacity-100" : "h-0 opacity-0 md:h-full md:opacity-100"
+      className={`group/nav fixed top-0 flex w-full flex-col items-center justify-center overflow-hidden bg-white md:static md:ml-auto md:w-auto md:flex-row md:bg-transparent ${
+        showingNav ? "h-full" : "h-0 md:h-full"
       }`}
     >
       {/* Download app */}
-      <Link
+      {/* <Link
         href="/download"
         onClick={hideNav}
         className={`absolute bottom-6 left-1/2 flex w-72 -translate-x-1/2 justify-center rounded-full border border-current p-2 pl-4 pr-4 text-ex-blue transition-[color,background-color] duration-300 ease-in-out md:static md:mr-4 md:hidden md:w-auto md:translate-x-0 landscape:lg:inline-flex ${
@@ -51,7 +51,7 @@ export default function Nav({
           />
         </svg>
         Download App
-      </Link>
+      </Link> */}
 
       <PrimaryLink page="destinations" hideNav={hideNav} scrollY={scrollY} />
       <PrimaryLink page="travel-playbooks" hideNav={hideNav} scrollY={scrollY} />
