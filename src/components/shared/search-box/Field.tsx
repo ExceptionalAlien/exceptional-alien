@@ -60,8 +60,8 @@ export default function Field() {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Destinations, Creators & more"
-        className="max-[320px]:w-64 w-80 md:w-[440px] ml-1 md:ml-2 border-b border-black outline-none rounded-none text-2xl md:text-3xl pr-5 md:pr-7"
+        placeholder="Search"
+        className="max-[320px]:w-64 w-80 md:w-[440px] ml-1 md:ml-2 border-b border-black outline-none rounded-none text-2xl md:text-4xl pr-5 md:pr-7"
       />
 
       {/* Clear */}

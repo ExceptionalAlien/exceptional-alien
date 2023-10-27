@@ -4,35 +4,33 @@ import Place from "@/img/icon-place.svg";
 import Playbook from "@/img/icon-playbook.svg";
 import Person from "@/img/icon-person.svg";
 
-export default function PrimaryLink({ page, hideNav }: { page: string; hideNav: () => void }) {
+export default function PrimaryLink({
+  page,
+  hideNav,
+  scrollY,
+}: {
+  page: string;
+  hideNav: () => void;
+  scrollY: number;
+}) {
   const router = useRouter();
 
   return (
     <Link
       href={`/${page}`}
       onClick={hideNav}
-      className={`group/primary inline-flex md:flex-col items-center relative capitalize text-2xl md:text-base !leading-none p-6 landscape:p-5 md:!p-4 [&>svg]:h-8 [&>svg]:md:h-6 [&>svg]:w-8 [&>svg]:md:w-6 [&>svg]:mr-3 [&>svg]:md:mr-0 [&>svg]:md:mb-2 [&>svg]:md:invisible group-hover/nav:[&>svg]:visible [&>svg]:md:opacity-0 group-hover/nav:[&>svg]:opacity-100 [&>svg]:md:duration-300 [&>svg]:md:transition-[opacity] [&>svg]:ease-in [&>svg]:-mt-1 [&>svg]:md:mt-0 ${
-        router.pathname === "/" + page && "text-ex-grey md:text-current"
+      className={`group/primary relative flex items-center justify-center p-6 text-2xl capitalize text-ex-blue md:-mt-8 md:ml-4 md:mr-4 md:h-full md:flex-col md:!p-0 md:text-base md:transition-[margin-top] md:duration-200 md:ease-in-out group-hover/nav:md:mt-0 landscape:p-4 [&>svg]:mr-2 [&>svg]:h-6 [&>svg]:md:mb-2 [&>svg]:md:mr-0 [&>svg]:md:opacity-0 [&>svg]:md:transition-[opacity] [&>svg]:md:duration-300 [&>svg]:md:ease-in-out group-hover/nav:[&>svg]:md:opacity-100 ${
+        scrollY > 0 && "md:text-white"
       }`}
     >
       {/* Indicator */}
       <span
-        className={`absolute w-[calc(100%-32px)] bg-black top-0 duration-200 ease-in-out transition-[height] ${
-          router.pathname.indexOf("/" + page) !== -1
-            ? "md:h-5 md:group-hover/nav:h-1"
-            : `h-0 md:group-hover/primary:h-1`
+        className={`absolute top-0 w-full bg-current transition-[height] duration-200 ease-in-out md:group-hover/primary:h-1 ${
+          router.pathname.includes(`/${page}`) ? "md:h-5 group-hover/nav:md:h-1" : "h-0"
         }`}
       ></span>
 
-      {/* Icon */}
-      {page === "destinations" ? (
-        <Place className="!mr-2 md:!mr-0" />
-      ) : page === "playbooks" ? (
-        <Playbook className="!w-10 md:!w-8" />
-      ) : (
-        <Person />
-      )}
-
+      {page === "destinations" ? <Place /> : page === "travel-playbooks" ? <Playbook /> : <Person />}
       {page.replace("-", " ")}
     </Link>
   );

@@ -3,13 +3,22 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Nav from "./header/Nav";
-import Title from "./header/Title";
-import Logo from "@/img/logo.svg";
+import LogoText from "@/img/logo.svg";
 import LogoIcon from "@/img/logo-icon.svg";
+import Place from "@/img/icon-place.svg";
+import Playbook from "@/img/icon-playbook.svg";
+import Person from "@/img/icon-person.svg";
+import Gem from "@/img/icon-gem.svg";
 
 export default function Header() {
   const router = useRouter();
   const [scrollY, setScrollY] = useState(0);
+  const [showingNav, setShowingNav] = useState(false);
+  const page = router.pathname.split("/")[1];
+
+  const searchClick = () => {
+    alert("Search coming soon");
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,26 +38,92 @@ export default function Header() {
       </Head>
 
       <header
-        className={`z-50 top-0 fixed w-full h-12 md:h-20 md:transition-[background-color,color] md:ease-in-out md:duration-300 ${
-          scrollY > 0 ? "bg-ex-blue text-white" : "bg-white"
+        className={`fixed top-0 z-50 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
+          scrollY > 0 ? "bg-ex-blue" : "bg-white"
         }`}
       >
-        {/* Logo */}
-        <h1 className="inline-block align-middle">
+        <h1>
           <Link
             href="/"
-            className={`transition-[color] ease-in-out duration-300 ${scrollY > 0 ? "text-white" : "text-black"}`}
+            className={`block p-2 transition-[color] duration-300 ease-in-out md:p-4 ${
+              scrollY > 0 ? "text-white" : "text-ex-blue"
+            } ${router.pathname === "/" ? "m-2" : "m-1 ml-2"}`}
           >
             {router.pathname === "/" ? (
-              <Logo className="box-content w-48 md:w-80 p-2 md:p-4 ml-2 mt-2" title="Exceptional ALIEN" />
+              <LogoText className="w-48 md:w-80" title="Exceptional ALIEN" />
             ) : (
-              <LogoIcon className="box-content h-6 md:h-10 p-3 md:p-5 pl-4 md:pl-6 !pr-0" title="Exceptional ALIEN" />
+              <LogoIcon className="h-6 md:h-10" title="Exceptional ALIEN" />
             )}
           </Link>
         </h1>
 
-        <Title scrollY={scrollY} />
-        <Nav scrollY={scrollY} />
+        {/* Page title */}
+        <Link
+          href={"/" + (page === "gems" ? "destinations" : page)}
+          className={`flex items-center text-2xl font-bold capitalize transition-[color] duration-300 ease-in-out md:text-4xl [&>svg]:ml-1 [&>svg]:h-5 [&>svg]:md:ml-2 [&>svg]:md:h-6 ${
+            scrollY > 0 ? "text-white" : "text-ex-blue"
+          } ${
+            page !== "creators" && page !== "travel-playbooks" && page !== "destinations" && page !== "gems" && "hidden"
+          }`}
+        >
+          {page.replace("travel-playbooks", "Playbooks")}
+
+          {page === "destinations" ? (
+            <Place />
+          ) : page === "travel-playbooks" ? (
+            <Playbook />
+          ) : page === "creators" ? (
+            <Person />
+          ) : (
+            <Gem />
+          )}
+        </Link>
+
+        <Nav scrollY={scrollY} showingNav={showingNav} setShowingNav={setShowingNav} />
+
+        {/* Search */}
+        <button
+          onClick={searchClick}
+          title="Search"
+          className={`ml-auto p-3 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:ml-0 md:p-6 ${
+            scrollY > 0 ? "text-white" : "text-ex-blue"
+          }`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </button>
+
+        {/* Burger */}
+        <button
+          onClick={() => setShowingNav(true)}
+          title="Menu"
+          className={`p-3 pr-4 transition-[color] duration-300 ease-in-out md:hidden ${
+            scrollY > 0 ? "text-white" : "text-ex-blue"
+          }`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
       </header>
     </>
   );
