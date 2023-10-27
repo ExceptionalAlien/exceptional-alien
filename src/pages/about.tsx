@@ -4,36 +4,6 @@ import { createClient } from "@/prismicio";
 import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
 import TabHeading from "@/components/shared/TabHeading";
-import Spacer from "@/components/shared/Spacer";
-
-function Hello() {
-  return (
-    <section className="font-bold text-3xl md:text-5xl [&>p]:mr-3 [&>p]:md:mr-5 [&>p]:inline-block">
-      <p className="text-ex-blue">HELLO</p>
-      <p>KIA ORA</p>
-      <p>KONNICHIWA</p>
-      <p>CIAO</p>
-      <p>BONJOUR</p>
-      <p>HEI</p>
-      <p>SALUT</p>
-      <p>GUTEN TAG</p>
-      <p>AHLAN</p>
-      <p>NI HAO</p>
-      <p>SELAM</p>
-      <p>HEJ</p>
-      <p>YASSOU</p>
-      <p>HOI</p>
-      <p>ANYOUNG</p>
-      <p>HALLO</p>
-      <p>AHOJ</p>
-      <p>OLA</p>
-      <p>NAMASTE</p>
-      <p>XIN CHAO</p>
-      <p>SHALOM</p>
-      <p>HAI</p>
-    </section>
-  );
-}
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -41,15 +11,10 @@ export default function About({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "About"}`}</title>
+        <title>{page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - About"}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
-        <meta property="og:url" content="https://exceptionalalien.com/terms-and-privacy" />
-
-        <meta
-          property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "About"}`}
-        />
-
+        <meta property="og:url" content="https://exceptionalalien.com/about" />
+        <meta property="og:title" content={page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - About"} />
         <meta property="og:description" content={page.data.meta_description ?? ""} />
 
         <meta
@@ -58,14 +23,36 @@ export default function About({ page }: PageProps) {
         />
       </Head>
 
-      <main className="box-content p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-        <Spacer />
-
+      <main className="pl-4 pr-4 md:max-w-3xl md:pl-6 md:pr-6 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <TabHeading classes="uppercase">
           <PrismicRichText field={page.data.page_heading} />
         </TabHeading>
 
-        <Hello />
+        <section className="text-2xl font-bold md:text-5xl [&>span]:mr-2 [&>span]:inline-block [&>span]:md:mr-4">
+          <span className="text-ex-blue">HELLO</span>
+          <span>KIA ORA</span>
+          <span>KONNICHIWA</span>
+          <span>CIAO</span>
+          <span>BONJOUR</span>
+          <span>HEI</span>
+          <span>SALUT</span>
+          <span>GUTEN TAG</span>
+          <span>AHLAN</span>
+          <span>NI HAO</span>
+          <span>SELAM</span>
+          <span>HEJ</span>
+          <span>YASSOU</span>
+          <span>HOI</span>
+          <span>ANYOUNG</span>
+          <span>HALLO</span>
+          <span>AHOJ</span>
+          <span>OLA</span>
+          <span>NAMASTE</span>
+          <span>XIN CHAO</span>
+          <span>SHALOM</span>
+          <span>HAI</span>
+        </section>
+
         <SliceZone slices={page.data.slices} components={components} />
       </main>
     </>

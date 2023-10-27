@@ -1,6 +1,6 @@
 export default function TabHeading({ children, classes }: { children: any; classes?: string }) {
   return (
-    <section className={`relative text-sm p-2 pt-1 pb-0 border border-b-0 border-black min-h-10 ${classes}`}>
+    <section className={`min-h-[46px] border border-b-0 border-black p-2 pb-0 pt-1 text-sm ${classes}`}>
       {children}
     </section>
   );

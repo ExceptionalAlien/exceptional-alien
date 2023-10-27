@@ -4,7 +4,6 @@ import { createClient } from "@/prismicio";
 import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
 import TabHeading from "@/components/shared/TabHeading";
-import Spacer from "@/components/shared/Spacer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -12,13 +11,13 @@ export default function TermsAndPrivacy({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Terms & Privacy"}`}</title>
+        <title>{page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Terms & Privacy"}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/terms-and-privacy" />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Terms & Privacy"}`}
+          content={page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Terms & Privacy"}
         />
 
         <meta property="og:description" content={page.data.meta_description ?? ""} />
@@ -29,10 +28,8 @@ export default function TermsAndPrivacy({ page }: PageProps) {
         />
       </Head>
 
-      <main className="box-content p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>[data-slice-type=text\_with\_heading]]:mt-5">
-        <Spacer />
-
-        <TabHeading classes="!mt-12 md:!mt-24 uppercase">
+      <main className="pl-4 pr-4 md:max-w-3xl md:pl-6 md:pr-6 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <TabHeading classes="uppercase">
           <PrismicRichText field={page.data.page_heading} />
         </TabHeading>
 

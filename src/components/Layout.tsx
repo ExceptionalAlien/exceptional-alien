@@ -45,7 +45,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <GemsContext.Provider value={{ gems, setGems }}>
           <SearchContext.Provider value={{ search, setSearch }}>
             <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
-              <div className="p-safe bg-white [&>main>section]:mt-8 [&>main>section]:md:mt-16 [&>main]:m-auto [&>main]:pb-12 [&>main]:pt-12 [&>main]:md:pb-20 [&>main]:md:pt-20">
+              <div className="p-safe bg-white [&>main>section]:mt-8 [&>main>section]:md:mt-16 [&>main]:m-auto [&>main]:pb-12 [&>main]:pt-12 [&>main]:md:pb-24 [&>main]:md:pt-24">
                 {children}
               </div>
 

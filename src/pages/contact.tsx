@@ -5,7 +5,6 @@ import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
 import TabHeading from "@/components/shared/TabHeading";
 import Socials from "@/components/shared/Socials";
-import Spacer from "@/components/shared/Spacer";
 import Logo from "@/img/logo-alt-x.svg";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -14,13 +13,13 @@ export default function Contact({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Contact"}`}</title>
+        <title>{page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Contact"}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/terms-and-privacy" />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Contact"}`}
+          content={page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Contact"}
         />
 
         <meta property="og:description" content={page.data.meta_description ?? ""} />
@@ -31,19 +30,17 @@ export default function Contact({ page }: PageProps) {
         />
       </Head>
 
-      <main className="box-content p-4 md:p-6 md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-        <Spacer />
-
-        <TabHeading classes="!mt-12 md:!mt-24 uppercase">
+      <main className="pl-4 pr-4 md:max-w-3xl md:pl-6 md:pr-6 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <TabHeading classes="uppercase relative">
           <PrismicRichText field={page.data.page_heading} />
-          <Socials classes="absolute top-0 right-0 [&>a]:!text-black" />
+          <Socials classes="absolute top-0 right-0 [&>a]:text-black" />
         </TabHeading>
 
         <SliceZone slices={page.data.slices} components={components} />
 
         {/* Alt logo */}
-        <section>
-          <Logo className="w-3/4 m-auto fill-ex-blue pt-12 md:pt-20 pb-1 md:pb-20 box-content" />
+        <section className="pb-8 pt-8 md:pb-16 md:pt-16">
+          <Logo className="m-auto w-3/4 fill-ex-blue" />
         </section>
       </main>
     </>
