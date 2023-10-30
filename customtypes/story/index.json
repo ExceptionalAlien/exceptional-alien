@@ -12,6 +12,29 @@
         },
         "type": "UID"
       },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "creator": {
+        "type": "Link",
+        "config": {
+          "label": "Creator",
+          "select": "document",
+          "customtypes": ["creator"]
+        }
+      },
+      "destination": {
+        "type": "Link",
+        "config": {
+          "label": "Destination",
+          "select": "document",
+          "customtypes": ["destination"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

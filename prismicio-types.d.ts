@@ -1326,6 +1326,39 @@ type StoryDocumentDataSlicesSlice = never;
  */
 interface StoryDocumentData {
   /**
+   * Title field in *Story*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Creator field in *Story*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.creator
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+
+  /**
+   * Destination field in *Story*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.destination
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  destination: prismic.ContentRelationshipField<"destination">;
+
+  /**
    * Slice Zone field in *Story*
    *
    * - **Field Type**: Slice Zone
