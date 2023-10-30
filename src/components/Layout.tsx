@@ -4,6 +4,7 @@ import { Content } from "@prismicio/client";
 import { CreatorsContext } from "@/context/CreatorsContext";
 import { PlaybooksContext } from "@/context/PlaybooksContext";
 import { GemsContext, Gems } from "@/context/GemsContext";
+import { StoriesContext } from "@/context/StoriesContext";
 import { SearchContext, Search } from "@/context/SearchContext";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
@@ -36,25 +37,28 @@ const helveticaMonospaced = localFont({
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [creators, setCreators] = useState<Content.CreatorDocument<string>[]>([]);
   const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
+  const [stories, setStories] = useState<Content.StoryDocument<string>[]>([]);
   const [gems, setGems] = useState<Gems>({});
-  const [search, setSearch] = useState<Search>({ destinations: [], playbooks: [], gems: [], creators: [] });
+  const [search, setSearch] = useState<Search>({ destinations: [], playbooks: [], gems: [], creators: [], stories: [] });
 
   return (
     <CreatorsContext.Provider value={{ creators, setCreators }}>
       <PlaybooksContext.Provider value={{ playbooks, setPlaybooks }}>
-        <GemsContext.Provider value={{ gems, setGems }}>
-          <SearchContext.Provider value={{ search, setSearch }}>
-            <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
-              <div className="p-safe bg-white [&>main>section]:mt-8 [&>main>section]:md:mt-16 [&>main]:m-auto [&>main]:pb-12 [&>main]:pt-12 [&>main]:md:pb-24 [&>main]:md:pt-24">
-                {children}
-              </div>
+        <StoriesContext.Provider value={{ stories, setStories }}>
+          <GemsContext.Provider value={{ gems, setGems }}>
+            <SearchContext.Provider value={{ search, setSearch }}>
+              <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
+                <div className="p-safe bg-white [&>main>section]:mt-8 [&>main>section]:md:mt-16 [&>main]:m-auto [&>main]:pb-12 [&>main]:pt-12 [&>main]:md:pb-24 [&>main]:md:pt-24">
+                  {children}
+                </div>
 
-              <Footer />
-              <Header />
-              <SearchBox fixed={true} />
-            </div>
-          </SearchContext.Provider>
-        </GemsContext.Provider>
+                <Footer />
+                <Header />
+                <SearchBox fixed={true} />
+              </div>
+            </SearchContext.Provider>
+          </GemsContext.Provider>
+        </StoriesContext.Provider>
       </PlaybooksContext.Provider>
     </CreatorsContext.Provider>
   );
