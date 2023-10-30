@@ -19,6 +19,8 @@ body {
   outline: none;
 }
 
+/* Safe areas */
+
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
 }
@@ -53,4 +55,10 @@ body {
 
 audio::-webkit-media-controls-enclosure {
   background-color: transparent;
+}
+
+/* Forms */
+
+.placeholder-opacity::placeholder {
+  opacity: 0.25;
 }

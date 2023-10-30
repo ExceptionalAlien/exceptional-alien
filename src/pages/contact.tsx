@@ -30,8 +30,8 @@ export default function Contact({ page }: PageProps) {
         />
       </Head>
 
-      <main className="pl-4 pr-4 md:max-w-3xl md:pl-6 md:pr-6 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-        <TabHeading classes="uppercase relative">
+      <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <TabHeading classes="uppercase relative mt-12 md:mt-24 ml-4 mr-4 md:ml-6 md:mr-6">
           <PrismicRichText field={page.data.page_heading} />
           <Socials classes="absolute top-0 right-0 [&>a]:text-black" />
         </TabHeading>
