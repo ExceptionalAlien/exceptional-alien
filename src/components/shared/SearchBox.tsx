@@ -60,7 +60,7 @@ export default function SearchBox(props: Props) {
 
   return (
     <div
-      className={`mt-12 flex h-96 flex-col items-center justify-center pl-4 pr-4 md:mt-20 md:pl-6 md:pr-6 md:transition-[background-color,height] md:duration-300 md:ease-in-out ${
+      className={`mt-12 flex h-96 flex-col items-center justify-center pl-4 pr-4 transition-[height] duration-200 ease-in-out md:mt-20 md:pl-6 md:pr-6 md:transition-[background-color,height] ${
         scrollY > 0 ? "bg-ex-blue" : "bg-white"
       } ${!showingSearchBox && props.hidden && "!h-0"} ${
         props.hidden && "fixed top-0 w-full overflow-hidden shadow-md"
