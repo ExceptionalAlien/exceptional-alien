@@ -7,6 +7,7 @@ import LogoText from "@/img/logo.svg";
 import LogoIcon from "@/img/logo-icon.svg";
 import Place from "@/img/icon-place.svg";
 import Playbook from "@/img/icon-playbook.svg";
+import Story from "@/img/icon-story.svg";
 import Person from "@/img/icon-person.svg";
 import Gem from "@/img/icon-gem.svg";
 
@@ -75,6 +76,8 @@ export default function Header() {
             <Playbook />
           ) : page === "creators" ? (
             <Person />
+          ) : page === "stories" ? (
+            <Story />
           ) : (
             <Gem />
           )}

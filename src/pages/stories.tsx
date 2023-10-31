@@ -5,6 +5,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Playbooks({ page }: PageProps) {
   return (
     <>
+      Stories page
     </>
   );
 }
