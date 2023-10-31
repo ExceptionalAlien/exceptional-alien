@@ -88,6 +88,8 @@ export default function StoryThumb({
         </div>
       )}
 
+      {size === "featured" && <p className="mt-2">{story.data.title?.substring(0, 160)}</p>}
+
       {!size && (
         <ThumbTab
           title={

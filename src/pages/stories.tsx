@@ -10,7 +10,7 @@ import { useContext, useEffect } from "react";
 import { StoriesContext, StoriesContextType } from "@/context/StoriesContext";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
-export default function Playbooks({ page }: PageProps) {
+export default function Stories({ page }: PageProps) {
   const { stories, setStories } = useContext<StoriesContextType>(StoriesContext);
 
   const loadStories = async () => {
@@ -67,7 +67,7 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
 
   const page = await client.getSingle("stories", {
     fetchLinks:
-      "story.title",
+      "story.title,story.image,story.destination,story.creator,destination.title,creator.first_name,creator.last_name,creator.profile_image",
   });
 
   return {
