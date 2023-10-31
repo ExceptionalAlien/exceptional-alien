@@ -61,7 +61,17 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "playbooks": {
+              "type": "SharedSlice"
+            },
+            "single_heading": {
+              "type": "SharedSlice"
+            },
+            "highlight": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
