@@ -51,9 +51,7 @@ export default function Search() {
         <meta property="og:image" content="https://exceptionalalien.com/img/og.png" />
       </Head>
 
-      <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-4">
-        <SearchBox />
-      </main>
+      <main className="[&>section>h3]:mb-2 [&>section>h3]:text-2xl [&>section>h3]:font-bold [&>section>h3]:md:mb-4 [&>section>h3]:md:text-4xl [&>section]:pl-4 [&>section]:pr-4 [&>section]:md:pl-6 [&>section]:md:pr-6"></main>
     </>
   );
 }

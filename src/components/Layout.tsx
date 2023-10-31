@@ -8,7 +8,6 @@ import { StoriesContext } from "@/context/StoriesContext";
 import { SearchContext, Search } from "@/context/SearchContext";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
-import SearchBox from "./shared/SearchBox";
 
 const neueHaasGrotesk = localFont({
   src: [
@@ -39,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
   const [stories, setStories] = useState<Content.StoryDocument<string>[]>([]);
   const [gems, setGems] = useState<Gems>({});
-  const [search, setSearch] = useState<Search>({ destinations: [], playbooks: [], gems: [], creators: [], stories: [] });
+  const [search, setSearch] = useState<Search>({ destinations: [], playbooks: [], gems: [], creators: [] });
 
   return (
     <CreatorsContext.Provider value={{ creators, setCreators }}>
