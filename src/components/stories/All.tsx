@@ -15,7 +15,7 @@ export default function All({ stories }: { stories: Content.StoryDocument[] }) {
   return (
     <section className="relative">
       <h3 className="!mb-0 md:!mb-4">
-        All Travel Playbooks{" "}
+        All Stories{" "}
         <span className="text-base md:text-xl">({query.length > 1 ? results : stories.length})</span>
       </h3>
 
