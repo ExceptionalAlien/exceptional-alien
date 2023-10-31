@@ -30,7 +30,8 @@ interface AboutDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *About*
    *
    * - **Field Type**: Text
@@ -105,7 +106,8 @@ interface ContactDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Contact*
    *
    * - **Field Type**: Text
@@ -360,7 +362,8 @@ interface CreatorDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<CreatorDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<CreatorDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Creator*
    *
    * - **Field Type**: Text
@@ -461,7 +464,8 @@ interface CreatorsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<CreatorsDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<CreatorsDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Creators*
    *
    * - **Field Type**: Text
@@ -595,7 +599,8 @@ interface DestinationDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<DestinationDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<DestinationDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Destination*
    *
    * - **Field Type**: Text
@@ -685,7 +690,8 @@ interface DestinationsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<DestinationsDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<DestinationsDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Destinations*
    *
    * - **Field Type**: Text
@@ -900,7 +906,8 @@ interface GemDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<GemDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<GemDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Gem*
    *
    * - **Field Type**: Text
@@ -964,7 +971,8 @@ interface HomeDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Home*
    *
    * - **Field Type**: Text
@@ -1094,7 +1102,8 @@ interface PlaybookDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<PlaybookDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<PlaybookDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Playbook*
    *
    * - **Field Type**: Text
@@ -1195,7 +1204,8 @@ interface PlaybooksDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<PlaybooksDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<PlaybooksDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Playbooks*
    *
    * - **Field Type**: Text
@@ -1296,7 +1306,8 @@ interface SearchDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<SearchDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<SearchDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Search*
    *
    * - **Field Type**: Text
@@ -1351,6 +1362,17 @@ type StoriesDocumentDataSlicesSlice = never;
  * Content for Stories documents
  */
 interface StoriesDocumentData {
+  /**
+   * Overview field in *Stories*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stories.overview
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  overview: prismic.RichTextField;
+
   /**
    * Slice Zone field in *Stories*
    *
@@ -1534,7 +1556,8 @@ interface TermsAndPrivacyDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<TermsAndPrivacyDocumentDataSlicesSlice> /**
+  slices: prismic.SliceZone<TermsAndPrivacyDocumentDataSlicesSlice>
+  /**
    * Meta Description field in *Terms and Privacy*
    *
    * - **Field Type**: Text
@@ -1594,9 +1617,9 @@ export type AllDocumentTypes =
   | HomeDocument
   | PlaybookDocument
   | PlaybooksDocument
+  | SearchDocument
   | StoriesDocument
   | StoryDocument
-  | SearchDocument
   | TermsAndPrivacyDocument;
 
 /**
