@@ -1458,7 +1458,7 @@ export type StoriesDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
-type StoryDocumentDataSlicesSlice = PlaybooksSlice | SingleHeadingSlice | HighlightSlice;
+type StoryDocumentDataSlicesSlice = TextBlockSlice | GemSlice | PlaybooksSlice | SingleHeadingSlice | HighlightSlice;
 
 /**
  * Content for Story documents

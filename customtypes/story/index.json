@@ -62,6 +62,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "text_block": {
+              "type": "SharedSlice"
+            },
+            "gem": {
+              "type": "SharedSlice"
+            },
             "playbooks": {
               "type": "SharedSlice"
             },
