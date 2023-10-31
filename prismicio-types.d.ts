@@ -1356,6 +1356,21 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
+/**
+ * Item in *Stories → Featured*
+ */
+export interface StoriesDocumentDataFeaturedItem {
+  /**
+   * Story field in *Stories → Featured*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stories.featured[].story
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  story: prismic.ContentRelationshipField<"story">;
+}
+
 type StoriesDocumentDataSlicesSlice = never;
 
 /**
@@ -1372,6 +1387,17 @@ interface StoriesDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   overview: prismic.RichTextField;
+
+  /**
+   * Featured field in *Stories*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stories.featured[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  featured: prismic.GroupField<Simplify<StoriesDocumentDataFeaturedItem>>;
 
   /**
    * Slice Zone field in *Stories*
@@ -1470,6 +1496,17 @@ interface StoryDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   destination: prismic.ContentRelationshipField<"destination">;
+
+  /**
+   * Image field in *Story*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<"mobile" | "thumb">;
 
   /**
    * Slice Zone field in *Story*
@@ -2055,6 +2092,7 @@ declare module "@prismicio/client" {
       SearchDocumentDataSlicesSlice,
       StoriesDocument,
       StoriesDocumentData,
+      StoriesDocumentDataFeaturedItem,
       StoriesDocumentDataSlicesSlice,
       StoryDocument,
       StoryDocumentData,
