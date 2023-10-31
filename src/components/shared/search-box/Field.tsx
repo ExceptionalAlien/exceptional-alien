@@ -1,6 +1,7 @@
 interface Props {
   query: string | string[];
   setQuery: React.Dispatch<React.SetStateAction<string | string[]>>;
+  scrollY: number;
 }
 
 export default function Field(props: Props) {
@@ -9,15 +10,18 @@ export default function Field(props: Props) {
   };
 
   return (
-    <div className="relative mt-4 flex w-full items-center md:mt-6">
-      <label htmlFor="search">
+    <div className="relative mt-6 flex w-full items-center">
+      <label
+        htmlFor="search"
+        className={`transition-[color] duration-300 ease-in-out ${props.scrollY > 0 ? "text-white" : "text-ex-blue"}`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="h-6 w-6 text-ex-blue"
+          className={`h-6 w-6`}
         >
           <path
             strokeLinecap="round"
@@ -34,7 +38,11 @@ export default function Field(props: Props) {
         onChange={(e) => props.setQuery(e.target.value)}
         placeholder="Search"
         id="search"
-        className="placeholder-opacity ml-2 w-full rounded-none border-b border-ex-blue pr-6 text-2xl text-ex-blue placeholder-ex-blue outline-none md:text-4xl"
+        className={`placeholder-opacity ml-2 w-full rounded-none border-b bg-transparent pr-6 text-2xl outline-none transition-[border-color,color] duration-300 ease-in-out md:text-4xl ${
+          props.scrollY > 0
+            ? "border-white text-white placeholder-white"
+            : "border-ex-blue text-ex-blue placeholder-ex-blue"
+        }`}
       />
 
       {/* Clear */}
@@ -42,7 +50,9 @@ export default function Field(props: Props) {
         <button
           type="button"
           onClick={clear}
-          className="absolute -right-1 text-ex-blue transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
+          className={`absolute -right-1 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey ${
+            props.scrollY > 0 ? "text-white" : "text-ex-blue"
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

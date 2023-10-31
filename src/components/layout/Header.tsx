@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Nav from "./header/Nav";
+import { SearchBoxContext, SearchBoxContextType } from "@/context/SearchBoxContext";
 import LogoText from "@/img/logo.svg";
 import LogoIcon from "@/img/logo-icon.svg";
 import Place from "@/img/icon-place.svg";
@@ -12,12 +13,17 @@ import Gem from "@/img/icon-gem.svg";
 
 export default function Header() {
   const router = useRouter();
+  const { showingSearchBox, setShowingSearchBox } = useContext<SearchBoxContextType>(SearchBoxContext);
   const [scrollY, setScrollY] = useState(0);
   const [showingNav, setShowingNav] = useState(false);
   const page = router.pathname.split("/")[1];
 
   const searchClick = () => {
-    alert("Search coming soon");
+    if (router.pathname === "/" || router.pathname === "/search") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      setShowingSearchBox(!showingSearchBox); // Toggle
+    }
   };
 
   useEffect(() => {
@@ -87,7 +93,11 @@ export default function Header() {
           onClick={searchClick}
           title="Search"
           className={`ml-auto p-3 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:ml-0 md:p-6 ${
-            scrollY > 0 ? "text-white" : "text-ex-blue"
+            (router.pathname === "/" && scrollY === 0) || router.pathname === "/search" || showingSearchBox
+              ? "text-ex-light-grey"
+              : scrollY > 0
+              ? "text-white"
+              : "text-ex-blue"
           }`}
         >
           <svg

@@ -11,7 +11,7 @@
 
 body {
   color: black;
-  background-image: url("/img/blue.png"); /* Hack to avoid weird bottom gap on iPhone with notch/island */
+  background-color: var(--color-blue);
 }
 
 * {

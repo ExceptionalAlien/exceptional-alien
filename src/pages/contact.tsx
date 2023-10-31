@@ -5,11 +5,12 @@ import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
 import TabHeading from "@/components/shared/TabHeading";
 import Socials from "@/components/shared/Socials";
+import SearchBox from "@/components/shared/SearchBox";
 import Logo from "@/img/logo-alt-x.svg";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Contact({ page }: PageProps) {
+export default function Contact({ page, search }: PageProps) {
   return (
     <>
       <Head>
@@ -43,6 +44,8 @@ export default function Contact({ page }: PageProps) {
           <Logo className="m-auto w-3/4 fill-ex-blue" />
         </section>
       </main>
+
+      <SearchBox description={search.data.description} recommended={search.data.recommended} hidden={true} />
     </>
   );
 }
@@ -51,9 +54,15 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
   const page = await client.getSingle("contact");
 
+  const search = await client.getSingle("search", {
+    fetch: "search.recommended,search.description",
+    fetchLinks: "destination.title",
+  });
+
   return {
     props: {
       page,
+      search,
     },
   };
 }

@@ -4,10 +4,11 @@ import { createClient } from "@/prismicio";
 import { SliceZone, PrismicRichText } from "@prismicio/react";
 import { components } from "@/slices";
 import TabHeading from "@/components/shared/TabHeading";
+import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function TermsAndPrivacy({ page }: PageProps) {
+export default function TermsAndPrivacy({ page, search }: PageProps) {
   return (
     <>
       <Head>
@@ -35,6 +36,8 @@ export default function TermsAndPrivacy({ page }: PageProps) {
 
         <SliceZone slices={page.data.slices} components={components} />
       </main>
+
+      <SearchBox description={search.data.description} recommended={search.data.recommended} hidden={true} />
     </>
   );
 }
@@ -43,9 +46,15 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
   const page = await client.getSingle("terms_and_privacy");
 
+  const search = await client.getSingle("search", {
+    fetch: "search.recommended,search.description",
+    fetchLinks: "destination.title",
+  });
+
   return {
     props: {
       page,
+      search,
     },
   };
 }

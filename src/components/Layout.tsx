@@ -4,7 +4,8 @@ import { Content } from "@prismicio/client";
 import { CreatorsContext } from "@/context/CreatorsContext";
 import { PlaybooksContext } from "@/context/PlaybooksContext";
 import { GemsContext, Gems } from "@/context/GemsContext";
-import { SearchContext, Search } from "@/context/SearchContext";
+import { SearchContext, SearchResults } from "@/context/SearchContext";
+import { SearchBoxContext } from "@/context/SearchBoxContext";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 
@@ -36,21 +37,33 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [creators, setCreators] = useState<Content.CreatorDocument<string>[]>([]);
   const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
   const [gems, setGems] = useState<Gems>({});
-  const [search, setSearch] = useState<Search>({ destinations: [], playbooks: [], gems: [], creators: [] });
+
+  const [searchResults, setSearchResults] = useState<SearchResults>({
+    destinations: [],
+    playbooks: [],
+    gems: [],
+    creators: [],
+  });
+
+  const [showingSearchBox, setShowingSearchBox] = useState(false);
 
   return (
     <CreatorsContext.Provider value={{ creators, setCreators }}>
       <PlaybooksContext.Provider value={{ playbooks, setPlaybooks }}>
         <GemsContext.Provider value={{ gems, setGems }}>
-          <SearchContext.Provider value={{ search, setSearch }}>
-            <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
-              <div className="p-safe bg-white [&>main>section]:mt-8 [&>main>section]:pl-4 [&>main>section]:pr-4 [&>main>section]:md:mt-16 [&>main>section]:md:pl-6 [&>main>section]:md:pr-6 [&>main]:m-auto [&>main]:pb-12 [&>main]:pt-12 [&>main]:md:pb-20 [&>main]:md:pt-20">
-                {children}
-              </div>
+          <SearchContext.Provider value={{ searchResults, setSearchResults }}>
+            <SearchBoxContext.Provider value={{ showingSearchBox, setShowingSearchBox }}>
+              <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
+                <div className="bg-white">
+                  <div className="p-safe [&>main>section]:mt-8 [&>main>section]:pl-4 [&>main>section]:pr-4 [&>main>section]:md:mt-16 [&>main>section]:md:pl-6 [&>main>section]:md:pr-6 [&>main]:m-auto [&>main]:pb-12 [&>main]:pt-12 [&>main]:md:pb-20 [&>main]:md:pt-20">
+                    {children}
+                  </div>
+                </div>
 
-              <Footer />
-              <Header />
-            </div>
+                <Footer />
+                <Header />
+              </div>
+            </SearchBoxContext.Provider>
           </SearchContext.Provider>
         </GemsContext.Provider>
       </PlaybooksContext.Provider>

@@ -1,18 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import type { GroupField, KeyTextField } from "@prismicio/client";
 import Field from "./search-box/Field";
 import Recommended from "./search-box/Recommended";
+import { SearchBoxContext, SearchBoxContextType } from "@/context/SearchBoxContext";
 
 interface Props {
-  description: KeyTextField;
+  description?: KeyTextField;
   recommended?: GroupField;
+  hidden?: boolean;
   classes?: string;
 }
 
 export default function SearchBox(props: Props) {
   const router = useRouter();
+  const { showingSearchBox, setShowingSearchBox } = useContext<SearchBoxContextType>(SearchBoxContext);
   const [query, setQuery] = useState<string | string[]>("");
+  const [scrollY, setScrollY] = useState(0);
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,15 +47,39 @@ export default function SearchBox(props: Props) {
     }
   }, [router.isReady]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      setScrollY(!props.hidden ? 0 : window.scrollY);
+    };
+
+    setShowingSearchBox(false); // Reset on page load
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <form
-      name="searchBox"
-      onSubmit={submit}
-      className={`m-auto box-content flex h-96 max-w-lg flex-col items-center justify-center pl-4 pr-4 md:max-w-xl md:pl-6 md:pr-6 ${props.classes}`}
+    <div
+      className={`mt-12 flex h-96 flex-col items-center justify-center pl-4 pr-4 md:mt-20 md:pl-6 md:pr-6 md:transition-[background-color,height] md:duration-300 md:ease-in-out ${
+        scrollY > 0 ? "bg-ex-blue" : "bg-white"
+      } ${!showingSearchBox && props.hidden && "!h-0"} ${
+        props.hidden && "fixed top-0 w-full overflow-hidden shadow-md"
+      } ${props.classes}`}
     >
-      <h2 className="w-3/4 text-center text-lg font-bold text-ex-blue">{props.description}</h2>
-      <Field query={query} setQuery={setQuery} />
-      {props.recommended && <Recommended destinations={props.recommended} />}
-    </form>
+      <form name="searchBox" onSubmit={submit} className="max-w-lg md:max-w-xl">
+        {props.description && (
+          <h2
+            className={`m-auto w-3/4 text-center text-lg font-bold transition-[color] duration-300 ease-in-out ${
+              scrollY > 0 ? "text-white" : "text-ex-blue"
+            }`}
+          >
+            {props.description}
+          </h2>
+        )}
+
+        <Field query={query} setQuery={setQuery} scrollY={scrollY} />
+        {props.recommended && <Recommended destinations={props.recommended} scrollY={scrollY} />}
+      </form>
+    </div>
   );
 }

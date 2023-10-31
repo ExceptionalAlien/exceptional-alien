@@ -23,8 +23,9 @@ export default function Home({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="[&>*:nth-child(2)]:!mt-0 [&>section>h3]:mb-2 [&>section>h3]:text-2xl [&>section>h3]:font-bold [&>section>h3]:md:mb-4 [&>section>h3]:md:text-4xl">
-        <SearchBox description={search.data.description} recommended={search.data.recommended} />
+      <SearchBox description={search.data.description} recommended={search.data.recommended} />
+
+      <main className="!pt-0 [&>*:nth-child(1)]:!mt-0 [&>section>h3]:mb-2 [&>section>h3]:text-2xl [&>section>h3]:font-bold [&>section>h3]:md:mb-4 [&>section>h3]:md:text-4xl">
         <SliceZone slices={page.data.slices} components={components} />
       </main>
     </>

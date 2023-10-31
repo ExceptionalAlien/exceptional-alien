@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { Content } from "@prismicio/client";
 
-export interface Search {
+export interface SearchResults {
   destinations: Content.DestinationDocument<string>[];
   playbooks: Content.PlaybookDocument<string>[];
   gems: Content.GemDocument<string>[];
@@ -9,11 +9,11 @@ export interface Search {
 }
 
 export type SearchContextType = {
-  search: Search;
-  setSearch: (search: Search) => void;
+  searchResults: SearchResults;
+  setSearchResults: (searchResults: SearchResults) => void;
 };
 
 export const SearchContext = createContext<SearchContextType>({
-  search: { destinations: [], playbooks: [], gems: [], creators: [] },
-  setSearch: () => null,
+  searchResults: { destinations: [], playbooks: [], gems: [], creators: [] },
+  setSearchResults: () => null,
 });
