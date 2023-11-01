@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  gallery: dynamic(() => import("./Gallery")),
   gem: dynamic(() => import("./Gem")),
   highlight: dynamic(() => import("./Highlight")),
   playbooks: dynamic(() => import("./Playbooks")),

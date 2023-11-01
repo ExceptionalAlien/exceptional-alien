@@ -1458,7 +1458,13 @@ export type StoriesDocument<Lang extends string = string> = prismic.PrismicDocum
   Lang
 >;
 
-type StoryDocumentDataSlicesSlice = TextBlockSlice | GemSlice | PlaybooksSlice | SingleHeadingSlice | HighlightSlice;
+type StoryDocumentDataSlicesSlice =
+  | GallerySlice
+  | TextBlockSlice
+  | GemSlice
+  | PlaybooksSlice
+  | SingleHeadingSlice
+  | HighlightSlice;
 
 /**
  * Content for Story documents
@@ -1658,6 +1664,29 @@ export type AllDocumentTypes =
   | StoriesDocument
   | StoryDocument
   | TermsAndPrivacyDocument;
+
+/**
+ * Default variation for Gallery Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GallerySliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+
+/**
+ * Slice variation for *Gallery*
+ */
+type GallerySliceVariation = GallerySliceDefault;
+
+/**
+ * Gallery Shared Slice
+ *
+ * - **API ID**: `gallery`
+ * - **Description**: Gallery
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GallerySlice = prismic.SharedSlice<"gallery", GallerySliceVariation>;
 
 /**
  * Primary content in *Gem → Primary*
@@ -2101,6 +2130,9 @@ declare module "@prismicio/client" {
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,
       AllDocumentTypes,
+      GallerySlice,
+      GallerySliceVariation,
+      GallerySliceDefault,
       GemSlice,
       GemSliceDefaultPrimary,
       GemSliceVariation,
