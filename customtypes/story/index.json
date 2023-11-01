@@ -64,6 +64,14 @@
           "placeholder": ""
         }
       },
+      "playbook": {
+        "type": "Link",
+        "config": {
+          "label": "Playbook",
+          "select": "document",
+          "customtypes": ["playbook"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

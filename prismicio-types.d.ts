@@ -1524,6 +1524,17 @@ interface StoryDocumentData {
   credits: prismic.KeyTextField;
 
   /**
+   * Playbook field in *Story*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.playbook
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+
+  /**
    * Slice Zone field in *Story*
    *
    * - **Field Type**: Slice Zone
