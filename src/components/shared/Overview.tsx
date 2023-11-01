@@ -1,10 +1,14 @@
 import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
-export default function Overview({ text }: { text: RichTextField }) {
+interface OverviewProps {
+  text: RichTextField;
+}
+
+export default function Overview(props: OverviewProps) {
   return (
-    <section className="text-ex-blue font-bold text-2xl md:text-4xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl m-auto [&>p]:mt-4 [&>p]:md:mt-6">
-      <PrismicRichText field={text} />
+    <section className="m-auto text-2xl font-bold text-ex-blue md:max-w-3xl md:text-4xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>p]:mt-4 [&>p]:md:mt-6">
+      <PrismicRichText field={props.text} />
     </section>
   );
 }

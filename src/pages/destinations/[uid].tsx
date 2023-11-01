@@ -10,15 +10,16 @@ import Title from "@/components/destination/Title";
 import Overview from "@/components/shared/Overview";
 import Loading from "@/components/shared/Loading";
 import Spacer from "@/components/shared/Spacer";
+import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Creator({ page }: PageProps) {
+export default function Creator({ page, search }: PageProps) {
   const { gems, setGems } = useContext<GemsContextType>(GemsContext);
 
   const loadGems = async () => {
     const data = await getData(page.id);
-    setGems({ ...gems, [page.uid as string]: data }); // Store in context with destination as key name
+    setGems({ ...gems, [page.uid]: data }); // Store in context with destination as key
   };
 
   useEffect(() => {
@@ -56,12 +57,10 @@ export default function Creator({ page }: PageProps) {
         />
       </Head>
 
-      <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-4">
+      <main className="[&>section>h3]:mb-2 [&>section>h3]:text-2xl [&>section>h3]:font-bold [&>section>h3]:md:mb-4 [&>section>h3]:md:text-4xl [&>section]:pl-4 [&>section]:pr-4 [&>section]:md:pl-6 [&>section]:md:pr-6">
         <Title text={page.data.title as string} latLng={page.data.location} />
         {page.data.featured.length > 0 && <Featured playbooks={page.data.featured} />}
-        <Spacer />
         <Overview text={page.data.about} />
-        <Spacer />
 
         {gems[page.uid] ? (
           <All gems={gems[page.uid]} />
@@ -71,6 +70,8 @@ export default function Creator({ page }: PageProps) {
           </section>
         )}
       </main>
+
+      <SearchBox recommended={search.data.recommended} hidden={true} />
     </>
   );
 }
@@ -85,14 +86,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps({ params, previewData }: GetStaticPropsContext) {
   try {
     const client = createClient({ previewData });
+
     const page = await client.getByUID("destination", params?.uid as string, {
       fetchLinks:
         "playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,creator.first_name,creator.last_name,creator.profile_image",
     });
 
+    const search = await client.getSingle("search", {
+      fetch: "search.recommended,search.description",
+      fetchLinks: "destination.title",
+    });
+
     return {
       props: {
         page,
+        search,
       },
     };
   } catch (error) {
