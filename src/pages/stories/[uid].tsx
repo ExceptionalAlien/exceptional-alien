@@ -72,7 +72,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
 
     const page = await client.getByUID("story", params?.uid as string, {
       fetchLinks:
-        "story.title,creator.first_name,creator.last_name,creator.profile_image,creator.uid,destination.title",
+        "story.title,creator.first_name,creator.last_name,creator.profile_image,creator.uid,destination.title,playbook.description,playbook.image,playbook.destination,playbook.creator",
     });
 
     return {

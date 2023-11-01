@@ -1459,6 +1459,7 @@ export type StoriesDocument<Lang extends string = string> = prismic.PrismicDocum
 >;
 
 type StoryDocumentDataSlicesSlice =
+  | StoryGemsSlice
   | StoryTextWithHeadingSlice
   | StoryParagraphSlice
   | StoryGallerySlice
