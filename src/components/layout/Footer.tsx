@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="p-safe relative h-72 md:h-80">
+    <footer className="p-safe relative h-72">
       <Nav />
       <Socials classes="absolute top-2 md:top-4 right-2 md:right-4" />
 

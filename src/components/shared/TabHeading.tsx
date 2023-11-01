@@ -1,5 +1,12 @@
-export default function TabHeading({ children, classes }: { children: any; classes?: string }) {
+interface TabHeadingProps {
+  children: any;
+  classes?: string;
+}
+
+export default function TabHeading(props: TabHeadingProps) {
   return (
-    <div className={`min-h-[46px] border border-b-0 border-black p-2 pb-0 pt-1 text-sm ${classes}`}>{children}</div>
+    <div className={`min-h-[50px] border border-b-0 border-black p-2 pb-0 text-sm ${props.classes}`}>
+      {props.children}
+    </div>
   );
 }

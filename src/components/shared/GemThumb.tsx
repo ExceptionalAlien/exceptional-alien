@@ -52,7 +52,7 @@ export default function GemThumb(props: GemThumbProps) {
 
           <GemIcon
             category={props.gem.data.category}
-            classes={`top-0 ${props.size === "med" ? "h-11 m-2" : "m-1 md:m-2"}`}
+            classes={`top-0 m-2 md:m-3 ${props.size === "med" && "!h-11 w-11"}`}
           />
 
           {/* Creators */}
@@ -84,9 +84,7 @@ export default function GemThumb(props: GemThumbProps) {
       )}
 
       {/* Title */}
-      <p className="mt-1 text-lg font-bold transition-[color] duration-300 ease-in-out group-hover/link:text-ex-blue md:mt-2 md:text-2xl">
-        {props.gem.data.title}
-      </p>
+      <p className="mt-2 text-xl font-bold group-hover/link:text-ex-blue md:mt-3 md:text-2xl">{props.gem.data.title}</p>
     </Link>
   );
 }

@@ -9,7 +9,7 @@ interface Props {
 
 export default function Recommended(props: Props) {
   return (
-    <div className="mt-4 text-center md:mt-6">
+    <div className="mt-2 text-center md:mt-4">
       {props.destinations.map((item, i) => (
         <Link
           href={`/destinations/${(item.destination as Content.DestinationDocument).uid}`}

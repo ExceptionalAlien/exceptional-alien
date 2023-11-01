@@ -15,7 +15,7 @@ export type PlaybooksProps = SliceComponentProps<Content.PlaybooksSlice>;
 const Playbooks = ({ slice }: PlaybooksProps): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="!pl-0 !pr-0">
-      <h3 className="mb-2 ml-4 text-2xl font-bold md:mb-3 md:ml-6 md:text-4xl">{slice.primary.title}</h3>
+      <h3 className="p-4 !pt-0 pb-2 text-2xl font-bold md:p-6 md:pb-3 md:text-4xl">{slice.primary.title}</h3>
 
       <Slider>
         {slice.items.length > 1
