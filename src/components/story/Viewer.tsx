@@ -8,7 +8,7 @@ import { components } from "@/slices";
 export default function Viewer({ data }: { data: Content.StoryDocumentData }) {
   return (
     <>
-      <PrismicNextImage field={data.image} />
+      <PrismicNextImage field={data.image} alt=""/>
       <h2>{data.title}</h2>
       <div className="bg-ex-blue">
         <p>Gem in this story</p>
