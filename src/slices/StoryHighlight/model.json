@@ -1,0 +1,16 @@
+{
+  "id": "story_highlight",
+  "type": "SharedSlice",
+  "name": "StoryHighlight",
+  "description": "StoryHighlight",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

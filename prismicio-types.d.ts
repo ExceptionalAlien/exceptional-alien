@@ -1459,12 +1459,10 @@ export type StoriesDocument<Lang extends string = string> = prismic.PrismicDocum
 >;
 
 type StoryDocumentDataSlicesSlice =
-  | GallerySlice
-  | TextBlockSlice
-  | GemSlice
-  | PlaybooksSlice
-  | SingleHeadingSlice
-  | HighlightSlice;
+  | StoryTextWithHeadingSlice
+  | StoryParagraphSlice
+  | StoryGallerySlice
+  | StoryHighlightSlice;
 
 /**
  * Content for Story documents
@@ -1513,6 +1511,17 @@ interface StoryDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<"mobile" | "thumb">;
+
+  /**
+   * Credits field in *Story*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.credits
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  credits: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Story*
@@ -1899,6 +1908,101 @@ type SingleHeadingSliceVariation = SingleHeadingSliceDefault;
 export type SingleHeadingSlice = prismic.SharedSlice<"single_heading", SingleHeadingSliceVariation>;
 
 /**
+ * Default variation for StoryGallery Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryGallerySliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+
+/**
+ * Slice variation for *StoryGallery*
+ */
+type StoryGallerySliceVariation = StoryGallerySliceDefault;
+
+/**
+ * StoryGallery Shared Slice
+ *
+ * - **API ID**: `story_gallery`
+ * - **Description**: StoryGallery
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryGallerySlice = prismic.SharedSlice<"story_gallery", StoryGallerySliceVariation>;
+
+/**
+ * Default variation for StoryHighlight Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryHighlightSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+
+/**
+ * Slice variation for *StoryHighlight*
+ */
+type StoryHighlightSliceVariation = StoryHighlightSliceDefault;
+
+/**
+ * StoryHighlight Shared Slice
+ *
+ * - **API ID**: `story_highlight`
+ * - **Description**: StoryHighlight
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryHighlightSlice = prismic.SharedSlice<"story_highlight", StoryHighlightSliceVariation>;
+
+/**
+ * Default variation for StoryParagraph Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryParagraphSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+
+/**
+ * Slice variation for *StoryParagraph*
+ */
+type StoryParagraphSliceVariation = StoryParagraphSliceDefault;
+
+/**
+ * StoryParagraph Shared Slice
+ *
+ * - **API ID**: `story_paragraph`
+ * - **Description**: StoryParagraph
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryParagraphSlice = prismic.SharedSlice<"story_paragraph", StoryParagraphSliceVariation>;
+
+/**
+ * Default variation for StoryTextWithHeading Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryTextWithHeadingSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+
+/**
+ * Slice variation for *StoryTextWithHeading*
+ */
+type StoryTextWithHeadingSliceVariation = StoryTextWithHeadingSliceDefault;
+
+/**
+ * StoryTextWithHeading Shared Slice
+ *
+ * - **API ID**: `story_text_with_heading`
+ * - **Description**: StoryTextWithHeading
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryTextWithHeadingSlice = prismic.SharedSlice<
+  "story_text_with_heading",
+  StoryTextWithHeadingSliceVariation
+>;
+
+/**
  * Primary content in *TextBlock → Primary*
  */
 export interface TextBlockSliceDefaultPrimary {
@@ -2150,6 +2254,18 @@ declare module "@prismicio/client" {
       SingleHeadingSliceDefaultPrimary,
       SingleHeadingSliceVariation,
       SingleHeadingSliceDefault,
+      StoryGallerySlice,
+      StoryGallerySliceVariation,
+      StoryGallerySliceDefault,
+      StoryHighlightSlice,
+      StoryHighlightSliceVariation,
+      StoryHighlightSliceDefault,
+      StoryParagraphSlice,
+      StoryParagraphSliceVariation,
+      StoryParagraphSliceDefault,
+      StoryTextWithHeadingSlice,
+      StoryTextWithHeadingSliceVariation,
+      StoryTextWithHeadingSliceDefault,
       TextBlockSlice,
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,

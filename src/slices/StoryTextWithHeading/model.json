@@ -1,0 +1,16 @@
+{
+  "id": "story_text_with_heading",
+  "type": "SharedSlice",
+  "name": "StoryTextWithHeading",
+  "description": "StoryTextWithHeading",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

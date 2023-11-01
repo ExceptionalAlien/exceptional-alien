@@ -57,27 +57,28 @@
           ]
         }
       },
+      "credits": {
+        "type": "Text",
+        "config": {
+          "label": "Credits",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "gallery": {
+            "story_text_with_heading": {
               "type": "SharedSlice"
             },
-            "text_block": {
+            "story_paragraph": {
               "type": "SharedSlice"
             },
-            "gem": {
+            "story_gallery": {
               "type": "SharedSlice"
             },
-            "playbooks": {
-              "type": "SharedSlice"
-            },
-            "single_heading": {
-              "type": "SharedSlice"
-            },
-            "highlight": {
+            "story_highlight": {
               "type": "SharedSlice"
             }
           }
