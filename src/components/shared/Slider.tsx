@@ -1,14 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 
-export default function Slider({
-  children,
-  minItems = 2,
-  classes,
-}: {
+interface SliderProps {
   children: any;
   minItems?: number;
   classes?: string;
-}) {
+}
+
+export default function Slider({ minItems = 2, ...props }: SliderProps) {
   const [scrollPos, setScrollPos] = useState("start");
   const [itemCount, setItemCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -28,7 +26,7 @@ export default function Slider({
   };
 
   useEffect(() => {
-    setItemCount(children.length);
+    setItemCount(props.children.length);
 
     const handleScroll = () => {
       const slider = ref.current!;
@@ -50,13 +48,13 @@ export default function Slider({
 
   return (
     <div
-      className={`relative [&>button]:absolute [&>button]:top-1/2 [&>button]:hidden [&>button]:h-12 [&>button]:w-12 [&>button]:-translate-y-1/2 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-black [&>button]:bg-opacity-20 [&>button]:text-white [&>button]:backdrop-blur [&>button]:transition-[background-color] [&>button]:duration-300 [&>button]:ease-in-out hover:[&>button]:bg-opacity-50 [&>button]:md:flex ${classes}`}
+      className={`relative [&>button]:absolute [&>button]:top-1/2 [&>button]:hidden [&>button]:h-12 [&>button]:w-12 [&>button]:-translate-y-1/2 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-black [&>button]:bg-opacity-20 [&>button]:text-white [&>button]:backdrop-blur [&>button]:transition-[background-color] [&>button]:duration-300 [&>button]:ease-in-out hover:[&>button]:bg-opacity-50 [&>button]:md:flex ${props.classes}`}
     >
       <div
         className="slider scrolling-touch no-scrollbar flex  snap-mandatory scroll-px-4 overflow-x-scroll pr-4 md:scroll-px-6 md:pr-6 [&>*]:ml-4 [&>*]:flex-none [&>*]:snap-start [&>*]:snap-always [&>*]:md:ml-6"
         ref={ref}
       >
-        {children}
+        {props.children}
       </div>
 
       {/* Left arrow */}

@@ -1,12 +1,17 @@
 import Place from "@/img/icon-place.svg";
 
-export default function Destination({ name, classes }: { name: string; classes?: string }) {
+interface DestinationProps {
+  name: string;
+  classes?: string;
+}
+
+export default function Destination(props: DestinationProps) {
   return (
     <div
-      className={`text-white bg-black uppercase p-2 pl-3 pr-4 h-5 box-content absolute top-3 md:top-4 left-3 md:left-4 backdrop-blur bg-opacity-20 rounded-full text-sm font-bold ${classes}`}
+      className={`absolute top-0 flex h-9 items-center rounded-full bg-black bg-opacity-20 pl-2 pr-3 text-sm uppercase text-white backdrop-blur ${props.classes}`}
     >
-      <Place className="h-full aspect-square mr-1 inline-block align-[-5px]" />
-      {name}
+      <Place className="mr-1 inline h-5 w-5" />
+      <span className="safari-ios-text-hack">{props.name}</span>
     </div>
   );
 }

@@ -2,28 +2,30 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content, asText } from "@prismicio/client";
+import ThumbShadow from "./ThumbShadow";
 import Destination from "./Destination";
 import ThumbTab from "./ThumbTab";
 import CreatorIcon from "./CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function PlaybookThumb({
-  playbook,
-  size,
-  classes,
-}: {
+interface PlaybookThumbProps {
   playbook: Content.PlaybookDocument;
-  size?: string;
+  size?: string; // lrg, med or sml
+  showDestination?: boolean;
+  showCreator?: boolean;
+  showDescription?: boolean;
   classes?: string;
-}) {
+}
+
+export default function PlaybookThumb(props: PlaybookThumbProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const image =
-    size && playbook.data && playbook.data.image
-      ? playbook.data.image.mobile
-      : playbook.data && playbook.data.image
-      ? playbook.data.image.thumb
-      : null;
+    props.playbook.data && props.playbook.data.image
+      ? props.size && props.size !== "sml"
+        ? props.playbook.data.image.mobile
+        : props.playbook.data.image.thumb
+      : null; // Prismic image size/crop
 
   const imageLoadComplete = () => {
     setImageLoaded(true);
@@ -31,77 +33,73 @@ export default function PlaybookThumb({
 
   return (
     <Link
-      href={"/travel-playbooks/" + playbook.uid}
-      className={`relative group/link max-w-xl ${size === "featured" && "w-11/12 lg:w-5/12"} ${
-        size === "destination" && "w-10/12 lg:w-4/12"
-      } ${classes}`}
+      href={"/travel-playbooks/" + props.playbook.uid}
+      className={`group/link relative max-w-xl ${props.size === "lrg" && "w-11/12 lg:w-5/12"} ${
+        props.size === "med" && "w-10/12 lg:w-4/12"
+      } ${props.classes}`}
     >
       {/* Image */}
       {image && (
-        <div className="group-hover/link:bg-ex-blue relative">
+        <div className="relative group-hover/link:bg-ex-blue">
           <Image
             src={image.url as string}
-            alt={image.alt ? (image.alt as string) : (playbook.data.title as string)}
+            alt={image.alt ? (image.alt as string) : (props.playbook.data.title as string)}
             width={image.dimensions?.width}
             height={image.dimensions?.height}
             placeholder={`data:image/svg+xml;base64,${toBase64(
               shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
             onLoad={imageLoadComplete}
-            className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
+            className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
           />
 
-          {/* Layered shadow */}
-          <div
-            className={`bg-gradient-to-t from-black/50 from-0% absolute w-full h-full top-0 ${
-              !imageLoaded && "hidden"
-            } ${size && size !== "featured" ? "via-black/0 via-50% to-black/50 to-100%" : "to-black/0 to-50%"}`}
-          ></div>
+          <ThumbShadow
+            visible={imageLoaded ? true : false}
+            includeTop={props.showCreator && props.size === "med" ? true : false}
+          />
 
-          {(size === "featured" || size === "grid") && (
+          {props.showDestination && (
             <Destination
-              name={(playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+              name={(props.playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+              classes="m-2 md:m-3"
             />
           )}
 
-          {size && (
+          {props.showCreator && (
             <CreatorIcon
-              firstName={(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
-              lastName={(playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
-              image={(playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes={`absolute right-0 ${size === "featured" ? "w-2/5 md:w-1/3 bottom-0" : "w-1/2 top-0"}`}
+              firstName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
+              lastName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
+              image={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
+              classes={`absolute p-2 md:p-3 !pl-0 right-0 ${props.size === "lrg" ? "w-2/5 bottom-0" : "w-1/2 top-0"}`}
             />
           )}
 
           {/* Title */}
           <p
-            className={`absolute text-white bottom-0 font-bold leading-tight ${
-              size === "featured" && "!pr-0 w-3/5 md:w-2/3"
-            } ${
-              size
-                ? `${size === "grid" ? "text-2xl" : "text-xl"} md:text-3xl p-3 md:p-4`
-                : "text-base md:text-2xl p-2 md:p-3"
-            }`}
+            className={`absolute bottom-0 p-2 font-bold leading-tight text-white md:p-3 ${
+              !props.size || props.size === "sml" ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"
+            } ${props.size === "lrg" && "w-3/5"}`}
           >
-            {playbook.data.title}
+            {props.playbook.data.title}
           </p>
         </div>
       )}
 
       {/* Description */}
-      {size === "featured" && <p className="mt-2">{asText(playbook.data.description)?.substring(0, 160)}</p>}
+      {props.showDescription && (
+        <p className="mt-2 md:mt-3">{asText(props.playbook.data.description)?.substring(0, 155)}</p>
+      )}
 
-      {!size && (
+      {!props.size && (
         <ThumbTab
           title={
-            (playbook.data.creator as unknown as Content.CreatorDocument).data.last_name
-              ? `${(playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${(
-                  playbook.data.creator as unknown as Content.CreatorDocument
+            (props.playbook.data.creator as unknown as Content.CreatorDocument).data.last_name
+              ? `${(props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${(
+                  props.playbook.data.creator as unknown as Content.CreatorDocument
                 ).data.last_name?.toUpperCase()}`
-              : ((playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string)
+              : ((props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string)
           }
-          location={(playbook.data.destination as unknown as Content.DestinationDocument).data?.title as string}
-          classes="mt-2 md:mt-3"
+          location={(props.playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
         />
       )}
     </Link>

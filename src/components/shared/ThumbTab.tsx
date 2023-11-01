@@ -1,12 +1,18 @@
 import TabHeading from "@/components/shared/TabHeading";
 
-export default function Tab({ title, location, classes }: { title: string; location: string; classes?: string }) {
+interface ThumbTabProps {
+  title: string;
+  location: string;
+  classes?: string;
+}
+
+export default function ThumbTab(props: ThumbTabProps) {
   return (
     <TabHeading
-      classes={`mt-1 group-hover/link:text-ex-blue group-hover/link:border-ex-blue duration-300 ease-in-out transition-[color,border-color] ${classes}`}
+      classes={`mt-2 md:mt-3 group-hover/link:text-ex-blue group-hover/link:border-ex-blue duration-300 ease-in-out transition-[color,border-color] ${props.classes}`}
     >
-      <p>{title}</p>
-      <p className="uppercase">{location}</p>
+      <p>{props.title}</p>
+      <p className="uppercase">{props.location}</p>
     </TabHeading>
   );
 }
