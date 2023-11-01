@@ -84,7 +84,7 @@ export default function GemThumb(props: GemThumbProps) {
       )}
 
       {/* Title */}
-      <p className="mt-2 text-xl font-bold group-hover/link:text-ex-blue md:mt-3 md:text-2xl">{props.gem.data.title}</p>
+      <p className="mt-1 text-xl font-bold group-hover/link:text-ex-blue md:mt-2 md:text-2xl">{props.gem.data.title}</p>
     </Link>
   );
 }

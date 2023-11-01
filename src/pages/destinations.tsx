@@ -3,21 +3,21 @@ import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
 import Trending from "@/components/destinations/Trending";
 import All from "@/components/destinations/All";
-import Spacer from "@/components/shared/Spacer";
+import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Destinations({ page, destinations }: PageProps) {
+export default function Destinations({ page, destinations, search }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Destinations"}`}</title>
+        <title>{page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Destinations"}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
         <meta property="og:url" content="https://exceptionalalien.com/destinations" />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Destinations"}`}
+          content={page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Destinations"}
         />
 
         <meta property="og:description" content={page.data.meta_description ?? ""} />
@@ -28,12 +28,13 @@ export default function Destinations({ page, destinations }: PageProps) {
         />
       </Head>
 
-      <main className="box-content p-4 md:p-6 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
-        <Spacer />
+      <main className="lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <Trending destinations={page.data.trending} />
         <All destinations={destinations} />
         <div className="clear-both"></div>
       </main>
+
+      <SearchBox recommended={search.data.recommended} hidden={true} />
     </>
   );
 }
@@ -55,10 +56,16 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
     ],
   });
 
+  const search = await client.getSingle("search", {
+    fetch: "search.recommended,search.description",
+    fetchLinks: "destination.title",
+  });
+
   return {
     props: {
       page,
       destinations,
+      search,
     },
   };
 }

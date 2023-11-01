@@ -50,7 +50,7 @@ export default function Field(props: Props) {
         <button
           type="button"
           onClick={clear}
-          className={`absolute -right-1 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey ${
+          className={`absolute -right-2 mt-1 p-1 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey ${
             props.scrollY > 0 ? "text-white" : "text-ex-blue"
           }`}
         >
