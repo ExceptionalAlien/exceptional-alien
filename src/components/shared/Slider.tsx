@@ -35,7 +35,11 @@ export default function Slider({
 
       // Detect if scroll at start or end
       setScrollPos(
-        slider.scrollLeft === 0 ? "start" : slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth ? "end" : ""
+        slider.scrollLeft === 0
+          ? "start"
+          : Math.round(slider.scrollLeft) + slider.offsetWidth >= slider.scrollWidth
+          ? "end"
+          : ""
       );
     };
 
@@ -45,10 +49,11 @@ export default function Slider({
   }, []);
 
   return (
-    <div className="relative [&>button]:absolute [&>button]:text-white [&>button]:hidden [&>button]:md:flex [&>button]:w-12 [&>button]:h-12 [&>button]:justify-center [&>button]:items-center [&>button]:top-1/2 [&>button]:-translate-y-1/2 [&>button]:rounded-full [&>button]:bg-black hover:[&>button]:bg-opacity-50 [&>button]:transition-[background-color] [&>button]:duration-300 &>button]:ease-in-out [&>button]:bg-opacity-20 [&>button]:backdrop-blur [&>button>svg]:w-6 [&>button>svg]:h-6 [&>button>svg]:box-content">
-      {/* Slider */}
+    <div
+      className={`relative [&>button]:absolute [&>button]:top-1/2 [&>button]:hidden [&>button]:h-12 [&>button]:w-12 [&>button]:-translate-y-1/2 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-black [&>button]:bg-opacity-20 [&>button]:text-white [&>button]:backdrop-blur [&>button]:transition-[background-color] [&>button]:duration-300 [&>button]:ease-in-out hover:[&>button]:bg-opacity-50 [&>button]:md:flex ${classes}`}
+    >
       <div
-        className={`slider flex overflow-x-scroll scrolling-touch no-scrollbar snap-x snap-mandatory pr-4 md:pr-6 [&>*]:flex-none [&>*]:snap-start [&>*]:snap-always [&>*]:box-content [&>*]:pl-4 [&>*]:md:pl-6 ${classes}`}
+        className="slider scrolling-touch no-scrollbar flex  snap-mandatory scroll-px-4 overflow-x-scroll pr-4 md:scroll-px-6 md:pr-6 [&>*]:ml-4 [&>*]:flex-none [&>*]:snap-start [&>*]:snap-always [&>*]:md:ml-6"
         ref={ref}
       >
         {children}
@@ -62,7 +67,7 @@ export default function Slider({
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="pr-1"
+          className="mr-1 h-6 w-6"
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
@@ -79,7 +84,7 @@ export default function Slider({
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="pl-1"
+          className="ml-1 h-6 w-6"
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>

@@ -9,7 +9,7 @@ interface Props {
 
 export default function Recommended(props: Props) {
   return (
-    <div className="mt-4 text-center">
+    <div className="mt-4 text-center md:mt-6">
       {props.destinations.map((item, i) => (
         <Link
           href={`/destinations/${(item.destination as Content.DestinationDocument).uid}`}
@@ -21,7 +21,7 @@ export default function Recommended(props: Props) {
           }`}
         >
           <Place className="mr-1 inline h-5 w-5" />
-          {(item.destination as Content.DestinationDocument).data.title}
+          <span className="safari-ios-text-hack">{(item.destination as Content.DestinationDocument).data.title}</span>
         </Link>
       ))}
     </div>

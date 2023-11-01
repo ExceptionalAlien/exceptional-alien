@@ -60,16 +60,16 @@ export default function SearchBox(props: Props) {
 
   return (
     <div
-      className={`mt-12 flex h-96 flex-col items-center justify-center pl-4 pr-4 transition-[height] duration-300 ease-in-out md:mt-20 md:pl-6 md:pr-6 md:transition-[background-color,height] ${
+      className={`mt-12 flex flex-col items-center justify-center pl-4 pr-4 transition-[height] duration-300 ease-in-out md:mt-20 md:pl-6 md:pr-6 md:transition-[background-color,height] ${
         scrollY > 0 ? "bg-ex-blue" : "bg-white"
       } ${!showingSearchBox && props.hidden && "!h-0"} ${
-        props.hidden && "fixed top-0 w-full overflow-hidden shadow-md"
+        props.hidden ? "fixed top-0 h-80 w-full overflow-hidden shadow-md" : "h-96"
       } ${props.classes}`}
     >
       <form name="searchBox" onSubmit={submit} className="max-w-lg md:max-w-xl">
         {props.description && (
           <h2
-            className={`m-auto w-3/4 text-center text-lg font-bold transition-[color] duration-300 ease-in-out ${
+            className={`m-auto mb-4 w-3/4 text-center text-xl font-bold transition-[color] duration-300 ease-in-out md:mb-6 ${
               scrollY > 0 ? "text-white" : "text-ex-blue"
             }`}
           >

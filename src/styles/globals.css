@@ -19,6 +19,16 @@ body {
   outline: none;
 }
 
+/* Hacks */
+
+@media (hover: none) {
+  @supports (-webkit-touch-callout: none) {
+    .safari-ios-text-hack {
+      padding-top: 2px;
+    }
+  }
+}
+
 /* Safe areas */
 
 .pb-safe {

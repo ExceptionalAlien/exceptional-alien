@@ -14,7 +14,7 @@ export default function Error500({ search }: PageProps) {
         </section>
       </main>
 
-      <SearchBox description={search.data.description} recommended={search.data.recommended} hidden={true} />
+      <SearchBox recommended={search.data.recommended} hidden={true} />
     </>
   );
 }

@@ -57,7 +57,7 @@ export default function About({ page, search }: PageProps) {
         <SliceZone slices={page.data.slices} components={components} />
       </main>
 
-      <SearchBox description={search.data.description} recommended={search.data.recommended} hidden={true} />
+      <SearchBox recommended={search.data.recommended} hidden={true} />
     </>
   );
 }

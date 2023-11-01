@@ -10,7 +10,7 @@ export default function Field(props: Props) {
   };
 
   return (
-    <div className="relative mt-6 flex w-full items-center">
+    <div className="relative flex w-full items-center">
       <label
         htmlFor="search"
         className={`transition-[color] duration-300 ease-in-out ${props.scrollY > 0 ? "text-white" : "text-ex-blue"}`}

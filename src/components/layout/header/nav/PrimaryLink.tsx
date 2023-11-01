@@ -17,7 +17,7 @@ export default function PrimaryLink(props: Props) {
     <Link
       href={`/${props.page}`}
       onClick={props.hideNav}
-      className={`group/primary relative flex items-center justify-center p-6 text-center text-3xl capitalize text-ex-blue md:-mt-8 md:ml-4 md:mr-4 md:h-full md:flex-col md:!p-0 md:text-base md:transition-[margin-top] md:duration-200 md:ease-in-out group-hover/nav:md:mt-0 landscape:p-4 [&>svg]:mr-2 [&>svg]:h-6 [&>svg]:md:mb-2 [&>svg]:md:mr-0 [&>svg]:md:opacity-0 [&>svg]:md:transition-[opacity] [&>svg]:md:duration-300 [&>svg]:md:ease-in-out group-hover/nav:[&>svg]:md:opacity-100 ${
+      className={`group/primary relative flex items-center justify-center p-6 text-center text-3xl capitalize text-ex-blue md:-mt-8 md:ml-4 md:mr-4 md:h-full md:flex-col md:!p-0 md:text-base md:transition-[margin-top] md:duration-200 md:ease-in-out group-hover/nav:md:mt-0 landscape:p-4 [&>svg]:mb-[3px] [&>svg]:mr-2 [&>svg]:h-6 [&>svg]:md:mb-2 [&>svg]:md:mr-0 [&>svg]:md:opacity-0 [&>svg]:md:transition-[opacity] [&>svg]:md:duration-300 [&>svg]:md:ease-in-out group-hover/nav:[&>svg]:md:opacity-100 ${
         props.scrollY > 0 && "md:text-white"
       }`}
     >
@@ -29,6 +29,7 @@ export default function PrimaryLink(props: Props) {
       ></span>
 
       {props.page === "destinations" ? <Place /> : props.page === "travel-playbooks" ? <Playbook /> : <Person />}
+
       {props.page.replace("-", " ").replace("creators", "Community")}
     </Link>
   );

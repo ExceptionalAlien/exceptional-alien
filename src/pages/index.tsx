@@ -25,7 +25,7 @@ export default function Home({ page, search }: PageProps) {
 
       <SearchBox description={search.data.description} recommended={search.data.recommended} />
 
-      <main className="!pt-0 [&>*:nth-child(1)]:!mt-0 [&>section>h3]:mb-2 [&>section>h3]:text-2xl [&>section>h3]:font-bold [&>section>h3]:md:mb-4 [&>section>h3]:md:text-4xl">
+      <main className="!pt-0 [&>*:nth-child(1)]:!mt-0">
         <SliceZone slices={page.data.slices} components={components} />
       </main>
     </>
