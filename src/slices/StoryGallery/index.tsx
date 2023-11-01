@@ -15,7 +15,7 @@ const StoryGallery = ({ slice }: StoryGalleryProps): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
       {slice.items.map((item, i) => (
-        <PrismicNextImage key={i} field={item.image} />
+        <PrismicNextImage key={i} field={item.image} alt={""} />
       ))}
     </section>
   );
