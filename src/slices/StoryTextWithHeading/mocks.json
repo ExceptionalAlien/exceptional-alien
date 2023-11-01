@@ -2,7 +2,24 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "attack",
+				"type": "Text"
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Velit culpa nostrud irure ea exercitation aliqua nulla laboris ad commodo eu aute. Laboris aute veniam deserunt tempor occaecat commodo excepteur proident Lorem. Labore labore elit consequat ea esse dolore cupidatat id."
+						}
+					}
+				]
+			}
+		},
 		"items": []
 	}
 ]

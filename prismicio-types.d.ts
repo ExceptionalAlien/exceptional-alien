@@ -1675,29 +1675,6 @@ export type AllDocumentTypes =
   | TermsAndPrivacyDocument;
 
 /**
- * Default variation for Gallery Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type GallerySliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
-
-/**
- * Slice variation for *Gallery*
- */
-type GallerySliceVariation = GallerySliceDefault;
-
-/**
- * Gallery Shared Slice
- *
- * - **API ID**: `gallery`
- * - **Description**: Gallery
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type GallerySlice = prismic.SharedSlice<"gallery", GallerySliceVariation>;
-
-/**
  * Primary content in *Gem → Primary*
  */
 export interface GemSliceDefaultPrimary {
@@ -1872,12 +1849,12 @@ export interface SingleHeadingSliceDefaultPrimary {
   /**
    * Heading field in *SingleHeading → Primary*
    *
-   * - **Field Type**: Title
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: single_heading.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  heading: prismic.TitleField;
+  heading: prismic.KeyTextField;
 }
 
 /**
@@ -1931,13 +1908,32 @@ type StoryGallerySliceVariation = StoryGallerySliceDefault;
 export type StoryGallerySlice = prismic.SharedSlice<"story_gallery", StoryGallerySliceVariation>;
 
 /**
+ * Primary content in *StoryHighlight → Primary*
+ */
+export interface StoryHighlightSliceDefaultPrimary {
+  /**
+   * text field in *StoryHighlight → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_highlight.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
  * Default variation for StoryHighlight Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type StoryHighlightSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+export type StoryHighlightSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StoryHighlightSliceDefaultPrimary>,
+  never
+>;
 
 /**
  * Slice variation for *StoryHighlight*
@@ -1954,13 +1950,32 @@ type StoryHighlightSliceVariation = StoryHighlightSliceDefault;
 export type StoryHighlightSlice = prismic.SharedSlice<"story_highlight", StoryHighlightSliceVariation>;
 
 /**
+ * Primary content in *StoryParagraph → Primary*
+ */
+export interface StoryParagraphSliceDefaultPrimary {
+  /**
+   * text field in *StoryParagraph → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_paragraph.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
  * Default variation for StoryParagraph Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type StoryParagraphSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+export type StoryParagraphSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StoryParagraphSliceDefaultPrimary>,
+  never
+>;
 
 /**
  * Slice variation for *StoryParagraph*
@@ -1977,13 +1992,42 @@ type StoryParagraphSliceVariation = StoryParagraphSliceDefault;
 export type StoryParagraphSlice = prismic.SharedSlice<"story_paragraph", StoryParagraphSliceVariation>;
 
 /**
+ * Primary content in *StoryTextWithHeading → Primary*
+ */
+export interface StoryTextWithHeadingSliceDefaultPrimary {
+  /**
+   * Heading field in *StoryTextWithHeading → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_text_with_heading.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Text field in *StoryTextWithHeading → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_text_with_heading.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
  * Default variation for StoryTextWithHeading Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type StoryTextWithHeadingSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
+export type StoryTextWithHeadingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StoryTextWithHeadingSliceDefaultPrimary>,
+  never
+>;
 
 /**
  * Slice variation for *StoryTextWithHeading*
@@ -2234,9 +2278,6 @@ declare module "@prismicio/client" {
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,
       AllDocumentTypes,
-      GallerySlice,
-      GallerySliceVariation,
-      GallerySliceDefault,
       GemSlice,
       GemSliceDefaultPrimary,
       GemSliceVariation,
@@ -2258,12 +2299,15 @@ declare module "@prismicio/client" {
       StoryGallerySliceVariation,
       StoryGallerySliceDefault,
       StoryHighlightSlice,
+      StoryHighlightSliceDefaultPrimary,
       StoryHighlightSliceVariation,
       StoryHighlightSliceDefault,
       StoryParagraphSlice,
+      StoryParagraphSliceDefaultPrimary,
       StoryParagraphSliceVariation,
       StoryParagraphSliceDefault,
       StoryTextWithHeadingSlice,
+      StoryTextWithHeadingSliceDefaultPrimary,
       StoryTextWithHeadingSliceVariation,
       StoryTextWithHeadingSliceDefault,
       TextBlockSlice,

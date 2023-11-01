@@ -2,7 +2,19 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Esse mollit dolore nisi. Adipisicing nisi in ea. Eiusmod magna aute laboris mollit cupidatat sunt ex sint minim et excepteur."
+						}
+					}
+				]
+			}
+		},
 		"items": []
 	}
 ]

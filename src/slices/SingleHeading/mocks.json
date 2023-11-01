@@ -4,15 +4,9 @@
 		"variation": "default",
 		"primary": {
 			"heading": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "heading3",
-						"content": {
-							"text": "Replied"
-						}
-					}
-				]
+				"__TYPE__": "FieldContent",
+				"value": "warn",
+				"type": "Text"
 			}
 		},
 		"items": []
