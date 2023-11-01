@@ -4,11 +4,12 @@ import Image from "next/image";
 import { Content } from "@prismicio/client";
 import GemIcon from "./GemIcon";
 import CreatorIcon from "./CreatorIcon";
+import ThumbShadow from "./ThumbShadow";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 interface GemThumbProps {
   gem: Content.GemDocument;
-  size?: string;
+  size?: string; // med or sml
   creator?: Content.CreatorDocument;
   classes?: string;
 }
@@ -23,11 +24,11 @@ export default function GemThumb(props: GemThumbProps) {
   return (
     <Link
       href={"/gems/" + props.gem.uid}
-      className={`group/link max-w-xl ${props.size && "w-3/4 lg:w-1/4"} ${props.classes}`}
+      className={`group/link max-w-xl ${props.size === "med" && "w-3/4 lg:w-1/4"} ${props.classes}`}
     >
       {/* Image */}
       {props.gem.data.image && (
-        <div className="group-hover/link:bg-ex-blue relative">
+        <div className="relative group-hover/link:bg-ex-blue">
           <Image
             src={props.gem.data.image.mobile.url as string}
             alt={
@@ -44,18 +45,14 @@ export default function GemThumb(props: GemThumbProps) {
               )
             )}`}
             onLoad={imageLoadComplete}
-            className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
+            className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
           />
 
-          <div
-            className={`bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0 ${
-              (!imageLoaded || !props.size) && "hidden"
-            }`}
-          ></div>
+          <ThumbShadow visible={imageLoaded && props.size && props.size !== "sml" ? true : false} />
 
           <GemIcon
             category={props.gem.data.category}
-            classes={`!m-0 ${props.size ? "w-11 top-3 left-3" : "top-2 left-2"}`}
+            classes={`top-0 ${props.size === "med" ? "h-11 m-2" : "m-1 md:m-2"}`}
           />
 
           {/* Creators */}
@@ -64,7 +61,7 @@ export default function GemThumb(props: GemThumbProps) {
               firstName={(props.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(props.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(props.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes="absolute right-0 bottom-0 !p-3"
+              classes="absolute right-0 bottom-0 m-2 md:m-3"
             />
           ) : (
             props.gem.data.playbooks.map(
@@ -72,17 +69,13 @@ export default function GemThumb(props: GemThumbProps) {
                 (item.playbook as unknown as Content.PlaybookDocument).data && (
                   <CreatorIcon
                     key={i}
-                    firstName=""
-                    lastName=""
                     image={
                       (
                         (item.playbook as unknown as Content.PlaybookDocument).data
                           .creator as unknown as Content.CreatorDocument
                       ).data.profile_image
                     }
-                    classes={`absolute right-0 bottom-0 !p-2 [&>img]:w-8 [&>img]:md:w-10 [&>img]:h-8 [&>img]:md:h-10 mr-${
-                      i * 2
-                    }`}
+                    classes={`absolute right-0 bottom-0 p-2 md:p-3 mr-${i * 2}`}
                   />
                 )
             )
@@ -91,11 +84,7 @@ export default function GemThumb(props: GemThumbProps) {
       )}
 
       {/* Title */}
-      <p
-        className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${
-          props.size ? "text-xl md:text-2xl" : "text-xl"
-        }`}
-      >
+      <p className="mt-1 text-lg font-bold transition-[color] duration-300 ease-in-out group-hover/link:text-ex-blue md:mt-2 md:text-2xl">
         {props.gem.data.title}
       </p>
     </Link>

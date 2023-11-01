@@ -2,8 +2,8 @@ import Image from "next/image";
 import { ImageField } from "@prismicio/client";
 
 interface CreatorIconProps {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   image: ImageField;
   classes?: string;
 }
@@ -26,7 +26,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
         }
         width={48}
         height={48}
-        className="ml-2 h-12 w-12 rounded-full border border-white"
+        className={`ml-2 rounded-full border border-white ${props.firstName ? "h-12 w-12" : "h-10 w-10"}`}
       />
     </div>
   );

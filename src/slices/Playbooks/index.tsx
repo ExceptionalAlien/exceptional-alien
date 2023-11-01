@@ -35,7 +35,7 @@ const Playbooks = ({ slice }: PlaybooksProps): JSX.Element => {
               <GemThumb
                 key={i}
                 gem={item.primary.gem as unknown as Content.GemDocument}
-                size="featured"
+                size="med"
                 creator={
                   (slice.items[0].playbook as unknown as Content.PlaybookDocument).data
                     .creator as unknown as Content.CreatorDocument

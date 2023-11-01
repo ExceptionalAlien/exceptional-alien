@@ -54,11 +54,11 @@ body {
 /* Gems */
 
 .selected-gem .gem-icon-bg {
-  fill: var(--color-blue) !important;
+  color: var(--color-blue) !important;
 }
 
 .selected-gem .gem-icon-symbol {
-  fill: white;
+  color: white;
 }
 
 /* Audio player */

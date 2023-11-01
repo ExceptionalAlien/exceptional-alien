@@ -1,6 +1,6 @@
 interface ThumbShadowProps {
   visible: boolean;
-  includeTop: boolean;
+  includeTop?: boolean;
 }
 
 export default function ThumbShadow(props: ThumbShadowProps) {
