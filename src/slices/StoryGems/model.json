@@ -1,8 +1,8 @@
 {
-  "id": "story_gallery",
+  "id": "story_gems",
   "type": "SharedSlice",
-  "name": "StoryGallery",
-  "description": "StoryGallery",
+  "name": "StoryGems",
+  "description": "StoryGems",
   "variations": [
     {
       "id": "default",
@@ -13,12 +13,14 @@
       "imageUrl": "",
       "primary": {},
       "items": {
-        "image": {
-          "type": "Image",
+        "gem": {
+          "type": "Link",
           "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
+            "label": "Gem",
+            "select": "document",
+            "customtypes": [
+              "gem"
+            ]
           }
         }
       }

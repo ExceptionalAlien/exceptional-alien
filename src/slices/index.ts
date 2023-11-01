@@ -8,6 +8,7 @@ export const components = {
   playbooks: dynamic(() => import("./Playbooks")),
   single_heading: dynamic(() => import("./SingleHeading")),
   story_gallery: dynamic(() => import("./StoryGallery")),
+  story_gems: dynamic(() => import("./StoryGems")),
   story_highlight: dynamic(() => import("./StoryHighlight")),
   story_paragraph: dynamic(() => import("./StoryParagraph")),
   story_text_with_heading: dynamic(() => import("./StoryTextWithHeading")),
