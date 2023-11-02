@@ -1086,6 +1086,17 @@ interface PlaybookDocumentData {
   audio: prismic.LinkField;
 
   /**
+   * Story field in *Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.story
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  story: prismic.ContentRelationshipField<"story">;
+
+  /**
    * Slice Zone field in *Playbook*
    *
    * - **Field Type**: Slice Zone
@@ -1345,107 +1356,6 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-/**
- * Item in *Stories → Featured*
- */
-export interface StoriesDocumentDataFeaturedItem {
-  /**
-   * Story field in *Stories → Featured*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: stories.featured[].story
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  story: prismic.ContentRelationshipField<"story">;
-}
-
-type StoriesDocumentDataSlicesSlice = never;
-
-/**
- * Content for Stories documents
- */
-interface StoriesDocumentData {
-  /**
-   * Overview field in *Stories*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: stories.overview
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  overview: prismic.RichTextField;
-
-  /**
-   * Featured field in *Stories*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: stories.featured[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  featured: prismic.GroupField<Simplify<StoriesDocumentDataFeaturedItem>>;
-
-  /**
-   * Slice Zone field in *Stories*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: stories.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<StoriesDocumentDataSlicesSlice> /**
-   * Meta Description field in *Stories*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: stories.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Stories*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: stories.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Stories*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: stories.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Stories document from Prismic
- *
- * - **API ID**: `stories`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type StoriesDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
-  Simplify<StoriesDocumentData>,
-  "stories",
-  Lang
->;
-
 type StoryDocumentDataSlicesSlice = never;
 
 /**
@@ -1641,7 +1551,6 @@ export type AllDocumentTypes =
   | PlaybookDocument
   | PlaybooksDocument
   | SearchDocument
-  | StoriesDocument
   | StoryDocument
   | TermsAndPrivacyDocument;
 
@@ -2076,10 +1985,6 @@ declare module "@prismicio/client" {
       SearchDocumentData,
       SearchDocumentDataRecommendedItem,
       SearchDocumentDataSlicesSlice,
-      StoriesDocument,
-      StoriesDocumentData,
-      StoriesDocumentDataFeaturedItem,
-      StoriesDocumentDataSlicesSlice,
       StoryDocument,
       StoryDocumentData,
       StoryDocumentDataSlicesSlice,
