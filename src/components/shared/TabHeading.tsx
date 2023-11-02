@@ -5,7 +5,7 @@ interface TabHeadingProps {
 
 export default function TabHeading(props: TabHeadingProps) {
   return (
-    <div className={`min-h-[50px] border border-b-0 border-black p-2 pb-0 text-sm ${props.classes}`}>
+    <div className={`min-h-[48px] border border-b-0 border-black p-2 pb-0 pt-[6px] text-sm ${props.classes}`}>
       {props.children}
     </div>
   );
