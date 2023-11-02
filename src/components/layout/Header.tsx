@@ -70,7 +70,11 @@ export default function Header() {
           className={`flex items-center text-2xl font-bold capitalize transition-[color] duration-300 ease-in-out md:text-4xl [&>svg]:ml-1 [&>svg]:h-5 [&>svg]:md:ml-2 [&>svg]:md:h-6 ${
             scrollY > 0 ? "text-white" : "text-ex-blue"
           } ${
-            page !== "creators" && page !== "travel-playbooks" && page !== "destinations" && page !== "gems" && "hidden"
+            page !== "community" &&
+            page !== "travel-playbooks" &&
+            page !== "destinations" &&
+            page !== "gems" &&
+            "hidden"
           }`}
         >
           {page.replace("travel-playbooks", "Playbooks")}
@@ -79,7 +83,7 @@ export default function Header() {
             <Place />
           ) : page === "travel-playbooks" ? (
             <Playbook />
-          ) : page === "creators" ? (
+          ) : page === "community" ? (
             <Person />
           ) : (
             <Gem />

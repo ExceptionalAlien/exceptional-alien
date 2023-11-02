@@ -22,8 +22,8 @@ export default function CreatorThumb({
 
   return (
     <Link
-      href={"/creators/" + creator.uid}
-      className={`group/link ${size === "featured" && "w-10/12 md:w-5/12 max-w-xl"} ${classes}`}
+      href={"/community/" + creator.uid}
+      className={`group/link ${size === "featured" && "w-10/12 max-w-xl md:w-5/12"} ${classes}`}
     >
       {/* Image */}
       {image && (
@@ -42,14 +42,14 @@ export default function CreatorThumb({
             placeholder={`data:image/svg+xml;base64,${toBase64(
               shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
-            className="group-hover/link:grayscale group-hover/link:mix-blend-lighten"
+            className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
           />
         </div>
       )}
 
       {/* Name */}
       <p
-        className={`group-hover/link:text-ex-blue transition-[color] duration-300 ease-in-out font-bold mt-2 ${
+        className={`mt-2 font-bold transition-[color] duration-300 ease-in-out group-hover/link:text-ex-blue ${
           size === "featured" ? "text-2xl md:text-3xl" : "text-xl"
         }`}
       >

@@ -41,7 +41,7 @@ const nextConfig = {
     return [
       {
         source: "/people/:slug",
-        destination: "/creators/:slug",
+        destination: "/community/:slug",
       },
       {
         source: "/playbooks/(.*)",

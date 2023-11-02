@@ -56,7 +56,7 @@ export default function Header(props: HeaderProps) {
   }, []);
 
   return (
-    <div className="z-10 sticky bg-ex-light-grey overflow-hidden" style={{ top: stickyTop }} ref={ref}>
+    <div className="sticky z-10 overflow-hidden bg-ex-light-grey" style={{ top: stickyTop }} ref={ref}>
       <Image
         src={props.image.url as string}
         alt={props.image.alt ? (props.image.alt as string) : props.title}
@@ -75,7 +75,7 @@ export default function Header(props: HeaderProps) {
 
       {/* Layered shadow */}
       <div
-        className={`bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% absolute w-full h-full top-0 ${
+        className={`absolute top-0 h-full w-full bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% ${
           !imageLoaded && "hidden"
         }`}
       ></div>
@@ -83,9 +83,9 @@ export default function Header(props: HeaderProps) {
       {/* Destination */}
       <Link
         href={"/destinations/" + props.destination.uid}
-        className="hover:[&>div]:bg-opacity-50 [&>div]:duration-300 [&>div]:ease-in-out [&>div]:transition-[background-color]"
+        className="[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50"
       >
-        <Destination name={props.destination.data.title as string} />
+        <Destination name={props.destination.data.title as string} classes="left-3 top-3" />
       </Link>
 
       <Share title={props.title} />

@@ -30,7 +30,7 @@ export default function PrimaryLink(props: Props) {
 
       {props.page === "destinations" ? <Place /> : props.page === "travel-playbooks" ? <Playbook /> : <Person />}
 
-      {props.page.replace("-", " ").replace("creators", "Community")}
+      {props.page.replace("-", " ")}
     </Link>
   );
 }

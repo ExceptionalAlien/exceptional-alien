@@ -5,13 +5,13 @@ import { createClient } from "@/prismicio";
 import { CreatorsContext, CreatorsContextType } from "@/context/CreatorsContext";
 import Featured from "@/components/creators/Featured";
 import All from "@/components/creators/All";
-import Spacer from "@/components/shared/Spacer";
 import Overview from "@/components/shared/Overview";
 import Loading from "@/components/shared/Loading";
+import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Creators({ page }: PageProps) {
+export default function Creators({ page, search }: PageProps) {
   const { creators, setCreators } = useContext<CreatorsContextType>(CreatorsContext);
 
   const loadCreators = async () => {
@@ -29,13 +29,13 @@ export default function Creators({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Creators"}`}</title>
+        <title>{page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Community"}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
-        <meta property="og:url" content="https://exceptionalalien.com/creators" />
+        <meta property="og:url" content="https://exceptionalalien.com/community" />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Creators"}`}
+          content={page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Community"}
         />
 
         <meta property="og:description" content={page.data.meta_description ?? ""} />
@@ -46,11 +46,9 @@ export default function Creators({ page }: PageProps) {
         />
       </Head>
 
-      <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-4">
+      <main>
         <Featured creators={page.data.featured} />
-        <Spacer />
         <Overview text={page.data.overview} />
-        <Spacer />
 
         {creators.length !== 0 ? (
           <All creators={creators} />
@@ -60,6 +58,8 @@ export default function Creators({ page }: PageProps) {
           </section>
         )}
       </main>
+
+      <SearchBox recommended={search.data.recommended} hidden={true} />
     </>
   );
 }
@@ -72,9 +72,15 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
       "creator.first_name,creator.last_name,creator.uid,creator.hero_image,creator.profile_image,creator.title,creator.home_city,creator.current_city,creator.home_country,creator.short_description",
   });
 
+  const search = await client.getSingle("search", {
+    fetch: "search.recommended,search.description",
+    fetchLinks: "destination.title",
+  });
+
   return {
     props: {
       page,
+      search,
     },
   };
 }

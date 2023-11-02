@@ -28,11 +28,11 @@ const routes: prismic.ClientConfig["routes"] = [
   },
   {
     type: "creators",
-    path: "/creators",
+    path: "/community",
   },
   {
     type: "creator",
-    path: "/creators/:uid",
+    path: "/community/:uid",
   },
   {
     type: "playbooks",
