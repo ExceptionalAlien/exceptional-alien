@@ -27,7 +27,7 @@ export default function Category(props: CategoryProps) {
       <GemIcon
         category={props.name}
         hideBg={true}
-        classes={`mr-2 group-hover/link:text-white ${
+        classes={`mr-[6px] group-hover/link:text-white ${
           props.categories.includes(props.name.toLowerCase()) && "text-white"
         }`}
       />

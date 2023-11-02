@@ -4,26 +4,24 @@ import { Content } from "@prismicio/client";
 import ThumbTab from "./ThumbTab";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function CreatorThumb({
-  creator,
-  size,
-  classes,
-}: {
+interface CreatorThumbProps {
   creator: Content.CreatorDocument;
-  size?: string;
+  size?: string; // lrg or sml
   classes?: string;
-}) {
+}
+
+export default function CreatorThumb(props: CreatorThumbProps) {
   const image =
-    size === "featured" && creator.data.hero_image
-      ? creator.data.hero_image.mobile
-      : creator.data.profile_image
-      ? creator.data.profile_image
-      : null;
+    props.creator.data && props.creator.data.hero_image
+      ? props.creator.data.hero_image.mobile
+      : props.creator.data && props.creator.data.profile_image
+      ? props.creator.data.profile_image
+      : null; // Prismic image size/crop
 
   return (
     <Link
-      href={"/community/" + creator.uid}
-      className={`group/link ${size === "featured" && "w-10/12 max-w-xl md:w-5/12"} ${classes}`}
+      href={"/community/" + props.creator.uid}
+      className={`group/link max-w-xl ${props.size === "lrg" && "w-10/12 md:w-5/12"} ${props.classes}`}
     >
       {/* Image */}
       {image && (
@@ -33,9 +31,9 @@ export default function CreatorThumb({
             alt={
               image.alt
                 ? (image.alt as string)
-                : creator.data.last_name
-                ? `${creator.data.first_name} ${creator.data.last_name}`
-                : (creator.data.first_name as string)
+                : props.creator.data.last_name
+                ? `${props.creator.data.first_name} ${props.creator.data.last_name}`
+                : (props.creator.data.first_name as string)
             }
             width={image.dimensions?.width}
             height={image.dimensions?.height}
@@ -49,17 +47,17 @@ export default function CreatorThumb({
 
       {/* Name */}
       <p
-        className={`mt-2 font-bold transition-[color] duration-300 ease-in-out group-hover/link:text-ex-blue ${
-          size === "featured" ? "text-2xl md:text-3xl" : "text-xl"
+        className={`mt-1 font-bold group-hover/link:text-ex-blue md:mt-2 ${
+          props.size === "lrg" ? "text-2xl md:text-4xl" : "text-xl md:text-2xl"
         }`}
       >
-        {creator.data.first_name} {creator.data.last_name?.toUpperCase()}
+        {props.creator.data.first_name} {props.creator.data.last_name?.toUpperCase()}
       </p>
 
-      {size !== "featured" ? (
-        <ThumbTab title={creator.data.title as string} location={creator.data.current_city as string} />
+      {!props.size || props.size === "sml" ? (
+        <ThumbTab title={props.creator.data.title as string} location={props.creator.data.current_city as string} />
       ) : (
-        <p>{creator.data.short_description?.substring(0, 160)}</p>
+        <p className="text-ex-grey">{props.creator.data.short_description?.substring(0, 155)}</p>
       )}
     </Link>
   );

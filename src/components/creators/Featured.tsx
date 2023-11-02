@@ -13,7 +13,7 @@ export default function Featured(props: FeaturedProps) {
 
       <Slider>
         {props.creators.map((item, i) => (
-          <CreatorThumb key={i} creator={item.creator as Content.CreatorDocument} size="featured" />
+          <CreatorThumb key={i} creator={item.creator as Content.CreatorDocument} size="lrg" />
         ))}
       </Slider>
     </section>

@@ -20,7 +20,7 @@ export default function Recommended(props: Props) {
               : "border-ex-blue text-ex-blue hover:bg-ex-blue hover:text-white"
           }`}
         >
-          <Place className="mr-2 inline h-5 overflow-visible" />
+          <Place className="mr-[6px] inline h-5 overflow-visible" />
           <span className="safari-ios-text-hack">{(item.destination as Content.DestinationDocument).data.title}</span>
         </Link>
       ))}
