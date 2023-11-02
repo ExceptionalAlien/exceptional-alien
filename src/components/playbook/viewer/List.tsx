@@ -12,7 +12,7 @@ export default function List({ data }: { data: Content.PlaybookDocumentData }) {
         destination={data.destination as unknown as Content.DestinationDocument}
       />
 
-      <ListContent description={data.description} audio={data.audio} slices={data.slices} creator={data.creator} />
+      <ListContent description={data.description} audio={data.audio} slices={data.slices} creator={data.creator} story={data.story} />
     </div>
   );
 }

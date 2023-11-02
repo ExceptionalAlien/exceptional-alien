@@ -16,6 +16,7 @@ interface ListContentProps {
   audio: LinkField;
   slices: SliceZoneType<Content.GemSlice>;
   creator: ContentRelationshipField<"creator">;
+  story: ContentRelationshipField<"story">;
 }
 
 export default function ListContent(props: ListContentProps) {
@@ -23,7 +24,7 @@ export default function ListContent(props: ListContentProps) {
 
   return (
     <div className="grid m-3 md:m-4 my-5 md:my-6 gap-y-10 md:gap-y-12">
-      <Details description={props.description} audio={audioFile} />
+      <Details description={props.description} audio={audioFile} story={props.story} />
       <SliceZone slices={props.slices} components={components} context={{ creator: props.creator }} />
     </div>
   );

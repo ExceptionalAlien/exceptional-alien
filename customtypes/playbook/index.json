@@ -75,6 +75,14 @@
           "select": null
         }
       },
+      "story": {
+        "type": "Link",
+        "config": {
+          "label": "Story",
+          "select": "document",
+          "customtypes": ["story"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

@@ -1086,6 +1086,17 @@ interface PlaybookDocumentData {
   audio: prismic.LinkField;
 
   /**
+   * Story field in *Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.story
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  story: prismic.ContentRelationshipField<"story">;
+
+  /**
    * Slice Zone field in *Playbook*
    *
    * - **Field Type**: Slice Zone
