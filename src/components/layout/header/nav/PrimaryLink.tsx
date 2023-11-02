@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Place from "@/img/icon-place.svg";
 import Playbook from "@/img/icon-playbook.svg";
 import Person from "@/img/icon-person.svg";
+import Story from "@/img/icon-story.svg";
 
 interface Props {
   page: string;
@@ -28,7 +29,7 @@ export default function PrimaryLink(props: Props) {
         }`}
       ></span>
 
-      {props.page === "destinations" ? <Place /> : props.page === "travel-playbooks" ? <Playbook /> : <Person />}
+      {props.page === "destinations" ? <Place /> : props.page === "travel-playbooks" ? <Playbook /> : props.page === "stories" ? <Story/> : <Person />}
 
       {props.page.replace("-", " ").replace("creators", "Community")}
     </Link>

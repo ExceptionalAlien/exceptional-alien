@@ -10,6 +10,7 @@ import Place from "@/img/icon-place.svg";
 import Playbook from "@/img/icon-playbook.svg";
 import Person from "@/img/icon-person.svg";
 import Gem from "@/img/icon-gem.svg";
+import Story from "@/img/icon-story.svg";
 
 export default function Header() {
   const router = useRouter();
@@ -81,6 +82,8 @@ export default function Header() {
             <Playbook />
           ) : page === "creators" ? (
             <Person />
+          ) : page === "stories" ? (
+              <Story />
           ) : (
             <Gem />
           )}
