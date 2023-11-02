@@ -27,7 +27,7 @@ export default function Viewer({ data }: { data: Content.PlaybookDocumentData })
   }, []);
 
   return (
-    <section className="!mt-0 flex justify-end items-end" ref={ref}>
+    <section className="!mt-0 flex items-end justify-end !pl-0 !pr-0" ref={ref}>
       <List data={data} />
       <Map gems={data.slices} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
     </section>
