@@ -14,13 +14,13 @@ export default function Recommended(props: Props) {
         <Link
           href={`/destinations/${(item.destination as Content.DestinationDocument).uid}`}
           key={i}
-          className={`ml-1 mr-1 mt-2 inline-flex h-9 items-center rounded-full border pl-2 pr-3 text-sm uppercase transition-[color,background-color,border-color] duration-300 ease-in-out ${
+          className={`ml-1 mr-1 mt-2 inline-flex h-9 items-center rounded-full border pl-3 pr-3 text-sm uppercase transition-[color,background-color,border-color] duration-300 ease-in-out ${
             props.scrollY > 0
               ? "border-white text-white hover:bg-white hover:text-ex-blue"
               : "border-ex-blue text-ex-blue hover:bg-ex-blue hover:text-white"
           }`}
         >
-          <Place className="mr-1 inline h-5 w-5" />
+          <Place className="mr-2 inline h-5 overflow-visible" />
           <span className="safari-ios-text-hack">{(item.destination as Content.DestinationDocument).data.title}</span>
         </Link>
       ))}

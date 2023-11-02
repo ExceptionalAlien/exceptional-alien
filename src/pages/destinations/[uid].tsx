@@ -3,13 +3,11 @@ import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
 import { GemsContext, GemsContextType } from "@/context/GemsContext";
-import { asText, filter } from "@prismicio/client";
+import { asText, filter, Content } from "@prismicio/client";
 import Featured from "@/components/destination/Featured";
 import All from "@/components/destination/All";
-import Title from "@/components/destination/Title";
 import Overview from "@/components/shared/Overview";
 import Loading from "@/components/shared/Loading";
-import Spacer from "@/components/shared/Spacer";
 import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -57,9 +55,28 @@ export default function Creator({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="[&>section>h3]:mb-2 [&>section>h3]:text-2xl [&>section>h3]:font-bold [&>section>h3]:md:mb-4 [&>section>h3]:md:text-4xl [&>section]:pl-4 [&>section]:pr-4 [&>section]:md:pl-6 [&>section]:md:pr-6">
-        <Title text={page.data.title as string} latLng={page.data.location} />
-        {page.data.featured.length > 0 && <Featured playbooks={page.data.featured} />}
+      <main>
+        {/* Title */}
+        <section>
+          <hgroup className="float-left w-3/5 pr-2 md:pr-3">
+            <h2 className="text-3xl font-bold uppercase md:text-6xl">{page.data.title}</h2>
+            <h3 className="text-lg text-ex-grey md:text-2xl">{page.data.country}</h3>
+          </hgroup>
+
+          <p className="float-right w-2/5 text-right font-mono text-xs md:text-sm">
+            {Math.abs(page.data.location.latitude).toFixed(4)}°{page.data.location.latitude < 0 ? "S" : "N"}
+            <br />
+            {Math.abs(page.data.location.longitude).toFixed(4)}°{page.data.location.latitude < 0 ? "W" : "E"}
+          </p>
+
+          <div className="clear-both"></div>
+        </section>
+
+        {page.data.featured.length > 0 &&
+          (page.data.featured[0]?.playbook as unknown as Content.PlaybookDocument).data && (
+            <Featured playbooks={page.data.featured} />
+          )}
+
         <Overview text={page.data.about} />
 
         {gems[page.uid] ? (

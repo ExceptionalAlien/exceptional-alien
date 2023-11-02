@@ -2,11 +2,16 @@ import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Content } from "@prismicio/client";
 import GemThumb from "../shared/GemThumb";
-import Categories from "./all/Categories";
+import Category from "./all/Category";
 import Filter from "../shared/Filter";
+import NoResults from "../shared/NoResults";
 import Gem from "@/img/icon-gem.svg";
 
-export default function All({ gems }: { gems: Content.GemDocument[] }) {
+interface AllProps {
+  gems: Content.GemDocument[];
+}
+
+export default function All(props: AllProps) {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState(0);
@@ -56,21 +61,34 @@ export default function All({ gems }: { gems: Content.GemDocument[] }) {
 
   return (
     <section className="relative">
-      <h3 className="!mb-0 md:!mb-2">
-        <Gem className="h-5 md:h-7 inline mr-2 align-[-1px]" />
-        All Gems{" "}
-        <span className="text-base md:text-xl">({query.length > 1 || categories.length ? results : gems.length})</span>
+      <h3 className="flex items-center text-2xl font-bold md:pb-1 md:text-4xl">
+        <Gem className="mb-1 mr-1 h-5 overflow-visible md:mr-2 md:h-6" />
+        All Gems
+        <span className="ml-1 text-base md:ml-2 md:text-xl">
+          ({query.length > 1 || categories.length ? results : props.gems.length})
+        </span>
       </h3>
 
-      <Categories categories={categories} setCategories={setCategories} />
-      <Filter query={query} setQuery={setQuery} />
+      {/* Catgeories */}
+      <div className="mb-2 md:mb-6">
+        <Category name="Accommodation" categories={categories} setCategories={setCategories} />
+        <Category name="Culture" categories={categories} setCategories={setCategories} />
+        <Category name="Events" categories={categories} setCategories={setCategories} />
+        <Category name="Food & Drink" categories={categories} setCategories={setCategories} />
+        <Category name="Nature" categories={categories} setCategories={setCategories} />
+        <Category name="Neighbourhoods" categories={categories} setCategories={setCategories} />
+        <Category name="Retail" categories={categories} setCategories={setCategories} />
+        <Category name="Wellness" categories={categories} setCategories={setCategories} />
+      </div>
+
+      <Filter query={query} setQuery={setQuery} classes="md:!absolute md:right-6" />
 
       {/* Thumbs */}
       <div
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-x-3 md:gap-x-4 gap-y-6 md:gap-y-9"
+        className="grid grid-cols-2 gap-x-2 gap-y-4 md:grid-cols-3 md:gap-x-3 md:gap-y-6 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
         ref={ref}
       >
-        {gems.map((item, i) => {
+        {props.gems.map((item, i) => {
           if (
             (query.length <= 1 && !categories.length) ||
             (categories.length &&
@@ -85,10 +103,7 @@ export default function All({ gems }: { gems: Content.GemDocument[] }) {
         })}
       </div>
 
-      {/* No filtered results */}
-      <p className={`m-8 md:m-16 text-center ${((query.length <= 1 && !categories.length) || results) && "hidden"}`}>
-        No results found
-      </p>
+      <NoResults visible={(query.length <= 1 && !categories.length) || results ? false : true} />
     </section>
   );
 }

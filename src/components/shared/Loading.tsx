@@ -1,9 +1,13 @@
-export default function Loading({ text }: { text: string }) {
+interface LoadingProps {
+  text: string;
+}
+
+export default function Loading(props: LoadingProps) {
   return (
     <div className="flex items-center justify-center">
       <svg
         aria-hidden="true"
-        className="w-8 h-8 mr-2 text-ex-light-grey animate-spin fill-ex-blue"
+        className="mr-2 h-8 w-8 animate-spin fill-ex-blue text-ex-light-grey"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +22,7 @@ export default function Loading({ text }: { text: string }) {
         />
       </svg>
 
-      <span className="text-ex-grey">{text}...</span>
+      <span className="text-ex-grey">{props.text}...</span>
     </div>
   );
 }

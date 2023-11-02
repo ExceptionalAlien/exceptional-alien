@@ -12,7 +12,7 @@ export default function Filter(props: FilterProps) {
   return (
     <form
       name="filter"
-      className={`sticky top-12 z-10 flex items-center bg-white pb-2 pt-2 md:relative md:top-0 md:w-72 md:pb-3 md:pt-0 ${props.classes}`}
+      className={`sticky top-12 z-10 flex items-center bg-white pb-4 pt-2 md:relative md:top-0 md:w-72 md:pb-6 md:pt-0 ${props.classes}`}
       onSubmit={(e) => {
         e.preventDefault();
       }}

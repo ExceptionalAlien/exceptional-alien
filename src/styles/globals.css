@@ -57,7 +57,7 @@ body {
   color: var(--color-blue) !important;
 }
 
-.selected-gem .gem-icon-symbol {
+.selected-gem {
   color: white;
 }
 
