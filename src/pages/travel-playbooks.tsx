@@ -5,13 +5,13 @@ import { createClient } from "@/prismicio";
 import { PlaybooksContext, PlaybooksContextType } from "@/context/PlaybooksContext";
 import Featured from "@/components/playbooks/Featured";
 import All from "@/components/playbooks/All";
-import Spacer from "@/components/shared/Spacer";
 import Overview from "@/components/shared/Overview";
 import Loading from "@/components/shared/Loading";
+import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Playbooks({ page }: PageProps) {
+export default function Playbooks({ page, search }: PageProps) {
   const { playbooks, setPlaybooks } = useContext<PlaybooksContextType>(PlaybooksContext);
 
   const loadPlaybooks = async () => {
@@ -29,13 +29,13 @@ export default function Playbooks({ page }: PageProps) {
   return (
     <>
       <Head>
-        <title>{`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Playbooks"}`}</title>
+        <title>{page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Travel Playbooks"}</title>
         <meta name="description" content={page.data.meta_description ?? ""} />
-        <meta property="og:url" content="https://exceptionalalien.com/playbooks" />
+        <meta property="og:url" content="https://exceptionalalien.com/travel-playbooks" />
 
         <meta
           property="og:title"
-          content={`Exceptional ALIEN - ${page.data.meta_title ? page.data.meta_title : "Playbooks"}`}
+          content={page.data.meta_title ? page.data.meta_title : "Exceptional ALIEN - Travel Playbooks"}
         />
 
         <meta property="og:description" content={page.data.meta_description ?? ""} />
@@ -46,11 +46,9 @@ export default function Playbooks({ page }: PageProps) {
         />
       </Head>
 
-      <main className="[&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6 [&>section>h3]:font-bold [&>section>h3]:text-2xl [&>section>h3]:md:text-4xl [&>section>h3]:mb-2 [&>section>h3]:md:mb-4">
+      <main className="">
         <Featured playbooks={page.data.featured} />
-        <Spacer />
         <Overview text={page.data.overview} />
-        <Spacer />
 
         {playbooks.length !== 0 ? (
           <All playbooks={playbooks} />
@@ -60,6 +58,8 @@ export default function Playbooks({ page }: PageProps) {
           </section>
         )}
       </main>
+
+      <SearchBox recommended={search.data.recommended} hidden={true} />
     </>
   );
 }
@@ -72,9 +72,15 @@ export async function getStaticProps({ previewData }: GetStaticPropsContext) {
       "playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,destination.title,creator.first_name,creator.last_name,creator.profile_image",
   });
 
+  const search = await client.getSingle("search", {
+    fetch: "search.recommended,search.description",
+    fetchLinks: "destination.title",
+  });
+
   return {
     props: {
       page,
+      search,
     },
   };
 }

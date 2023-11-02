@@ -2,8 +2,13 @@ import { useRef, useState, useEffect } from "react";
 import { Content } from "@prismicio/client";
 import PlaybookThumb from "../shared/PlaybookThumb";
 import Filter from "../shared/Filter";
+import NoResults from "../shared/NoResults";
 
-export default function All({ playbooks }: { playbooks: Content.PlaybookDocument[] }) {
+interface AllProps {
+  playbooks: Content.PlaybookDocument[];
+}
+
+export default function All(props: AllProps) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -14,19 +19,21 @@ export default function All({ playbooks }: { playbooks: Content.PlaybookDocument
 
   return (
     <section className="relative">
-      <h3 className="!mb-0 md:!mb-4">
-        All Travel Playbooks{" "}
-        <span className="text-base md:text-xl">({query.length > 1 ? results : playbooks.length})</span>
+      <h3 className="text-2xl font-bold md:pb-3 md:text-4xl">
+        All Travel Playbooks
+        <span className="ml-1 text-base md:ml-2 md:text-xl">
+          ({query.length > 1 ? results : props.playbooks.length})
+        </span>
       </h3>
 
-      <Filter query={query} setQuery={setQuery} />
+      <Filter query={query} setQuery={setQuery} classes="md:!absolute md:right-6" />
 
       {/* Thumbs */}
       <div
-        className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-3 md:gap-x-4 gap-y-6 md:gap-y-9"
+        className="grid grid-cols-2 gap-x-2 gap-y-4 md:gap-x-3 md:gap-y-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
         ref={ref}
       >
-        {playbooks.map((item, i) => {
+        {props.playbooks.map((item, i) => {
           if (
             query.length <= 1 ||
             (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
@@ -44,8 +51,7 @@ export default function All({ playbooks }: { playbooks: Content.PlaybookDocument
         })}
       </div>
 
-      {/* No filtered results */}
-      <p className={`m-8 md:m-16 text-center ${(query.length <= 1 || results) && "hidden"}`}>No results found</p>
+      <NoResults visible={query.length <= 1 || results ? false : true} />
     </section>
   );
 }
