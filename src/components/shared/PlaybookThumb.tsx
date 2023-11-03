@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content, asText } from "@prismicio/client";
-import ThumbShadow from "./ThumbShadow";
+import ImageShadow from "./ImageShadow";
 import Destination from "./Destination";
 import ThumbTab from "./ThumbTab";
 import CreatorIcon from "./CreatorIcon";
@@ -53,7 +53,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
             className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
           />
 
-          <ThumbShadow
+          <ImageShadow
             visible={imageLoaded ? true : false}
             includeTop={props.showCreator && props.size === "med" ? true : false}
           />
@@ -61,7 +61,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           {props.showDestination && (
             <Destination
               name={(props.playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
-              classes="m-2 md:m-3"
+              classes={`m-2 md:m-3 ${!imageLoaded && "hidden"}`}
             />
           )}
 
@@ -70,7 +70,9 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
               firstName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes={`absolute p-2 md:p-3 !pl-0 right-0 ${props.size === "lrg" ? "w-2/5 bottom-0" : "w-1/2 top-0"}`}
+              classes={`absolute p-2 md:p-3 !pl-0 right-0 ${props.size === "lrg" ? "w-2/5 bottom-0" : "w-1/2 top-0"} ${
+                !imageLoaded && "hidden"
+              }`}
             />
           )}
 
@@ -78,7 +80,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           <p
             className={`absolute bottom-0 p-2 font-bold leading-tight text-white md:p-3 ${
               !props.size || props.size === "sml" ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"
-            } ${props.size === "lrg" && "w-3/5"}`}
+            } ${props.size === "lrg" && "w-3/5"} ${!imageLoaded && "hidden"}`}
           >
             {props.playbook.data.title}
           </p>
@@ -89,6 +91,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
       {props.showDescription && (
         <p className="mt-1 text-ex-grey group-hover/link:text-ex-blue md:mt-2">
           {asText(props.playbook.data.description)?.substring(0, 155)}
+          {asText(props.playbook.data.description).length > 155 && "..."}
         </p>
       )}
 

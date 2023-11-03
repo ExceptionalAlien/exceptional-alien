@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Content } from "@prismicio/client";
 import GemIcon from "./GemIcon";
 import CreatorIcon from "./CreatorIcon";
-import ThumbShadow from "./ThumbShadow";
+import ImageShadow from "./ImageShadow";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 interface GemThumbProps {
@@ -48,11 +48,11 @@ export default function GemThumb(props: GemThumbProps) {
             className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
           />
 
-          <ThumbShadow visible={imageLoaded && props.size && props.size !== "sml" ? true : false} />
+          <ImageShadow visible={imageLoaded && props.size && props.size !== "sml" ? true : false} />
 
           <GemIcon
             category={props.gem.data.category}
-            classes={`top-0 m-[6px] md:m-[10px] ${props.size === "med" && "!h-12 w-12"}`}
+            classes={`top-0 m-[6px] md:m-[10px] ${props.size === "med" && "!h-12 w-12"} ${!imageLoaded && "hidden"}`}
           />
 
           {/* Creators */}
@@ -61,7 +61,7 @@ export default function GemThumb(props: GemThumbProps) {
               firstName={(props.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(props.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(props.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes="absolute right-0 bottom-0 m-2 md:m-3"
+              classes={`absolute right-0 bottom-0 m-2 md:m-3 ${!imageLoaded && "hidden"}`}
             />
           ) : (
             props.gem.data.playbooks.map(
@@ -75,7 +75,7 @@ export default function GemThumb(props: GemThumbProps) {
                           .creator as unknown as Content.CreatorDocument
                       ).data.profile_image
                     }
-                    classes={`absolute right-0 bottom-0 p-2 md:p-3 mr-${i * 2}`}
+                    classes={`absolute right-0 bottom-0 p-2 md:p-3 mr-${i * 2} ${!imageLoaded && "hidden"}`}
                   />
                 )
             )

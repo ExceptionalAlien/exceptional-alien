@@ -10,7 +10,7 @@ interface GemIconProps {
 export default function GemIcon(props: GemIconProps) {
   return (
     <div
-      className={`gem-icon flex items-center justify-center text-ex-blue transition-[color] duration-300 ease-in-out [&>svg]:overflow-visible ${
+      className={`gem-icon flex items-center justify-center text-ex-blue [&>svg]:overflow-visible [&>svg]:transition-[color] [&>svg]:duration-300 [&>svg]:ease-in-out ${
         props.hideBg
           ? "h-5 [&>svg]:h-full"
           : "absolute h-10 w-10 md:h-12 md:w-12 [&>svg]:absolute [&>svg]:h-2/5 [&>svg]:w-2/5"

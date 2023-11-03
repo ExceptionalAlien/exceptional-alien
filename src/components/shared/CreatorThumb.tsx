@@ -57,7 +57,10 @@ export default function CreatorThumb(props: CreatorThumbProps) {
       {!props.size || props.size === "sml" ? (
         <ThumbTab title={props.creator.data.title as string} location={props.creator.data.current_city as string} />
       ) : (
-        <p className="text-ex-grey">{props.creator.data.short_description?.substring(0, 155)}</p>
+        <p className="text-ex-grey">
+          {props.creator.data.short_description?.substring(0, 155)}
+          {props.creator.data.short_description && props.creator.data.short_description.length > 155 && "..."}
+        </p>
       )}
     </Link>
   );

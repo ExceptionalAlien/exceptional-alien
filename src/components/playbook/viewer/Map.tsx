@@ -13,7 +13,7 @@ function GoogleMap(props: MapProps) {
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
     const portraitMapHeight = 224;
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
-    const margin = !isMobile ? 24 : 20;
+    const margin = !isMobile ? 24 : 16;
     const top = globalHeaderheight + titleHeight;
     var initZoom: number | undefined;
     var initCenter: google.maps.LatLng | undefined;
@@ -104,7 +104,7 @@ function GoogleMap(props: MapProps) {
       const div = document.createElement("div");
       div.setAttribute("id", "map-gem-" + gem.uid);
       div.classList.add("map-gem");
-      createRoot(div).render(<GemIcon category={gem.data.category} />);
+      createRoot(div).render(<GemIcon category={gem.data.category} classes="-translate-x-1/2 -translate-y-1/2" />);
 
       // Add marker to map
       const marker = new window.google.maps.marker.AdvancedMarkerElement({
@@ -137,7 +137,10 @@ function GoogleMap(props: MapProps) {
 
         // Zoom and center marker
         if (!clickedGem) {
-          resetMapGems(); // Needed because markers can't be styled if not visible on map
+          if (focusedGem !== gem.uid) {
+            resetMapGems(); // Needed because markers can't be styled if not visible on map
+          }
+
           map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
           initZoom && map.setZoom(initZoom + 2);
         }
@@ -165,7 +168,7 @@ function GoogleMap(props: MapProps) {
   return (
     <div
       ref={ref}
-      className={`z-20 bg-ex-light-grey touch-none !fixed top-12 md:top-20 left-0 w-1/2 min-[1200px]:w-[calc(100%-600px)] portrait:w-full h-56 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+      className={`!fixed left-0 top-12 z-20 h-56 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         props.scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${props.scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />

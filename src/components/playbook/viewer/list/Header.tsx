@@ -2,9 +2,10 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Content, ImageField } from "@prismicio/client";
-import Title from "./header/Title";
-import Share from "./header/Share";
+import Share from "@/components/shared/Share";
 import Destination from "@/components/shared/Destination";
+import ImageShadow from "@/components/shared/ImageShadow";
+import CreatorIcon from "@/components/shared/CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
 interface HeaderProps {
@@ -57,39 +58,64 @@ export default function Header(props: HeaderProps) {
 
   return (
     <div className="sticky z-10 overflow-hidden bg-ex-light-grey" style={{ top: stickyTop }} ref={ref}>
-      <Image
-        src={props.image.url as string}
-        alt={props.image.alt ? (props.image.alt as string) : props.title}
-        width={props.image.dimensions!.width}
-        height={props.image.dimensions!.height}
-        placeholder={`data:image/svg+xml;base64,${toBase64(
-          shimmer(props.image.dimensions!.width, props.image.dimensions!.height)
-        )}`}
-        onLoad={imageLoadComplete}
-        className="w-full"
-        style={{
-          filter: `blur(${blur}px)`,
-          transform: "scale3d(1.1, 1.1, 1.1)",
-        }}
-      />
+      {props.image && (
+        <Image
+          src={props.image.url as string}
+          alt={props.image.alt ? (props.image.alt as string) : props.title}
+          width={props.image.dimensions?.width}
+          height={props.image.dimensions?.height}
+          placeholder={`data:image/svg+xml;base64,${toBase64(
+            shimmer(props.image.dimensions?.width as number, props.image.dimensions?.height as number)
+          )}`}
+          onLoad={imageLoadComplete}
+          className="w-full"
+          style={{
+            filter: `blur(${blur}px)`,
+            transform: "scale3d(1.1, 1.1, 1.1)",
+          }}
+        />
+      )}
 
-      {/* Layered shadow */}
-      <div
-        className={`absolute top-0 h-full w-full bg-gradient-to-t from-black/50 from-0% to-black/0 to-50% ${
-          !imageLoaded && "hidden"
-        }`}
-      ></div>
+      <ImageShadow visible={imageLoaded ? true : false} />
 
       {/* Destination */}
       <Link
         href={"/destinations/" + props.destination.uid}
-        className="[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50"
+        className={`[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50 ${
+          !imageLoaded && "hidden"
+        }`}
       >
-        <Destination name={props.destination.data.title as string} classes="left-3 top-3" />
+        <Destination name={props.destination.data.title as string} classes="m-2 md:m-3" />
       </Link>
 
-      <Share title={props.title} />
-      <Title creator={props.creator} text={props.title} />
+      <Share
+        title={props.title}
+        route="travel-playbooks"
+        classes={`absolute right-2 top-2 md:right-3 md:top-3 ${!imageLoaded && "hidden"}`}
+      />
+
+      {/* Title */}
+      <div
+        className={`absolute bottom-0 flex h-16 w-full items-center justify-between md:h-20 ${
+          !imageLoaded && "hidden"
+        }`}
+      >
+        <h2 className="w-3/5 pl-2 pr-2 text-xl font-bold !leading-tight text-white max-[320px]:text-lg max-[320px]:!leading-none md:pl-3 md:pr-3 md:text-2xl landscape:text-lg landscape:md:text-2xl">
+          {props.title.substring(0, 50)}
+        </h2>
+
+        <Link
+          href={"/creators/" + props.creator.uid}
+          className="w-2/5 transition-[opacity] duration-300 ease-in-out hover:opacity-60"
+        >
+          <CreatorIcon
+            firstName={props.creator.data.first_name as string}
+            lastName={props.creator.data.last_name as string}
+            image={props.creator.data.profile_image}
+            classes="mr-2 md:mr-3"
+          />
+        </Link>
+      </div>
     </div>
   );
 }

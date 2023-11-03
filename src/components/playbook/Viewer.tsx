@@ -1,12 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 import { Content } from "@prismicio/client";
-import Map from "../Map";
+import Map from "./viewer/Map";
 import List from "./viewer/List";
 
-export default function Viewer({ data }: { data: Content.PlaybookDocumentData }) {
+interface ViewerProps {
+  data: Content.PlaybookDocumentData;
+}
+
+export default function Viewer(props: ViewerProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,9 +31,9 @@ export default function Viewer({ data }: { data: Content.PlaybookDocumentData })
   }, []);
 
   return (
-    <section className="!mt-0 flex items-end justify-end !pl-0 !pr-0" ref={ref}>
-      <List data={data} />
-      <Map gems={data.slices} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
-    </section>
+    <div className="flex items-end justify-end" ref={ref}>
+      <List data={props.data} />
+      <Map gems={props.data.slices} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
+    </div>
   );
 }
