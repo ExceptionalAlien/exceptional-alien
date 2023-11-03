@@ -1,17 +1,20 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
+import Link from "next/link";
 import { createClient } from "@/prismicio";
 import { Content, asLink } from "@prismicio/client";
 import Hero from "@/components/shared/Hero";
-import Title from "@/components/creator/Title";
-import Nomination from "@/components/creator/Nomination";
-import Heading from "@/components/creator/Heading";
 import About from "@/components/shared/About";
 import PlaybooksGrid from "@/components/shared/PlaybooksGrid";
+import SearchBox from "@/components/shared/SearchBox";
+import MachineCode from "@/components/MachineCode";
+import CreatorIcon from "@/components/shared/CreatorIcon";
+import TabHeading from "@/components/shared/TabHeading";
+import Socials from "@/components/creator/Socials";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Creator({ page }: PageProps) {
+export default function Creator({ page, search }: PageProps) {
   return (
     <>
       <Head>
@@ -34,7 +37,7 @@ export default function Creator({ page }: PageProps) {
           }
         />
 
-        <meta property="og:url" content={`https://exceptionalalien.com/creators/${page.uid}`} />
+        <meta property="og:url" content={`https://exceptionalalien.com/community/${page.uid}`} />
 
         <meta
           property="og:title"
@@ -70,25 +73,39 @@ export default function Creator({ page }: PageProps) {
         />
       </Head>
 
-      <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>section]:pl-4 [&>section]:md:pl-6 [&>section]:pr-4 [&>section]:md:pr-6">
-        <Title
-          firstName={page.data.first_name as string}
-          lastName={page.data.last_name as string}
-          country={page.data.home_country as string}
-        />
+      <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        {/* Title */}
+        <section className="mb-4 md:mb-6">
+          <h2 className="text-3xl font-bold md:float-left md:w-1/2 md:text-6xl">
+            {page.data.first_name} {page.data.last_name?.toUpperCase()}
+          </h2>
 
-        {(page.data.nomination as any).data && (
-          <Nomination creator={page.data.nomination as unknown as Content.CreatorDocument} />
+          <MachineCode
+            firstName={page.data.first_name as string}
+            lastName={page.data.last_name as string}
+            country={page.data.home_country as string}
+            classes="md:float-right md:w-1/2 md:text-right"
+          />
+
+          <div className="clear-both"></div>
+        </section>
+
+        {/* Nomination */}
+        {(page.data.nomination as unknown as Content.CreatorDocument).data && (
+          <section className="!mt-0 mb-2 text-right md:mb-3">
+            <Link
+              href={`/community/${(page.data.nomination as unknown as Content.CreatorDocument).uid}`}
+              className="inline-block transition-[opacity] duration-300 ease-in-out hover:opacity-60"
+            >
+              <CreatorIcon
+                firstName={(page.data.nomination as unknown as Content.CreatorDocument).data.first_name as string}
+                lastName={(page.data.nomination as unknown as Content.CreatorDocument).data.last_name as string}
+                image={(page.data.nomination as unknown as Content.CreatorDocument).data.profile_image}
+                classes="[&>p]:text-black [&>img]:h-10 [&>img]:w-10"
+              />
+            </Link>
+          </section>
         )}
-
-        <Heading
-          title={page.data.title as string}
-          homeCity={page.data.home_city as string}
-          currentCity={page.data.current_city as string}
-          ig={page.data.instagram as string}
-          other={asLink(page.data.other_social) as string}
-          www={asLink(page.data.website) as string}
-        />
 
         <Hero
           image={page.data.hero_image}
@@ -97,6 +114,25 @@ export default function Creator({ page }: PageProps) {
           }
           credit={page.data.photo_credit as string}
         />
+
+        {/* Heading */}
+        <section className="!mt-2 md:!mt-3">
+          <TabHeading classes="relative">
+            <Socials
+              ig={page.data.instagram as string}
+              other={asLink(page.data.other_social) as string}
+              www={asLink(page.data.website) as string}
+            />
+
+            <h3>{page.data.title}</h3>
+
+            <p className="uppercase">
+              {page.data.home_city
+                ? `${page.data.home_city} ${"\u2794"} ${page.data.current_city}`
+                : `${"\u2794"} ${page.data.current_city}`}
+            </p>
+          </TabHeading>
+        </section>
 
         <About text={page.data.description} />
 
@@ -107,6 +143,8 @@ export default function Creator({ page }: PageProps) {
           <></>
         )}
       </main>
+
+      <SearchBox recommended={search.data.recommended} hidden={true} />
     </>
   );
 }
@@ -121,14 +159,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps({ params, previewData }: GetStaticPropsContext) {
   try {
     const client = createClient({ previewData });
+
     const page = await client.getByUID("creator", params?.uid as string, {
       fetchLinks:
         "creator.first_name,creator.last_name,creator.profile_image,playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,destination.title",
     });
 
+    const search = await client.getSingle("search", {
+      fetch: "search.recommended,search.description",
+      fetchLinks: "destination.title",
+    });
+
     return {
       props: {
         page,
+        search,
       },
     };
   } catch (error) {

@@ -1,37 +1,44 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { EmptyImageFieldImage, FilledImageFieldImage, ImageField } from "@prismicio/client";
-import Credit from "./Credit";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-export default function Hero({ image, alt, credit }: { image: ImageField<"mobile">; alt: string; credit: string }) {
+interface HeroProps {
+  image: ImageField<"mobile">;
+  alt: string;
+  credit: string;
+}
+
+export default function Hero(props: HeroProps) {
   const [crop, setCrop] = useState<FilledImageFieldImage | EmptyImageFieldImage>();
 
   useEffect(() => {
     const handleResize = () => {
-      setCrop(window.innerWidth >= 768 ? image : image.mobile); // Different image crops for mobile and DT
+      setCrop(window.innerWidth >= 768 ? props.image : props.image.mobile); // Different image crops for mobile and DT
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [image]);
+  }, [props.image]);
 
   return (
-    <section className="relative !mt-4 md:!mt-6 !pl-0 !pr-0 aspect-[4/3] md:aspect-[2/1]">
+    <section className="relative !mt-0 ml-4 mr-4 aspect-[4/3] !pl-0 !pr-0 md:ml-6 md:mr-6 md:aspect-[2/1]">
       {crop && (
         <Image
           src={crop.url as string}
-          alt={crop.alt ? (crop.alt as string) : alt}
-          width={crop.dimensions!.width}
-          height={crop.dimensions!.height}
+          alt={crop.alt ? (crop.alt as string) : props.alt}
+          width={crop.dimensions?.width}
+          height={crop.dimensions?.height}
           placeholder={`data:image/svg+xml;base64,${toBase64(
-            shimmer(crop.dimensions!.width, crop.dimensions!.height)
+            shimmer(crop.dimensions?.width as number, crop.dimensions?.height as number)
           )}`}
         />
       )}
 
-      <Credit text={credit ? credit : alt} />
+      <p className="absolute bottom-0 right-0 bg-black bg-opacity-20 p-1 pl-2 pr-2 text-right font-mono text-xs tracking-tight text-white backdrop-blur">
+        Photo: {props.credit ? props.credit : props.alt}
+      </p>
     </section>
   );
 }

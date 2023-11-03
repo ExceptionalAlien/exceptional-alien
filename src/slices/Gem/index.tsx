@@ -86,7 +86,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
           ) : (
             <Link
               href={`/community/${creator.uid}`}
-              className="mt-2 block transition-[opacity] duration-300 ease-in-out hover:opacity-60 md:mt-3"
+              className="float-right mt-2 transition-[opacity] duration-300 ease-in-out hover:opacity-60 md:mt-3"
             >
               <CreatorIcon
                 firstName={creator.data.first_name as string}
