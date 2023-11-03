@@ -105,7 +105,7 @@ export default function Header(props: HeaderProps) {
         </h2>
 
         <Link
-          href={"/creators/" + props.creator.uid}
+          href={"/community/" + props.creator.uid}
           className="w-2/5 transition-[opacity] duration-300 ease-in-out hover:opacity-60"
         >
           <CreatorIcon
