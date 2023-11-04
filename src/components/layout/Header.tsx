@@ -45,7 +45,7 @@ export default function Header() {
       </Head>
 
       <header
-        className={`p-safe fixed top-0 z-50 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
+        className={`p-safe fixed top-0 z-10 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
           scrollY > 0 ? "bg-ex-blue" : "bg-white"
         }`}
       >

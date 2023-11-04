@@ -10,7 +10,7 @@ import { shimmer, toBase64 } from "@/utils/shimmer";
 
 interface PlaybookThumbProps {
   playbook: Content.PlaybookDocument;
-  size?: string; // lrg, med or sml
+  size?: string; // xlg, lrg, med or sml
   showDestination?: boolean;
   showCreator?: boolean;
   showDescription?: boolean;
@@ -34,8 +34,8 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
   return (
     <Link
       href={"/travel-playbooks/" + props.playbook.uid}
-      className={`group/link relative max-w-xl ${props.size === "lrg" && "w-11/12 lg:w-5/12"} ${
-        props.size === "med" && "w-10/12 lg:w-4/12"
+      className={`group/link relative max-w-xl ${props.size === "xlg" && "w-11/12 lg:w-5/12"} ${
+        props.size === "lrg" && "w-10/12 lg:w-4/12"
       } ${props.classes}`}
     >
       {/* Image */}
@@ -55,7 +55,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 
           <ImageShadow
             visible={imageLoaded ? true : false}
-            includeTop={props.showCreator && props.size === "med" ? true : false}
+            includeTop={props.showCreator && props.size === "lrg" ? true : false}
           />
 
           {props.showDestination && (
@@ -70,7 +70,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
               firstName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes={`absolute p-2 md:p-3 !pl-0 right-0 ${props.size === "lrg" ? "w-2/5 bottom-0" : "w-1/2 top-0"} ${
+              classes={`absolute p-2 md:p-3 !pl-0 right-0 ${props.size === "xlg" ? "w-2/5 bottom-0" : "w-1/2 top-0"} ${
                 !imageLoaded && "hidden"
               }`}
             />
@@ -80,7 +80,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           <p
             className={`absolute bottom-0 p-2 font-bold leading-tight text-white md:p-3 ${
               !props.size || props.size === "sml" ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"
-            } ${props.size === "lrg" && "w-3/5"} ${!imageLoaded && "hidden"}`}
+            } ${props.size === "xlg" && "w-3/5"} ${!imageLoaded && "hidden"}`}
           >
             {props.playbook.data.title}
           </p>

@@ -16,7 +16,7 @@ export default function Featured(props: FeaturedProps) {
           <PlaybookThumb
             key={i}
             playbook={item.playbook as Content.PlaybookDocument}
-            size="lrg"
+            size="xlg"
             showCreator={true}
             showDestination={true}
             showDescription={true}

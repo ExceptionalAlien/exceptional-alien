@@ -24,7 +24,7 @@ const Playbooks = ({ slice }: PlaybooksProps): JSX.Element => {
               <PlaybookThumb
                 key={i}
                 playbook={item.playbook as unknown as Content.PlaybookDocument}
-                size={slice.primary.size ? "lrg" : "med"}
+                size={slice.primary.size ? "xlg" : "lrg"}
                 showDestination={slice.primary.size ? true : false}
                 showCreator={true}
                 showDescription={slice.primary.size ? true : false}

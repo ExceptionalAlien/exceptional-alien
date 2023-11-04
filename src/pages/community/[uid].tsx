@@ -7,7 +7,7 @@ import Hero from "@/components/shared/Hero";
 import About from "@/components/shared/About";
 import PlaybooksGrid from "@/components/shared/PlaybooksGrid";
 import SearchBox from "@/components/shared/SearchBox";
-import MachineCode from "@/components/MachineCode";
+import MachineCode from "@/components/shared/MachineCode";
 import CreatorIcon from "@/components/shared/CreatorIcon";
 import TabHeading from "@/components/shared/TabHeading";
 import Socials from "@/components/creator/Socials";
@@ -138,7 +138,7 @@ export default function Creator({ page, search }: PageProps) {
 
         {page.data.playbooks.length &&
         (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
-          <PlaybooksGrid heading="Creator Playbooks" list={page.data.playbooks} />
+          <PlaybooksGrid heading={`${page.data.first_name}'s Playbooks`} list={page.data.playbooks} />
         ) : (
           <></>
         )}

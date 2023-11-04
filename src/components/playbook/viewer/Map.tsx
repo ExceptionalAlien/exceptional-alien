@@ -168,7 +168,7 @@ function GoogleMap(props: MapProps) {
   return (
     <div
       ref={ref}
-      className={`!fixed left-0 top-12 z-20 h-56 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+      className={`!fixed left-0 top-12 z-10 h-56 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         props.scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${props.scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />
