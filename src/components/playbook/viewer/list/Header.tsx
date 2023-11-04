@@ -97,7 +97,7 @@ export default function Header(props: HeaderProps) {
       {/* Title */}
       <div
         className={`absolute bottom-0 flex h-16 w-full items-center justify-between md:h-20 ${
-          !imageLoaded && "hidden"
+          !imageLoaded && "opacity-0"
         }`}
       >
         <h2 className="w-3/5 pl-2 pr-2 text-xl font-bold !leading-tight text-white max-[320px]:text-lg max-[320px]:!leading-none md:pl-3 md:pr-3 md:text-2xl landscape:text-lg landscape:md:text-2xl">

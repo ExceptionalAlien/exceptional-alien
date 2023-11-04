@@ -2,21 +2,26 @@ import { GroupField, Content } from "@prismicio/client";
 import Quote, { QuoteProps } from "./quotes/quote";
 import Slider from "@/components/shared/Slider";
 
-export default function Quotes({ playbooks, gem }: { playbooks: GroupField; gem: string }) {
+interface QuotesProps {
+  playbooks: GroupField;
+  gem: string;
+}
+
+export default function Quotes(props: QuotesProps) {
   const quotes: QuoteProps[] = [];
 
   // Loop playbooks that include gem
-  for (let i = 0; i < playbooks.length; i++) {
-    const slices = (playbooks[i].playbook as unknown as Content.PlaybookDocument).data.slices;
+  for (let i = 0; i < props.playbooks.length; i++) {
+    const slices = (props.playbooks[i].playbook as unknown as Content.PlaybookDocument).data.slices;
 
     // Loop playbook gems/slices
     for (let ii = 0; ii < slices.length; ii++) {
       const primary = slices[ii].primary;
 
       // Gem match
-      if ((primary.gem as unknown as Content.GemDocument).uid === gem) {
+      if ((primary.gem as unknown as Content.GemDocument).uid === props.gem) {
         const gemCreator = primary.creator as unknown as Content.CreatorDocument;
-        const playbookCreator = (playbooks[i].playbook as unknown as Content.PlaybookDocument).data
+        const playbookCreator = (props.playbooks[i].playbook as unknown as Content.PlaybookDocument).data
           .creator as unknown as Content.CreatorDocument;
 
         // Add to array

@@ -55,7 +55,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 
           <ImageShadow
             visible={imageLoaded ? true : false}
-            includeTop={props.showCreator && props.size === "lrg" ? true : false}
+            size={props.showCreator && props.size !== "xlg" ? "full" : "bottom"}
           />
 
           {props.showDestination && (
@@ -80,7 +80,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           <p
             className={`absolute bottom-0 p-2 font-bold leading-tight text-white md:p-3 ${
               !props.size || props.size === "sml" ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"
-            } ${props.size === "xlg" && "w-3/5"} ${!imageLoaded && "hidden"}`}
+            } ${props.size === "xlg" && "w-3/5"} ${!imageLoaded && "opacity-0"}`}
           >
             {props.playbook.data.title}
           </p>

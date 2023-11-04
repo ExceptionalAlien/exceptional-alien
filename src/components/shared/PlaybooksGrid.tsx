@@ -5,6 +5,7 @@ import Playbook from "@/img/icon-playbook.svg";
 interface PlaybooksGridProps {
   heading: string;
   list: GroupField;
+  showCreator?: boolean;
   classes?: string;
 }
 
@@ -16,12 +17,13 @@ export default function PlaybooksGrid(props: PlaybooksGridProps) {
         {props.heading}
       </h4>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3">
         {props.list.map((item, i) => (
           <PlaybookThumb
             key={i}
             playbook={item.playbook as Content.PlaybookDocument}
             size="med"
+            showCreator={props.showCreator ? true : false}
             showDestination={true}
           />
         ))}

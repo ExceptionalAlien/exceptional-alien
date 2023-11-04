@@ -14,16 +14,11 @@ export interface QuoteProps {
 export default function Quote(props: QuoteProps) {
   return (
     <div className="w-4/5 md:w-[calc((100%/3)-24px)]">
-      <div className="aspect-square relative border border-ex-blue p-3 md:p-4 [&_p]:text-ex-blue [&>p]:font-bold text-base [&>p]:mb-3 [&>p]:md:mb-4 [&>p]:pb-10 [&>p]:md:pb-12">
+      <div className="relative aspect-square border border-ex-blue p-2 text-base md:p-3 [&>p]:mb-2 [&>p]:pb-10 [&>p]:font-bold [&>p]:md:mb-3 [&>p]:md:pb-12 [&_p]:text-ex-blue">
         <PrismicRichText field={props.text} />
 
-        <Link href={`/creators/${props.uid}`}>
-          <CreatorIcon
-            firstName={props.firstName}
-            lastName={props.lastName}
-            image={props.image}
-            classes="!p-0 absolute bottom-3 md:bottom-4 right-3 md:right-4"
-          />
+        <Link href={`/creators/${props.uid}`} className="absolute bottom-0 right-0 p-2 md:p-3">
+          <CreatorIcon firstName={props.firstName} lastName={props.lastName} image={props.image} />
         </Link>
       </div>
     </div>
