@@ -3,6 +3,8 @@ import { createClient } from "@/prismicio";
 import Head from "next/head";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import PlaybookThumb from "@/components/shared/PlaybookThumb";
+import { Content } from "@prismicio/client";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -42,6 +44,14 @@ export default function Story({ page }: PageProps) {
       </Head>
       <main>
         <SliceZone slices={page.data.slices} components={components} />
+        <div className="grid grid-cols-2 gap-x-2 gap-y-4 md:gap-x-3 md:gap-y-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5" >
+          <PlaybookThumb
+            playbook={page.data.playbook as unknown as Content.PlaybookDocument}
+            size="med"
+            showCreator={true}
+            showDestination={true}
+          />
+        </div>
       </main>
     </>
   );
@@ -58,7 +68,9 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
   try {
     const client = createClient({ previewData });
 
-    const page = await client.getByUID("story", params?.uid as string);
+    const page = await client.getByUID("story", params?.uid as string, {
+      fetchLinks: "playbook.title,playbook.image,playbook.destination,playbook.creator,creator.first_name,creator.last_name,creator.profile_image,destination.title",
+    });
 
     return {
       props: {
