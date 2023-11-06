@@ -7,6 +7,7 @@ export const components = {
   highlight: dynamic(() => import("./Highlight")),
   playbooks: dynamic(() => import("./Playbooks")),
   single_heading: dynamic(() => import("./SingleHeading")),
+  story_gallery: dynamic(() => import("./StoryGallery")),
   story_highlight: dynamic(() => import("./StoryHighlight")),
   story_text_block: dynamic(() => import("./StoryTextBlock")),
   story_text_with_heading: dynamic(() => import("./StoryTextWithHeading")),

@@ -1356,7 +1356,11 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-type StoryDocumentDataSlicesSlice = StoryTextWithHeadingSlice | StoryTextBlockSlice | StoryHighlightSlice;
+type StoryDocumentDataSlicesSlice =
+  | StoryGallerySlice
+  | StoryTextWithHeadingSlice
+  | StoryTextBlockSlice
+  | StoryHighlightSlice;
 
 /**
  * Content for Story documents
@@ -1765,6 +1769,48 @@ type SingleHeadingSliceVariation = SingleHeadingSliceDefault;
 export type SingleHeadingSlice = prismic.SharedSlice<"single_heading", SingleHeadingSliceVariation>;
 
 /**
+ * Primary content in *StoryGallery → Items*
+ */
+export interface StoryGallerySliceDefaultItem {
+  /**
+   * Image field in *StoryGallery → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_gallery.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for StoryGallery Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryGallerySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<StoryGallerySliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *StoryGallery*
+ */
+type StoryGallerySliceVariation = StoryGallerySliceDefault;
+
+/**
+ * StoryGallery Shared Slice
+ *
+ * - **API ID**: `story_gallery`
+ * - **Description**: StoryGallery
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryGallerySlice = prismic.SharedSlice<"story_gallery", StoryGallerySliceVariation>;
+
+/**
  * Primary content in *StoryHighlight → Primary*
  */
 export interface StoryHighlightSliceDefaultPrimary {
@@ -2148,6 +2194,10 @@ declare module "@prismicio/client" {
       SingleHeadingSliceDefaultPrimary,
       SingleHeadingSliceVariation,
       SingleHeadingSliceDefault,
+      StoryGallerySlice,
+      StoryGallerySliceDefaultItem,
+      StoryGallerySliceVariation,
+      StoryGallerySliceDefault,
       StoryHighlightSlice,
       StoryHighlightSliceDefaultPrimary,
       StoryHighlightSliceVariation,
