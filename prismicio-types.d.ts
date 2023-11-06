@@ -1356,7 +1356,7 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-type StoryDocumentDataSlicesSlice = never;
+type StoryDocumentDataSlicesSlice = StoryHighlightSlice;
 
 /**
  * Content for Story documents
@@ -1765,6 +1765,48 @@ type SingleHeadingSliceVariation = SingleHeadingSliceDefault;
 export type SingleHeadingSlice = prismic.SharedSlice<"single_heading", SingleHeadingSliceVariation>;
 
 /**
+ * Primary content in *StoryHighlight → Primary*
+ */
+export interface StoryHighlightSliceDefaultPrimary {
+  /**
+   * Text field in *StoryHighlight → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_highlight.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for StoryHighlight Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryHighlightSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StoryHighlightSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *StoryHighlight*
+ */
+type StoryHighlightSliceVariation = StoryHighlightSliceDefault;
+
+/**
+ * StoryHighlight Shared Slice
+ *
+ * - **API ID**: `story_highlight`
+ * - **Description**: StoryHighlight
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryHighlightSlice = prismic.SharedSlice<"story_highlight", StoryHighlightSliceVariation>;
+
+/**
  * Primary content in *TextBlock → Primary*
  */
 export interface TextBlockSliceDefaultPrimary {
@@ -2009,6 +2051,10 @@ declare module "@prismicio/client" {
       SingleHeadingSliceDefaultPrimary,
       SingleHeadingSliceVariation,
       SingleHeadingSliceDefault,
+      StoryHighlightSlice,
+      StoryHighlightSliceDefaultPrimary,
+      StoryHighlightSliceVariation,
+      StoryHighlightSliceDefault,
       TextBlockSlice,
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,

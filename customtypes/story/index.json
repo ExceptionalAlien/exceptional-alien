@@ -50,7 +50,11 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "story_highlight": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

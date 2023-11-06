@@ -38,6 +38,9 @@ export default function Story({ page }: PageProps) {
           }
         />
       </Head>
+      <main>
+
+      </main>
     </>
   );
 }
