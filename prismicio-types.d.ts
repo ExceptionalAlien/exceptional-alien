@@ -1356,7 +1356,7 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-type StoryDocumentDataSlicesSlice = StoryHighlightSlice;
+type StoryDocumentDataSlicesSlice = StoryTextBlockSlice | StoryHighlightSlice;
 
 /**
  * Content for Story documents
@@ -1807,6 +1807,48 @@ type StoryHighlightSliceVariation = StoryHighlightSliceDefault;
 export type StoryHighlightSlice = prismic.SharedSlice<"story_highlight", StoryHighlightSliceVariation>;
 
 /**
+ * Primary content in *StoryTextBlock → Primary*
+ */
+export interface StoryTextBlockSliceDefaultPrimary {
+  /**
+   * Text field in *StoryTextBlock → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_text_block.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for StoryTextBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryTextBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StoryTextBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *StoryTextBlock*
+ */
+type StoryTextBlockSliceVariation = StoryTextBlockSliceDefault;
+
+/**
+ * StoryTextBlock Shared Slice
+ *
+ * - **API ID**: `story_text_block`
+ * - **Description**: StoryTextBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryTextBlockSlice = prismic.SharedSlice<"story_text_block", StoryTextBlockSliceVariation>;
+
+/**
  * Primary content in *TextBlock → Primary*
  */
 export interface TextBlockSliceDefaultPrimary {
@@ -2055,6 +2097,10 @@ declare module "@prismicio/client" {
       StoryHighlightSliceDefaultPrimary,
       StoryHighlightSliceVariation,
       StoryHighlightSliceDefault,
+      StoryTextBlockSlice,
+      StoryTextBlockSliceDefaultPrimary,
+      StoryTextBlockSliceVariation,
+      StoryTextBlockSliceDefault,
       TextBlockSlice,
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,
