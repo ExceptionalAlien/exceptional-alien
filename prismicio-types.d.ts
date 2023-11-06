@@ -1769,6 +1769,21 @@ type SingleHeadingSliceVariation = SingleHeadingSliceDefault;
 export type SingleHeadingSlice = prismic.SharedSlice<"single_heading", SingleHeadingSliceVariation>;
 
 /**
+ * Primary content in *StoryGallery → Primary*
+ */
+export interface StoryGallerySliceDefaultPrimary {
+  /**
+   * Caption field in *StoryGallery → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_gallery.primary.caption
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  caption: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *StoryGallery → Items*
  */
 export interface StoryGallerySliceDefaultItem {
@@ -1792,7 +1807,7 @@ export interface StoryGallerySliceDefaultItem {
  */
 export type StoryGallerySliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<StoryGallerySliceDefaultPrimary>,
   Simplify<StoryGallerySliceDefaultItem>
 >;
 
@@ -2195,6 +2210,7 @@ declare module "@prismicio/client" {
       SingleHeadingSliceVariation,
       SingleHeadingSliceDefault,
       StoryGallerySlice,
+      StoryGallerySliceDefaultPrimary,
       StoryGallerySliceDefaultItem,
       StoryGallerySliceVariation,
       StoryGallerySliceDefault,
