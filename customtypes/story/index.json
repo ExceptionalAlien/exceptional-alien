@@ -51,6 +51,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "story_text_with_heading": {
+              "type": "SharedSlice"
+            },
             "story_text_block": {
               "type": "SharedSlice"
             },

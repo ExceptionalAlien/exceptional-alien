@@ -1,0 +1,31 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading4",
+						"content": {
+							"text": "Steam"
+						}
+					}
+				]
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Cupidatat in laborum sit reprehenderit laborum eiusmod commodo eiusmod aliquip."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

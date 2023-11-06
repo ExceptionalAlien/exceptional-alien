@@ -1356,7 +1356,7 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-type StoryDocumentDataSlicesSlice = StoryTextBlockSlice | StoryHighlightSlice;
+type StoryDocumentDataSlicesSlice = StoryTextWithHeadingSlice | StoryTextBlockSlice | StoryHighlightSlice;
 
 /**
  * Content for Story documents
@@ -1849,6 +1849,61 @@ type StoryTextBlockSliceVariation = StoryTextBlockSliceDefault;
 export type StoryTextBlockSlice = prismic.SharedSlice<"story_text_block", StoryTextBlockSliceVariation>;
 
 /**
+ * Primary content in *StoryTextWithHeading → Primary*
+ */
+export interface StoryTextWithHeadingSliceDefaultPrimary {
+  /**
+   * Heading field in *StoryTextWithHeading → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_text_with_heading.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Text field in *StoryTextWithHeading → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_text_with_heading.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for StoryTextWithHeading Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryTextWithHeadingSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StoryTextWithHeadingSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *StoryTextWithHeading*
+ */
+type StoryTextWithHeadingSliceVariation = StoryTextWithHeadingSliceDefault;
+
+/**
+ * StoryTextWithHeading Shared Slice
+ *
+ * - **API ID**: `story_text_with_heading`
+ * - **Description**: StoryTextWithHeading
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryTextWithHeadingSlice = prismic.SharedSlice<
+  "story_text_with_heading",
+  StoryTextWithHeadingSliceVariation
+>;
+
+/**
  * Primary content in *TextBlock → Primary*
  */
 export interface TextBlockSliceDefaultPrimary {
@@ -2101,6 +2156,10 @@ declare module "@prismicio/client" {
       StoryTextBlockSliceDefaultPrimary,
       StoryTextBlockSliceVariation,
       StoryTextBlockSliceDefault,
+      StoryTextWithHeadingSlice,
+      StoryTextWithHeadingSliceDefaultPrimary,
+      StoryTextWithHeadingSliceVariation,
+      StoryTextWithHeadingSliceDefault,
       TextBlockSlice,
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,

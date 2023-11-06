@@ -9,6 +9,7 @@ export const components = {
   single_heading: dynamic(() => import("./SingleHeading")),
   story_highlight: dynamic(() => import("./StoryHighlight")),
   story_text_block: dynamic(() => import("./StoryTextBlock")),
+  story_text_with_heading: dynamic(() => import("./StoryTextWithHeading")),
   text_block: dynamic(() => import("./TextBlock")),
   text_with_heading: dynamic(() => import("./TextWithHeading")),
   video_embed: dynamic(() => import("./VideoEmbed")),
