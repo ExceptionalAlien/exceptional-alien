@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { createClient } from "@/prismicio";
 import Head from "next/head";
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -39,7 +41,7 @@ export default function Story({ page }: PageProps) {
         />
       </Head>
       <main>
-
+        <SliceZone slices={page.data.slices} components={components} />
       </main>
     </>
   );
