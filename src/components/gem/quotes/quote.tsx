@@ -17,8 +17,16 @@ export default function Quote(props: QuoteProps) {
       <div className="relative aspect-square border border-ex-blue p-2 text-base md:p-3 [&>p]:mb-2 [&>p]:pb-10 [&>p]:font-bold [&>p]:md:mb-3 [&>p]:md:pb-12 [&_p]:text-ex-blue">
         <PrismicRichText field={props.text} />
 
-        <Link href={`/creators/${props.uid}`} className="absolute bottom-0 right-0 p-2 md:p-3">
-          <CreatorIcon firstName={props.firstName} lastName={props.lastName} image={props.image} />
+        <Link
+          href={`/creators/${props.uid}`}
+          className="absolute bottom-0 right-0 p-2 transition-[opacity] duration-300 ease-in-out hover:opacity-60 md:p-3"
+        >
+          <CreatorIcon
+            firstName={props.firstName}
+            lastName={props.lastName}
+            image={props.image}
+            classes="[&>img]:border-ex-blue"
+          />
         </Link>
       </div>
     </div>

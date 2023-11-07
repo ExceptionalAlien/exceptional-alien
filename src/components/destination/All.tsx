@@ -61,13 +61,13 @@ export default function All(props: AllProps) {
 
   return (
     <section className="relative">
-      <h3 className="flex items-center text-2xl font-bold md:pb-1 md:text-4xl">
+      <h4 className="flex items-center text-2xl font-bold md:pb-1 md:text-4xl">
         <Gem className="mb-1 mr-1 h-5 overflow-visible md:mr-2 md:h-6" />
         All Gems
         <span className="ml-1 text-base md:ml-2 md:text-xl">
           ({query.length > 1 || categories.length ? results : props.gems.length})
         </span>
-      </h3>
+      </h4>
 
       {/* Catgeories */}
       <div className="mb-2 md:mb-6">

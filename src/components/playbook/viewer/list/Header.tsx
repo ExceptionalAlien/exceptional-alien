@@ -18,12 +18,7 @@ interface HeaderProps {
 export default function Header(props: HeaderProps) {
   const [stickyTop, setStickyTop] = useState(0);
   const [blur, setBlur] = useState(0);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
-  const imageLoadComplete = () => {
-    setImageLoaded(true);
-  };
 
   useEffect(() => {
     const handleResizeAndScroll = (e?: Event) => {
@@ -67,7 +62,6 @@ export default function Header(props: HeaderProps) {
           placeholder={`data:image/svg+xml;base64,${toBase64(
             shimmer(props.image.dimensions?.width as number, props.image.dimensions?.height as number)
           )}`}
-          onLoad={imageLoadComplete}
           className="w-full"
           style={{
             filter: `blur(${blur}px)`,
@@ -76,30 +70,20 @@ export default function Header(props: HeaderProps) {
         />
       )}
 
-      <ImageShadow visible={imageLoaded ? true : false} />
+      <ImageShadow />
 
       {/* Destination */}
       <Link
         href={"/destinations/" + props.destination.uid}
-        className={`[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50 ${
-          !imageLoaded && "hidden"
-        }`}
+        className="[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50"
       >
         <Destination name={props.destination.data.title as string} classes="m-2 md:m-3" />
       </Link>
 
-      <Share
-        title={props.title}
-        route="travel-playbooks"
-        classes={`absolute right-2 top-2 md:right-3 md:top-3 ${!imageLoaded && "hidden"}`}
-      />
+      <Share title={props.title} route="travel-playbooks" classes="absolute right-2 top-2 md:right-3 md:top-3" />
 
       {/* Title */}
-      <div
-        className={`absolute bottom-0 flex h-16 w-full items-center justify-between md:h-20 ${
-          !imageLoaded && "opacity-0"
-        }`}
-      >
+      <div className="absolute bottom-0 flex h-16 w-full items-center justify-between md:h-20">
         <h2 className="w-3/5 pl-2 pr-2 text-xl font-bold !leading-tight text-white max-[320px]:text-lg max-[320px]:!leading-none md:pl-3 md:pr-3 md:text-2xl landscape:text-lg landscape:md:text-2xl">
           {props.title.substring(0, 50)}
         </h2>
@@ -108,12 +92,14 @@ export default function Header(props: HeaderProps) {
           href={"/community/" + props.creator.uid}
           className="w-2/5 transition-[opacity] duration-300 ease-in-out hover:opacity-60"
         >
-          <CreatorIcon
-            firstName={props.creator.data.first_name as string}
-            lastName={props.creator.data.last_name as string}
-            image={props.creator.data.profile_image}
-            classes="mr-2 md:mr-3"
-          />
+          <h3>
+            <CreatorIcon
+              firstName={props.creator.data.first_name as string}
+              lastName={props.creator.data.last_name as string}
+              image={props.creator.data.profile_image}
+              classes="mr-2 md:mr-3"
+            />
+          </h3>
         </Link>
       </div>
     </div>

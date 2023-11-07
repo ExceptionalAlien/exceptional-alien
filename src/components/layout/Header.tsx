@@ -77,7 +77,11 @@ export default function Header() {
             "hidden"
           }`}
         >
-          {page.replace("travel-playbooks", "Playbooks")}
+          {router.pathname === `/${page}` ? (
+            <h2>{page.replace("travel-playbooks", "Playbooks")}</h2>
+          ) : (
+            page.replace("travel-playbooks", "Playbooks")
+          )}
 
           {page === "destinations" ? (
             <Place />

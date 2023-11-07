@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content } from "@prismicio/client";
@@ -15,12 +14,6 @@ interface GemThumbProps {
 }
 
 export default function GemThumb(props: GemThumbProps) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  const imageLoadComplete = () => {
-    setImageLoaded(true);
-  };
-
   return (
     <Link
       href={"/gems/" + props.gem.uid}
@@ -44,15 +37,14 @@ export default function GemThumb(props: GemThumbProps) {
                 props.gem.data.image.mobile.dimensions?.height as number
               )
             )}`}
-            onLoad={imageLoadComplete}
             className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
           />
 
-          <ImageShadow visible={imageLoaded && props.size && props.size !== "sml" ? true : false} />
+          {props.size && props.size !== "sml" && <ImageShadow />}
 
           <GemIcon
             category={props.gem.data.category}
-            classes={`top-0 m-[6px] md:m-[10px] ${props.size === "med" && "!h-12 w-12"} ${!imageLoaded && "hidden"}`}
+            classes={`top-0 m-[6px] md:m-[10px] ${props.size === "med" && "!h-12 w-12"}`}
           />
 
           {/* Creators */}
@@ -61,7 +53,7 @@ export default function GemThumb(props: GemThumbProps) {
               firstName={(props.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(props.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(props.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes={`absolute right-0 bottom-0 m-2 md:m-3 ${!imageLoaded && "hidden"}`}
+              classes="absolute right-0 bottom-0 m-2 md:m-3"
             />
           ) : (
             props.gem.data.playbooks.map(
@@ -75,7 +67,7 @@ export default function GemThumb(props: GemThumbProps) {
                           .creator as unknown as Content.CreatorDocument
                       ).data.profile_image
                     }
-                    classes={`absolute right-0 bottom-0 p-2 md:p-3 mr-${i * 2} ${!imageLoaded && "hidden"}`}
+                    classes={`absolute right-0 bottom-0 p-2 md:p-3 mr-${i * 2}`}
                   />
                 )
             )

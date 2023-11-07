@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content, asText } from "@prismicio/client";
@@ -18,18 +17,12 @@ interface PlaybookThumbProps {
 }
 
 export default function PlaybookThumb(props: PlaybookThumbProps) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   const image =
     props.playbook.data && props.playbook.data.image
       ? props.size && props.size !== "sml"
         ? props.playbook.data.image.mobile
         : props.playbook.data.image.thumb
       : null; // Prismic image size/crop
-
-  const imageLoadComplete = () => {
-    setImageLoaded(true);
-  };
 
   return (
     <Link
@@ -49,19 +42,15 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
             placeholder={`data:image/svg+xml;base64,${toBase64(
               shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
-            onLoad={imageLoadComplete}
             className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
           />
 
-          <ImageShadow
-            visible={imageLoaded ? true : false}
-            size={props.showCreator && props.size !== "xlg" ? "full" : "bottom"}
-          />
+          <ImageShadow size={props.showCreator && props.size !== "xlg" ? "full" : "bottom"} />
 
           {props.showDestination && (
             <Destination
               name={(props.playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
-              classes={`m-2 md:m-3 ${!imageLoaded && "hidden"}`}
+              classes="m-2 md:m-3"
             />
           )}
 
@@ -70,9 +59,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
               firstName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(props.playbook.data.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes={`absolute p-2 md:p-3 !pl-0 right-0 ${props.size === "xlg" ? "w-2/5 bottom-0" : "w-1/2 top-0"} ${
-                !imageLoaded && "hidden"
-              }`}
+              classes={`absolute p-2 md:p-3 !pl-0 right-0 ${props.size === "xlg" ? "w-2/5 bottom-0" : "w-1/2 top-0"}`}
             />
           )}
 
@@ -80,7 +67,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           <p
             className={`absolute bottom-0 p-2 font-bold leading-tight text-white md:p-3 ${
               !props.size || props.size === "sml" ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"
-            } ${props.size === "xlg" && "w-3/5"} ${!imageLoaded && "opacity-0"}`}
+            } ${props.size === "xlg" && "w-3/5"}`}
           >
             {props.playbook.data.title}
           </p>

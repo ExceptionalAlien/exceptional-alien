@@ -13,11 +13,6 @@ interface HeroProps {
 
 export default function Hero(props: HeroProps) {
   const [crop, setCrop] = useState<FilledImageFieldImage | EmptyImageFieldImage>();
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  const imageLoadComplete = () => {
-    setImageLoaded(true);
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,25 +32,20 @@ export default function Hero(props: HeroProps) {
           alt={crop.alt ? (crop.alt as string) : props.alt}
           width={crop.dimensions?.width}
           height={crop.dimensions?.height}
-          onLoad={imageLoadComplete}
           placeholder={`data:image/svg+xml;base64,${toBase64(
             shimmer(crop.dimensions?.width as number, crop.dimensions?.height as number)
           )}`}
         />
       )}
 
-      <ImageShadow visible={props.children && imageLoaded ? true : false} size="top" />
+      {props.children && <ImageShadow size="top" />}
 
       {/* Credit */}
-      <p
-        className={`absolute bottom-0 right-0 bg-black bg-opacity-20 p-1 pl-2 pr-2 text-right font-mono text-xs tracking-tight text-white backdrop-blur ${
-          !imageLoaded && "hidden"
-        }`}
-      >
+      <p className="absolute bottom-0 right-0 bg-black bg-opacity-20 p-1 pl-2 pr-2 text-right font-mono text-xs tracking-tight text-white backdrop-blur">
         Photo: {props.credit ? props.credit : props.alt}
       </p>
 
-      <div className={`${!imageLoaded && "opacity-0"}`}>{props.children}</div>
+      {props.children}
     </section>
   );
 }
