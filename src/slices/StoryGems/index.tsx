@@ -1,6 +1,6 @@
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
+import GemThumb from "@/components/shared/GemThumb";
 
 /**
  * Props for `StoryGems`.
@@ -15,6 +15,7 @@ const StoryGems = ({ slice }: StoryGemsProps): JSX.Element => {
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
       {slice.items.map((item, i) => (
         <div key={i}>
+          <GemThumb gem={item.gem} />
         </div>
       ))}
     </section>

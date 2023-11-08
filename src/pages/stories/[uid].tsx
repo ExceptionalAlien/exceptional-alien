@@ -6,6 +6,7 @@ import { components } from "@/slices";
 import PlaybookThumb from "@/components/shared/PlaybookThumb";
 import { Content } from "@prismicio/client";
 import Header from "@/components/story/Header";
+import Share from "@/components/story/Share";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
