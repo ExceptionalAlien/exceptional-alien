@@ -45,6 +45,7 @@ export default function Story({ page }: PageProps) {
       </Head>
       <main>
         <Header data={page.data} />
+        <div>Feature by <span>{page.data.feature}</span></div>
         <SliceZone slices={page.data.slices} components={components} />
         <div className="grid grid-cols-2 gap-x-2 gap-y-4 md:gap-x-3 md:gap-y-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5" >
           <PlaybookThumb

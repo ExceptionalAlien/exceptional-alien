@@ -7,7 +7,7 @@ interface HeroProps {
 export default function Hero(props: HeroProps) {
   return(
     <div>
-      <PrismicNextImage className="w-full" field={props.image} />
+      <PrismicNextImage className="w-full" field={props.image} alt="" />
     </div>
   );
 }

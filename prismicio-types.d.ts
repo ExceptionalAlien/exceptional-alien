@@ -1378,6 +1378,17 @@ interface StoryDocumentData {
   title: prismic.KeyTextField;
 
   /**
+   * Feature field in *Story*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.feature
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  feature: prismic.KeyTextField;
+
+  /**
    * Creator field in *Story*
    *
    * - **Field Type**: Content Relationship

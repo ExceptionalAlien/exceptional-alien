@@ -19,6 +19,13 @@
           "placeholder": ""
         }
       },
+      "feature": {
+        "type": "Text",
+        "config": {
+          "label": "Feature",
+          "placeholder": ""
+        }
+      },
       "creator": {
         "type": "Link",
         "config": {
