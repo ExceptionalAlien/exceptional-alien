@@ -5,6 +5,7 @@ import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import PlaybookThumb from "@/components/shared/PlaybookThumb";
 import { Content } from "@prismicio/client";
+import Header from "@/components/story/Header";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -43,6 +44,7 @@ export default function Story({ page }: PageProps) {
         />
       </Head>
       <main>
+        <Header data={page.data} />
         <SliceZone slices={page.data.slices} components={components} />
         <div className="grid grid-cols-2 gap-x-2 gap-y-4 md:gap-x-3 md:gap-y-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5" >
           <PlaybookThumb
