@@ -1357,6 +1357,7 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
 >;
 
 type StoryDocumentDataSlicesSlice =
+  | StoryGemsSlice
   | StoryGallerySlice
   | StoryTextWithHeadingSlice
   | StoryTextBlockSlice
@@ -1848,6 +1849,21 @@ type StoryGallerySliceVariation = StoryGallerySliceDefault;
 export type StoryGallerySlice = prismic.SharedSlice<"story_gallery", StoryGallerySliceVariation>;
 
 /**
+ * Primary content in *StoryGems → Primary*
+ */
+export interface StoryGemsSliceDefaultPrimary {
+  /**
+   * Creator field in *StoryGems → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_gems.primary.creator
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+}
+
+/**
  * Primary content in *StoryGems → Items*
  */
 export interface StoryGemsSliceDefaultItem {
@@ -1871,7 +1887,7 @@ export interface StoryGemsSliceDefaultItem {
  */
 export type StoryGemsSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<StoryGemsSliceDefaultPrimary>,
   Simplify<StoryGemsSliceDefaultItem>
 >;
 
@@ -2279,6 +2295,7 @@ declare module "@prismicio/client" {
       StoryGallerySliceVariation,
       StoryGallerySliceDefault,
       StoryGemsSlice,
+      StoryGemsSliceDefaultPrimary,
       StoryGemsSliceDefaultItem,
       StoryGemsSliceVariation,
       StoryGemsSliceDefault,

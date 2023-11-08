@@ -66,6 +66,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "story_gems": {
+              "type": "SharedSlice"
+            },
             "story_gallery": {
               "type": "SharedSlice"
             },

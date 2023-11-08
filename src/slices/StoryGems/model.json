@@ -11,7 +11,18 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {},
+      "primary": {
+        "creator": {
+          "type": "Link",
+          "config": {
+            "label": "Creator",
+            "select": "document",
+            "customtypes": [
+              "creator"
+            ]
+          }
+        }
+      },
       "items": {
         "gem": {
           "type": "Link",
