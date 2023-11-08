@@ -1,0 +1,29 @@
+{
+  "id": "story_gems",
+  "type": "SharedSlice",
+  "name": "StoryGems",
+  "description": "StoryGems",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "gem": {
+          "type": "Link",
+          "config": {
+            "label": "Gem",
+            "select": "document",
+            "customtypes": [
+              "gem"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

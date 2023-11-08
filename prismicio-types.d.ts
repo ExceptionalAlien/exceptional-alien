@@ -1837,6 +1837,48 @@ type StoryGallerySliceVariation = StoryGallerySliceDefault;
 export type StoryGallerySlice = prismic.SharedSlice<"story_gallery", StoryGallerySliceVariation>;
 
 /**
+ * Primary content in *StoryGems → Items*
+ */
+export interface StoryGemsSliceDefaultItem {
+  /**
+   * Gem field in *StoryGems → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story_gems.items[].gem
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  gem: prismic.ContentRelationshipField<"gem">;
+}
+
+/**
+ * Default variation for StoryGems Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryGemsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<StoryGemsSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *StoryGems*
+ */
+type StoryGemsSliceVariation = StoryGemsSliceDefault;
+
+/**
+ * StoryGems Shared Slice
+ *
+ * - **API ID**: `story_gems`
+ * - **Description**: StoryGems
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StoryGemsSlice = prismic.SharedSlice<"story_gems", StoryGemsSliceVariation>;
+
+/**
  * Primary content in *StoryHighlight → Primary*
  */
 export interface StoryHighlightSliceDefaultPrimary {
@@ -2225,6 +2267,10 @@ declare module "@prismicio/client" {
       StoryGallerySliceDefaultItem,
       StoryGallerySliceVariation,
       StoryGallerySliceDefault,
+      StoryGemsSlice,
+      StoryGemsSliceDefaultItem,
+      StoryGemsSliceVariation,
+      StoryGemsSliceDefault,
       StoryHighlightSlice,
       StoryHighlightSliceDefaultPrimary,
       StoryHighlightSliceVariation,
