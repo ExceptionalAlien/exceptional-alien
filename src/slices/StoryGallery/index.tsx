@@ -13,14 +13,15 @@ export type StoryGalleryProps = SliceComponentProps<Content.StoryGallerySlice>;
 const StoryGallery = ({ slice }: StoryGalleryProps): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-      <div>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {slice.items.map((item, i) => (
-          <div key={i}>
-            <PrismicNextImage field={item.image} alt="" />
+          <div>
+            <PrismicNextImage className="h-80 max-w-full rounded-lg" key={i} field={item.image} alt="" />
           </div>
         ))}
       </div>
-      <div>
+
+      <div className="m-auto text-center mt-10 mb-10 text-ex-grey text-xs">
         {slice.primary.caption}
       </div>
     </section>
