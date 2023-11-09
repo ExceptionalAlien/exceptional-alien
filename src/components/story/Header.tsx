@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
   return(
-    <div>
+    <div className="relative">
       <Hero image={props.data.image} />
       <Overview data={props.data} />
     </div>
