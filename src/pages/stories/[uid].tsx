@@ -56,6 +56,7 @@ export default function Story({ page }: PageProps) {
             showDestination={true}
           />
         </div>
+        <Share data={page.data}/>
       </main>
     </>
   );
