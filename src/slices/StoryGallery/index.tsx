@@ -15,8 +15,8 @@ const StoryGallery = ({ slice }: StoryGalleryProps): JSX.Element => {
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {slice.items.map((item, i) => (
-          <div>
-            <PrismicNextImage className="h-80 max-w-full rounded-lg" key={i} field={item.image} alt="" />
+          <div key={i}>
+            <PrismicNextImage className="h-80 max-w-full rounded-lg" field={item.image} alt="" />
           </div>
         ))}
       </div>
