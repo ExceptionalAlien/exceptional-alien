@@ -27,7 +27,8 @@ export default function All(props: AllProps) {
           if (
             query.length <= 1 ||
             (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
-            (query.length > 1 && item.data.country?.match(new RegExp(query, "gi")) !== null)
+            (query.length > 1 && item.data.country?.match(new RegExp(query, "gi")) !== null) ||
+            (query.length > 1 && item.tags.find((element) => element.match(new RegExp(query, "gi")) !== null))
           ) {
             return (
               <Link

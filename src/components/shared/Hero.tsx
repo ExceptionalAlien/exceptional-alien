@@ -41,9 +41,11 @@ export default function Hero(props: HeroProps) {
       {props.children && <ImageShadow size="top" />}
 
       {/* Credit */}
-      <p className="absolute bottom-0 right-0 bg-black bg-opacity-20 p-1 pl-2 pr-2 text-right font-mono text-xs tracking-tight text-white backdrop-blur">
-        Photo: {props.credit ? props.credit : props.alt}
-      </p>
+      {props.credit && (
+        <p className="absolute bottom-0 right-0 bg-black bg-opacity-20 p-1 pl-2 pr-2 text-right font-mono text-xs tracking-tight text-white backdrop-blur">
+          Photo: {props.credit}
+        </p>
+      )}
 
       {props.children}
     </section>

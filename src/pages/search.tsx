@@ -1,18 +1,21 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import { createClient } from "@/prismicio";
-import { Content } from "@prismicio/client";
-import { filter } from "@prismicio/client";
+import { Content, filter } from "@prismicio/client";
 import { SearchContext, SearchContextType } from "@/context/SearchContext";
 import SearchBox from "@/components/shared/SearchBox";
+import Loading from "@/components/shared/Loading";
+import Playbooks from "@/components/search/Playbooks";
+import NoResults from "@/components/shared/NoResults";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Search({ page }: PageProps) {
   const router = useRouter();
   const { searchResults, setSearchResults } = useContext<SearchContextType>(SearchContext);
+  const [searching, setSearching] = useState(false);
 
   const loadResults = async (query: string) => {
     // Get data from Prismic
@@ -21,21 +24,22 @@ export default function Search({ page }: PageProps) {
     const gems = await getData("gem", query);
     const creators = await getData("creator", query);
 
+    // Update context
     setSearchResults({
       ...searchResults,
       destinations: destinations.results as Content.DestinationDocument[],
       playbooks: playbooks.results as Content.PlaybookDocument[],
       gems: gems.results as Content.GemDocument[],
       creators: creators.results as Content.CreatorDocument[],
+      query: query,
     });
+
+    setSearching(false);
   };
 
   useEffect(() => {
-    console.log(searchResults); // WIP - remove
-  }, [searchResults]);
-
-  useEffect(() => {
-    if (router.isReady && router.query.q) {
+    if (router.isReady && router.query.q && router.query.q !== searchResults.query) {
+      setSearching(true);
       loadResults(router.query.q as string);
     }
   }, [router.isReady, router.query]);
@@ -60,16 +64,23 @@ export default function Search({ page }: PageProps) {
         />
       </Head>
 
-      <SearchBox classes="h-40" />
+      <SearchBox classes="!h-40" disabled={searching ? true : false} />
 
-      <main className="!pt-0 [&>section>h3]:mb-2 [&>section>h3]:text-2xl [&>section>h3]:font-bold [&>section>h3]:md:mb-4 [&>section>h3]:md:text-4xl"></main>
+      <main className="!pt-0">
+        {searching && <Loading text="Searching" />}
+        <NoResults
+          visible={!searchResults.playbooks.length && router.query.q && !searching ? true : false}
+          classes="!p-0"
+        />
+        {!searching && searchResults.playbooks.length ? <Playbooks results={searchResults.playbooks} /> : <></>}
+      </main>
     </>
   );
 }
 
 export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
-  const page = await client.getSingle("search", { fetchLinks: "destination.title" });
+  const page = await client.getSingle("search");
 
   return {
     props: {
@@ -83,6 +94,7 @@ const getData = async (type: "creator" | "playbook" | "destination" | "gem", que
 
   const data = await client.getByType(type, {
     filters: [filter.fulltext("document", query)],
+    fetchLinks: "destination.title,creator.first_name,creator.last_name,creator.profile_image",
   });
 
   return data;

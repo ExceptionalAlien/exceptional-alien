@@ -26,7 +26,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
         }
         width={48}
         height={48}
-        className={`ml-2 rounded-full border border-white ${props.firstName ? "h-12 w-12" : "h-10 w-10"}`}
+        className={`ml-2 rounded-full border border-white bg-white ${props.firstName ? "h-12 w-12" : "h-10 w-10"}`}
       />
     </div>
   );

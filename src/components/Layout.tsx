@@ -43,6 +43,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     playbooks: [],
     gems: [],
     creators: [],
+    query: "",
   });
 
   const [showingSearchBox, setShowingSearchBox] = useState(false);

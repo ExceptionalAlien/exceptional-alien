@@ -6,6 +6,7 @@ export interface SearchResults {
   playbooks: Content.PlaybookDocument<string>[];
   gems: Content.GemDocument<string>[];
   creators: Content.CreatorDocument<string>[];
+  query: string;
 }
 
 export type SearchContextType = {
@@ -14,6 +15,6 @@ export type SearchContextType = {
 };
 
 export const SearchContext = createContext<SearchContextType>({
-  searchResults: { destinations: [], playbooks: [], gems: [], creators: [] },
+  searchResults: { destinations: [], playbooks: [], gems: [], creators: [], query: "" },
   setSearchResults: () => null,
 });

@@ -10,6 +10,7 @@ interface Props {
   recommended?: GroupField;
   hidden?: boolean;
   classes?: string;
+  disabled?: boolean;
 }
 
 export default function SearchBox(props: Props) {
@@ -77,7 +78,7 @@ export default function SearchBox(props: Props) {
           </h2>
         )}
 
-        <Field query={query} setQuery={setQuery} scrollY={scrollY} />
+        <Field query={query} setQuery={setQuery} scrollY={scrollY} disabled={props.disabled ? true : false} />
         {props.recommended && <Recommended destinations={props.recommended} scrollY={scrollY} />}
       </form>
     </div>
