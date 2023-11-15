@@ -9,6 +9,7 @@ import SearchBox from "@/components/shared/SearchBox";
 import Loading from "@/components/shared/Loading";
 import Playbooks from "@/components/search/Playbooks";
 import NoResults from "@/components/shared/NoResults";
+import Creators from "@/components/search/Creators";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -68,11 +69,18 @@ export default function Search({ page }: PageProps) {
 
       <main className="!pt-0">
         {searching && <Loading text="Searching" />}
+
         <NoResults
-          visible={!searchResults.playbooks.length && router.query.q && !searching ? true : false}
+          visible={
+            !searchResults.playbooks.length && !searchResults.creators.length && router.query.q && !searching
+              ? true
+              : false
+          }
           classes="!p-0"
         />
+
         {!searching && searchResults.playbooks.length ? <Playbooks results={searchResults.playbooks} /> : <></>}
+        {!searching && searchResults.creators.length ? <Creators results={searchResults.creators} /> : <></>}
       </main>
     </>
   );
