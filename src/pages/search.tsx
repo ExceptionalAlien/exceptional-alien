@@ -11,6 +11,7 @@ import Playbooks from "@/components/search/Playbooks";
 import NoResults from "@/components/shared/NoResults";
 import Creators from "@/components/search/Creators";
 import Destinations from "@/components/search/Destinations";
+import Gems from "@/components/search/Gems";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -76,6 +77,7 @@ export default function Search({ page }: PageProps) {
             !searchResults.playbooks.length &&
             !searchResults.creators.length &&
             !searchResults.destinations.length &&
+            !searchResults.gems.length &&
             router.query.q &&
             !searching
               ? true
@@ -92,6 +94,7 @@ export default function Search({ page }: PageProps) {
 
         {!searching && searchResults.playbooks.length ? <Playbooks results={searchResults.playbooks} /> : <></>}
         {!searching && searchResults.creators.length ? <Creators results={searchResults.creators} /> : <></>}
+        {!searching && searchResults.gems.length ? <Gems results={searchResults.gems} /> : <></>}
       </main>
     </>
   );
@@ -113,7 +116,7 @@ const getData = async (type: "creator" | "playbook" | "destination" | "gem", que
 
   const data = await client.getByType(type, {
     filters: [filter.fulltext("document", query)],
-    fetchLinks: "destination.title,creator.first_name,creator.last_name,creator.profile_image",
+    fetchLinks: "destination.title,creator.first_name,creator.last_name,creator.profile_image,playbook.creator",
   });
 
   return data;
