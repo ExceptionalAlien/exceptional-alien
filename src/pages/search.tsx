@@ -66,7 +66,7 @@ export default function Search({ page }: PageProps) {
         />
       </Head>
 
-      <SearchBox classes="h-28 md:!h-44" disabled={searching ? true : false} />
+      <SearchBox classes="h-44 md:h-60" disabled={searching ? true : false} />
 
       <main className="!pt-0 [&>*:nth-child(2)]:!mt-0">
         {searching && <Loading text="Searching" />}
