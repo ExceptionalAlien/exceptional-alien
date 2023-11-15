@@ -74,7 +74,7 @@ export default function Gem({ page, search }: PageProps) {
         {/* Heading */}
         <section className="!mt-2 md:!mt-3">
           <TabHeading classes="relative">
-            {page.data.website && (
+            {asLink(page.data.website) && (
               <a
                 href={asLink(page.data.website) as string}
                 target="_blank"
@@ -109,9 +109,9 @@ export default function Gem({ page, search }: PageProps) {
 
             {/* Category */}
             <Link
-              href={`/destinations/${(
-                page.data.destination as unknown as Content.DestinationDocument
-              ).data.title?.toLowerCase()}?c=${page.data.category.toLowerCase().replace("&", "%26")}`}
+              href={`/destinations/${
+                (page.data.destination as unknown as Content.DestinationDocument).uid
+              }?c=${page.data.category.toLowerCase().replace("&", "%26")}`}
               className="group/link flex w-max items-center uppercase text-ex-blue transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
             >
               <GemIcon

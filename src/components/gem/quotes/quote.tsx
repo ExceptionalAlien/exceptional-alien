@@ -25,7 +25,7 @@ export default function Quote(props: QuoteProps) {
             firstName={props.firstName}
             lastName={props.lastName}
             image={props.image}
-            classes="[&>img]:border-ex-blue"
+            classes="[&>img]:border-ex-blue [&>img]:bg-ex-blue"
           />
         </Link>
       </div>

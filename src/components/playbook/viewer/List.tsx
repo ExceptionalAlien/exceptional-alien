@@ -23,7 +23,7 @@ export default function List(props: ListProps) {
       <div className="m-2 my-4 grid gap-y-6 md:m-3 md:my-6 md:gap-y-9">
         <section className="grid gap-y-2 md:gap-y-3 [&>p]:text-ex-grey">
           {props.data.description.length !== 0 && <PrismicRichText field={props.data.description} />}
-          {props.data.audio && <Audio file={(props.data.audio as any).url as string} />}
+          {(props.data.audio as any).url && <Audio file={(props.data.audio as any).url as string} />}
 
           {/* <Link
             href="/"
