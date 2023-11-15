@@ -10,6 +10,7 @@ import Loading from "@/components/shared/Loading";
 import Playbooks from "@/components/search/Playbooks";
 import NoResults from "@/components/shared/NoResults";
 import Creators from "@/components/search/Creators";
+import Destinations from "@/components/search/Destinations";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -65,19 +66,29 @@ export default function Search({ page }: PageProps) {
         />
       </Head>
 
-      <SearchBox classes="!h-40" disabled={searching ? true : false} />
+      <SearchBox classes="h-28 md:!h-44" disabled={searching ? true : false} />
 
-      <main className="!pt-0">
+      <main className="!pt-0 [&>*:nth-child(2)]:!mt-0">
         {searching && <Loading text="Searching" />}
 
         <NoResults
           visible={
-            !searchResults.playbooks.length && !searchResults.creators.length && router.query.q && !searching
+            !searchResults.playbooks.length &&
+            !searchResults.creators.length &&
+            !searchResults.destinations.length &&
+            router.query.q &&
+            !searching
               ? true
               : false
           }
           classes="!p-0"
         />
+
+        {!searching && searchResults.destinations.length ? (
+          <Destinations results={searchResults.destinations} />
+        ) : (
+          <></>
+        )}
 
         {!searching && searchResults.playbooks.length ? <Playbooks results={searchResults.playbooks} /> : <></>}
         {!searching && searchResults.creators.length ? <Creators results={searchResults.creators} /> : <></>}
