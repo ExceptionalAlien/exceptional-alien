@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Content } from "@prismicio/client";
+import { Content, asText } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import TabButton from "@/components/shared/TabButton";
 import GemIcon from "@/components/shared/GemIcon";
@@ -33,14 +33,14 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
     >
       <GemIcon category={gem.data.category} classes="right-0" />
 
-      <hgroup className="mr-10 pr-1 md:mr-12 md:pr-2 [&>*]:leading-snug">
+      <Link href={"/gems/" + gem.uid} className="mr-10 block pr-1 md:mr-12 md:pr-2 [&>*]:leading-snug">
         <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>
 
         <h5>
           {gem.data.description?.charAt(0).toUpperCase()}
           {gem.data.description?.substring(1).toLowerCase()}
         </h5>
-      </hgroup>
+      </Link>
 
       {/* Address */}
       <a
@@ -66,26 +66,34 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
       {/* Details */}
       <div className="gem-content mt-1 md:mt-2">
         {gem.data.image && (
-          <Image
-            src={gem.data.image.thumb.url as string}
-            alt={gem.data.image.thumb.alt ? (gem.data.image.thumb.alt as string) : (gem.data.title as string)}
-            width={gem.data.image.thumb.dimensions?.width}
-            height={gem.data.image.thumb.dimensions?.height}
-            placeholder={`data:image/svg+xml;base64,${toBase64(
-              shimmer(
-                gem.data.image.thumb.dimensions?.width as number,
-                gem.data.image.thumb.dimensions?.height as number
-              )
-            )}`}
-            className="float-left w-2/5"
-          />
+          <Link href={"/gems/" + gem.uid}>
+            <Image
+              src={gem.data.image.thumb.url as string}
+              alt={gem.data.image.thumb.alt ? (gem.data.image.thumb.alt as string) : (gem.data.title as string)}
+              width={gem.data.image.thumb.dimensions?.width}
+              height={gem.data.image.thumb.dimensions?.height}
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                shimmer(
+                  gem.data.image.thumb.dimensions?.width as number,
+                  gem.data.image.thumb.dimensions?.height as number
+                )
+              )}`}
+              className="float-left w-2/5"
+            />
+          </Link>
         )}
 
-        <div className="float-left mb-6 w-3/5 pb-[25px] pl-2 md:mb-9 md:pl-3 [&>p]:text-sm [&>p]:font-bold [&>p]:text-ex-blue [&>p]:md:text-base">
+        <div
+          className={`float-left mb-6 w-3/5 pb-[25px] pl-2 md:mb-9 md:pl-3 [&>p]:font-bold [&>p]:text-ex-blue ${
+            asText(slice.primary.description).length > 120
+              ? "[&>p]:text-sm [&>p]:md:text-base"
+              : "[&>p]:text-base [&>p]:md:text-lg"
+          }`}
+        >
           <PrismicRichText field={slice.primary.description} />
 
           {!creator.data ? (
-            <p className="mt-2 !font-normal md:mt-3">
+            <p className="mt-2 !text-sm !font-normal md:mt-3 md:!text-base">
               {context.creator.data.first_name} {context.creator.data.last_name?.toUpperCase()}
             </p>
           ) : (
