@@ -18,7 +18,7 @@ export default function Quote(props: QuoteProps) {
         <PrismicRichText field={props.text} />
 
         <Link
-          href={`/creators/${props.uid}`}
+          href={`/community/${props.uid}`}
           className="absolute bottom-0 right-0 p-2 transition-[opacity] duration-300 ease-in-out hover:opacity-60 md:p-3"
         >
           <CreatorIcon
