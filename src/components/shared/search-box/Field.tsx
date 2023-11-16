@@ -14,7 +14,7 @@ export default function Field(props: Props) {
     <div className="relative flex w-full items-center">
       <label
         htmlFor="search"
-        className={`transition-[color] duration-300 ease-in-out ${props.scrollY > 0 ? "text-white" : "text-ex-blue"}`}
+        className={`transition-[color] duration-300 ease-in-out ${props.scrollY > 1 ? "text-white" : "text-ex-blue"}`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export default function Field(props: Props) {
         id="search"
         disabled={props.disabled}
         className={`placeholder-opacity ml-2 w-full rounded-none border-b bg-transparent pr-6 text-2xl outline-none transition-[border-color,color] duration-300 ease-in-out md:text-4xl ${
-          props.scrollY > 0
+          props.scrollY > 1
             ? "border-white text-white placeholder-white"
             : "border-ex-blue text-ex-blue placeholder-ex-blue"
         }`}
@@ -53,7 +53,7 @@ export default function Field(props: Props) {
           type="button"
           onClick={clear}
           className={`absolute -right-2 mt-1 p-1 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey ${
-            props.scrollY > 0 ? "text-white" : "text-ex-blue"
+            props.scrollY > 1 ? "text-white" : "text-ex-blue"
           }`}
         >
           <svg

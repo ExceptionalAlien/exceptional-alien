@@ -113,6 +113,7 @@ export default function Creator({ page, search }: PageProps) {
             page.data.last_name ? `${page.data.first_name} ${page.data.last_name}` : (page.data.first_name as string)
           }
           credit={page.data.photo_credit as string}
+          classes="!mt-0"
         />
 
         {/* Heading */}

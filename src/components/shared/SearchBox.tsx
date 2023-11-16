@@ -62,7 +62,7 @@ export default function SearchBox(props: Props) {
   return (
     <div
       className={`z-10 mt-12 flex flex-col items-center justify-center pl-4 pr-4 transition-[height] duration-300 ease-in-out md:mt-20 md:pl-6 md:pr-6 md:transition-[background-color,height] ${
-        scrollY > 0 ? "bg-ex-blue" : "bg-white"
+        scrollY > 1 ? "bg-ex-blue" : "bg-white"
       } ${!showingSearchBox && props.hidden && "!h-0"} ${
         props.hidden ? "fixed top-0 h-80 w-full overflow-hidden shadow-md md:h-72" : "h-96 md:h-80"
       } ${props.classes}`}
@@ -71,7 +71,7 @@ export default function SearchBox(props: Props) {
         {props.description && (
           <h2
             className={`m-auto mb-4 w-4/5 text-center text-xl font-bold transition-[color] duration-300 ease-in-out md:mb-6 md:w-3/5 ${
-              scrollY > 0 ? "text-white" : "text-ex-blue"
+              scrollY > 1 ? "text-white" : "text-ex-blue"
             }`}
           >
             {props.description}

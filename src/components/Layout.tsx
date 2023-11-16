@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import localFont from "next/font/local";
+import { useRouter } from "next/router";
 import { Content } from "@prismicio/client";
 import { CreatorsContext } from "@/context/CreatorsContext";
 import { PlaybooksContext } from "@/context/PlaybooksContext";
@@ -34,6 +35,7 @@ const helveticaMonospaced = localFont({
 });
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
   const [creators, setCreators] = useState<Content.CreatorDocument<string>[]>([]);
   const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
   const [gems, setGems] = useState<Gems>({});
@@ -47,6 +49,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   });
 
   const [showingSearchBox, setShowingSearchBox] = useState(false);
+
+  useEffect(() => {
+    // Hack! - https://github.com/vercel/next.js/issues/37141
+    var timeout: undefined | ReturnType<typeof setTimeout>;
+
+    if (window.navigator.userAgent.match(/iPhone/i) && window.scrollY === 0) {
+      window.scrollTo(0, 1);
+
+      timeout = setTimeout(() => {
+        window.scrollTo(0, 1);
+      }, 25);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [router.asPath]);
 
   return (
     <CreatorsContext.Provider value={{ creators, setCreators }}>

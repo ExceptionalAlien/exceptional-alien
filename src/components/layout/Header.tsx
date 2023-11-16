@@ -39,21 +39,22 @@ export default function Header() {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content={scrollY > 0 && !showingNav ? "#2220C1" : "#FFFFFF"} />
+        <meta name="theme-color" content={scrollY > 1 && !showingNav ? "#2220C1" : "#FFFFFF"} />
         <meta name="robots" content="noindex" />
         <meta property="og:type" content="website" />
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
       </Head>
 
       <header
         className={`p-safe fixed top-0 z-10 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
-          scrollY > 0 ? "bg-ex-blue" : "bg-white"
+          scrollY > 1 ? "bg-ex-blue" : "bg-white"
         }`}
       >
         <h1>
           <Link
             href="/"
             className={`block p-2 transition-[color] duration-300 ease-in-out md:p-4 ${
-              scrollY > 0 ? "text-white" : "text-ex-blue"
+              scrollY > 1 ? "text-white" : "text-ex-blue"
             } ${router.pathname === "/" ? "m-2" : "m-1 ml-2"}`}
           >
             {router.pathname === "/" ? (
@@ -68,7 +69,7 @@ export default function Header() {
         <Link
           href={"/" + (page === "gems" ? "destinations" : page)}
           className={`flex items-center text-2xl font-bold capitalize transition-[color] duration-300 ease-in-out md:text-4xl [&>svg]:ml-1 [&>svg]:h-5 [&>svg]:md:ml-2 [&>svg]:md:h-6 ${
-            scrollY > 0 ? "text-white" : "text-ex-blue"
+            scrollY > 1 ? "text-white" : "text-ex-blue"
           } ${
             page !== "community" &&
             page !== "travel-playbooks" &&
@@ -103,7 +104,7 @@ export default function Header() {
           className={`ml-auto p-3 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:ml-0 md:p-6 ${
             (router.pathname === "/" && scrollY === 0) || router.pathname === "/search" || showingSearchBox
               ? "text-ex-light-grey"
-              : scrollY > 0
+              : scrollY > 1
               ? "text-white"
               : "text-ex-blue"
           }`}
@@ -129,7 +130,7 @@ export default function Header() {
           onClick={() => setShowingNav(true)}
           title="Menu"
           className={`p-3 pr-4 transition-[color] duration-300 ease-in-out md:hidden ${
-            scrollY > 0 ? "text-white" : "text-ex-blue"
+            scrollY > 1 ? "text-white" : "text-ex-blue"
           }`}
         >
           <svg

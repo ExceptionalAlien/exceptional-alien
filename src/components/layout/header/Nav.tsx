@@ -27,12 +27,12 @@ export default function Nav(props: Props) {
         href="/download"
         onClick={hideNav}
         className={`absolute bottom-6 left-1/2 flex w-72 -translate-x-1/2 justify-center rounded-full border border-ex-blue p-2 pl-[14px] pr-4 text-ex-blue transition-[color,background-color,border-color] duration-300 ease-in-out md:static md:mr-4 md:hidden md:w-auto md:translate-x-0 landscape:lg:inline-flex ${
-          props.scrollY > 0
+          props.scrollY > 1
             ? "md:border-white md:text-white hover:md:bg-white hover:md:text-ex-blue"
             : "hover:md:bg-ex-blue hover:md:text-white"
         } ${
           router.pathname === "/download" &&
-          `bg-ex-blue text-white ${props.scrollY > 0 && "md:bg-white md:!text-ex-blue"}`
+          `bg-ex-blue text-white ${props.scrollY > 1 && "md:bg-white md:!text-ex-blue"}`
         }`}
       >
         <svg
