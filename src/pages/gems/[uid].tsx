@@ -60,7 +60,7 @@ export default function Gem({ page, search }: PageProps) {
             <hgroup className="float-left w-3/5 pr-2 md:pr-3">
               <h2 className="text-3xl font-bold md:text-6xl">{page.data.title}</h2>
 
-              <h3 className="text-lg md:text-2xl">
+              <h3 className="text-lg !leading-tight md:text-2xl">
                 {page.data.description?.charAt(0).toUpperCase()}
                 {page.data.description?.substring(1).toLowerCase()}
               </h3>

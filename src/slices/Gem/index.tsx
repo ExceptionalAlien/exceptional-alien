@@ -33,7 +33,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
     >
       <GemIcon category={gem.data.category} classes="right-0" />
 
-      <Link href={"/gems/" + gem.uid} className="mr-10 block pr-1 md:mr-12 md:pr-2 [&>*]:leading-snug">
+      <Link href={"/gems/" + gem.uid} className="mr-10 block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight">
         <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>
 
         <h5>
