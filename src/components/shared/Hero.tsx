@@ -26,7 +26,7 @@ export default function Hero(props: HeroProps) {
   }, [props.image]);
 
   return (
-    <section className={`relative aspect-[4/3] !pl-0 !pr-0 md:ml-6 md:mr-6 md:aspect-[2/1] ${props.classes}`}>
+    <section className={`relative aspect-[4/3] !pl-0 !pr-0 md:ml-6 md:mr-6 md:aspect-[40/21] ${props.classes}`}>
       {crop && (
         <Image
           src={crop.url as string}

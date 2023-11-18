@@ -12,10 +12,10 @@ export default function Quotes(props: QuotesProps) {
 
   // Loop playbooks that include gem
   for (let i = 0; i < props.playbooks.length; i++) {
-    const slices = (props.playbooks[i].playbook as unknown as Content.PlaybookDocument).data.slices;
+    const slices = (props.playbooks[i].playbook as unknown as Content.PlaybookDocument).data?.slices;
 
     // Loop playbook gems/slices
-    for (let ii = 0; ii < slices.length; ii++) {
+    for (let ii = 0; ii < slices?.length; ii++) {
       const primary = slices[ii].primary;
 
       // Gem match
@@ -41,7 +41,7 @@ export default function Quotes(props: QuotesProps) {
   }
 
   return (
-    <section className="!pl-0 !pr-0">
+    <section className={`!pl-0 !pr-0 ${!quotes.length && "hidden"}`}>
       <Slider minItems={3}>
         {quotes.map((item, i) => (
           <Quote

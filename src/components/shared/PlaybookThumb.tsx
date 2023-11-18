@@ -77,8 +77,8 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
       {/* Description */}
       {props.showDescription && (
         <p className="mt-1 text-ex-grey group-hover/link:text-ex-blue md:mt-2">
-          {asText(props.playbook.data.description)?.substring(0, 155)}
-          {asText(props.playbook.data.description).length > 155 && "..."}
+          {asText(props.playbook.data.description)?.substring(0, 160)}
+          {asText(props.playbook.data.description).length > 160 && "..."}
         </p>
       )}
 
