@@ -31,7 +31,7 @@ export default function Category(props: CategoryProps) {
           props.categories.includes(props.name.toLowerCase()) && "text-white"
         }`}
       />
-      {props.name}
+      {props.name.replace("Neighbourhoods", "Neighborhoods")}
     </button>
   );
 }
