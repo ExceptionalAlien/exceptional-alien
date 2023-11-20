@@ -24,9 +24,9 @@ const Playbooks = ({ slice }: PlaybooksProps): JSX.Element => {
         {more && (
           <Link
             href={more as string}
-            className="whitespace-nowrap text-ex-grey transition-[color] duration-300 ease-in-out hover:text-ex-blue md:text-lg"
+            className="flex items-center whitespace-nowrap text-ex-grey transition-[color] duration-300 ease-in-out hover:text-ex-blue md:text-lg"
           >
-            More {"\u2794"}
+            See More
           </Link>
         )}
       </div>
