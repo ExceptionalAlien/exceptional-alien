@@ -27,6 +27,17 @@
             "placeholder_true": "Large",
             "default_value": false
           }
+        },
+        "more": {
+          "type": "Link",
+          "config": {
+            "label": "More",
+            "select": "document",
+            "customtypes": [
+              "destination",
+              "playbook"
+            ]
+          }
         }
       },
       "items": {

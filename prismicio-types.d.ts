@@ -1678,6 +1678,16 @@ export interface PlaybooksSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   size: prismic.BooleanField;
+
+  /**
+   * More field in *Playbooks → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbooks.primary.more
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  more: prismic.ContentRelationshipField<"destination" | "playbook">;
 }
 
 /**
