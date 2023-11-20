@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Content } from "@prismicio/client";
+import { Content, asLink } from "@prismicio/client";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import Header from "./list/Header";
@@ -25,13 +25,16 @@ export default function List(props: ListProps) {
           {props.data.description.length !== 0 && <PrismicRichText field={props.data.description} />}
           {(props.data.audio as any).url && <Audio file={(props.data.audio as any).url as string} />}
 
-          {/* <Link
-            href="/"
-            className="flex h-9 items-center justify-center rounded-full border border-ex-blue pl-3 pr-3 text-ex-blue transition-[background-color,color] duration-300 ease-in-out hover:bg-ex-blue hover:text-white md:w-max"
-          >
-            <Story className="mr-[6px] h-5 w-5" />
-            Read the Interview
-  </Link> */}
+          {asLink(props.data.story) && (
+            <Link
+              href={asLink(props.data.story) as string}
+              target="_blank"
+              className="flex h-9 items-center justify-center rounded-full border border-ex-blue pl-3 pr-3 text-ex-blue transition-[background-color,color] duration-300 ease-in-out hover:bg-ex-blue hover:text-white md:w-max"
+            >
+              <Story className="mr-[6px] h-5 w-5" />
+              Read the Interview
+            </Link>
+          )}
         </section>
 
         <SliceZone slices={props.data.slices} components={components} context={{ creator: props.data.creator }} />

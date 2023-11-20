@@ -79,8 +79,9 @@
         "type": "Link",
         "config": {
           "label": "Story",
-          "select": "document",
-          "customtypes": ["story"]
+          "placeholder": "Medium link",
+          "allowTargetBlank": false,
+          "select": null
         }
       },
       "slices": {
