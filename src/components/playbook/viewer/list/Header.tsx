@@ -73,12 +73,14 @@ export default function Header(props: HeaderProps) {
       <ImageShadow />
 
       {/* Destination */}
-      <Link
-        href={"/destinations/" + props.destination.uid}
-        className="[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50"
-      >
-        <Destination name={props.destination.data.title as string} classes="m-2 md:m-3" />
-      </Link>
+      {props.destination.uid && (
+        <Link
+          href={"/destinations/" + props.destination.uid}
+          className="[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50"
+        >
+          <Destination name={props.destination.data.title as string} classes="m-2 md:m-3" />
+        </Link>
+      )}
 
       <Share title={props.title} route="travel-playbooks" classes="absolute right-2 top-2 md:right-3 md:top-3" />
 

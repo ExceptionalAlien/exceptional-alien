@@ -47,7 +47,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 
           <ImageShadow size={props.showCreator && props.size !== "xlg" ? "full" : "bottom"} />
 
-          {props.showDestination && (
+          {props.showDestination && props.playbook.data.destination && (
             <Destination
               name={(props.playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
               classes="m-2 md:m-3"
