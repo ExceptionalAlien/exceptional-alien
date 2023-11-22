@@ -2,6 +2,7 @@ import IG from "@/img/social-ig.svg";
 import FB from "@/img/social-fb.svg";
 import YT from "@/img/social-yt.svg";
 import LI from "@/img/social-li.svg";
+import M from "@/img/social-m.svg";
 
 interface Socialsprops {
   classes?: string;
@@ -28,8 +29,13 @@ export default function Socials(props: Socialsprops) {
       </a>
 
       {/* LinkedIn */}
-      <a href="https://www.linkedin.com/company/exceptional-alien" target="_blank" title="LinkedIn">
+      {/*<a href="https://www.linkedin.com/company/exceptional-alien" target="_blank" title="LinkedIn">
         <LI />
+  </a>*/}
+
+      {/* Medium */}
+      <a href="https://medium.com/@exceptionalalien" target="_blank" title="Medium">
+        <M />
       </a>
     </div>
   );
