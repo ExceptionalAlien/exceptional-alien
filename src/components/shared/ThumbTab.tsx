@@ -10,9 +10,12 @@ export default function ThumbTab(props: ThumbTabProps) {
   return (
     <TabHeading classes={`mt-1 md:mt-2 group-hover/link:text-ex-blue group-hover/link:border-ex-blue ${props.classes}`}>
       <p>{props.title}</p>
-      <p className="uppercase">
-        {"\u2794"} {props.location}
-      </p>
+
+      {props.location && (
+        <p className="uppercase">
+          {"\u2794"} {props.location}
+        </p>
+      )}
     </TabHeading>
   );
 }

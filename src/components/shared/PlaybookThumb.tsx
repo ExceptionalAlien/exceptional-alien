@@ -91,7 +91,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
                 ).data.last_name?.toUpperCase()}`
               : ((props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string)
           }
-          location={(props.playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+          location={(props.playbook.data?.destination as unknown as Content.DestinationDocument).data?.title as string}
         />
       )}
     </Link>
