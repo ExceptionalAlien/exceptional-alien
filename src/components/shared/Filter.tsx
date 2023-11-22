@@ -1,6 +1,7 @@
 interface FilterProps {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
+  placeholder?: string;
   classes?: string;
 }
 
@@ -30,7 +31,7 @@ export default function Filter(props: FilterProps) {
         type="text"
         value={props.query}
         onChange={(e) => props.setQuery(e.target.value)}
-        placeholder="Filter"
+        placeholder={props.placeholder ? props.placeholder : "Filter"}
         className="ml-1 w-full rounded-none border-b border-black pr-5 outline-none"
       />
 
