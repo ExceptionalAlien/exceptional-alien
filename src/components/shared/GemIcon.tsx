@@ -13,7 +13,7 @@ export default function GemIcon(props: GemIconProps) {
       className={`gem-icon flex items-center justify-center text-ex-blue [&>svg]:overflow-visible [&>svg]:transition-[color] [&>svg]:duration-300 [&>svg]:ease-in-out ${
         props.hideBg
           ? "h-5 w-5 [&>svg]:h-full [&>svg]:w-full"
-          : "absolute h-9 w-9 md:h-11 md:w-11 [&>svg]:absolute [&>svg]:h-2/5 [&>svg]:w-2/5"
+          : "absolute h-10 w-10 md:h-12 md:w-12 [&>svg]:absolute [&>svg]:h-2/5 [&>svg]:w-2/5"
       } ${props.classes}`}
     >
       <BG className={`gem-icon-bg !h-full !w-full text-white ${props.hideBg && "hidden"}`} />
