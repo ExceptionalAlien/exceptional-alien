@@ -17,12 +17,11 @@ interface PlaybookThumbProps {
 }
 
 export default function PlaybookThumb(props: PlaybookThumbProps) {
-  const image =
-    props.playbook.data && props.playbook.data.image
-      ? props.size && props.size !== "sml"
-        ? props.playbook.data.image.mobile
-        : props.playbook.data.image.thumb
-      : null; // Prismic image size/crop
+  const image = props.playbook.data.image.url
+    ? props.size && props.size !== "sml"
+      ? props.playbook.data.image.mobile
+      : props.playbook.data.image.thumb
+    : null; // Prismic image size/crop
 
   return (
     <Link
@@ -85,11 +84,11 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
       {!props.size && (
         <ThumbTab
           title={
-            (props.playbook.data.creator as unknown as Content.CreatorDocument).data.last_name
+            (props.playbook.data.creator as unknown as Content.CreatorDocument).data?.last_name
               ? `${(props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name} ${(
                   props.playbook.data.creator as unknown as Content.CreatorDocument
                 ).data.last_name?.toUpperCase()}`
-              : ((props.playbook.data.creator as unknown as Content.CreatorDocument).data.first_name as string)
+              : ((props.playbook.data.creator as unknown as Content.CreatorDocument).data?.first_name as string)
           }
           location={(props.playbook.data?.destination as unknown as Content.DestinationDocument).data?.title as string}
         />
