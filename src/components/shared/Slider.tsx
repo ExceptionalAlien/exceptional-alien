@@ -26,11 +26,10 @@ export default function Slider({ minItems = 2, ...props }: SliderProps) {
   };
 
   useEffect(() => {
+    const slider = ref.current!;
     setItemCount(props.children.length);
 
     const handleScroll = () => {
-      const slider = ref.current!;
-
       // Detect if scroll at start or end
       setScrollPos(
         slider.scrollLeft === 0
@@ -42,8 +41,8 @@ export default function Slider({ minItems = 2, ...props }: SliderProps) {
     };
 
     handleScroll();
-    ref.current!.addEventListener("scroll", handleScroll);
-    return () => ref.current! && ref.current!.removeEventListener("scroll", handleScroll); // Fire only if slider is in DOM
+    slider.addEventListener("scroll", handleScroll);
+    return () => slider.removeEventListener("scroll", handleScroll); // Fire only if slider is in DOM
   }, []);
 
   return (

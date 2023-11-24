@@ -125,7 +125,7 @@ export default function Creator({ page, search }: PageProps) {
               www={asLink(page.data.website) as string}
             />
 
-            <h3>{page.data.title}</h3>
+            <h3 className="capitalize">{page.data.title}</h3>
 
             <p className="uppercase">
               {page.data.home_city
