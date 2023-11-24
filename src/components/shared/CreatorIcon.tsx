@@ -22,7 +22,9 @@ export default function CreatorIcon(props: CreatorIconProps) {
             ? (props.image.alt as string)
             : props.lastName
             ? `${props.firstName} ${props.lastName}`
-            : (props.firstName as string)
+            : props.firstName
+            ? (props.firstName as string)
+            : ""
         }
         width={48}
         height={48}
