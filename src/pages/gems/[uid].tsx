@@ -125,7 +125,9 @@ export default function Gem({ page, search }: PageProps) {
                 classes="mr-[6px] group-hover/link:text-ex-light-grey"
               />
 
-              <span className="safari-ios-text-hack">{page.data.category}</span>
+              <span className="safari-ios-text-hack">
+                {page.data.category.replace("Neighbourhoods", "Neighborhoods")}
+              </span>
             </Link>
           </TabHeading>
         </section>
