@@ -74,7 +74,7 @@ export default function Search({ page }: PageProps) {
       <main>
         <section>
           <h2 className="text-4xl font-bold md:text-6xl">Search</h2>
-          <h3 className="text-ex-grey">Showing results for '{router.query.q}'</h3>
+          <h3 className="text-ex-grey">Showing results for {`'${router.query.q}'`}</h3>
         </section>
 
         {searching && (
