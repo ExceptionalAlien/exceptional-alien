@@ -55,7 +55,7 @@ export default function GemThumb(props: GemThumbProps) {
               firstName={(props.creator as unknown as Content.CreatorDocument).data.first_name as string}
               lastName={(props.creator as unknown as Content.CreatorDocument).data.last_name as string}
               image={(props.creator as unknown as Content.CreatorDocument).data.profile_image}
-              classes="absolute right-0 bottom-0 m-2 md:m-3"
+              classes="absolute right-0 bottom-0 m-2 md:m-3 max-w-[50%]"
             />
           ) : (
             props.gem.data.playbooks.map(
