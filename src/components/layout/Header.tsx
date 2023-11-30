@@ -19,7 +19,7 @@ export default function Header() {
   const page = router.pathname.split("/")[1];
 
   const searchClick = () => {
-    if (router.pathname === "/" || router.pathname === "/search") {
+    if (router.pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       setShowingSearchBox(!showingSearchBox); // Toggle
@@ -102,7 +102,7 @@ export default function Header() {
           onClick={searchClick}
           title="Search"
           className={`ml-auto p-3 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:ml-0 md:p-6 ${
-            (router.pathname === "/" && scrollY === 0) || router.pathname === "/search" || showingSearchBox
+            (router.pathname === "/" && scrollY === 0) || showingSearchBox
               ? "text-ex-light-grey"
               : scrollY > 1
               ? "text-white"

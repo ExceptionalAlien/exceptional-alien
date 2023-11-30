@@ -23,7 +23,7 @@ export default function SearchBox(props: Props) {
     e.preventDefault();
 
     // Update router
-    if (router.pathname === "/search") {
+    if (router.pathname === "/search" && query.length > 1) {
       // Replace query
       router.replace(
         {
@@ -32,6 +32,8 @@ export default function SearchBox(props: Props) {
         undefined,
         { shallow: true }
       );
+
+      setShowingSearchBox(false); // Close
     } else if (query.length > 1) {
       // Route to search page
       router.push({

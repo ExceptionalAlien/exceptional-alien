@@ -65,25 +65,37 @@ export default function Search({ page }: PageProps) {
           property="og:image"
           content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
         />
+
+        <meta name="robots" content="noindex" />
       </Head>
 
-      <SearchBox classes="!h-40 md:!h-52" disabled={searching ? true : false} />
+      <SearchBox hidden={true} disabled={searching ? true : false} />
 
-      <main className="!pt-0 [&>*:nth-child(2)]:!mt-0">
-        {searching && <Loading text="Searching" />}
+      <main>
+        <section>
+          <h2 className="text-4xl font-bold md:text-6xl">Search</h2>
+          <h3 className="text-ex-grey">Showing results for '{router.query.q}'</h3>
+        </section>
+
+        {searching && (
+          <section>
+            <Loading text="Searching" />
+          </section>
+        )}
 
         <NoResults
           visible={
-            !searchResults.playbooks.length &&
-            !searchResults.creators.length &&
-            !searchResults.destinations.length &&
-            !searchResults.gems.length &&
-            router.query.q &&
-            !searching
+            (!searchResults.playbooks.length &&
+              !searchResults.creators.length &&
+              !searchResults.destinations.length &&
+              !searchResults.gems.length &&
+              router.query.q &&
+              !searching) ||
+            !router.query.q
               ? true
               : false
           }
-          classes="!p-0"
+          classes="!p-8 md:!p-12 !pb-0 md:!pb-0"
         />
 
         {!searching && searchResults.destinations.length ? (

@@ -9,7 +9,7 @@ interface DestinationsProps {
 export default function Destinations(props: DestinationsProps) {
   return (
     <section>
-      <h3 className="flex items-center pb-2 text-2xl font-bold md:pb-3 md:text-4xl">
+      <h3 className="flex items-center pb-2 text-2xl font-bold text-ex-blue md:pb-3 md:text-4xl">
         <Place className="mb-1 mr-1 h-5 overflow-visible md:mr-2 md:h-6" />
         Destinations<span className="ml-1 text-base md:ml-2 md:text-xl">({props.results.slice(0, 20).length})</span>
       </h3>
