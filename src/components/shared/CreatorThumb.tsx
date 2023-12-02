@@ -20,7 +20,7 @@ export default function CreatorThumb(props: CreatorThumbProps) {
 
   return (
     <Link
-      href={"/community/" + props.creator.uid}
+      href={"/contributors/" + props.creator.uid}
       className={`group/link max-w-xl ${props.size === "lrg" && "w-10/12 md:w-5/12"} ${props.classes}`}
     >
       {/* Image */}

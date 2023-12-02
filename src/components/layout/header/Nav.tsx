@@ -54,7 +54,7 @@ export default function Nav(props: Props) {
 
       <PrimaryLink page="destinations" hideNav={hideNav} scrollY={props.scrollY} />
       <PrimaryLink page="travel-playbooks" hideNav={hideNav} scrollY={props.scrollY} />
-      <PrimaryLink page="community" hideNav={hideNav} scrollY={props.scrollY} />
+      <PrimaryLink page="contributors" hideNav={hideNav} scrollY={props.scrollY} />
 
       {/* Logo */}
       <Link href="/" onClick={hideNav} className="absolute left-6 top-6 md:!hidden" title="Home">

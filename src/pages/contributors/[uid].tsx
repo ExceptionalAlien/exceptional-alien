@@ -37,7 +37,7 @@ export default function Creator({ page, search }: PageProps) {
           }
         />
 
-        <meta property="og:url" content={`https://exceptionalalien.com/community/${page.uid}`} />
+        <meta property="og:url" content={`https://exceptionalalien.com/contributors/${page.uid}`} />
 
         <meta
           property="og:title"
@@ -94,7 +94,7 @@ export default function Creator({ page, search }: PageProps) {
         {(page.data.nomination as unknown as Content.CreatorDocument).data && (
           <section className="!mt-0 mb-2 text-right md:mb-3">
             <Link
-              href={`/community/${(page.data.nomination as unknown as Content.CreatorDocument).uid}`}
+              href={`/contributors/${(page.data.nomination as unknown as Content.CreatorDocument).uid}`}
               className="inline-block transition-[opacity] duration-300 ease-in-out hover:opacity-60"
             >
               <CreatorIcon

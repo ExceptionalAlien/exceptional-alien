@@ -71,7 +71,7 @@ export default function Header() {
           className={`flex items-center text-2xl font-bold capitalize transition-[color] duration-300 ease-in-out md:text-4xl [&>svg]:ml-1 [&>svg]:h-5 [&>svg]:md:ml-2 [&>svg]:md:h-6 ${
             scrollY > 1 ? "text-white" : "text-ex-blue"
           } ${
-            page !== "community" &&
+            page !== "contributors" &&
             page !== "travel-playbooks" &&
             page !== "destinations" &&
             page !== "gems" &&
@@ -88,7 +88,7 @@ export default function Header() {
             <Place />
           ) : page === "travel-playbooks" ? (
             <Playbook />
-          ) : page === "community" ? (
+          ) : page === "contributors" ? (
             <Person />
           ) : (
             <Gem />
