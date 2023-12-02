@@ -13,11 +13,11 @@ export default function Trending(props: TrendingProps) {
       {/* List */}
       {props.destinations.map((item, i) => (
         <Link
-          href={"/destinations/" + (item.destination as Content.DestinationDocument).uid}
+          href={"/destinations/" + (item.destination as unknown as Content.DestinationDocument).uid}
           key={i}
           className="flex items-center text-4xl font-bold uppercase transition-[color] duration-300 ease-in-out hover:text-ex-blue md:text-6xl"
         >
-          {(item.destination as Content.DestinationDocument).data.title}
+          {(item.destination as unknown as Content.DestinationDocument).data.title}
 
           <svg
             xmlns="http://www.w3.org/2000/svg"

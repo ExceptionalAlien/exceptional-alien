@@ -21,7 +21,7 @@ export default function PlaybooksGrid(props: PlaybooksGridProps) {
         {props.list.map((item, i) => (
           <PlaybookThumb
             key={i}
-            playbook={item.playbook as Content.PlaybookDocument}
+            playbook={item.playbook as unknown as Content.PlaybookDocument}
             size="med"
             showCreator={props.showCreator ? true : false}
             showDestination={true}

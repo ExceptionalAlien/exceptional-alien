@@ -15,7 +15,7 @@ export default function Featured(props: FeaturedProps) {
         {props.playbooks.map((item, i) => (
           <PlaybookThumb
             key={i}
-            playbook={item.playbook as Content.PlaybookDocument}
+            playbook={item.playbook as unknown as Content.PlaybookDocument}
             size="xlg"
             showCreator={true}
             showDestination={true}
