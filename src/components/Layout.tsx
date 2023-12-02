@@ -73,7 +73,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <SearchBoxContext.Provider value={{ showingSearchBox, setShowingSearchBox }}>
               <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
                 <div className="bg-white">
-                  <div className="p-safe [&>main>section]:mt-8 [&>main>section]:pl-4 [&>main>section]:pr-4 [&>main>section]:md:mt-12 [&>main>section]:md:pl-6 [&>main>section]:md:pr-6 [&>main]:m-auto [&>main]:pb-16 [&>main]:pt-12 [&>main]:md:pb-24 [&>main]:md:pt-20">
+                  <div className="p-safe [&>main>section]:mt-8 [&>main>section]:pl-4 [&>main>section]:pr-4 [&>main>section]:md:mt-12 [&>main>section]:md:pl-6 [&>main>section]:md:pr-6 [&>main]:m-auto [&>main]:min-h-[calc(100vh-288px)] [&>main]:pb-16 [&>main]:pt-12 [&>main]:md:pb-24 [&>main]:md:pt-20">
                     {children}
                   </div>
                 </div>
