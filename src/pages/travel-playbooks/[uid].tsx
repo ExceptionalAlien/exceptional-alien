@@ -29,8 +29,8 @@ export default function Playbook({ page, search }: PageProps) {
             page.data.meta_description
               ? page.data.meta_description
               : page.data.description
-              ? asText(page.data.description)
-              : ""
+                ? asText(page.data.description)
+                : ""
           }
         />
 
@@ -57,8 +57,8 @@ export default function Playbook({ page, search }: PageProps) {
             page.data.meta_description
               ? page.data.meta_description
               : page.data.description
-              ? asText(page.data.description)
-              : ""
+                ? asText(page.data.description)
+                : ""
           }
         />
 
@@ -68,8 +68,8 @@ export default function Playbook({ page, search }: PageProps) {
             page.data.meta_image.url
               ? page.data.meta_image.url
               : page.data.image.url
-              ? page.data.image.url
-              : "https://exceptionalalien.com/img/og.png"
+                ? page.data.image.url
+                : "https://exceptionalalien.com/img/og.png"
           }
         />
       </Head>

@@ -41,7 +41,7 @@ const Playbooks = ({ slice }: PlaybooksProps): JSX.Element => {
                 size={slice.primary.size ? "xlg" : "lrg"}
                 showDestination={slice.primary.size ? true : false}
                 showCreator={true}
-                showDescription={slice.primary.size ? true : false}
+                showDescription={true}
               />
             ))
           : /* Gems */

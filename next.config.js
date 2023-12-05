@@ -37,20 +37,23 @@ const nextConfig = {
       },
     ],
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: "/people/:slug",
         destination: "/contributors/:slug",
+        permanent: true,
       },
       {
         source: "/playbooks/(.*)",
         has: [{ type: "query", key: "b", value: "(?<slug>.*)" }],
-        destination: "/travel-playbooks/:slug",
+        destination: "/travel-playbooks/:slug?b=",
+        permanent: true,
       },
       {
         source: "/playbooks/:slug",
         destination: "/destinations/:slug",
+        permanent: true,
       },
     ];
   },

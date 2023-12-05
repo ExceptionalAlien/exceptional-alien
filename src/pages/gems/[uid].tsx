@@ -43,8 +43,8 @@ export default function Gem({ page, search }: PageProps) {
             page.data.meta_image.url
               ? page.data.meta_image.url
               : page.data.image.seo.url
-              ? page.data.image.seo.url
-              : "https://exceptionalalien.com/img/og.png"
+                ? page.data.image.seo.url
+                : "https://exceptionalalien.com/img/og.png"
           }
         />
       </Head>
@@ -83,6 +83,7 @@ export default function Gem({ page, search }: PageProps) {
               <a
                 href={asLink(page.data.website) as string}
                 target="_blank"
+                rel="nofollow"
                 title="Website"
                 className="absolute right-0 top-0 p-2 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey [&>svg]:h-6"
               >
