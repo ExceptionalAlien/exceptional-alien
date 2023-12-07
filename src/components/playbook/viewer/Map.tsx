@@ -98,68 +98,90 @@ function GoogleMap(props: MapProps) {
 
     const bounds = new window.google.maps.LatLngBounds();
 
-    // Loop playbook gems
-    for (let i = 0; i < props.gems.length; i++) {
-      const gem = props.gems[i].primary.gem as any;
-      const div = document.createElement("div");
-      div.setAttribute("id", "map-gem-" + gem.uid);
-      div.classList.add("map-gem");
-      createRoot(div).render(<GemIcon category={gem.data.category} classes="-translate-x-1/2 -translate-y-1/2" />);
+    const addMarkers = async () => {
+      const getCoords = async (placeID: string) => {
+        // Return place lat and lng from Google API
+        const service = new google.maps.places.PlacesService(map);
 
-      // Add marker to map
-      const marker = new window.google.maps.marker.AdvancedMarkerElement({
-        map,
-        position: {
-          lat: gem.data.location?.latitude,
-          lng: gem.data.location?.longitude,
-        },
-        title: gem.data.title,
-        content: div,
-      });
+        const request = {
+          placeId: placeID,
+          fields: ["geometry"],
+        };
 
-      // List gem is already in view
-      if (focusedGem === gem.uid) {
-        div.classList.add("selected-gem");
-        marker.zIndex = 1;
-      }
+        return new Promise((resolve) =>
+          service.getDetails(request, (place, status) => {
+            if (
+              status === google.maps.places.PlacesServiceStatus.OK &&
+              place &&
+              place.geometry &&
+              place.geometry.location
+            ) {
+              resolve(place.geometry.location);
+            }
+          })
+        );
+      };
 
-      // Include marker in init map boundary
-      bounds.extend({
-        lat: gem.data.location?.latitude,
-        lng: gem.data.location?.longitude,
-      });
+      // Loop playbook gems
+      for (let i = 0; i < props.gems.length; i++) {
+        const gem = props.gems[i].primary.gem as any;
+        const div = document.createElement("div");
+        const coords = (await getCoords(gem.data.google_maps_id)) as google.maps.LatLng;
+        div.setAttribute("id", "map-gem-" + gem.uid);
+        div.classList.add("map-gem");
+        createRoot(div).render(<GemIcon category={gem.data.category} classes="-translate-x-1/2 -translate-y-1/2" />);
 
-      marker.addListener("click", () => {
-        window.scrollTo({
-          top: (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin),
-          behavior: "smooth",
+        // Add marker to map
+        const marker = new window.google.maps.marker.AdvancedMarkerElement({
+          map,
+          position: coords,
+          title: gem.data.title,
+          content: div,
         });
 
-        // Zoom and center marker
-        if (!clickedGem) {
-          if (focusedGem !== gem.uid) {
-            resetMapGems(); // Needed because markers can't be styled if not visible on map
-          }
-
-          map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
-          initZoom && map.setZoom(initZoom + 2);
+        // List gem is already in view
+        if (focusedGem === gem.uid) {
+          div.classList.add("selected-gem");
+          marker.zIndex = 1;
         }
 
-        clickedGem = gem.uid;
-      });
-    }
+        // Include marker in init map boundary
+        bounds.extend(coords);
 
-    props.gems.length && map.fitBounds(bounds); // Show all gems on map on init
+        marker.addListener("click", () => {
+          window.scrollTo({
+            top: (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin),
+            behavior: "smooth",
+          });
 
-    google.maps.event.addListener(map, "idle", () => {
-      if (!initZoom) {
-        // Save initial zoom number and center position for map reset
-        initZoom = map.getZoom();
-        initCenter = map.getCenter();
+          // Zoom and center marker
+          if (!clickedGem) {
+            if (focusedGem !== gem.uid) {
+              resetMapGems(); // Needed because markers can't be styled if not visible on map
+            }
+
+            map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
+            initZoom && map.setZoom(initZoom + 2);
+          }
+
+          clickedGem = gem.uid;
+        });
       }
 
-      setGems(); // Set gems after map zoom
-    });
+      props.gems.length && map.fitBounds(bounds); // Show all gems on map on init
+
+      google.maps.event.addListener(map, "idle", () => {
+        if (!initZoom) {
+          // Save initial zoom number and center position for map reset
+          initZoom = map.getZoom();
+          initCenter = map.getCenter();
+        }
+
+        setGems(); // Set gems after map zoom
+      });
+    };
+
+    addMarkers(); // Init
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll); // Clean up
@@ -183,7 +205,7 @@ interface MapProps {
 
 export default function Map(props: MapProps) {
   return (
-    <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY!} libraries={["marker"]}>
+    <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY!} libraries={["marker", "places"]}>
       <GoogleMap {...props} />
     </Wrapper>
   );

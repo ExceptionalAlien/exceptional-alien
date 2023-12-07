@@ -826,17 +826,6 @@ interface GemDocumentData {
   address: prismic.KeyTextField;
 
   /**
-   * Location field in *Gem*
-   *
-   * - **Field Type**: GeoPoint
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gem.location
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#geopoint
-   */
-  location: prismic.GeoPointField;
-
-  /**
    * Google Maps ID field in *Gem*
    *
    * - **Field Type**: Text
@@ -1084,17 +1073,6 @@ interface PlaybookDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   audio: prismic.LinkField;
-
-  /**
-   * Story field in *Playbook*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Medium link
-   * - **API ID Path**: playbook.story
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  story: prismic.LinkField;
 
   /**
    * Slice Zone field in *Playbook*
@@ -1356,114 +1334,6 @@ export type SearchDocument<Lang extends string = string> = prismic.PrismicDocume
   Lang
 >;
 
-type StoryDocumentDataSlicesSlice = never;
-
-/**
- * Content for Story documents
- */
-interface StoryDocumentData {
-  /**
-   * Title field in *Story*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: story.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Creator field in *Story*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: story.creator
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  creator: prismic.ContentRelationshipField<"creator">;
-
-  /**
-   * Destination field in *Story*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: story.destination
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  destination: prismic.ContentRelationshipField<"destination">;
-
-  /**
-   * Image field in *Story*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: story.image
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
-
-  /**
-   * Slice Zone field in *Story*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: story.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<StoryDocumentDataSlicesSlice> /**
-   * Meta Description field in *Story*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: story.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Story*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: story.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Story*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: story.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Story document from Prismic
- *
- * - **API ID**: `story`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type StoryDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
-  Simplify<StoryDocumentData>,
-  "story",
-  Lang
->;
-
 type TermsAndPrivacyDocumentDataSlicesSlice = TextWithHeadingSlice | SingleHeadingSlice | HighlightSlice;
 
 /**
@@ -1551,7 +1421,6 @@ export type AllDocumentTypes =
   | PlaybookDocument
   | PlaybooksDocument
   | SearchDocument
-  | StoryDocument
   | TermsAndPrivacyDocument;
 
 /**
@@ -1995,9 +1864,6 @@ declare module "@prismicio/client" {
       SearchDocumentData,
       SearchDocumentDataRecommendedItem,
       SearchDocumentDataSlicesSlice,
-      StoryDocument,
-      StoryDocumentData,
-      StoryDocumentDataSlicesSlice,
       TermsAndPrivacyDocument,
       TermsAndPrivacyDocumentData,
       TermsAndPrivacyDocumentDataSlicesSlice,

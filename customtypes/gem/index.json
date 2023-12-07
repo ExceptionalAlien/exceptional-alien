@@ -86,12 +86,6 @@
           "placeholder": ""
         }
       },
-      "location": {
-        "type": "GeoPoint",
-        "config": {
-          "label": "Location"
-        }
-      },
       "google_maps_id": {
         "type": "Text",
         "config": {
