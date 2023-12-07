@@ -75,6 +75,15 @@
           "select": null
         }
       },
+      "story": {
+        "type": "Link",
+        "config": {
+          "label": "Story",
+          "placeholder": "Medium link",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
