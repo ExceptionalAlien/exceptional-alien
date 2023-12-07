@@ -66,11 +66,11 @@ export default function Gem({ page, search }: PageProps) {
               </h3>
             </hgroup>
 
-            <p className="float-right w-2/5 text-right font-mono text-xs md:text-sm">
+            {/* <p className="float-right w-2/5 text-right font-mono text-xs md:text-sm">
               {Math.abs(page.data.location.latitude).toFixed(4)}°{page.data.location.latitude < 0 ? "S" : "N"}
               <br />
               {Math.abs(page.data.location.longitude).toFixed(4)}°{page.data.location.latitude < 0 ? "W" : "E"}
-            </p>
+        </p> */}
 
             <div className="clear-both"></div>
           </div>
