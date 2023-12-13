@@ -55,6 +55,21 @@ const nextConfig = {
         destination: "/destinations/:slug",
         permanent: true,
       },
+      {
+        source: "/download",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/stories",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/stories/(.*)",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   reactStrictMode: true,

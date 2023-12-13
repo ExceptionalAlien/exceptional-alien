@@ -93,7 +93,7 @@ const getData = async () => {
     fetchLinks: "destination.title,creator.first_name,creator.last_name",
     orderings: [
       {
-        field: "document.first_publication_date",
+        field: "document.last_publication_date",
         direction: "desc",
       },
     ],
