@@ -11,7 +11,7 @@ interface CreatorIconProps {
 export default function CreatorIcon(props: CreatorIconProps) {
   return (
     <div className={`flex items-center justify-end ${props.classes}`}>
-      <p className="text-right text-sm text-white">
+      <p className="text-right text-sm text-white [overflow-wrap:anywhere]">
         {props.firstName} {props.lastName?.toUpperCase()}
       </p>
 
@@ -21,10 +21,10 @@ export default function CreatorIcon(props: CreatorIconProps) {
           props.image.alt
             ? (props.image.alt as string)
             : props.lastName
-            ? `${props.firstName} ${props.lastName}`
-            : props.firstName
-            ? (props.firstName as string)
-            : ""
+              ? `${props.firstName} ${props.lastName}`
+              : props.firstName
+                ? (props.firstName as string)
+                : ""
         }
         width={48}
         height={48}
