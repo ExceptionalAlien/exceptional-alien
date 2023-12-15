@@ -48,7 +48,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 
           {props.showDestination && props.playbook.data.destination && (
             <Destination
-              name={(props.playbook.data.destination as unknown as Content.DestinationDocument).data.title as string}
+              name={(props.playbook.data.destination as unknown as Content.DestinationDocument).data?.title as string}
               classes="m-2 md:m-3"
             />
           )}
