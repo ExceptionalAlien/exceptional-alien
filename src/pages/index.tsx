@@ -30,7 +30,7 @@ export default function Home({ page, search }: PageProps) {
         <SliceZone slices={page.data.slices} components={components} />
 
         <section>
-          <h4 className="text-center text-2xl font-bold text-ex-blue">As seen in</h4>
+          <h4 className="text-center text-xl font-bold">As seen in</h4>
 
           <div className="m-auto mt-8 grid max-w-4xl grid-cols-2 items-center justify-items-center gap-8 md:mt-12 md:grid-cols-3 md:gap-12 [&>a>img]:h-auto [&>a>img]:w-24 md:[&>a>img]:w-40">
             <a
@@ -44,7 +44,7 @@ export default function Home({ page, search }: PageProps) {
               href="https://www.gq.com.au/lifestyle/travel/budjerah-travel-recommendations-victoria/image-gallery/92c14af7102580e45a2117d8a100f20f"
               target="_blank"
             >
-              <Image src="/img/as-seen-in/logo-gq.png" alt="GQ" width="484" height="256" />
+              <Image src="/img/as-seen-in/logo-gq.png" alt="GQ" width="484" height="256" className="!scale-75" />
             </a>
 
             <a href="https://skift.com/2023/08/03/skift-idea-awards-2023-meet-the-winners/" target="_blank">
@@ -66,7 +66,13 @@ export default function Home({ page, search }: PageProps) {
               href="https://www.afr.com/companies/media-and-marketing/ad-experts-launch-cultural-guide-exceptional-alien-20210928-p58vdd"
               target="_blank"
             >
-              <Image src="/img/as-seen-in/logo-fin-review.png" alt="Financial Review" width="2333" height="256" />
+              <Image
+                src="/img/as-seen-in/logo-fin-review.png"
+                alt="Financial Review"
+                width="2333"
+                height="256"
+                className="!scale-150"
+              />
             </a>
           </div>
         </section>
