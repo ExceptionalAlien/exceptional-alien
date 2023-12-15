@@ -40,7 +40,6 @@ export default function Header() {
       <Head>
         <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content={scrollY > 1 && !showingNav ? "#2220C1" : "#FFFFFF"} />
-        <meta name="robots" content="noindex" />
         <meta property="og:type" content="website" />
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
       </Head>
@@ -105,8 +104,8 @@ export default function Header() {
             (router.pathname === "/" && scrollY === 0) || showingSearchBox
               ? "text-ex-light-grey"
               : scrollY > 1
-              ? "text-white"
-              : "text-ex-blue"
+                ? "text-white"
+                : "text-ex-blue"
           }`}
         >
           <svg
