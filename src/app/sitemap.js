@@ -9,22 +9,22 @@ export default async function sitemap() {
 
   const destinations = destinationsData.map((item) => ({
     url: `https://www.exceptionalalien.com/destinations/${item.uid}`,
-    lastModified: item.last_publication_date,
+    lastModified: new Date(item.last_publication_date).toISOString(),
   }));
 
   const playbooks = playbooksData.map((item) => ({
     url: `https://www.exceptionalalien.com/travel-playbooks/${item.uid}`,
-    lastModified: item.last_publication_date,
+    lastModified: new Date(item.last_publication_date).toISOString(),
   }));
 
   const creators = creatorsData.map((item) => ({
     url: `https://www.exceptionalalien.com/contributors/${item.uid}`,
-    lastModified: item.last_publication_date,
+    lastModified: new Date(item.last_publication_date).toISOString(),
   }));
 
   const gems = gemsData.map((item) => ({
     url: `https://www.exceptionalalien.com/gems/${item.uid}`,
-    lastModified: item.last_publication_date,
+    lastModified: new Date(item.last_publication_date).toISOString(),
   }));
 
   return [
