@@ -34,7 +34,7 @@ export default function Socials(props: Socialsprops) {
   </a>*/}
 
       {/* Medium */}
-      <a href="https://medium.com/@exceptionalalien" target="_blank" title="Medium">
+      <a href="https://stories.exceptionalalien.com" target="_blank" title="Medium">
         <M />
       </a>
     </div>
