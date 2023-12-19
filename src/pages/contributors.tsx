@@ -54,7 +54,7 @@ export default function Creators({ page, search }: PageProps) {
           <All creators={creators} />
         ) : (
           <section>
-            <Loading text="Loading creators" />
+            <Loading text="Loading contributors" />
           </section>
         )}
       </main>

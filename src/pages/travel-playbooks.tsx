@@ -54,7 +54,7 @@ export default function Playbooks({ page, search }: PageProps) {
           <All playbooks={playbooks} />
         ) : (
           <section>
-            <Loading text="Loading playbooks" />
+            <Loading text="Loading Playbooks" />
           </section>
         )}
       </main>

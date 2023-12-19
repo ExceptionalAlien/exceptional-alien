@@ -83,7 +83,7 @@ export default function Creator({ page, search }: PageProps) {
           <All gems={gems[page.uid]} />
         ) : (
           <section>
-            <Loading text="Loading gems" />
+            <Loading text="Loading Gems" />
           </section>
         )}
       </main>
