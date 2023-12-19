@@ -45,6 +45,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/people",
+        destination: "/contributors",
+        permanent: true,
+      },
+      {
+        source: "/places",
+        destination: "/destinations",
+        permanent: true,
+      },
+      {
         source: "/playbooks/(.*)",
         has: [{ type: "query", key: "b", value: "(?<slug>.*)" }],
         destination: "/travel-playbooks/:slug?b=",
@@ -53,6 +63,11 @@ const nextConfig = {
       {
         source: "/playbooks/:slug",
         destination: "/destinations/:slug",
+        permanent: true,
+      },
+      {
+        source: "/playbooks",
+        destination: "/travel-playbooks",
         permanent: true,
       },
       {
