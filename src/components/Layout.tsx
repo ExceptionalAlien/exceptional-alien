@@ -43,8 +43,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [searchResults, setSearchResults] = useState<SearchResults>({
     destinations: [],
     playbooks: [],
-    gems: [],
     creators: [],
+    gems: [],
     query: "",
   });
 

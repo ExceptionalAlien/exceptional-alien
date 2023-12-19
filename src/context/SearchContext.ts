@@ -4,8 +4,8 @@ import { Content } from "@prismicio/client";
 export interface SearchResults {
   destinations: Content.DestinationDocument<string>[];
   playbooks: Content.PlaybookDocument<string>[];
-  gems: Content.GemDocument<string>[];
   creators: Content.CreatorDocument<string>[];
+  gems: Content.GemDocument<string>[];
   query: string;
 }
 
@@ -15,6 +15,6 @@ export type SearchContextType = {
 };
 
 export const SearchContext = createContext<SearchContextType>({
-  searchResults: { destinations: [], playbooks: [], gems: [], creators: [], query: "" },
+  searchResults: { destinations: [], playbooks: [], creators: [], gems: [], query: "" },
   setSearchResults: () => null,
 });

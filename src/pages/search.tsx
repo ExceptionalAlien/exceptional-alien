@@ -21,15 +21,42 @@ export default function Search({ page }: PageProps) {
   const [searching, setSearching] = useState(false);
 
   const loadResults = async (query: string) => {
-    // Get data from Prismic
+    // Get data from Prismic and update context
+    setSearchResults({ destinations: [], playbooks: [], creators: [], gems: [], query: query }); // Reset
+
     const destinations = await getData("destination", query);
+
+    setSearchResults({
+      destinations: destinations.results as Content.DestinationDocument[],
+      playbooks: [],
+      creators: [],
+      gems: [],
+      query: query,
+    });
+
     const playbooks = await getData("playbook", query);
-    const gems = await getData("gem", query);
+
+    setSearchResults({
+      destinations: destinations.results as Content.DestinationDocument[],
+      playbooks: playbooks.results as Content.PlaybookDocument[],
+      creators: [],
+      gems: [],
+      query: query,
+    });
+
     const creators = await getData("creator", query);
 
-    // Update context
     setSearchResults({
-      ...searchResults,
+      destinations: destinations.results as Content.DestinationDocument[],
+      playbooks: playbooks.results as Content.PlaybookDocument[],
+      creators: creators.results as Content.CreatorDocument[],
+      gems: [],
+      query: query,
+    });
+
+    const gems = await getData("gem", query);
+
+    setSearchResults({
       destinations: destinations.results as Content.DestinationDocument[],
       playbooks: playbooks.results as Content.PlaybookDocument[],
       gems: gems.results as Content.GemDocument[],
@@ -77,36 +104,33 @@ export default function Search({ page }: PageProps) {
           <h3 className="text-ex-grey">Showing results for {`'${router.query.q}'`}</h3>
         </section>
 
-        {searching && (
-          <section>
-            <Loading text="Searching" />
-          </section>
-        )}
-
         <NoResults
           visible={
-            (!searchResults.playbooks.length &&
-              !searchResults.creators.length &&
-              !searchResults.destinations.length &&
-              !searchResults.gems.length &&
-              router.query.q &&
-              !searching) ||
-            !router.query.q
+            !searchResults.playbooks.length &&
+            !searchResults.creators.length &&
+            !searchResults.destinations.length &&
+            !searchResults.gems.length &&
+            router.query.q &&
+            !searching
               ? true
               : false
           }
           classes="!p-8 md:!p-12 !pb-0 md:!pb-0"
         />
 
-        {!searching && searchResults.destinations.length ? (
-          <Destinations results={searchResults.destinations} />
-        ) : (
-          <></>
-        )}
+        {searchResults.destinations.length ? <Destinations results={searchResults.destinations} /> : <></>}
 
-        {!searching && searchResults.playbooks.length ? <Playbooks results={searchResults.playbooks} /> : <></>}
-        {!searching && searchResults.creators.length ? <Creators results={searchResults.creators} /> : <></>}
-        {!searching && searchResults.gems.length ? <Gems results={searchResults.gems} /> : <></>}
+        {searchResults.playbooks.length ? <Playbooks results={searchResults.playbooks} /> : <></>}
+
+        {searchResults.creators.length ? <Creators results={searchResults.creators} /> : <></>}
+
+        {searchResults.gems.length ? <Gems results={searchResults.gems} /> : <></>}
+
+        {searching && (
+          <section>
+            <Loading text="Searching" />
+          </section>
+        )}
       </main>
     </>
   );
