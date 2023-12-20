@@ -92,8 +92,6 @@ export default function Search({ page }: PageProps) {
           property="og:image"
           content={page.data.meta_image.url ? page.data.meta_image.url : "https://exceptionalalien.com/img/og.png"}
         />
-
-        <meta name="robots" content="noindex" />
       </Head>
 
       <SearchBox hidden={true} disabled={searching ? true : false} />

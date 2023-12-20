@@ -85,6 +85,16 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/share/(.*)",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/search/(.*)",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   reactStrictMode: true,
