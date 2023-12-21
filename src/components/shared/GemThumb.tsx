@@ -69,7 +69,9 @@ export default function GemThumb(props: GemThumbProps) {
                           .creator as unknown as Content.CreatorDocument
                       ).data.profile_image
                     }
-                    classes={`absolute right-0 bottom-0 p-2 md:p-3 mr-${i * 2}`}
+                    classes={`absolute right-0 bottom-0 p-2 md:p-3 ${
+                      i === 3 ? "mr-6" : i === 2 ? "mr-4" : i === 1 ? "mr-2" : "mr-0"
+                    }`}
                   />
                 )
             )
