@@ -58,23 +58,35 @@ export default function GemThumb(props: GemThumbProps) {
               classes="absolute right-0 bottom-0 m-2 md:m-3 max-w-[50%]"
             />
           ) : (
-            props.gem.data.playbooks.map(
-              (item, i) =>
-                (item.playbook as unknown as Content.PlaybookDocument).data && (
-                  <CreatorIcon
-                    key={i}
-                    image={
-                      (
-                        (item.playbook as unknown as Content.PlaybookDocument).data
-                          .creator as unknown as Content.CreatorDocument
-                      ).data.profile_image
-                    }
-                    classes={`absolute right-0 bottom-0 p-2 md:p-3 ${
-                      i === 3 ? "mr-6" : i === 2 ? "mr-4" : i === 1 ? "mr-2" : "mr-0"
-                    }`}
-                  />
-                )
-            )
+            props.gem.data.playbooks
+              .slice(0, 6)
+              .map(
+                (item, i) =>
+                  (item.playbook as unknown as Content.PlaybookDocument).data && (
+                    <CreatorIcon
+                      key={i}
+                      image={
+                        (
+                          (item.playbook as unknown as Content.PlaybookDocument).data
+                            .creator as unknown as Content.CreatorDocument
+                        ).data.profile_image
+                      }
+                      classes={`absolute right-0 bottom-0 p-2 md:p-3 ${
+                        i === 5
+                          ? "mr-10"
+                          : i === 4
+                            ? "mr-8"
+                            : i === 3
+                              ? "mr-6"
+                              : i === 2
+                                ? "mr-4"
+                                : i === 1
+                                  ? "mr-2"
+                                  : "mr-0"
+                      }`}
+                    />
+                  )
+              )
           )}
         </div>
       )}
