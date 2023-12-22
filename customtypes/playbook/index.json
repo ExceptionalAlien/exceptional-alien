@@ -84,6 +84,13 @@
           "select": null
         }
       },
+      "video": {
+        "type": "Embed",
+        "config": {
+          "label": "Video",
+          "placeholder": "YouTube link"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

@@ -1086,6 +1086,17 @@ interface PlaybookDocumentData {
   story: prismic.LinkField;
 
   /**
+   * Video field in *Playbook*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: YouTube link
+   * - **API ID Path**: playbook.video
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video: prismic.EmbedField;
+
+  /**
    * Slice Zone field in *Playbook*
    *
    * - **Field Type**: Slice Zone
