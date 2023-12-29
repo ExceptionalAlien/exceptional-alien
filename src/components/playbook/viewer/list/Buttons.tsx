@@ -4,21 +4,26 @@ import Story from "@/img/icon-story.svg";
 interface ButtonsProps {
   video: string;
   story: string;
+  setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function List(props: ButtonsProps) {
+  const videoClick = () => {
+    props.setShowVideo(true);
+  };
+
   return (
     <div
-      className={`grid gap-2 md:gap-3 [&>a>svg]:max-[320px]:hidden [&>a]:flex [&>a]:h-9 [&>a]:items-center [&>a]:justify-center [&>a]:whitespace-nowrap [&>a]:rounded-full [&>a]:border [&>a]:border-ex-blue [&>a]:pl-3 [&>a]:pr-3 [&>a]:text-ex-blue [&>a]:transition-[background-color,color] [&>a]:duration-300 [&>a]:ease-in-out hover:[&>a]:bg-ex-blue hover:[&>a]:text-white ${
+      className={`grid gap-2 md:gap-3 [&>*>svg]:max-[320px]:hidden [&>*]:flex [&>*]:h-9 [&>*]:items-center [&>*]:justify-center [&>*]:whitespace-nowrap [&>*]:rounded-full [&>*]:border [&>*]:border-ex-blue [&>*]:pl-3 [&>*]:pr-3 [&>*]:text-ex-blue [&>*]:transition-[background-color,color] [&>*]:duration-300 [&>*]:ease-in-out hover:[&>*]:bg-ex-blue hover:[&>*]:text-white ${
         !props.video && !props.story
           ? "hidden"
           : (props.video && !props.story) || (!props.video && props.story)
-            ? "[&>a]:md:w-max"
+            ? "[&>*]:md:w-max"
             : "grid-cols-2"
       }`}
     >
       {props.video && (
-        <Link href={props.video} target="_blank">
+        <button onClick={videoClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -34,7 +39,7 @@ export default function List(props: ButtonsProps) {
             />
           </svg>
           Watch the video
-        </Link>
+        </button>
       )}
 
       {props.story && (

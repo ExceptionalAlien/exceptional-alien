@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --color-blue: rgb(34, 32, 193);
-  --color-grey: rgb(124, 124, 124);
-  --color-light-grey: rgb(197, 197, 197);
-  --color-red: rgb(255, 60, 0);
+  --color-blue: 34 32 193;
+  --color-grey: 124 124 124;
+  --color-light-grey: 197 197 197;
+  --color-red: 255 60 0;
 }
 
 body {

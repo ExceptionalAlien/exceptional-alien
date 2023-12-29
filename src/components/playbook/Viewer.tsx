@@ -5,6 +5,7 @@ import List from "./viewer/List";
 
 interface ViewerProps {
   data: Content.PlaybookDocumentData;
+  setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Viewer(props: ViewerProps) {
@@ -32,7 +33,7 @@ export default function Viewer(props: ViewerProps) {
 
   return (
     <div className="flex items-end justify-end" ref={ref}>
-      <List data={props.data} />
+      <List data={props.data} setShowVideo={props.setShowVideo} />
       <Map gems={props.data.slices} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
     </div>
   );

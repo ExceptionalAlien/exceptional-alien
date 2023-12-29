@@ -1,13 +1,17 @@
+import { useState } from "react";
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
 import { Content, asText } from "@prismicio/client";
 import Viewer from "@/components/playbook/Viewer";
+import Video from "@/components/playbook/Video";
 import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Playbook({ page, search }: PageProps) {
+  const [showVideo, setShowVideo] = useState(false);
+
   return (
     <>
       <Head>
@@ -75,10 +79,11 @@ export default function Playbook({ page, search }: PageProps) {
       </Head>
 
       <main className="!pb-0">
-        <Viewer data={page.data} />
+        <Viewer data={page.data} setShowVideo={setShowVideo} />
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />
+      <Video iframe={page.data.video.html} showVideo={showVideo} setShowVideo={setShowVideo} />
     </>
   );
 }
