@@ -36,7 +36,7 @@ export default function Video(props: VideoProps) {
 
       <button
         onClick={closeVideo}
-        className="fixed right-0 top-0 p-4 text-white transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:p-6"
+        className="absolute right-0 top-0 p-4 text-white transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:p-6"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
