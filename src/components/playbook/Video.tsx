@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 interface VideoProps {
   iframe: string | null;
   showVideo: boolean;
@@ -5,9 +7,19 @@ interface VideoProps {
 }
 
 export default function Video(props: VideoProps) {
+  const [iFrame, setIFrame] = useState<string | null>(null);
+
   const closeVideo = () => {
     props.setShowVideo(false);
   };
+
+  useEffect(() => {
+    if (props.showVideo) {
+      setIFrame(props.iframe);
+    } else {
+      setIFrame(null);
+    }
+  }, [props.showVideo]);
 
   return (
     <div
@@ -19,7 +31,7 @@ export default function Video(props: VideoProps) {
 
       <div
         className="absolute aspect-video w-11/12 md:w-2/3 [&>iframe]:h-full [&>iframe]:w-full"
-        dangerouslySetInnerHTML={{ __html: props.iframe as TrustedHTML }}
+        dangerouslySetInnerHTML={{ __html: iFrame as TrustedHTML }}
       />
 
       <button

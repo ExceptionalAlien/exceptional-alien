@@ -11,7 +11,7 @@
 
 body {
   color: black;
-  background-color: var(--color-blue);
+  background-color: #2220c1;
 }
 
 * {
@@ -54,7 +54,7 @@ body {
 /* Gems */
 
 .selected-gem .gem-icon-bg {
-  color: var(--color-blue) !important;
+  color: #2220c1 !important;
 }
 
 .selected-gem .gem-icon-category {
