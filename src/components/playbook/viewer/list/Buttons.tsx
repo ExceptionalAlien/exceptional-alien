@@ -18,7 +18,7 @@ export default function List(props: ButtonsProps) {
         !props.video && !props.story
           ? "hidden"
           : (props.video && !props.story) || (!props.video && props.story)
-            ? "[&>*]:md:w-max"
+            ? "md:grid-cols-2"
             : "grid-cols-2"
       }`}
     >
