@@ -5,6 +5,7 @@ interface CreatorIconProps {
   firstName?: string;
   lastName?: string;
   image: ImageField;
+  nomination?: boolean;
   classes?: string;
 }
 
@@ -12,6 +13,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
   return (
     <div className={`flex items-center justify-end ${props.classes}`}>
       <p className="text-right text-xs text-white [overflow-wrap:anywhere] md:text-sm">
+        {props.nomination && <span className="block text-xs text-ex-grey">Nominated by</span>}
         {props.firstName} {props.lastName?.toUpperCase()}
       </p>
 

@@ -22,8 +22,8 @@ export default function Creator({ page, search }: PageProps) {
           page.data.meta_title
             ? page.data.meta_title
             : page.data.first_name && page.data.last_name
-            ? `${page.data.first_name} ${page.data.last_name}`
-            : page.data.first_name && page.data.first_name
+              ? `${page.data.first_name} ${page.data.last_name}`
+              : page.data.first_name && page.data.first_name
         } | Exceptional ALIEN`}</title>
 
         <meta
@@ -32,8 +32,8 @@ export default function Creator({ page, search }: PageProps) {
             page.data.meta_description
               ? page.data.meta_description
               : page.data.short_description
-              ? page.data.short_description
-              : ""
+                ? page.data.short_description
+                : ""
           }
         />
 
@@ -45,8 +45,8 @@ export default function Creator({ page, search }: PageProps) {
             page.data.meta_title
               ? page.data.meta_title
               : page.data.first_name && page.data.last_name
-              ? `${page.data.first_name} ${page.data.last_name}`
-              : page.data.first_name && page.data.first_name
+                ? `${page.data.first_name} ${page.data.last_name}`
+                : page.data.first_name && page.data.first_name
           } | Exceptional ALIEN`}
         />
 
@@ -56,8 +56,8 @@ export default function Creator({ page, search }: PageProps) {
             page.data.meta_description
               ? page.data.meta_description
               : page.data.short_description
-              ? page.data.short_description
-              : ""
+                ? page.data.short_description
+                : ""
           }
         />
 
@@ -67,8 +67,8 @@ export default function Creator({ page, search }: PageProps) {
             page.data.meta_image.url
               ? page.data.meta_image.url
               : page.data.hero_image.seo.url
-              ? page.data.hero_image.seo.url
-              : "https://exceptionalalien.com/img/og.png"
+                ? page.data.hero_image.seo.url
+                : "https://exceptionalalien.com/img/og.png"
           }
         />
       </Head>
@@ -101,6 +101,7 @@ export default function Creator({ page, search }: PageProps) {
                 firstName={(page.data.nomination as unknown as Content.CreatorDocument).data.first_name as string}
                 lastName={(page.data.nomination as unknown as Content.CreatorDocument).data.last_name as string}
                 image={(page.data.nomination as unknown as Content.CreatorDocument).data.profile_image}
+                nomination={true}
                 classes="[&>p]:text-black [&>img]:h-10 [&>img]:w-10"
               />
             </Link>
