@@ -31,7 +31,7 @@ function GoogleMap(props: MapProps) {
 
         const request = {
           placeId: placeID,
-          fields: ["geometry"],
+          fields: ["geometry", "opening_hours"],
         };
 
         return new Promise((resolve) =>
@@ -42,14 +42,14 @@ function GoogleMap(props: MapProps) {
               place.geometry &&
               place.geometry.location
             ) {
-              resolve(place.geometry.location);
+              resolve(place);
             }
           })
         );
       };
 
       const div = document.createElement("div");
-      const coords = (await getCoords(props.gem.data.google_maps_id as string)) as google.maps.LatLng;
+      const place = (await getCoords(props.gem.data.google_maps_id as string)) as google.maps.places.PlaceResult;
       div.classList.add("map-gem");
 
       createRoot(div).render(
@@ -59,10 +59,11 @@ function GoogleMap(props: MapProps) {
       // Add marker to map
       const marker = new window.google.maps.marker.AdvancedMarkerElement({
         map,
-        position: coords,
+        position: place.geometry?.location,
         content: div,
       });
 
+      props.setOpeningHours(place.opening_hours?.weekday_text);
       map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
       props.setPlaceCoords({ lat: marker.position?.lat as number, lng: marker.position?.lng as number }); // Visible coordinates
     };
@@ -81,6 +82,7 @@ export interface PlaceCoords {
 interface MapProps {
   gem: Content.GemDocument;
   setPlaceCoords: React.Dispatch<React.SetStateAction<PlaceCoords>>;
+  setOpeningHours: React.Dispatch<React.SetStateAction<string[] | undefined>>;
 }
 
 export default function Map(props: MapProps) {

@@ -18,6 +18,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Gem({ page, search }: PageProps) {
   const [placeCoords, setPlaceCoords] = useState<PlaceCoords>({ lat: 0, lng: 0 });
+  const [openingHours, setOpeningHours] = useState<string[] | undefined>(undefined);
 
   return (
     <>
@@ -140,6 +141,21 @@ export default function Gem({ page, search }: PageProps) {
         <About text={page.data.about} />
         <Quotes playbooks={page.data.playbooks} gem={page.uid} />
 
+        {/* Opening hours */}
+        <section className={`text-ex-grey ${!openingHours && "hidden"}`}>
+          <h4 className="text-xl font-bold md:float-left md:w-1/4 md:pr-6 md:text-2xl">Opening hours</h4>
+
+          <p className="mt-4 md:float-right md:mt-0 md:w-3/4">
+            {openingHours?.map((item, i) => (
+              <span className="block" key={i}>
+                {item}
+              </span>
+            ))}
+          </p>
+
+          <div className="clear-both"></div>
+        </section>
+
         {page.data.playbooks.length &&
         (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
           <PlaybooksGrid heading="Featured In" list={page.data.playbooks} showCreator={true} />
@@ -148,7 +164,7 @@ export default function Gem({ page, search }: PageProps) {
         )}
 
         <section>
-          <Map gem={page} setPlaceCoords={setPlaceCoords} />
+          <Map gem={page} setPlaceCoords={setPlaceCoords} setOpeningHours={setOpeningHours} />
         </section>
       </main>
 
