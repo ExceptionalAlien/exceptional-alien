@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
@@ -6,7 +7,8 @@ import { Content, asLink, asText } from "@prismicio/client";
 import Hero from "@/components/shared/Hero";
 import About from "@/components/shared/About";
 import PlaybooksGrid from "@/components/shared/PlaybooksGrid";
-import Quotes from "@/components/gem/quotes";
+import Quotes from "@/components/gem/Quotes";
+import Map, { PlaceCoords } from "@/components/gem/Map";
 import SearchBox from "@/components/shared/SearchBox";
 import TabHeading from "@/components/shared/TabHeading";
 import GemIcon from "@/components/shared/GemIcon";
@@ -15,6 +17,8 @@ import Globe from "@/img/globe.svg";
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Gem({ page, search }: PageProps) {
+  const [placeCoords, setPlaceCoords] = useState<PlaceCoords>({ lat: 0, lng: 0 });
+
   return (
     <>
       <Head>
@@ -66,11 +70,11 @@ export default function Gem({ page, search }: PageProps) {
               </h3>
             </hgroup>
 
-            {/* <p className="float-right w-2/5 text-right font-mono text-xs md:text-sm">
-              {Math.abs(page.data.location.latitude).toFixed(4)}°{page.data.location.latitude < 0 ? "S" : "N"}
+            <p className={`float-right w-2/5 text-right font-mono text-xs md:text-sm ${!placeCoords.lat && "hidden"}`}>
+              {Math.abs(placeCoords.lat).toFixed(4)}°{placeCoords.lat < 0 ? "S" : "N"}
               <br />
-              {Math.abs(page.data.location.longitude).toFixed(4)}°{page.data.location.latitude < 0 ? "W" : "E"}
-        </p> */}
+              {Math.abs(placeCoords.lng).toFixed(4)}°{placeCoords.lng < 0 ? "W" : "E"}
+            </p>
 
             <div className="clear-both"></div>
           </div>
@@ -142,6 +146,10 @@ export default function Gem({ page, search }: PageProps) {
         ) : (
           <></>
         )}
+
+        <section>
+          <Map gem={page} setPlaceCoords={setPlaceCoords} />
+        </section>
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />

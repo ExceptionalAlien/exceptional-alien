@@ -1,5 +1,5 @@
 import { GroupField, Content } from "@prismicio/client";
-import Quote, { QuoteProps } from "./quotes/quote";
+import Quote, { QuoteProps } from "./quotes/Quote";
 import Slider from "@/components/shared/Slider";
 
 interface QuotesProps {
