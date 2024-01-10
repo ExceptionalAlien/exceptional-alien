@@ -5,6 +5,7 @@ import { createClient } from "@/prismicio";
 import { Content, asText } from "@prismicio/client";
 import Viewer from "@/components/playbook/Viewer";
 import Video from "@/components/playbook/Video";
+import Related from "@/components/playbook/Related";
 import SearchBox from "@/components/shared/SearchBox";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -78,8 +79,9 @@ export default function Playbook({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="!pb-0">
+      <main className={`${!page.data.related.length && "!pb-0"}`}>
         <Viewer data={page.data} setShowVideo={setShowVideo} />
+        {page.data.related.length ? <Related playbooks={page.data.related} /> : <></>}
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />
@@ -101,7 +103,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
 
     const page = await client.getByUID("playbook", params?.uid as string, {
       fetchLinks:
-        "creator.first_name,creator.last_name,creator.profile_image,creator.uid,gem.title,gem.image,gem.category,gem.address,gem.google_maps_id,gem.description,destination.title",
+        "creator.first_name,creator.last_name,creator.profile_image,creator.uid,gem.title,gem.image,gem.category,gem.address,gem.google_maps_id,gem.description,destination.title,playbook.title,playbook.image,playbook.destination,playbook.creator",
     });
 
     const search = await client.getSingle("search", {

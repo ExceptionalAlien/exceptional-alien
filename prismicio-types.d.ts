@@ -1002,6 +1002,21 @@ export type HomeDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >;
 
+/**
+ * Item in *Playbook → Related*
+ */
+export interface PlaybookDocumentDataRelatedItem {
+  /**
+   * Playbook field in *Playbook → Related*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.related[].playbook
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playbook: prismic.ContentRelationshipField<"playbook">;
+}
+
 type PlaybookDocumentDataSlicesSlice = GemSlice;
 
 /**
@@ -1095,6 +1110,17 @@ interface PlaybookDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   video: prismic.EmbedField;
+
+  /**
+   * Related field in *Playbook*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.related[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  related: prismic.GroupField<Simplify<PlaybookDocumentDataRelatedItem>>;
 
   /**
    * Slice Zone field in *Playbook*
@@ -1877,6 +1903,7 @@ declare module "@prismicio/client" {
       HomeDocumentDataSlicesSlice,
       PlaybookDocument,
       PlaybookDocumentData,
+      PlaybookDocumentDataRelatedItem,
       PlaybookDocumentDataSlicesSlice,
       PlaybooksDocument,
       PlaybooksDocumentData,
