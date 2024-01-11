@@ -16,10 +16,11 @@ export default function Viewer(props: ViewerProps) {
   useEffect(() => {
     const handleScroll = () => {
       const viewer = ref.current!;
+      const isMobile = window.innerWidth >= 768 ? false : true;
       const height = viewer?.offsetTop + viewer?.clientHeight;
       const scroll = window.scrollY + window.innerHeight;
       const offset = window.scrollY - viewer?.clientHeight;
-      const portraitMapHeight = 224;
+      const portraitMapHeight = isMobile ? 224 : 384;
 
       // Let map know when viewer scroll is not longer below fold so it can scroll too
       setScrollEndLandscape(window.scrollY && scroll >= height ? true : false);

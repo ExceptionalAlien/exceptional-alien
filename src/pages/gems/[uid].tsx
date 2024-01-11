@@ -100,7 +100,7 @@ export default function Gem({ page, search }: PageProps) {
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${page.data.title}&query_place_id=${page.data.google_maps_id}`}
               target="_blank"
-              className="mr-8 inline-block transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
+              className="mr-8 inline-block text-pretty transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
             >
               {page.data.address}
 
