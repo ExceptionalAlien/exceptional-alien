@@ -29,6 +29,10 @@ body {
   }
 }
 
+.gm-style iframe + div {
+  border: none !important; /* Remove blue border on drag */
+}
+
 /* Safe areas */
 
 .pb-safe {
