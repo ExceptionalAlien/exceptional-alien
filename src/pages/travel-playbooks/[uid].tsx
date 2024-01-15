@@ -82,7 +82,7 @@ export default function Playbook({ page, search }: PageProps) {
 
       <main className={`${!hasRelated && "!pb-0"}`}>
         <Viewer data={page.data} setShowVideo={setShowVideo} />
-        {hasRelated ? <Related playbooks={page.data.related} /> : <></>}
+        {hasRelated && <Related playbooks={page.data.related} />}
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />
