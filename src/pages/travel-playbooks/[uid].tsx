@@ -12,6 +12,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Playbook({ page, search }: PageProps) {
   const [showVideo, setShowVideo] = useState(false);
+  const hasRelated = [page.data.related[0]?.playbook as unknown as Content.PlaybookDocument].length > 1 ? true : false;
 
   return (
     <>
@@ -79,9 +80,9 @@ export default function Playbook({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className={`${!page.data.related.length && "!pb-0"}`}>
+      <main className={`${!hasRelated && "!pb-0"}`}>
         <Viewer data={page.data} setShowVideo={setShowVideo} />
-        {page.data.related.length ? <Related playbooks={page.data.related} /> : <></>}
+        {hasRelated ? <Related playbooks={page.data.related} /> : <></>}
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />
