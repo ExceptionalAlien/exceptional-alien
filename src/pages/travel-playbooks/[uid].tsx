@@ -12,7 +12,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Playbook({ page, search }: PageProps) {
   const [showVideo, setShowVideo] = useState(false);
-  const hasRelated = [page.data.related[0]?.playbook as unknown as Content.PlaybookDocument].length > 1 ? true : false;
+  const hasRelated = page.data.related.length > 1 ? true : false;
 
   return (
     <>
