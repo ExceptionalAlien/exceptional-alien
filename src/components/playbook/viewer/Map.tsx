@@ -204,7 +204,7 @@ function GoogleMap(props: MapProps) {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll); // Clean up
-  }, []);
+  }, [props.gems]);
 
   return (
     <div
