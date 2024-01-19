@@ -13,7 +13,7 @@ export default function Audio(props: AudioProps) {
   }, []);
 
   return (
-    <div className="flex items-center bg-ex-blue p-2">
+    <div className="audio-bg flex items-center bg-ex-blue p-2">
       <p className="flex items-center text-xl font-bold text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"

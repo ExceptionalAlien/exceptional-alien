@@ -29,6 +29,12 @@ body {
   }
 }
 
+@-moz-document url-prefix() {
+  .audio-bg {
+    background-color: #333;
+  }
+}
+
 .gm-style iframe + div {
   border: none !important; /* Remove blue border on drag */
 }
