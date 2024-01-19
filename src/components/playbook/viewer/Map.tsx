@@ -155,35 +155,38 @@ function GoogleMap(props: MapProps) {
         bounds.extend(coords);
 
         marker.addListener("click", () => {
-          const gemPos = (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin);
+          if (document.querySelector("section#gem-" + gem.uid)) {
+            const gemPos =
+              (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin);
 
-          const scrollPos =
-            orientation === "landscape" && gemPos + window.innerHeight > props.viewerHeight
-              ? props.viewerHeight - window.innerHeight
-              : gemPos; // Keep map in view if gem at bottom of list
+            const scrollPos =
+              orientation === "landscape" && gemPos + window.innerHeight > props.viewerHeight
+                ? props.viewerHeight - window.innerHeight
+                : gemPos; // Keep map in view if gem at bottom of list
 
-          clicked = true;
+            clicked = true;
 
-          setTimeout(() => {
-            clicked = false;
-          }, 1000);
+            setTimeout(() => {
+              clicked = false;
+            }, 1000);
 
-          window.scrollTo({
-            top: scrollPos,
-            behavior: "smooth",
-          });
+            window.scrollTo({
+              top: scrollPos,
+              behavior: "smooth",
+            });
 
-          // Zoom and center marker
-          if (!clickedGem) {
-            if (focusedGem !== gem.uid) {
-              resetMapGems(); // Needed because markers can't be styled if not visible on map
+            // Zoom and center marker
+            if (!clickedGem) {
+              if (focusedGem !== gem.uid) {
+                resetMapGems(); // Needed because markers can't be styled if not visible on map
+              }
+
+              map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
+              initZoom && map.setZoom(initZoom + 2);
             }
 
-            map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
-            initZoom && map.setZoom(initZoom + 2);
+            clickedGem = gem.uid;
           }
-
-          clickedGem = gem.uid;
         });
       }
 
