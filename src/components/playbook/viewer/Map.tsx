@@ -155,14 +155,17 @@ function GoogleMap(props: MapProps) {
         bounds.extend(coords);
 
         marker.addListener("click", () => {
-          if (document.querySelector("section#gem-" + gem.uid)) {
+          if (props.viewerRef) {
+            const height = props.viewerRef.offsetTop + props.viewerRef.clientHeight;
+
             const gemPos =
               (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin);
 
+            // Keep map in view if gem at bottom of list
             const scrollPos =
-              orientation === "landscape" && gemPos + window.innerHeight > props.viewerHeight
-                ? props.viewerHeight - window.innerHeight
-                : gemPos; // Keep map in view if gem at bottom of list
+              orientation === "landscape" && gemPos + window.innerHeight > height
+                ? height - window.innerHeight
+                : gemPos;
 
             clicked = true;
 
@@ -223,7 +226,7 @@ interface MapProps {
   gems: SliceZone<Content.GemSlice>;
   scrollEndLandscape: boolean;
   scrollEndPortrait: boolean;
-  viewerHeight: number;
+  viewerRef: HTMLDivElement | undefined;
 }
 
 export default function Map(props: MapProps) {

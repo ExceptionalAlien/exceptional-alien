@@ -11,12 +11,13 @@ interface ViewerProps {
 export default function Viewer(props: ViewerProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
-  const [viewerHeight, setViewerHeight] = useState(0);
+  const [viewerRef, setViewerRef] = useState<HTMLDivElement | undefined>();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const viewer = ref.current!;
+
     const handleScroll = () => {
-      const viewer = ref.current!;
       const isMobile = window.innerWidth >= 768 ? false : true;
       const height = viewer?.offsetTop + viewer?.clientHeight;
       const scroll = window.scrollY + window.innerHeight;
@@ -26,9 +27,9 @@ export default function Viewer(props: ViewerProps) {
       // Let map know when viewer scroll is not longer below fold so it can scroll too
       setScrollEndLandscape(window.scrollY && scroll >= height ? true : false);
       setScrollEndPortrait(offset >= -portraitMapHeight ? true : false);
-      setViewerHeight(height);
     };
 
+    setViewerRef(ref.current!);
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -42,7 +43,7 @@ export default function Viewer(props: ViewerProps) {
         gems={props.data.slices}
         scrollEndLandscape={scrollEndLandscape}
         scrollEndPortrait={scrollEndPortrait}
-        viewerHeight={viewerHeight}
+        viewerRef={viewerRef}
       />
     </div>
   );
