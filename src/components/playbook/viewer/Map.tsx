@@ -19,6 +19,7 @@ function GoogleMap(props: MapProps) {
     var initCenter: google.maps.LatLng | undefined;
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
+    var clicked = false;
 
     const resetMapGems = () => {
       const mapGems = document.querySelectorAll(".map-gem");
@@ -29,7 +30,7 @@ function GoogleMap(props: MapProps) {
       }
     };
 
-    const setGems = () => {
+    const setGems = (zoomed?: boolean) => {
       focusedGem = ""; // Reset
       const gems = document.querySelectorAll("section.gem");
 
@@ -41,6 +42,11 @@ function GoogleMap(props: MapProps) {
         if (pos >= top && pos < window.innerHeight && !focusedGem) {
           focusedGem = gems[i].id.replace("gem-", "");
         }
+      }
+
+      // Keep clicked gem selected if gem/s above are in view/focus
+      if (clicked) {
+        focusedGem = clickedGem;
       }
 
       resetMapGems();
@@ -63,7 +69,7 @@ function GoogleMap(props: MapProps) {
       document.querySelector(`section#gem-${focusedGem} .gem-icon`)?.classList.add("selected-gem"); // Select list gem icon
 
       // Reset zoom and center
-      if (clickedGem && clickedGem !== focusedGem) {
+      if (clickedGem && clickedGem !== focusedGem && !zoomed) {
         initZoom && map.setZoom(initZoom);
         map.setCenter(initCenter as google.maps.LatLng);
         clickedGem = "";
@@ -149,8 +155,21 @@ function GoogleMap(props: MapProps) {
         bounds.extend(coords);
 
         marker.addListener("click", () => {
+          const gemPos = (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin);
+
+          const scrollPos =
+            orientation === "landscape" && gemPos + window.innerHeight > props.viewerHeight
+              ? props.viewerHeight - window.innerHeight
+              : gemPos; // Keep map in view if gem at bottom of list
+
+          clicked = true;
+
+          setTimeout(() => {
+            clicked = false;
+          }, 1000);
+
           window.scrollTo({
-            top: (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin),
+            top: scrollPos,
             behavior: "smooth",
           });
 
@@ -177,7 +196,7 @@ function GoogleMap(props: MapProps) {
           initCenter = map.getCenter();
         }
 
-        setGems(); // Set gems after map zoom
+        setGems(true); // Set gems after map zoom
       });
     };
 
@@ -201,6 +220,7 @@ interface MapProps {
   gems: SliceZone<Content.GemSlice>;
   scrollEndLandscape: boolean;
   scrollEndPortrait: boolean;
+  viewerHeight: number;
 }
 
 export default function Map(props: MapProps) {

@@ -11,6 +11,7 @@ interface ViewerProps {
 export default function Viewer(props: ViewerProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
+  const [viewerHeight, setViewerHeight] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function Viewer(props: ViewerProps) {
       // Let map know when viewer scroll is not longer below fold so it can scroll too
       setScrollEndLandscape(window.scrollY && scroll >= height ? true : false);
       setScrollEndPortrait(offset >= -portraitMapHeight ? true : false);
+      setViewerHeight(height);
     };
 
     handleScroll();
@@ -35,7 +37,13 @@ export default function Viewer(props: ViewerProps) {
   return (
     <div className="flex items-end justify-end" ref={ref}>
       <List data={props.data} setShowVideo={props.setShowVideo} />
-      <Map gems={props.data.slices} scrollEndLandscape={scrollEndLandscape} scrollEndPortrait={scrollEndPortrait} />
+
+      <Map
+        gems={props.data.slices}
+        scrollEndLandscape={scrollEndLandscape}
+        scrollEndPortrait={scrollEndPortrait}
+        viewerHeight={viewerHeight}
+      />
     </div>
   );
 }
