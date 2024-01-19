@@ -9,42 +9,17 @@ interface ViewerProps {
 }
 
 export default function Viewer(props: ViewerProps) {
-  const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
-  const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
-  const [viewerRef, setViewerRef] = useState<HTMLDivElement | undefined>();
+  const [viewerRef, setViewerRef] = useState<HTMLDivElement>();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const viewer = ref.current!;
-
-    const handleScroll = () => {
-      const isMobile = window.innerWidth >= 768 ? false : true;
-      const height = viewer?.offsetTop + viewer?.clientHeight;
-      const scroll = window.scrollY + window.innerHeight;
-      const offset = window.scrollY - viewer?.clientHeight;
-      const portraitMapHeight = isMobile ? 224 : 384;
-
-      // Let map know when viewer scroll is not longer below fold so it can scroll too
-      setScrollEndLandscape(window.scrollY && scroll >= height ? true : false);
-      setScrollEndPortrait(offset >= -portraitMapHeight ? true : false);
-    };
-
     setViewerRef(ref.current!);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="flex items-end justify-end" ref={ref}>
       <List data={props.data} setShowVideo={props.setShowVideo} />
-
-      <Map
-        gems={props.data.slices}
-        scrollEndLandscape={scrollEndLandscape}
-        scrollEndPortrait={scrollEndPortrait}
-        viewerRef={viewerRef}
-      />
+      <Map gems={props.data.slices} viewerRef={viewerRef!} />
     </div>
   );
 }
