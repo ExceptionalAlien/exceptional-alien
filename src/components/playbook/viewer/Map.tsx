@@ -24,6 +24,7 @@ function GoogleMap(props: MapProps) {
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
     var clicked = false;
+    var clickedTimer: NodeJS.Timeout;
 
     const resetMapGems = () => {
       const mapGems = document.querySelectorAll(".map-gem");
@@ -177,9 +178,10 @@ function GoogleMap(props: MapProps) {
                 ? viewerHeight - window.innerHeight
                 : listGemPos;
 
-            clicked = true; // Wait until scroll and zoom finish
+            clicked = true; // Wait until auto scroll and zoom finish
+            clickedTimer !== null && clearTimeout(clickedTimer);
 
-            setTimeout(() => {
+            clickedTimer = setTimeout(() => {
               clicked = false;
             }, 1000);
 
