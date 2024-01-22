@@ -19,6 +19,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Gem({ page, search }: PageProps) {
   const [placeCoords, setPlaceCoords] = useState<PlaceCoords>({ lat: 0, lng: 0 });
   const [openingHours, setOpeningHours] = useState<string[] | undefined>(undefined);
+  const [openStatus, setOpenStatus] = useState<string | undefined>();
 
   return (
     <>
@@ -97,26 +98,30 @@ export default function Gem({ page, search }: PageProps) {
             )}
 
             {/* Address */}
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${page.data.title}&query_place_id=${page.data.google_maps_id}`}
-              target="_blank"
-              className="mr-8 inline-block text-pretty transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
-            >
-              {page.data.address}
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="ml-1 inline h-4 w-4 align-[-3px]"
+            {openStatus && openStatus !== "OPERATIONAL" ? (
+              <p className="mr-8 inline-block text-ex-red">{openStatus.replace("_", " ")}</p>
+            ) : (
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${page.data.title}&query_place_id=${page.data.google_maps_id}`}
+                target="_blank"
+                className="mr-8 inline-block text-pretty transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M12.207 2.232a.75.75 0 00.025 1.06l4.146 3.958H6.375a5.375 5.375 0 000 10.75H9.25a.75.75 0 000-1.5H6.375a3.875 3.875 0 010-7.75h10.003l-4.146 3.957a.75.75 0 001.036 1.085l5.5-5.25a.75.75 0 000-1.085l-5.5-5.25a.75.75 0 00-1.06.025z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </a>
+                {page.data.address}
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="ml-1 inline h-4 w-4 align-[-3px]"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12.207 2.232a.75.75 0 00.025 1.06l4.146 3.958H6.375a5.375 5.375 0 000 10.75H9.25a.75.75 0 000-1.5H6.375a3.875 3.875 0 010-7.75h10.003l-4.146 3.957a.75.75 0 001.036 1.085l5.5-5.25a.75.75 0 000-1.085l-5.5-5.25a.75.75 0 00-1.06.025z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
+            )}
 
             {/* Category */}
             <Link
@@ -164,7 +169,12 @@ export default function Gem({ page, search }: PageProps) {
         )}
 
         <section>
-          <Map gem={page} setPlaceCoords={setPlaceCoords} setOpeningHours={setOpeningHours} />
+          <Map
+            gem={page}
+            setPlaceCoords={setPlaceCoords}
+            setOpeningHours={setOpeningHours}
+            setOpenStatus={setOpenStatus}
+          />
         </section>
       </main>
 

@@ -31,7 +31,7 @@ function GoogleMap(props: MapProps) {
 
         const request = {
           placeId: placeID,
-          fields: ["geometry", "opening_hours"],
+          fields: ["geometry", "opening_hours", "business_status"],
         };
 
         return new Promise((resolve) =>
@@ -64,6 +64,7 @@ function GoogleMap(props: MapProps) {
       });
 
       props.setOpeningHours(place.opening_hours?.weekday_text);
+      props.setOpenStatus(place.business_status as string);
       map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
       props.setPlaceCoords({ lat: marker.position?.lat as number, lng: marker.position?.lng as number }); // Visible coordinates
     };
@@ -83,6 +84,7 @@ interface MapProps {
   gem: Content.GemDocument;
   setPlaceCoords: React.Dispatch<React.SetStateAction<PlaceCoords>>;
   setOpeningHours: React.Dispatch<React.SetStateAction<string[] | undefined>>;
+  setOpenStatus: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 export default function Map(props: MapProps) {
