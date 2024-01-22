@@ -143,8 +143,8 @@ export default function Gem({ page, search }: PageProps) {
           </TabHeading>
         </section>
 
-        <About text={page.data.about} />
         <Quotes playbooks={page.data.playbooks} gem={page.uid} />
+        <About text={page.data.about} />
 
         {/* Opening hours */}
         <section className={`text-ex-grey ${!openingHours && "hidden"}`}>
