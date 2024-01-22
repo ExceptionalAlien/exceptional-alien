@@ -113,7 +113,7 @@ function GoogleMap(props: MapProps) {
     });
 
     const addMarkers = async () => {
-      const getCoords = async (placeID: string) => {
+      const getCoords = async (placeID: string, uid: string) => {
         // Return place lat and lng from Google API
         const service = new google.maps.places.PlacesService(map);
 
@@ -132,7 +132,7 @@ function GoogleMap(props: MapProps) {
             ) {
               resolve(place.geometry.location);
             } else {
-              console.log();
+              console.log(`${status} (${uid})`);
             }
           })
         );
@@ -144,7 +144,7 @@ function GoogleMap(props: MapProps) {
 
         if (gem.data.google_maps_id) {
           const div = document.createElement("div");
-          const coords = (await getCoords(gem.data.google_maps_id as string)) as google.maps.LatLng;
+          const coords = (await getCoords(gem.data.google_maps_id as string, gem.uid)) as google.maps.LatLng;
           div.setAttribute("id", "map-gem-" + gem.uid);
           div.classList.add("map-gem");
           createRoot(div).render(<GemIcon category={gem.data.category} classes="-translate-x-1/2 -translate-y-1/2" />);
