@@ -64,9 +64,9 @@ export default function Creator({ page, search }: PageProps) {
           </hgroup>
 
           <p className="float-right w-2/5 text-right font-mono text-xs md:text-sm">
-            {Math.abs(page.data.location.latitude).toFixed(4)}°{page.data.location.latitude < 0 ? "S" : "N"}
+            {Math.abs(page.data.location.latitude).toFixed(5)}°{page.data.location.latitude < 0 ? "S" : "N"}
             <br />
-            {Math.abs(page.data.location.longitude).toFixed(4)}°{page.data.location.longitude < 0 ? "W" : "E"}
+            {Math.abs(page.data.location.longitude).toFixed(5)}°{page.data.location.longitude < 0 ? "W" : "E"}
           </p>
 
           <div className="clear-both"></div>

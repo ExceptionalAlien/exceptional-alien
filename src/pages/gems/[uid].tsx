@@ -73,9 +73,9 @@ export default function Gem({ page, search }: PageProps) {
             </hgroup>
 
             <p className={`float-right w-2/5 text-right font-mono text-xs md:text-sm ${!placeCoords.lat && "hidden"}`}>
-              {Math.abs(placeCoords.lat).toFixed(4)}°{placeCoords.lat < 0 ? "S" : "N"}
+              {Math.abs(placeCoords.lat).toFixed(5)}°{placeCoords.lat < 0 ? "S" : "N"}
               <br />
-              {Math.abs(placeCoords.lng).toFixed(4)}°{placeCoords.lng < 0 ? "W" : "E"}
+              {Math.abs(placeCoords.lng).toFixed(5)}°{placeCoords.lng < 0 ? "W" : "E"}
             </p>
 
             <div className="clear-both"></div>
