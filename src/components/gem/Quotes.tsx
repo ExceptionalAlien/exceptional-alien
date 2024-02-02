@@ -2,10 +2,10 @@ import { GroupField, Content } from "@prismicio/client";
 import Quote, { QuoteProps } from "./quotes/Quote";
 import Slider from "@/components/shared/Slider";
 
-interface QuotesProps {
+type QuotesProps = {
   playbooks: GroupField;
   gem: string;
-}
+};
 
 export default function Quotes(props: QuotesProps) {
   const quotes: QuoteProps[] = [];

@@ -3,9 +3,9 @@ import Slider from "@/components/shared/Slider";
 import PlaybookThumb from "@/components/shared/PlaybookThumb";
 import Playbook from "@/img/icon-playbook.svg";
 
-interface RelatedProps {
+type RelatedProps = {
   playbooks: GroupField;
-}
+};
 
 export default function Related(props: RelatedProps) {
   return (

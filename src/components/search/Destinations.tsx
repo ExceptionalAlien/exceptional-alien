@@ -2,9 +2,9 @@ import Link from "next/link";
 import { Content } from "@prismicio/client";
 import Place from "@/img/icon-place.svg";
 
-interface DestinationsProps {
+type DestinationsProps = {
   results: Content.DestinationDocument<string>[];
-}
+};
 
 export default function Destinations(props: DestinationsProps) {
   return (

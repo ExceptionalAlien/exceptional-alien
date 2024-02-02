@@ -1,9 +1,9 @@
 import Place from "@/img/icon-place.svg";
 
-interface DestinationProps {
+type DestinationProps = {
   name: string;
   classes?: string;
-}
+};
 
 export default function Destination(props: DestinationProps) {
   return (

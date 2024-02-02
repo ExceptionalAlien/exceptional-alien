@@ -5,10 +5,10 @@ import Header from "./list/Header";
 import Audio from "./list/Audio";
 import Buttons from "./list/Buttons";
 
-interface ListProps {
+type ListProps = {
   data: Content.PlaybookDocumentData;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 export default function List(props: ListProps) {
   return (

@@ -235,10 +235,10 @@ function GoogleMap(props: MapProps) {
   );
 }
 
-interface MapProps {
+type MapProps = {
   gems: SliceZone<Content.GemSlice>;
   viewerRef: HTMLDivElement;
-}
+};
 
 export default function Map(props: MapProps) {
   return (

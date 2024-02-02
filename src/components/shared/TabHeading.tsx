@@ -1,7 +1,7 @@
-interface TabHeadingProps {
+type TabHeadingProps = {
   children: any;
   classes?: string;
-}
+};
 
 export default function TabHeading(props: TabHeadingProps) {
   return (

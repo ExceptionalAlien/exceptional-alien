@@ -3,9 +3,9 @@ import Slider from "@/components/shared/Slider";
 import GemThumb from "../shared/GemThumb";
 import Gem from "@/img/icon-gem.svg";
 
-interface GemsProps {
+type GemsProps = {
   results: Content.GemDocument<string>[];
-}
+};
 
 export default function Gems(props: GemsProps) {
   return (

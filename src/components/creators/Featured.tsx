@@ -2,9 +2,9 @@ import { GroupField, Content } from "@prismicio/client";
 import Slider from "@/components/shared/Slider";
 import CreatorThumb from "@/components/shared/CreatorThumb";
 
-interface FeaturedProps {
+type FeaturedProps = {
   creators: GroupField;
-}
+};
 
 export default function Featured(props: FeaturedProps) {
   return (

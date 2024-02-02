@@ -4,9 +4,9 @@ import Link from "next/link";
 import Filter from "../shared/Filter";
 import NoResults from "../shared/NoResults";
 
-interface AllProps {
+type AllProps = {
   destinations: Content.DestinationDocument[];
-}
+};
 
 export default function All(props: AllProps) {
   const [query, setQuery] = useState("");

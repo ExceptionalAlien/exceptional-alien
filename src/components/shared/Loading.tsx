@@ -1,6 +1,6 @@
-interface LoadingProps {
+type LoadingProps = {
   text: string;
-}
+};
 
 export default function Loading(props: LoadingProps) {
   return (

@@ -3,9 +3,9 @@ import Slider from "@/components/shared/Slider";
 import CreatorThumb from "@/components/shared/CreatorThumb";
 import Person from "@/img/icon-person.svg";
 
-interface CreatorsProps {
+type CreatorsProps = {
   results: Content.CreatorDocument<string>[];
-}
+};
 
 export default function Creators(props: CreatorsProps) {
   return (

@@ -1,10 +1,10 @@
 import GemIcon from "@/components/shared/GemIcon";
 
-interface CategoryProps {
+type CategoryProps = {
   name: string;
   categories: string[];
   setCategories: React.Dispatch<React.SetStateAction<string[]>>;
-}
+};
 
 export default function Category(props: CategoryProps) {
   const categoryClick = () => {

@@ -1,9 +1,9 @@
 import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
-interface AboutProps {
+type AboutProps = {
   text: RichTextField;
-}
+};
 
 export default function About(props: AboutProps) {
   return (

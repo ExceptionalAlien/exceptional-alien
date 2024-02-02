@@ -4,9 +4,9 @@ import PlaybookThumb from "../shared/PlaybookThumb";
 import Filter from "../shared/Filter";
 import NoResults from "../shared/NoResults";
 
-interface AllProps {
+type AllProps = {
   playbooks: Content.PlaybookDocument[];
-}
+};
 
 export default function All(props: AllProps) {
   const [query, setQuery] = useState("");

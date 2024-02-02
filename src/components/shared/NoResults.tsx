@@ -1,7 +1,7 @@
-interface NoResultsProps {
+type NoResultsProps = {
   visible: boolean;
   classes?: string;
-}
+};
 
 export default function NoResults(props: NoResultsProps) {
   return (

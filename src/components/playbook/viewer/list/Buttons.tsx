@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Story from "@/img/icon-story.svg";
 
-interface ButtonsProps {
+type ButtonsProps = {
   video: string;
   story: string;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 export default function List(props: ButtonsProps) {
   const videoClick = () => {

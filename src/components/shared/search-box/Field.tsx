@@ -1,9 +1,9 @@
-interface Props {
+type Props = {
   query: string | string[];
   setQuery: React.Dispatch<React.SetStateAction<string | string[]>>;
   scrollY: number;
   disabled: boolean;
-}
+};
 
 export default function Field(props: Props) {
   const clear = () => {

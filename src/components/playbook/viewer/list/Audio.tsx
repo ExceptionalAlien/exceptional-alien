@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-interface AudioProps {
+type AudioProps = {
   file: string;
-}
+};
 
 export default function Audio(props: AudioProps) {
   const [mounted, setMounted] = useState(false);

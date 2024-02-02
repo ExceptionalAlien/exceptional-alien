@@ -2,10 +2,10 @@ import { GroupField, Content } from "@prismicio/client";
 import Link from "next/link";
 import Place from "@/img/icon-place.svg";
 
-interface Props {
+type Props = {
   destinations: GroupField;
   scrollY: number;
-}
+};
 
 export default function Recommended(props: Props) {
   return (

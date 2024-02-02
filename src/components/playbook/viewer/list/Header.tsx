@@ -8,12 +8,12 @@ import ImageShadow from "@/components/shared/ImageShadow";
 import CreatorIcon from "@/components/shared/CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-interface HeaderProps {
+type HeaderProps = {
   image: ImageField;
   title: string;
   creator: Content.CreatorDocument;
   destination: Content.DestinationDocument;
-}
+};
 
 export default function Header(props: HeaderProps) {
   const [stickyTop, setStickyTop] = useState(0);

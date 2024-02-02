@@ -5,11 +5,11 @@ import YT from "@/img/social-yt.svg";
 import LI from "@/img/social-li.svg";
 import TT from "@/img/social-tt.svg";
 
-interface SocialsProps {
+type SocialsProps = {
   ig: string;
   other: string;
   www: string;
-}
+};
 
 export default function Socials(props: SocialsProps) {
   var otherSocial = "";

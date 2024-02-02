@@ -4,9 +4,9 @@ import CreatorThumb from "../shared/CreatorThumb";
 import Filter from "../shared/Filter";
 import NoResults from "../shared/NoResults";
 
-interface AllProps {
+type AllProps = {
   creators: Content.CreatorDocument[];
-}
+};
 
 export default function All(props: AllProps) {
   const [query, setQuery] = useState("");

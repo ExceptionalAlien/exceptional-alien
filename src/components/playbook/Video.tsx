@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-interface VideoProps {
+type VideoProps = {
   iframe: string | null;
   showVideo: boolean;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 export default function Video(props: VideoProps) {
   const [iFrame, setIFrame] = useState<string | null>(null);
@@ -23,7 +23,7 @@ export default function Video(props: VideoProps) {
 
   return (
     <div
-      className={`bg-ex-blue/95 fixed top-0 z-20 flex items-center justify-center transition-[opacity] duration-300 ease-in ${
+      className={`fixed top-0 z-20 flex items-center justify-center bg-ex-blue/95 transition-[opacity] duration-300 ease-in ${
         !props.showVideo ? "h-0 w-0 overflow-hidden opacity-0" : "h-full w-full"
       }`}
     >

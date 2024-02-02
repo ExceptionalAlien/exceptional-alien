@@ -3,10 +3,10 @@ import { Content } from "@prismicio/client";
 import Map from "./viewer/Map";
 import List from "./viewer/List";
 
-interface ViewerProps {
+type ViewerProps = {
   data: Content.PlaybookDocumentData;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 export default function Viewer(props: ViewerProps) {
   const [viewerRef, setViewerRef] = useState<HTMLDivElement>();

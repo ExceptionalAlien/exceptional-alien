@@ -1,11 +1,11 @@
 import BG from "@/img/icon-gem-bg.svg";
 import Border from "@/img/icon-gem-border.svg";
 
-interface GemIconProps {
+type GemIconProps = {
   category: string;
   hideBg?: boolean;
   classes?: string;
-}
+};
 
 export default function GemIcon(props: GemIconProps) {
   return (

@@ -15,12 +15,12 @@ const code = (first: string, last: string, country: string) => {
   return code.substring(0, max); // Trim if more than max
 };
 
-interface MachineCodeProps {
+type MachineCodeProps = {
   firstName: string;
   lastName: string;
   country: string;
   classes?: string;
-}
+};
 
 export default function MachineCode(props: MachineCodeProps) {
   return (

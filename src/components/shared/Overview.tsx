@@ -1,9 +1,9 @@
 import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
-interface OverviewProps {
+type OverviewProps = {
   text: RichTextField;
-}
+};
 
 export default function Overview(props: OverviewProps) {
   return (

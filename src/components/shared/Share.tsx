@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 
-interface ShareProps {
+type ShareProps = {
   title: string;
   route: string;
   classes?: string;
-}
+};
 
 export default function Share(props: ShareProps) {
   const router = useRouter();

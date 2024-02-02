@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-interface TabButtonProps {
+type TabButtonProps = {
   text: string;
   route: string;
   classes?: string;
-}
+};
 
 export default function TabButton(props: TabButtonProps) {
   return (

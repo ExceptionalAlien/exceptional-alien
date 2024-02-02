@@ -3,13 +3,13 @@ import { ImageField, RichTextField, asText } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import CreatorIcon from "@/components/shared/CreatorIcon";
 
-export interface QuoteProps {
+export type QuoteProps = {
   uid: string;
   firstName: string;
   lastName: string;
   image: ImageField;
   text: RichTextField;
-}
+};
 
 export default function Quote(props: QuoteProps) {
   return (

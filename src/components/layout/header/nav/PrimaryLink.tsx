@@ -4,13 +4,13 @@ import Place from "@/img/icon-place.svg";
 import Playbook from "@/img/icon-playbook.svg";
 import Person from "@/img/icon-person.svg";
 
-interface Props {
+type PrimaryLinkProps = {
   page: string;
   hideNav: () => void;
   scrollY: number;
-}
+};
 
-export default function PrimaryLink(props: Props) {
+export default function PrimaryLink(props: PrimaryLinkProps) {
   const router = useRouter();
 
   return (

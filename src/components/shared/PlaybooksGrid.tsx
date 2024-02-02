@@ -2,12 +2,12 @@ import { Content, GroupField } from "@prismicio/client";
 import PlaybookThumb from "@/components/shared/PlaybookThumb";
 import Playbook from "@/img/icon-playbook.svg";
 
-interface PlaybooksGridProps {
+type PlaybooksGridProps = {
   heading: string;
   list: GroupField;
   showCreator?: boolean;
   classes?: string;
-}
+};
 
 export default function PlaybooksGrid(props: PlaybooksGridProps) {
   return (

@@ -4,13 +4,13 @@ import { EmptyImageFieldImage, FilledImageFieldImage, ImageField } from "@prismi
 import { shimmer, toBase64 } from "@/utils/shimmer";
 import ImageShadow from "./ImageShadow";
 
-interface HeroProps {
+type HeroProps = {
   image: ImageField<"mobile">;
   alt: string;
   credit: string;
   classes?: string;
   children?: any;
-}
+};
 
 export default function Hero(props: HeroProps) {
   const [crop, setCrop] = useState<FilledImageFieldImage | EmptyImageFieldImage>();

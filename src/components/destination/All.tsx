@@ -7,9 +7,9 @@ import Filter from "../shared/Filter";
 import NoResults from "../shared/NoResults";
 import Gem from "@/img/icon-gem.svg";
 
-interface AllProps {
+type AllProps = {
   gems: Content.GemDocument[];
-}
+};
 
 export default function All(props: AllProps) {
   const router = useRouter();

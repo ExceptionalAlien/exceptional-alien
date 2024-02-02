@@ -4,9 +4,9 @@ import YT from "@/img/social-yt.svg";
 import LI from "@/img/social-li.svg";
 import M from "@/img/social-m.svg";
 
-interface Socialsprops {
+type Socialsprops = {
   classes?: string;
-}
+};
 
 export default function Socials(props: Socialsprops) {
   return (

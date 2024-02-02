@@ -1,9 +1,9 @@
-interface FilterProps {
+type FilterProps = {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
   placeholder?: string;
   classes?: string;
-}
+};
 
 export default function Filter(props: FilterProps) {
   const clear = () => {

@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 
-interface SliderProps {
+type SliderProps = {
   children: any;
   minItems?: number;
   classes?: string;
-}
+};
 
 export default function Slider({ minItems = 2, ...props }: SliderProps) {
   const [scrollPos, setScrollPos] = useState("start");
@@ -35,8 +35,8 @@ export default function Slider({ minItems = 2, ...props }: SliderProps) {
         slider.scrollLeft === 0
           ? "start"
           : Math.round(slider.scrollLeft) + slider.offsetWidth >= slider.scrollWidth
-          ? "end"
-          : ""
+            ? "end"
+            : ""
       );
     };
 

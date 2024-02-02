@@ -3,9 +3,9 @@ import Slider from "@/components/shared/Slider";
 import PlaybookThumb from "@/components/shared/PlaybookThumb";
 import Playbook from "@/img/icon-playbook.svg";
 
-interface PlaybooksProps {
+type PlaybooksProps = {
   results: Content.PlaybookDocument<string>[];
-}
+};
 
 export default function Playbooks(props: PlaybooksProps) {
   return (

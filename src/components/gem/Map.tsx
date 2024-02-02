@@ -75,17 +75,17 @@ function GoogleMap(props: MapProps) {
   return <div ref={ref} className="h-60 w-full md:h-80" />;
 }
 
-export interface PlaceCoords {
+export type PlaceCoords = {
   lat: number;
   lng: number;
-}
+};
 
-interface MapProps {
+type MapProps = {
   gem: Content.GemDocument;
   setPlaceCoords: React.Dispatch<React.SetStateAction<PlaceCoords>>;
   setOpeningHours: React.Dispatch<React.SetStateAction<string[] | undefined>>;
   setOpenStatus: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
+};
 
 export default function Map(props: MapProps) {
   return (

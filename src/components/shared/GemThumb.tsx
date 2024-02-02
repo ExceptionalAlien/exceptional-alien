@@ -6,12 +6,12 @@ import CreatorIcon from "./CreatorIcon";
 import ImageShadow from "./ImageShadow";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-interface GemThumbProps {
+type GemThumbProps = {
   gem: Content.GemDocument;
   size?: string; // med or sml
   creator?: Content.CreatorDocument;
   classes?: string;
-}
+};
 
 export default function GemThumb(props: GemThumbProps) {
   return (

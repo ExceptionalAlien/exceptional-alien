@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { GroupField, Content } from "@prismicio/client";
 
-interface TrendingProps {
+type TrendingProps = {
   destinations: GroupField;
-}
+};
 
 export default function Trending(props: TrendingProps) {
   return (

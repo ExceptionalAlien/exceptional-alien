@@ -4,19 +4,19 @@ import { Content } from "@prismicio/client";
 import ThumbTab from "./ThumbTab";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-interface CreatorThumbProps {
+type CreatorThumbProps = {
   creator: Content.CreatorDocument;
   size?: string; // lrg or sml
   classes?: string;
-}
+};
 
 export default function CreatorThumb(props: CreatorThumbProps) {
   const image =
     props.creator.data && props.creator.data.hero_image
       ? props.creator.data.hero_image.mobile
       : props.creator.data && props.creator.data.profile_image
-      ? props.creator.data.profile_image
-      : null; // Prismic image size/crop
+        ? props.creator.data.profile_image
+        : null; // Prismic image size/crop
 
   return (
     <Link
@@ -32,8 +32,8 @@ export default function CreatorThumb(props: CreatorThumbProps) {
               image.alt
                 ? (image.alt as string)
                 : props.creator.data.last_name
-                ? `${props.creator.data.first_name} ${props.creator.data.last_name}`
-                : (props.creator.data.first_name as string)
+                  ? `${props.creator.data.first_name} ${props.creator.data.last_name}`
+                  : (props.creator.data.first_name as string)
             }
             width={image.dimensions?.width}
             height={image.dimensions?.height}

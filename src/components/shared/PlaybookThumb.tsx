@@ -7,14 +7,14 @@ import ThumbTab from "./ThumbTab";
 import CreatorIcon from "./CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 
-interface PlaybookThumbProps {
+type PlaybookThumbProps = {
   playbook: Content.PlaybookDocument;
   size?: string; // xlg, lrg, med or sml
   showDestination?: boolean;
   showCreator?: boolean;
   showDescription?: boolean;
   classes?: string;
-}
+};
 
 export default function PlaybookThumb(props: PlaybookThumbProps) {
   const image = props.playbook.data.image?.url

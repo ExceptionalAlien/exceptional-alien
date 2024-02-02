@@ -1,10 +1,10 @@
 import TabHeading from "@/components/shared/TabHeading";
 
-interface ThumbTabProps {
+type ThumbTabProps = {
   title: string;
   location: string;
   classes?: string;
-}
+};
 
 export default function ThumbTab(props: ThumbTabProps) {
   return (

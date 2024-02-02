@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { ImageField } from "@prismicio/client";
 
-interface CreatorIconProps {
+type CreatorIconProps = {
   firstName?: string;
   lastName?: string;
   image: ImageField;
   nomination?: boolean;
   classes?: string;
-}
+};
 
 export default function CreatorIcon(props: CreatorIconProps) {
   return (

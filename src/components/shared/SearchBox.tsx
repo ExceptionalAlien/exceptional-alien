@@ -5,13 +5,13 @@ import Field from "./search-box/Field";
 import Recommended from "./search-box/Recommended";
 import { SearchBoxContext, SearchBoxContextType } from "@/context/SearchBoxContext";
 
-interface Props {
+type Props = {
   description?: KeyTextField;
   recommended?: GroupField;
   hidden?: boolean;
   classes?: string;
   disabled?: boolean;
-}
+};
 
 export default function SearchBox(props: Props) {
   const router = useRouter();

@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import PrimaryLink from "./nav/PrimaryLink";
 import LogoIcon from "@/img/logo-icon.svg";
 
-interface Props {
+type Props = {
   scrollY: number;
   showingNav: boolean;
   setShowingNav: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 
 export default function Nav(props: Props) {
   const router = useRouter();
