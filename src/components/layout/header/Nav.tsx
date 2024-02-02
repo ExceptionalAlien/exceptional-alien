@@ -23,10 +23,10 @@ export default function Nav(props: Props) {
       }`}
     >
       {/* Download app */}
-      {/*<Link
+      <Link
         href="/download"
         onClick={hideNav}
-        className={`absolute bottom-6 left-1/2 flex w-72 -translate-x-1/2 justify-center rounded-full border border-ex-blue p-2 pl-[14px] pr-4 text-ex-blue transition-[color,background-color,border-color] duration-300 ease-in-out md:static md:mr-4 md:hidden md:w-auto md:translate-x-0 landscape:lg:inline-flex ${
+        className={`pointer-events-none absolute bottom-6 left-1/2 flex w-72 -translate-x-1/2 justify-center rounded-full border border-ex-blue p-2 pl-[14px] pr-4 text-ex-blue transition-[color,background-color,border-color] duration-300 ease-in-out md:static md:mr-4 md:hidden md:w-auto md:translate-x-0 landscape:lg:inline-flex ${
           props.scrollY > 1
             ? "md:border-white md:text-white hover:md:bg-white hover:md:text-ex-blue"
             : "hover:md:bg-ex-blue hover:md:text-white"
@@ -49,8 +49,8 @@ export default function Nav(props: Props) {
             d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
           />
         </svg>
-        Download App
-      </Link> */}
+        New App Soon!
+      </Link>
 
       <PrimaryLink page="destinations" hideNav={hideNav} scrollY={props.scrollY} />
       <PrimaryLink page="travel-playbooks" hideNav={hideNav} scrollY={props.scrollY} />
