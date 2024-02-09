@@ -1,11 +1,17 @@
 import { createClient } from "@/prismicio";
 
 export async function GET(request: Request, { params }: { params: { destination: string } }) {
+  const { searchParams } = new URL(request.url);
   const client = createClient();
 
-  const destination = await client.getSingle("playbooks", {
+  const playbooks = await client.getSingle("playbooks", {
     fetchLinks: "playbook.title,playbook.image,playbook.creator,creator.first_name,creator.last_name,creator.title",
   });
 
-  return Response.json(destination.data.featured);
+  return Response.json(
+    playbooks.data.featured.slice(
+      0,
+      searchParams.get("max") ? (searchParams.get("max") as unknown as number) : playbooks.data.featured.length
+    )
+  );
 }
