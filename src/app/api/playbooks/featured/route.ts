@@ -3,7 +3,7 @@ import { createClient } from "@/prismicio";
 export async function GET(request: Request, { params }: { params: { destination: string } }) {
   const client = createClient();
 
-  const destination = await client.getByUID("destination", params.destination, {
+  const destination = await client.getSingle("playbooks", {
     fetchLinks: "playbook.title,playbook.image,playbook.creator,creator.first_name,creator.last_name,creator.title",
   });
 
