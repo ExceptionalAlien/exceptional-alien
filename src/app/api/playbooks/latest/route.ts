@@ -6,7 +6,7 @@ export async function GET(request: Request, { params }: { params: { destination:
 
   const playbooks = await client.getSingle("playbooks", {
     fetchLinks:
-      "playbook.image,playbook.creator,creator.first_name,creator.last_name,playbook.destination,destination.title",
+      "playbook.image,playbook.creator,creator.first_name,creator.last_name,creator.title,playbook.destination,destination.title",
   });
 
   return Response.json(
