@@ -1,9 +1,6 @@
 import { createClient } from "@/prismicio";
 
 export async function GET(request: Request, { params }: { params: { destination: string } }) {
-  const { searchParams } = new URL(request.url);
-  console.log(searchParams.get("max"));
-
   const client = createClient();
 
   const destination = await client.getSingle("playbooks", {
