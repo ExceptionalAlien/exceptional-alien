@@ -1,12 +1,13 @@
 import { createClient } from "@/prismicio";
 
-export const fetchCache = "force-no-store";
-
 export async function GET(request: Request, { params }: { params: { destination: string } }) {
   const { searchParams } = new URL(request.url);
   const client = createClient();
 
   const playbooks = await client.getSingle("playbooks", {
+    fetchOptions: {
+      cache: "no-store",
+    },
     fetchLinks:
       "playbook.image,playbook.creator,creator.first_name,creator.last_name,creator.title,playbook.destination,destination.title",
   });
