@@ -8,7 +8,8 @@ export async function GET(request: Request, { params }: { params: { destination:
     fetchOptions: {
       cache: "no-store",
     },
-    fetchLinks: "playbook.title,playbook.image,playbook.creator,creator.first_name,creator.last_name,creator.title",
+    fetchLinks:
+      "playbook.title,playbook.image,playbook.creator,creator.first_name,creator.last_name,creator.title,playbook.destination,destination.title",
   });
 
   return Response.json(
