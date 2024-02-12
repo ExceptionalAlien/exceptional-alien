@@ -1,5 +1,7 @@
 import { createClient } from "@/prismicio";
 
+export const fetchCache = "force-no-store";
+
 export async function GET(request: Request, { params }: { params: { destination: string } }) {
   const client = createClient();
   const { searchParams } = new URL(request.url);
