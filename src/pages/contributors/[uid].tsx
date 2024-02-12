@@ -73,9 +73,9 @@ export default function Creator({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+      <main className="pt-8 md:max-w-3xl md:pt-12 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         {/* Title */}
-        <section className="mb-4 md:mb-6">
+        <section className="!mt-0 mb-4 md:mb-6">
           <h2 className="text-3xl font-bold md:float-left md:w-1/2 md:text-6xl">
             {page.data.first_name} {page.data.last_name?.toUpperCase()}
           </h2>

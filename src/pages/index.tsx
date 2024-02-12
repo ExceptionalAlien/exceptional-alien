@@ -26,7 +26,7 @@ export default function Home({ page, search }: PageProps) {
 
       <SearchBox description={search.data.description} recommended={search.data.recommended} />
 
-      <main className="!pt-0 [&>*:nth-child(1)]:!mt-0 [&>[data-slice-type=highlight]]:mb-12 [&>[data-slice-type=highlight]]:mt-12 [&>[data-slice-type=highlight]]:md:mb-16 [&>[data-slice-type=highlight]]:md:mt-16">
+      <main className="!mt-0 [&>*:nth-child(1)]:!mt-0 [&>[data-slice-type=highlight]]:mb-12 [&>[data-slice-type=highlight]]:mt-12 [&>[data-slice-type=highlight]]:md:mb-16 [&>[data-slice-type=highlight]]:md:mt-16">
         <SliceZone slices={page.data.slices} components={components} />
 
         <section>

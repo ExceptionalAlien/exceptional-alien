@@ -55,9 +55,9 @@ export default function Creator({ page, search }: PageProps) {
         />
       </Head>
 
-      <main>
+      <main className="pt-8 md:pt-12">
         {/* Title */}
-        <section>
+        <section className="!mt-0">
           <hgroup className="float-left w-3/5 pr-2 md:pr-3">
             <h2 className="text-3xl font-bold uppercase md:text-6xl">{page.data.title}</h2>
             <h3 className="text-lg text-ex-grey md:text-2xl">{page.data.country}</h3>

@@ -7,8 +7,8 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Error404({ search }: PageProps) {
   return (
     <>
-      <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-        <section>
+      <main className="pt-8 md:max-w-3xl md:pt-12 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <section className="!mt-0">
           <h2 className="text-4xl font-bold md:text-6xl">404 Error</h2>
           <h3 className="text-ex-grey">Page not found</h3>
         </section>

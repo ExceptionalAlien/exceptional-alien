@@ -55,12 +55,12 @@ export default function Gem({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+      <main className="md:max-w-3xl md:pt-12 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <Hero
           image={page.data.image}
           alt={page.data.title as string}
           credit={page.data.photo_credit as string}
-          classes="!mt-0 md:!mt-12"
+          classes="!mt-0"
         >
           <div className="absolute top-0 w-full p-4 text-white md:p-6">
             <hgroup className="float-left w-3/5 pr-2 md:pr-3">

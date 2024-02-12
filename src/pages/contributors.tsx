@@ -46,7 +46,7 @@ export default function Creators({ page, search }: PageProps) {
         />
       </Head>
 
-      <main>
+      <main className="pt-8 md:pt-12">
         <Featured creators={page.data.featured} />
         <Overview text={page.data.overview} />
 

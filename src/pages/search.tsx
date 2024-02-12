@@ -96,8 +96,8 @@ export default function Search({ page }: PageProps) {
 
       <SearchBox hidden={true} disabled={searching ? true : false} />
 
-      <main>
-        <section>
+      <main className="pt-8 md:pt-12">
+        <section className="!mt-0">
           <h2 className="text-4xl font-bold md:text-6xl">Search</h2>
           <h3 className="text-ex-grey">Showing results for {`'${router.query.q}'`}</h3>
         </section>
