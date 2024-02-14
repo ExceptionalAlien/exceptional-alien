@@ -17,7 +17,11 @@ export default function CreatorIcon(props: CreatorIconProps) {
         {props.firstName} {props.lastName?.toUpperCase()}
       </p>
 
-      <div className="ml-2 overflow-hidden rounded-full border border-white bg-ex-blue">
+      <div
+        className={`ml-2 box-content shrink-0 overflow-hidden rounded-full border border-white bg-ex-blue ${
+          props.firstName ? "h-12 w-12" : "h-10 w-10"
+        }`}
+      >
         <Image
           src={props.image.url as string}
           alt={
@@ -31,7 +35,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
           }
           width={48}
           height={48}
-          className={`mix-blend-lighten grayscale ${props.firstName ? "h-12 w-12" : "h-10 w-10"}`}
+          className={`mix-blend-lighten grayscale`}
         />
       </div>
     </div>
