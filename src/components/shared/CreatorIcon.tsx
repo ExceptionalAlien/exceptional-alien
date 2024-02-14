@@ -17,21 +17,23 @@ export default function CreatorIcon(props: CreatorIconProps) {
         {props.firstName} {props.lastName?.toUpperCase()}
       </p>
 
-      <Image
-        src={props.image.url as string}
-        alt={
-          props.image.alt
-            ? (props.image.alt as string)
-            : props.lastName
-              ? `${props.firstName} ${props.lastName}`
-              : props.firstName
-                ? (props.firstName as string)
-                : ""
-        }
-        width={48}
-        height={48}
-        className={`ml-2 rounded-full border border-white bg-white ${props.firstName ? "h-12 w-12" : "h-10 w-10"}`}
-      />
+      <div className="ml-2 overflow-hidden rounded-full border border-white bg-ex-blue">
+        <Image
+          src={props.image.url as string}
+          alt={
+            props.image.alt
+              ? (props.image.alt as string)
+              : props.lastName
+                ? `${props.firstName} ${props.lastName}`
+                : props.firstName
+                  ? (props.firstName as string)
+                  : ""
+          }
+          width={48}
+          height={48}
+          className={`mix-blend-lighten grayscale ${props.firstName ? "h-12 w-12" : "h-10 w-10"}`}
+        />
+      </div>
     </div>
   );
 }

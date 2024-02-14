@@ -25,7 +25,7 @@ export default function CreatorThumb(props: CreatorThumbProps) {
     >
       {/* Image */}
       {image && (
-        <div className="group-hover/link:bg-ex-blue">
+        <div className={props.size === "lrg" ? "group-hover/link:bg-ex-blue" : "bg-ex-blue"}>
           <Image
             src={image.url as string}
             alt={
@@ -40,7 +40,11 @@ export default function CreatorThumb(props: CreatorThumbProps) {
             placeholder={`data:image/svg+xml;base64,${toBase64(
               shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
-            className="group-hover/link:mix-blend-lighten group-hover/link:grayscale"
+            className={
+              props.size === "lrg"
+                ? "group-hover/link:mix-blend-lighten group-hover/link:grayscale"
+                : "mix-blend-lighten grayscale"
+            }
           />
         </div>
       )}
