@@ -18,7 +18,7 @@ export default function All(props: AllProps) {
   }, [query]);
 
   return (
-    <section className="!mt-16 md:float-right md:!mt-24 md:w-1/2 md:!pl-3">
+    <section className="md:float-right md:!mt-0 md:w-1/2 md:!pl-3">
       <Filter query={query} setQuery={setQuery} placeholder={`Filter ${props.destinations.length} destinations`} />
 
       {/* List */}
