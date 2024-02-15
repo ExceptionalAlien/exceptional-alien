@@ -55,7 +55,7 @@ export default function Creator({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="pt-8 md:pt-12">
+      <main className="pt-12 md:pt-16">
         {/* Title */}
         <section className="!mt-0">
           <hgroup className="float-left w-3/5 pr-2 md:pr-3">

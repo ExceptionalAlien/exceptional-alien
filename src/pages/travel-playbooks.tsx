@@ -46,7 +46,7 @@ export default function Playbooks({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="pt-8 md:pt-12">
+      <main className="pt-12 md:pt-16">
         <Featured playbooks={page.data.featured} />
         <Overview text={page.data.overview} />
 

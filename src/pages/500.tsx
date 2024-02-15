@@ -7,7 +7,7 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Error500({ search }: PageProps) {
   return (
     <>
-      <main className="pt-8 md:max-w-3xl md:pt-12 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+      <main className="pt-12 md:max-w-3xl md:pt-16 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <section className="!mt-0">
           <h2 className="text-4xl font-bold md:text-6xl">500 Error</h2>
           <h3 className="text-ex-grey">Internal server error</h3>

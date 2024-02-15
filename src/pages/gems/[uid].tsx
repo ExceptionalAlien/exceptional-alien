@@ -55,7 +55,7 @@ export default function Gem({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="md:max-w-3xl md:pt-12 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+      <main className="md:max-w-3xl md:pt-16 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <Hero
           image={page.data.image}
           alt={page.data.title as string}
