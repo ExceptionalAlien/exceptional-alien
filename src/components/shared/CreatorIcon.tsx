@@ -18,8 +18,8 @@ export default function CreatorIcon(props: CreatorIconProps) {
       </p>
 
       <div
-        className={`ml-2 box-content shrink-0 overflow-hidden rounded-full border border-white bg-ex-blue ${
-          props.firstName ? "h-12 w-12" : "h-10 w-10"
+        className={`ml-2 shrink-0 overflow-hidden rounded-full border border-white bg-ex-blue ${
+          props.firstName ? "h-12 w-12" : "box-content h-10 w-10"
         }`}
       >
         <Image
