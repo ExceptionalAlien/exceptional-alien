@@ -24,7 +24,7 @@ export default function About({ page, search }: PageProps) {
         />
       </Head>
 
-      <main className="pt-16 md:max-w-3xl md:pt-24 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+      <main className="pt-8 md:max-w-3xl md:pt-12 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <TabHeading classes="uppercase ml-4 mr-4 md:ml-6 md:mr-6">
           <PrismicRichText field={page.data.page_heading} />
         </TabHeading>

@@ -28,7 +28,7 @@ export default function Destinations({ page, destinations, search }: PageProps) 
         />
       </Head>
 
-      <main className="pt-16 md:pt-24 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+      <main className="pt-8 md:pt-12 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <Trending destinations={page.data.trending} />
         <All destinations={destinations} />
         <div className="clear-both"></div>

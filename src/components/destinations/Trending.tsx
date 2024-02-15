@@ -7,7 +7,7 @@ type TrendingProps = {
 
 export default function Trending(props: TrendingProps) {
   return (
-    <section className="!mt-0 md:sticky md:top-[176px] md:float-left md:w-1/2 md:!pr-3">
+    <section className="!mt-0 md:sticky md:top-[128px] md:float-left md:w-1/2 md:!pr-3">
       <h3 className="mb-1 text-sm text-ex-blue md:mb-2">TRENDING</h3>
 
       {/* List */}
