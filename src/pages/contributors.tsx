@@ -92,7 +92,7 @@ const getData = async () => {
     fetch: "creator.first_name,creator.last_name,creator.profile_image,creator.title,creator.current_city",
     orderings: [
       {
-        field: "my.creator.uid",
+        field: "my.creator.first_name",
         direction: "asc",
       },
     ],
