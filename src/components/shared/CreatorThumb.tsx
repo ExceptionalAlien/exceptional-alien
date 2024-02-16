@@ -40,11 +40,9 @@ export default function CreatorThumb(props: CreatorThumbProps) {
             placeholder={`data:image/svg+xml;base64,${toBase64(
               shimmer(image.dimensions?.width as number, image.dimensions?.height as number)
             )}`}
-            className={
-              props.size === "lrg"
-                ? "group-hover/link:mix-blend-lighten group-hover/link:grayscale"
-                : "mix-blend-lighten grayscale"
-            }
+            className={`group-hover/link:mix-blend-lighten ${
+              props.size === "lrg" ? "group-hover/link:grayscale" : "grayscale"
+            }`}
           />
         </div>
       )}
