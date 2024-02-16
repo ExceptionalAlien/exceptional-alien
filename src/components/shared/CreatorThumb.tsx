@@ -25,7 +25,7 @@ export default function CreatorThumb(props: CreatorThumbProps) {
     >
       {/* Image */}
       {image && (
-        <div className={props.size === "lrg" ? "group-hover/link:bg-ex-blue" : "bg-ex-blue"}>
+        <div className="group-hover/link:bg-ex-blue">
           <Image
             src={image.url as string}
             alt={

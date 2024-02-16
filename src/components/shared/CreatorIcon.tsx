@@ -18,7 +18,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
       </p>
 
       <div
-        className={`ml-2 shrink-0 overflow-hidden rounded-full border border-white bg-ex-blue ${
+        className={`ml-2 shrink-0 overflow-hidden rounded-full border border-white bg-white ${
           props.firstName ? "h-12 w-12" : "box-content h-10 w-10"
         }`}
       >
@@ -35,7 +35,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
           }
           width={48}
           height={48}
-          className={`mix-blend-lighten grayscale`}
+          className="grayscale"
         />
       </div>
     </div>
