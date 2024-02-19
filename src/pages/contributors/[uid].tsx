@@ -140,7 +140,10 @@ export default function Creator({ page, search }: PageProps) {
 
         {page.data.playbooks.length &&
         (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
-          <PlaybooksGrid heading={`${page.data.first_name}'s Playbooks`} list={page.data.playbooks} />
+          <PlaybooksGrid
+            heading={`${page.data.first_name}'${page.data.first_name?.slice(-1) !== "s" ? "s" : ""} Playbooks`}
+            list={page.data.playbooks}
+          />
         ) : (
           <></>
         )}
