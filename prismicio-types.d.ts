@@ -837,6 +837,17 @@ interface GemDocumentData {
   google_maps_id: prismic.KeyTextField;
 
   /**
+   * Location field in *Gem*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  location: prismic.GeoPointField;
+
+  /**
    * Description field in *Gem*
    *
    * - **Field Type**: Text

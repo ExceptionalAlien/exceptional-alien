@@ -93,6 +93,12 @@
           "placeholder": "Place ID"
         }
       },
+      "location": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Location"
+        }
+      },
       "description": {
         "type": "Text",
         "config": {
