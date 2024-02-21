@@ -1046,6 +1046,17 @@ interface PlaybookDocumentData {
   title: prismic.KeyTextField;
 
   /**
+   * Sub-Title field in *Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Only used for app (optional)
+   * - **API ID Path**: playbook.sub_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  sub_title: prismic.KeyTextField;
+
+  /**
    * Creator field in *Playbook*
    *
    * - **Field Type**: Content Relationship

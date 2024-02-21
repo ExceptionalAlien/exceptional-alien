@@ -19,6 +19,13 @@
           "placeholder": " 50 characters max."
         }
       },
+      "sub_title": {
+        "type": "Text",
+        "config": {
+          "label": "Sub-Title",
+          "placeholder": "Only used for app (optional)"
+        }
+      },
       "creator": {
         "type": "Link",
         "config": {
