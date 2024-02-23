@@ -1,8 +1,9 @@
 const code = (first: string, last: string, country: string) => {
   const max = 40;
 
-  var code = `EA<${country ? country : "WWW"}${last ? last.replace(/ /g, "") : ""}<<${first
+  var code = `EA<${country ? country : "WWW"}${last ? last.replace(/ /g, "").replace(/'/g, "") : ""}<<${first
     .replace(/ /g, "")
+    .replace(/'/g, "")
     .replace(/&/g, "<")}`;
 
   const loop = max - code.length;
