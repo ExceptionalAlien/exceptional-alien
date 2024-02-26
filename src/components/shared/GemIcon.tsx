@@ -1,8 +1,11 @@
-import BG from "@/img/icon-gem-bg.svg";
-import Border from "@/img/icon-gem-border.svg";
+import GemBG from "@/img/icon-gem-bg.svg";
+import GemBorder from "@/img/icon-gem-border.svg";
+import MarkerBG from "@/img/icon-marker-bg.svg";
+import MarkerBorder from "@/img/icon-marker-border.svg";
 
 type GemIconProps = {
   category: string;
+  marker?: boolean; // Markers use different border and background
   hideBg?: boolean;
   classes?: string;
 };
@@ -16,8 +19,10 @@ export default function GemIcon(props: GemIconProps) {
           : "absolute h-10 w-10 md:h-12 md:w-12 [&>svg]:absolute [&>svg]:h-2/5 [&>svg]:w-2/5"
       } ${props.classes}`}
     >
-      <BG className={`gem-icon-bg !h-full !w-full text-white ${props.hideBg && "hidden"}`} />
-      <Border className={`!h-full !w-full ${props.hideBg && "hidden"}`} />
+      <GemBG className={`gem-icon-bg !h-full !w-full text-white ${(props.marker || props.hideBg) && "hidden"}`} />
+      <MarkerBG className={`gem-icon-bg !h-full !w-full text-white ${(!props.marker || props.hideBg) && "hidden"}`} />
+      <GemBorder className={`!h-full !w-full ${(props.marker || props.hideBg) && "hidden"}`} />
+      <MarkerBorder className={`!h-full !w-full ${(!props.marker || props.hideBg) && "hidden"}`} />
 
       {props.category === "Food & Drink" && (
         <svg
