@@ -44,6 +44,7 @@ export default function GemThumb(props: GemThumbProps) {
 
           <GemIcon
             category={props.gem.data.category}
+            marker
             classes={`top-0 m-[6px] md:m-[10px] ${
               props.size === "med" ? "!h-12 !w-12" : "!h-10 !w-10 md:!h-11 md:!w-11"
             }`}
