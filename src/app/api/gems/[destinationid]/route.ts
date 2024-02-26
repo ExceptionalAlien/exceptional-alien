@@ -8,7 +8,7 @@ export async function GET(request: Request, { params }: { params: { destinationi
     fetchOptions: {
       cache: "no-store",
     },
-    fetch: "gem.title,gem.image,gem.category,gem.playbooks,gem.location,gem.description",
+    fetch: "gem.title,gem.category,gem.playbooks,gem.location,gem.description,gem.address",
     filters: [filter.at("my.gem.destination", params.destinationid)],
     fetchLinks: "playbook.creator,creator.profile_image,playbook.slices",
   });
