@@ -145,9 +145,12 @@ function GoogleMap(props: MapProps) {
         if (gem.data.google_maps_id) {
           const div = document.createElement("div");
           const coords = (await getCoords(gem.data.google_maps_id as string, gem.uid)) as google.maps.LatLng;
+          console.log(`${gem.uid} - ${coords}`);
           div.setAttribute("id", "map-gem-" + gem.uid);
           div.classList.add("map-gem");
-          createRoot(div).render(<GemIcon category={gem.data.category} classes="-translate-x-1/2 -translate-y-1/2" />);
+          createRoot(div).render(
+            <GemIcon category={gem.data.category} marker classes="-translate-x-1/2 -translate-y-1/2" />
+          );
 
           // Add marker to map
           const marker = new window.google.maps.marker.AdvancedMarkerElement({
