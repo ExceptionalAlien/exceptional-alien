@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
+import { useRouter } from "next/router";
 import { createClient } from "@/prismicio";
 import { Content, asText } from "@prismicio/client";
 import Viewer from "@/components/playbook/Viewer";
@@ -11,8 +12,13 @@ import SearchBox from "@/components/shared/SearchBox";
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Playbook({ page, search }: PageProps) {
+  const router = useRouter();
   const [showVideo, setShowVideo] = useState(false);
   const hasRelated = page.data.related.length > 1 ? true : false;
+
+  useEffect(() => {
+    if (page.data.locked) router.push("/"); // Redirect to home if Playbook locked and user does not have access
+  }, []);
 
   return (
     <>
@@ -78,6 +84,8 @@ export default function Playbook({ page, search }: PageProps) {
                 : "https://exceptionalalien.com/img/og.png"
           }
         />
+
+        {page.data.locked && <meta name="robots" content="noindex" />}
       </Head>
 
       <main className={`${!hasRelated && "!pb-0"}`}>
@@ -104,7 +112,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
 
     const page = await client.getByUID("playbook", params?.uid as string, {
       fetchLinks:
-        "creator.first_name,creator.last_name,creator.profile_image,creator.uid,gem.title,gem.image,gem.category,gem.address,gem.google_maps_id,gem.description,destination.title,playbook.title,playbook.image,playbook.destination,playbook.creator",
+        "creator.first_name,creator.last_name,creator.profile_image,creator.uid,gem.title,gem.image,gem.category,gem.address,gem.google_maps_id,gem.description,destination.title,playbook.title,playbook.locked,playbook.image,playbook.destination,playbook.creator",
     });
 
     const search = await client.getSingle("search", {

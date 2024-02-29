@@ -6,6 +6,7 @@ type PlaybooksGridProps = {
   heading: string;
   list: GroupField;
   showCreator?: boolean;
+  hideLocked?: boolean;
   classes?: string;
 };
 
@@ -18,15 +19,22 @@ export default function PlaybooksGrid(props: PlaybooksGridProps) {
       </h5>
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3">
-        {props.list.map((item, i) => (
-          <PlaybookThumb
-            key={i}
-            playbook={item.playbook as unknown as Content.PlaybookDocument}
-            size="med"
-            showCreator={props.showCreator ? true : false}
-            showDestination={true}
-          />
-        ))}
+        {props.list.map((item, i) => {
+          if (
+            !props.hideLocked ||
+            (props.hideLocked && !(item.playbook as unknown as Content.PlaybookDocument).data.locked)
+          ) {
+            return (
+              <PlaybookThumb
+                key={i}
+                playbook={item.playbook as unknown as Content.PlaybookDocument}
+                size="med"
+                showCreator={props.showCreator ? true : false}
+                showDestination={true}
+              />
+            );
+          }
+        })}
       </div>
     </section>
   );

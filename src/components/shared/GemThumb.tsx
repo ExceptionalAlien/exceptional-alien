@@ -14,6 +14,14 @@ type GemThumbProps = {
 };
 
 export default function GemThumb(props: GemThumbProps) {
+  const unlockedPlaybooks: Content.GemDocumentDataPlaybooksItem[] = [];
+
+  // Only show creator icons for unlocked Playbooks
+  for (let i = 0; i < props.gem.data.playbooks.length; i++) {
+    if (!(props.gem.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data.locked)
+      unlockedPlaybooks.push(props.gem.data.playbooks[i]);
+  }
+
   return (
     <Link
       href={"/gems/" + props.gem.uid}
@@ -59,7 +67,7 @@ export default function GemThumb(props: GemThumbProps) {
               classes="absolute right-0 bottom-0 m-2 md:m-3 max-w-[50%]"
             />
           ) : (
-            props.gem.data.playbooks
+            unlockedPlaybooks
               .slice(0, 6)
               .map(
                 (item, i) =>

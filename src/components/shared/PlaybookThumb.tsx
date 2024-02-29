@@ -28,7 +28,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
       href={"/travel-playbooks/" + props.playbook.uid}
       className={`group/link relative max-w-xl ${props.size === "xlg" && "w-11/12 lg:w-5/12"} ${
         props.size === "lrg" && "w-10/12 lg:w-4/12"
-      } ${props.classes}`}
+      } ${props.playbook.data.locked && "pointer-events-none"} ${props.classes}`}
     >
       {/* Image */}
       {image && (
@@ -72,6 +72,25 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           >
             {props.playbook.data.title}
           </p>
+
+          {props.playbook.data.locked && (
+            <div className="absolute top-0 flex h-full w-full items-center justify-center bg-white bg-opacity-70">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="h-12 w-12 text-ex-blue"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                />
+              </svg>
+            </div>
+          )}
         </div>
       )}
 

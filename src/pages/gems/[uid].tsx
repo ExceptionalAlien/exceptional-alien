@@ -20,6 +20,16 @@ export default function Gem({ page, search }: PageProps) {
   const [placeCoords, setPlaceCoords] = useState<PlaceCoords>({ lat: 0, lng: 0 });
   const [openingHours, setOpeningHours] = useState<string[] | undefined>(undefined);
   const [openStatus, setOpenStatus] = useState<string | undefined>();
+  var unlockedPBCount = 0;
+
+  // Calculate how many unlocked Playbook's feature Gem
+  for (let i = 0; i < page.data.playbooks.length; i++) {
+    if (
+      (page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data &&
+      !(page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data.locked
+    )
+      unlockedPBCount++;
+  }
 
   return (
     <>
@@ -161,9 +171,8 @@ export default function Gem({ page, search }: PageProps) {
           <div className="clear-both"></div>
         </section>
 
-        {page.data.playbooks.length &&
-        (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
-          <PlaybooksGrid heading="Featured In" list={page.data.playbooks} showCreator={true} />
+        {unlockedPBCount ? (
+          <PlaybooksGrid heading="Featured In" list={page.data.playbooks} showCreator={true} hideLocked />
         ) : (
           <></>
         )}
@@ -196,7 +205,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
 
     const page = await client.getByUID("gem", params?.uid as string, {
       fetchLinks:
-        "playbook.title,playbook.image,playbook.destination,playbook.creator,playbook.slices,creator.first_name,creator.last_name,creator.profile_image,destination.title",
+        "playbook.title,playbook.image,playbook.locked,playbook.destination,playbook.creator,playbook.slices,creator.first_name,creator.last_name,creator.profile_image,destination.title",
     });
 
     const search = await client.getSingle("search", {

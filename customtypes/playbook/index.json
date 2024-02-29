@@ -19,6 +19,15 @@
           "placeholder": " 50 characters max."
         }
       },
+      "locked": {
+        "type": "Boolean",
+        "config": {
+          "label": "Locked",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
       "sub_title": {
         "type": "Text",
         "config": {

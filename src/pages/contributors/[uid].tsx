@@ -141,7 +141,9 @@ export default function Creator({ page, search }: PageProps) {
         {page.data.playbooks.length &&
         (page.data.playbooks[0]?.playbook as unknown as Content.PlaybookDocument).data ? (
           <PlaybooksGrid
-            heading={`${page.data.first_name}'${page.data.first_name?.slice(-1) !== "s" ? "s" : ""} Playbooks`}
+            heading={`${page.data.first_name}'${
+              page.data.first_name?.slice(-1) !== "s" && page.data.first_name?.slice(-1) !== "S" ? "s" : ""
+            } Playbooks`}
             list={page.data.playbooks}
           />
         ) : (
@@ -167,7 +169,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
 
     const page = await client.getByUID("creator", params?.uid as string, {
       fetchLinks:
-        "creator.first_name,creator.last_name,creator.profile_image,playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,destination.title",
+        "creator.first_name,creator.last_name,creator.profile_image,playbook.title,playbook.image,playbook.destination,playbook.description,playbook.creator,playbook.locked,destination.title",
     });
 
     const search = await client.getSingle("search", {

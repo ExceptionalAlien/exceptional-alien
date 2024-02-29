@@ -17,6 +17,18 @@ export default function All(props: AllProps) {
   const [results, setResults] = useState(0);
   const [categories, setCategories] = useState<string[]>([]);
   const ref = useRef<HTMLDivElement>(null);
+  const visibleGems: string[] = [];
+
+  // Only show Gems that are not included in a single locked Playbook
+  for (let i = 0; i < props.gems.length; i++) {
+    let gem = props.gems[i];
+    let playbooks = gem.data.playbooks;
+
+    for (let i = 0; i < playbooks.length; i++) {
+      if (!(playbooks[i].playbook as unknown as Content.PlaybookDocument).data.locked && !visibleGems.includes(gem.uid))
+        visibleGems.push(gem.uid);
+    }
+  }
 
   useEffect(() => {
     // Set query on load if URL param exists
@@ -65,7 +77,7 @@ export default function All(props: AllProps) {
         <Gem className="mb-1 mr-1 h-5 overflow-visible md:mr-2 md:h-6" />
         All Gems
         <span className="ml-1 text-base md:ml-2 md:text-xl">
-          ({query.length > 1 || categories.length ? results : props.gems.length})
+          ({query.length > 1 || categories.length ? results : visibleGems.length})
         </span>
       </h4>
 
@@ -90,13 +102,20 @@ export default function All(props: AllProps) {
       >
         {props.gems.map((item, i) => {
           if (
-            (query.length <= 1 && !categories.length) ||
+            (query.length <= 1 && !categories.length && visibleGems.includes(item.uid)) ||
             (categories.length &&
               query.length > 1 &&
               item.data.title?.match(new RegExp(query, "gi")) !== null &&
-              categories.includes(item.data.category.toLowerCase())) ||
-            (query.length > 1 && !categories.length && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
-            (categories.length && query.length <= 1 && categories.includes(item.data.category.toLowerCase()))
+              categories.includes(item.data.category.toLowerCase()) &&
+              visibleGems.includes(item.uid)) ||
+            (query.length > 1 &&
+              !categories.length &&
+              item.data.title?.match(new RegExp(query, "gi")) !== null &&
+              visibleGems.includes(item.uid)) ||
+            (categories.length &&
+              query.length <= 1 &&
+              categories.includes(item.data.category.toLowerCase()) &&
+              visibleGems.includes(item.uid))
           ) {
             return <GemThumb key={i} gem={item as Content.GemDocument} />;
           }
