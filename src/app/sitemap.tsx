@@ -3,7 +3,12 @@ import { createClient } from "@/prismicio";
 export const fetchCache = "force-no-store";
 
 export default async function sitemap() {
-  const client = createClient();
+  const client = createClient({
+    fetchOptions: {
+      cache: "no-store",
+    },
+  });
+
   const destinationsData = await client.getAllByType("destination");
   const playbooksData = await client.getAllByType("playbook");
   const creatorsData = await client.getAllByType("creator");
