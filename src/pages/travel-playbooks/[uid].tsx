@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
@@ -15,10 +15,7 @@ export default function Playbook({ page, search }: PageProps) {
   const router = useRouter();
   const [showVideo, setShowVideo] = useState(false);
   const hasRelated = page.data.related.length > 1 ? true : false;
-
-  useEffect(() => {
-    if (page.data.locked) router.push("/"); // Redirect to home if Playbook locked and user does not have access
-  }, []);
+  if (page.data.locked) router.push("/"); // Redirect to home if Playbook locked and user does not have access
 
   return (
     <>
