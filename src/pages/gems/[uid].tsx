@@ -20,7 +20,6 @@ export default function Gem({ page, search }: PageProps) {
   const [placeCoords, setPlaceCoords] = useState<PlaceCoords>({ lat: 0, lng: 0 });
   const [openingHours, setOpeningHours] = useState<string[] | undefined>(undefined);
   const [openStatus, setOpenStatus] = useState<string | undefined>();
-  const [unlockedPBCount, setUnlockedPBCount] = useState(0);
   const [unlockedPlaybooks, setUnlockedPlaybooks] = useState<Content.GemDocumentDataPlaybooksItem[]>([]);
 
   useEffect(() => {

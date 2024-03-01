@@ -27,10 +27,10 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
     : null; // Prismic image size/crop
 
   useEffect(() => {
-    // Disable Playbook if locked and user does not have access
+    // Disable thumb if locked and user does not have access
     if (props.playbook.data.locked) {
-      const playbooks = window.localStorage.getItem("eapbs");
-      if (playbooks && JSON.parse(playbooks).includes(props.playbook.uid)) setHasAccess(true);
+      const storedPlaybooks = window.localStorage.getItem("eapbs");
+      if (storedPlaybooks && JSON.parse(storedPlaybooks).includes(props.playbook.uid)) setHasAccess(true);
     }
   }, []);
 

@@ -33,9 +33,9 @@ export default function Verify({ params, search }: PageProps) {
     }
 
     // Check if user already has access
-    const playbooks = window.localStorage.getItem("eapbs");
+    const storedPlaybooks = window.localStorage.getItem("eapbs");
 
-    if (playbooks && JSON.parse(playbooks).includes(data[0].playbook_uid)) {
+    if (storedPlaybooks && JSON.parse(storedPlaybooks).includes(data[0].playbook_uid)) {
       // Already has access
       router.push(`/travel-playbooks/${data[0].playbook_uid}`);
     } else if (data[0].reusable || !data[0].use_count) {
@@ -59,11 +59,11 @@ export default function Verify({ params, search }: PageProps) {
       return;
     }
 
-    // Add to local storage and redirect
+    // Success - add to local storage and redirect
     const playbooks = window.localStorage.getItem("eapbs");
     var pbArray = [];
-    if (playbooks) pbArray = JSON.parse(playbooks); // Local storage item alrady exists
-    if (!pbArray.includes(data.playbook_uid)) pbArray.push(data.playbook_uid); // Only add if item doesn't already include Playbook
+    if (playbooks) pbArray = JSON.parse(playbooks); // Local storage item already exists
+    if (!pbArray.includes(data.playbook_uid)) pbArray.push(data.playbook_uid); // Only add if storage doesn't already include Playbook
     window.localStorage.setItem("eapbs", JSON.stringify(pbArray));
     router.push(`/travel-playbooks/${data.playbook_uid}`);
   };
@@ -74,7 +74,7 @@ export default function Verify({ params, search }: PageProps) {
 
     timeout = setTimeout(() => {
       verify();
-    }, 2000); // Pause so user can read text
+    }, 2000); // Pause so user can read loading text
 
     return () => clearTimeout(timeout);
   }, []);
@@ -82,27 +82,18 @@ export default function Verify({ params, search }: PageProps) {
   return (
     <>
       <Head>
-        <title>Exceptional ALIEN - Playbook Access</title>
-        <meta name="description" content="Page not found" />
+        <title>Exceptional ALIEN</title>
         <meta name="robots" content="noindex" />
       </Head>
 
       <main className="pt-12 md:max-w-3xl md:pt-16 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-        <section className="!mt-0">
-          <h2 className="text-4xl font-bold md:text-6xl">Playbook Access</h2>
-
-          <h3 className={`text-ex-grey ${invalidCode && "text-ex-red"}`}>
-            {!invalidCode
-              ? "You are attempting to access an exclusive Travel Playbook"
-              : "Sorry, your access code is already used or invalid"}
-          </h3>
-        </section>
-
-        {!invalidCode && (
-          <section>
+        <section className="!mt-0 pt-16 md:pt-24">
+          {!invalidCode ? (
             <Loading text="Verifying access code" />
-          </section>
-        )}
+          ) : (
+            <p className="text-center text-ex-red">Sorry, your access code is already used or invalid</p>
+          )}
+        </section>
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />

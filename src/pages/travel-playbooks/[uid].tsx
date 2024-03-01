@@ -20,14 +20,14 @@ export default function Playbook({ page, search }: PageProps) {
   useEffect(() => {
     // Redirect to home if Playbook locked and user does not have access
     if (page.data.locked) {
-      const playbooks = window.localStorage.getItem("eapbs");
+      const storedPlaybooks = window.localStorage.getItem("eapbs");
 
-      if (playbooks && JSON.parse(playbooks).includes(page.uid)) {
+      if (storedPlaybooks && JSON.parse(storedPlaybooks).includes(page.uid)) {
         // Included
         setHasAccess(true);
       } else {
         // Not included
-        router.push("/");
+        router.push("/"); // Redirect
       }
     }
   }, []);
