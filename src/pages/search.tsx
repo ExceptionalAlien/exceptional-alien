@@ -27,7 +27,7 @@ export default function Search({ page }: PageProps) {
 
     // Redirect if single destination returned
     if (destinations.results.length === 1) {
-      setSearchResults({ destinations: [], playbooks: [], creators: [], gems: [], query: "" }); // Reset
+      setSearchResults({ destinations: [], playbooks: [], creators: [], gems: [], query: "" }); // Clear
       router.replace(`/destinations/${destinations.results[0].uid}`);
     } else {
       setSearchResults({
