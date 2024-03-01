@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { createClient } from "@/prismicio";
-import { Content, asLink, asText } from "@prismicio/client";
+import { Content, GroupField, asLink, asText } from "@prismicio/client";
 import Hero from "@/components/shared/Hero";
 import About from "@/components/shared/About";
 import PlaybooksGrid from "@/components/shared/PlaybooksGrid";
@@ -20,16 +20,29 @@ export default function Gem({ page, search }: PageProps) {
   const [placeCoords, setPlaceCoords] = useState<PlaceCoords>({ lat: 0, lng: 0 });
   const [openingHours, setOpeningHours] = useState<string[] | undefined>(undefined);
   const [openStatus, setOpenStatus] = useState<string | undefined>();
-  var unlockedPBCount = 0;
+  const [unlockedPBCount, setUnlockedPBCount] = useState(0);
+  const [unlockedPlaybooks, setUnlockedPlaybooks] = useState<Content.GemDocumentDataPlaybooksItem[]>([]);
 
-  // Calculate how many unlocked Playbook's feature Gem
-  for (let i = 0; i < page.data.playbooks.length; i++) {
-    if (
-      (page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data &&
-      !(page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data.locked
-    )
-      unlockedPBCount++;
-  }
+  useEffect(() => {
+    // Calculate how many unlocked Playbook's feature Gem
+    const playbooks = [];
+    const storedPlaybooks = window.localStorage.getItem("eapbs");
+
+    for (let i = 0; i < page.data.playbooks.length; i++) {
+      if (
+        ((page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data &&
+          !(page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data.locked) ||
+        ((page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data &&
+          storedPlaybooks &&
+          JSON.parse(storedPlaybooks).includes(
+            (page.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).uid
+          ))
+      )
+        playbooks.push(page.data.playbooks[i]);
+    }
+
+    setUnlockedPlaybooks(playbooks);
+  }, []);
 
   return (
     <>
@@ -153,7 +166,7 @@ export default function Gem({ page, search }: PageProps) {
           </TabHeading>
         </section>
 
-        <Quotes playbooks={page.data.playbooks} gem={page.uid} />
+        <Quotes playbooks={unlockedPlaybooks as GroupField} gem={page.uid} />
         <About text={page.data.about} />
 
         {/* Opening hours */}
@@ -171,8 +184,8 @@ export default function Gem({ page, search }: PageProps) {
           <div className="clear-both"></div>
         </section>
 
-        {unlockedPBCount ? (
-          <PlaybooksGrid heading="Featured In" list={page.data.playbooks} showCreator={true} hideLocked />
+        {unlockedPlaybooks.length ? (
+          <PlaybooksGrid heading="Featured In" list={unlockedPlaybooks as GroupField} showCreator={true} />
         ) : (
           <></>
         )}

@@ -16,19 +16,31 @@ export default function All(props: AllProps) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState(0);
   const [categories, setCategories] = useState<string[]>([]);
+  const [visibleGems, setVisibleGems] = useState<string[]>([]);
   const ref = useRef<HTMLDivElement>(null);
-  const visibleGems: string[] = [];
 
-  // Only show Gems that are not included in a single locked Playbook
-  for (let i = 0; i < props.gems.length; i++) {
-    let gem = props.gems[i];
-    let playbooks = gem.data.playbooks;
+  const setGems = () => {
+    // Only show Gems that are not included in a single locked Playbook
+    const gems: string[] = [];
+    const storedPlaybooks = window.localStorage.getItem("eapbs");
 
-    for (let i = 0; i < playbooks.length; i++) {
-      if (!(playbooks[i].playbook as unknown as Content.PlaybookDocument).data.locked && !visibleGems.includes(gem.uid))
-        visibleGems.push(gem.uid);
+    for (let i = 0; i < props.gems.length; i++) {
+      let gem = props.gems[i];
+      let playbooks = gem.data.playbooks;
+
+      for (let i = 0; i < playbooks.length; i++) {
+        if (
+          (!(playbooks[i].playbook as unknown as Content.PlaybookDocument).data.locked && !gems.includes(gem.uid)) ||
+          (storedPlaybooks &&
+            JSON.parse(storedPlaybooks).includes((playbooks[i].playbook as unknown as Content.PlaybookDocument).uid) &&
+            !gems.includes(gem.uid))
+        )
+          gems.push(gem.uid);
+      }
     }
-  }
+
+    setVisibleGems(gems);
+  };
 
   useEffect(() => {
     // Set query on load if URL param exists
@@ -40,6 +52,8 @@ export default function All(props: AllProps) {
     if (router.query.c) {
       setCategories((router.query.c as string).split(","));
     }
+
+    setGems();
   }, []);
 
   useEffect(() => {
@@ -69,7 +83,7 @@ export default function All(props: AllProps) {
     );
 
     setResults(ref.current!.children.length); // Count results
-  }, [query, categories]);
+  }, [query, categories, visibleGems]);
 
   return (
     <section className="relative">

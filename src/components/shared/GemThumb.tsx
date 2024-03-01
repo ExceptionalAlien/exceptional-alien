@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content } from "@prismicio/client";
@@ -14,13 +15,26 @@ type GemThumbProps = {
 };
 
 export default function GemThumb(props: GemThumbProps) {
-  const unlockedPlaybooks: Content.GemDocumentDataPlaybooksItem[] = [];
+  const [unlockedPlaybooks, setUnlockedPlaybooks] = useState<Content.GemDocumentDataPlaybooksItem[]>([]);
 
-  // Only show creator icons for unlocked Playbooks
-  for (let i = 0; i < props.gem.data.playbooks.length; i++) {
-    if (!(props.gem.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data.locked)
-      unlockedPlaybooks.push(props.gem.data.playbooks[i]);
-  }
+  useEffect(() => {
+    // Only show creator icons for unlocked Playbooks
+    const playbooks = [];
+    const storedPlaybooks = window.localStorage.getItem("eapbs");
+
+    for (let i = 0; i < props.gem.data.playbooks.length; i++) {
+      if (
+        !(props.gem.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data.locked ||
+        (storedPlaybooks &&
+          JSON.parse(storedPlaybooks).includes(
+            (props.gem.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).uid
+          ))
+      )
+        playbooks.push(props.gem.data.playbooks[i]);
+    }
+
+    setUnlockedPlaybooks(playbooks);
+  }, []);
 
   return (
     <Link

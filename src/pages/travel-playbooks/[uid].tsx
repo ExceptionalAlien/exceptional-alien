@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import type { InferGetStaticPropsType, GetStaticPropsContext, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
@@ -14,8 +14,23 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Playbook({ page, search }: PageProps) {
   const router = useRouter();
   const [showVideo, setShowVideo] = useState(false);
+  const [hasAccess, setHasAccess] = useState(false);
   const hasRelated = page.data.related.length > 1 ? true : false;
-  if (page.data.locked) router.push("/"); // Redirect to home if Playbook locked and user does not have access
+
+  useEffect(() => {
+    // Redirect to home if Playbook locked and user does not have access
+    if (page.data.locked) {
+      const playbooks = window.localStorage.getItem("eapbs");
+
+      if (playbooks && JSON.parse(playbooks).includes(page.uid)) {
+        // Included
+        setHasAccess(true);
+      } else {
+        // Not included
+        router.push("/");
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -86,8 +101,12 @@ export default function Playbook({ page, search }: PageProps) {
       </Head>
 
       <main className={`${!hasRelated && "!pb-0"}`}>
-        <Viewer data={page.data} setShowVideo={setShowVideo} />
-        {hasRelated && <Related playbooks={page.data.related} />}
+        {(!page.data.locked || hasAccess) && (
+          <>
+            <Viewer data={page.data} setShowVideo={setShowVideo} />
+            {hasRelated && <Related playbooks={page.data.related} />}
+          </>
+        )}
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />

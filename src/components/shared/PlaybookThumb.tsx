@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Content, asText } from "@prismicio/client";
@@ -17,18 +18,28 @@ type PlaybookThumbProps = {
 };
 
 export default function PlaybookThumb(props: PlaybookThumbProps) {
+  const [hasAccess, setHasAccess] = useState(false);
+
   const image = props.playbook.data.image?.url
     ? props.size && props.size !== "sml"
       ? props.playbook.data.image.mobile
       : props.playbook.data.image.thumb
     : null; // Prismic image size/crop
 
+  useEffect(() => {
+    // Disable Playbook if locked and user does not have access
+    if (props.playbook.data.locked) {
+      const playbooks = window.localStorage.getItem("eapbs");
+      if (playbooks && JSON.parse(playbooks).includes(props.playbook.uid)) setHasAccess(true);
+    }
+  }, []);
+
   return (
     <Link
       href={"/travel-playbooks/" + props.playbook.uid}
       className={`group/link relative max-w-xl ${props.size === "xlg" && "w-11/12 lg:w-5/12"} ${
         props.size === "lrg" && "w-10/12 lg:w-4/12"
-      } ${props.playbook.data.locked && "pointer-events-none"} ${props.classes}`}
+      } ${props.playbook.data.locked && !hasAccess && "pointer-events-none"} ${props.classes}`}
     >
       {/* Image */}
       {image && (
@@ -73,7 +84,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
             {props.playbook.data.title}
           </p>
 
-          {props.playbook.data.locked && (
+          {props.playbook.data.locked && !hasAccess && (
             <div className="absolute top-0 flex h-full w-full items-center justify-center bg-white bg-opacity-70">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

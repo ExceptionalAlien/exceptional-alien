@@ -1,4 +1,5 @@
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
+import Head from "next/head";
 import { createClient } from "@/prismicio";
 import SearchBox from "@/components/shared/SearchBox";
 
@@ -7,6 +8,12 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Error500({ search }: PageProps) {
   return (
     <>
+      <Head>
+        <title>Exceptional ALIEN - 500 Error</title>
+        <meta name="description" content="Internal server error" />
+        <meta name="robots" content="noindex" />
+      </Head>
+
       <main className="pt-12 md:max-w-3xl md:pt-16 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
         <section className="!mt-0">
           <h2 className="text-4xl font-bold md:text-6xl">500 Error</h2>

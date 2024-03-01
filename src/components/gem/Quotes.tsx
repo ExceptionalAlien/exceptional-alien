@@ -19,10 +19,7 @@ export default function Quotes(props: QuotesProps) {
       const primary = slices[ii].primary;
 
       // Gem match
-      if (
-        (primary.gem as unknown as Content.GemDocument).uid === props.gem &&
-        !(props.playbooks[i].playbook as unknown as Content.PlaybookDocument).data.locked
-      ) {
+      if ((primary.gem as unknown as Content.GemDocument).uid === props.gem) {
         const gemCreator = primary.creator as unknown as Content.CreatorDocument;
         const playbookCreator = (props.playbooks[i].playbook as unknown as Content.PlaybookDocument).data
           .creator as unknown as Content.CreatorDocument;
