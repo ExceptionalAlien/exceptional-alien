@@ -27,7 +27,7 @@ export default function Playbook({ page, search }: PageProps) {
         setHasAccess(true);
       } else {
         // Not included
-        router.push("/"); // Redirect
+        router.replace("/"); // Redirect
       }
     }
   }, []);

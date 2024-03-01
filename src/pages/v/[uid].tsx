@@ -37,7 +37,7 @@ export default function Verify({ params, search }: PageProps) {
 
     if (storedPlaybooks && JSON.parse(storedPlaybooks).includes(data[0].playbook_uid)) {
       // Already has access
-      router.push(`/travel-playbooks/${data[0].playbook_uid}`);
+      router.replace(`/travel-playbooks/${data[0].playbook_uid}`);
     } else if (data[0].reusable || !data[0].use_count) {
       // Code valid
       confirm(data[0]);
@@ -65,7 +65,7 @@ export default function Verify({ params, search }: PageProps) {
     if (playbooks) pbArray = JSON.parse(playbooks); // Local storage item already exists
     if (!pbArray.includes(data.playbook_uid)) pbArray.push(data.playbook_uid); // Only add if storage doesn't already include Playbook
     window.localStorage.setItem("eapbs", JSON.stringify(pbArray));
-    router.push(`/travel-playbooks/${data.playbook_uid}`);
+    router.replace(`/travel-playbooks/${data.playbook_uid}`);
   };
 
   useEffect(() => {

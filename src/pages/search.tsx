@@ -22,49 +22,54 @@ export default function Search({ page }: PageProps) {
 
   const loadResults = async (query: string) => {
     // Get data from Prismic and update context
-    setSearchResults({ destinations: [], playbooks: [], creators: [], gems: [], query: query }); // Reset
-
+    setSearchResults({ destinations: [], playbooks: [], creators: [], gems: [], query: query }); // Reset with query
     const destinations = await getData("destination", query);
 
-    setSearchResults({
-      destinations: destinations.results as Content.DestinationDocument[],
-      playbooks: [],
-      creators: [],
-      gems: [],
-      query: query,
-    });
+    // Redirect if single destination returned
+    if (destinations.results.length === 1) {
+      setSearchResults({ destinations: [], playbooks: [], creators: [], gems: [], query: "" }); // Reset
+      router.replace(`/destinations/${destinations.results[0].uid}`);
+    } else {
+      setSearchResults({
+        destinations: destinations.results as Content.DestinationDocument[],
+        playbooks: [],
+        creators: [],
+        gems: [],
+        query: query,
+      });
 
-    const playbooks = await getData("playbook", query);
+      const playbooks = await getData("playbook", query);
 
-    setSearchResults({
-      destinations: destinations.results as Content.DestinationDocument[],
-      playbooks: playbooks.results as Content.PlaybookDocument[],
-      creators: [],
-      gems: [],
-      query: query,
-    });
+      setSearchResults({
+        destinations: destinations.results as Content.DestinationDocument[],
+        playbooks: playbooks.results as Content.PlaybookDocument[],
+        creators: [],
+        gems: [],
+        query: query,
+      });
 
-    const creators = await getData("creator", query);
+      const creators = await getData("creator", query);
 
-    setSearchResults({
-      destinations: destinations.results as Content.DestinationDocument[],
-      playbooks: playbooks.results as Content.PlaybookDocument[],
-      creators: creators.results as Content.CreatorDocument[],
-      gems: [],
-      query: query,
-    });
+      setSearchResults({
+        destinations: destinations.results as Content.DestinationDocument[],
+        playbooks: playbooks.results as Content.PlaybookDocument[],
+        creators: creators.results as Content.CreatorDocument[],
+        gems: [],
+        query: query,
+      });
 
-    const gems = await getData("gem", query);
+      const gems = await getData("gem", query);
 
-    setSearchResults({
-      destinations: destinations.results as Content.DestinationDocument[],
-      playbooks: playbooks.results as Content.PlaybookDocument[],
-      gems: gems.results as Content.GemDocument[],
-      creators: creators.results as Content.CreatorDocument[],
-      query: query,
-    });
+      setSearchResults({
+        destinations: destinations.results as Content.DestinationDocument[],
+        playbooks: playbooks.results as Content.PlaybookDocument[],
+        gems: gems.results as Content.GemDocument[],
+        creators: creators.results as Content.CreatorDocument[],
+        query: query,
+      });
 
-    setSearching(false);
+      setSearching(false);
+    }
   };
 
   useEffect(() => {
