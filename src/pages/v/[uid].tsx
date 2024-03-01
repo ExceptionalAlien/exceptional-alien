@@ -69,8 +69,14 @@ export default function Verify({ params, search }: PageProps) {
   };
 
   useEffect(() => {
+    var timeout: undefined | ReturnType<typeof setTimeout>;
     //localStorage.clear();
-    verify();
+
+    timeout = setTimeout(() => {
+      verify();
+    }, 2500); // Pause so user can read text
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
