@@ -74,7 +74,7 @@ export default function Verify({ params, search }: PageProps) {
 
     timeout = setTimeout(() => {
       verify();
-    }, 2500); // Pause so user can read text
+    }, 2000); // Pause so user can read text
 
     return () => clearTimeout(timeout);
   }, []);
