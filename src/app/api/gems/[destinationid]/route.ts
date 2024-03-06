@@ -10,7 +10,8 @@ export async function GET(request: Request, { params }: { params: { destinationi
     },
     fetch: "gem.title,gem.category,gem.playbooks,gem.location,gem.description,gem.address",
     filters: [filter.at("my.gem.destination", params.destinationid)],
-    fetchLinks: "playbook.creator,creator.profile_image,playbook.slices,playbook.locked",
+    fetchLinks:
+      "playbook.creator,playbook.slices,playbook.locked,creator.profile_image,creator.first_name,creator.last_name",
   });
 
   return Response.json(gems);
