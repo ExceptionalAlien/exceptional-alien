@@ -8,7 +8,6 @@ type SliderProps = {
 
 export default function Slider({ minItems = 2, ...props }: SliderProps) {
   const [scrollPos, setScrollPos] = useState("start");
-  const [itemCount, setItemCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   const scrollBack = () => {
@@ -27,7 +26,6 @@ export default function Slider({ minItems = 2, ...props }: SliderProps) {
 
   useEffect(() => {
     const slider = ref.current!;
-    setItemCount(props.children.length);
 
     const handleScroll = () => {
       // Detect if scroll at start or end
@@ -73,7 +71,7 @@ export default function Slider({ minItems = 2, ...props }: SliderProps) {
       {/* Right arrow */}
       <button
         onClick={scrollForward}
-        className={`right-3 ${(scrollPos === "end" || (itemCount && itemCount <= minItems)) && "!hidden"}`}
+        className={`right-3 ${(scrollPos === "end" || props.children.length <= minItems) && "!hidden"}`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
