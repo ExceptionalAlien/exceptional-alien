@@ -30,7 +30,7 @@ export default function All(props: AllProps) {
 
       for (let i = 0; i < playbooks.length; i++) {
         if (
-          (!(playbooks[i].playbook as unknown as Content.PlaybookDocument).data.locked && !gems.includes(gem.uid)) ||
+          (!(playbooks[i].playbook as unknown as Content.PlaybookDocument).data?.locked && !gems.includes(gem.uid)) ||
           (storedPlaybooks &&
             JSON.parse(storedPlaybooks).includes((playbooks[i].playbook as unknown as Content.PlaybookDocument).uid) &&
             !gems.includes(gem.uid))

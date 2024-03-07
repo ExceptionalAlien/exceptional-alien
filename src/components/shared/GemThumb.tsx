@@ -24,7 +24,7 @@ export default function GemThumb(props: GemThumbProps) {
 
     for (let i = 0; i < props.gem.data.playbooks.length; i++) {
       if (
-        !(props.gem.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data.locked ||
+        !(props.gem.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).data?.locked ||
         (storedPlaybooks &&
           JSON.parse(storedPlaybooks).includes(
             (props.gem.data.playbooks[i]?.playbook as unknown as Content.PlaybookDocument).uid
