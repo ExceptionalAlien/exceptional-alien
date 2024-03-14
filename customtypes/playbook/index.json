@@ -28,6 +28,13 @@
           "default_value": false
         }
       },
+      "app_title": {
+        "type": "Text",
+        "config": {
+          "label": "App Title",
+          "placeholder": "Only used for app (optional)"
+        }
+      },
       "sub_title": {
         "type": "Text",
         "config": {

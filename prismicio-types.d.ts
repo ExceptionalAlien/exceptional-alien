@@ -1058,6 +1058,17 @@ interface PlaybookDocumentData {
   locked: prismic.BooleanField;
 
   /**
+   * App Title field in *Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Only used for app (optional)
+   * - **API ID Path**: playbook.app_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  app_title: prismic.KeyTextField;
+
+  /**
    * Sub-Title field in *Playbook*
    *
    * - **Field Type**: Text
