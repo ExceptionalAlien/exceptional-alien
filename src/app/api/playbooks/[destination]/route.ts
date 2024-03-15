@@ -9,7 +9,7 @@ export async function GET(request: Request, { params }: { params: { destination:
       cache: "no-store",
     },
     fetchLinks:
-      "playbook.slices,playbook.sub_title,playbook.app_title,playbook.image,playbook.locked,playbook.creator,creator.first_name,creator.last_name,creator.title,playbook.destination,destination.title",
+      "playbook.slices,playbook.sub_title,playbook.app_title,playbook.image,playbook.locked,playbook.creator,playbook.destination,creator.first_name,creator.last_name,creator.title,destination.title",
   });
 
   return Response.json(
