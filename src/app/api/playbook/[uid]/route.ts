@@ -9,7 +9,8 @@ export async function GET(request: Request, { params }: { params: { uid: string 
     },
     fetch:
       "playbook.description,playbook.slices,playbook.sub_title,playbook.app_title,playbook.image,playbook.locked,playbook.creator,playbook.destination",
-    fetchLinks: "creator.first_name,creator.last_name,creator.title,creator.profile_image,destination.title",
+    fetchLinks:
+      "creator.first_name,creator.last_name,creator.title,creator.profile_image,destination.title,gem.title,gem.category",
   });
 
   return Response.json(playbook);
