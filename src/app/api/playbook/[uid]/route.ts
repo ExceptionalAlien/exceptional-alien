@@ -8,7 +8,7 @@ export async function GET(request: Request, { params }: { params: { uid: string 
       cache: "no-store",
     },
     fetch:
-      "playbook.slices,playbook.sub_title,playbook.app_title,playbook.image,playbook.locked,playbook.creator,playbook.destination",
+      "playbook.description,playbook.slices,playbook.sub_title,playbook.app_title,playbook.image,playbook.locked,playbook.creator,playbook.destination",
     fetchLinks: "creator.first_name,creator.last_name,creator.title,creator.profile_image,destination.title",
   });
 
