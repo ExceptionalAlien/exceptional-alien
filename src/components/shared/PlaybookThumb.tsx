@@ -20,7 +20,7 @@ type PlaybookThumbProps = {
 export default function PlaybookThumb(props: PlaybookThumbProps) {
   const [hasAccess, setHasAccess] = useState(false);
 
-  const image = props.playbook.data.image?.url
+  const image = props.playbook.data?.image?.url
     ? props.size && props.size !== "sml"
       ? props.playbook.data.image.mobile
       : props.playbook.data.image.thumb
@@ -28,7 +28,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 
   useEffect(() => {
     // Disable thumb if locked and user does not have access
-    if (props.playbook.data.locked) {
+    if (props.playbook.data?.locked) {
       const storedPlaybooks = window.localStorage.getItem("eapbs");
       if (storedPlaybooks && JSON.parse(storedPlaybooks).includes(props.playbook.uid)) setHasAccess(true);
     }
@@ -39,7 +39,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
       href={"/travel-playbooks/" + props.playbook.uid}
       className={`group/link relative max-w-xl ${props.size === "xlg" && "w-11/12 lg:w-5/12"} ${
         props.size === "lrg" && "w-10/12 lg:w-4/12"
-      } ${props.playbook.data.locked && !hasAccess && "pointer-events-none"} ${props.classes}`}
+      } ${props.playbook.data?.locked && !hasAccess && "pointer-events-none"} ${props.classes}`}
     >
       {/* Image */}
       {image && (
