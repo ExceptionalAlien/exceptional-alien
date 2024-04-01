@@ -132,6 +132,7 @@ function GoogleMap(props: MapProps) {
             ) {
               resolve(place.geometry.location);
             } else {
+              resolve(null);
               console.log(`${status} (${uid})`);
             }
           })
@@ -145,66 +146,69 @@ function GoogleMap(props: MapProps) {
         if (gem.data.google_maps_id) {
           const div = document.createElement("div");
           const coords = (await getCoords(gem.data.google_maps_id as string, gem.uid)) as google.maps.LatLng;
-          console.log(`${gem.uid} - ${coords}`);
-          div.setAttribute("id", "map-gem-" + gem.uid);
-          div.classList.add("map-gem");
-          createRoot(div).render(
-            <GemIcon category={gem.data.category} marker classes="-translate-x-1/2 -translate-y-1/2" />
-          );
 
-          // Add marker to map
-          const marker = new window.google.maps.marker.AdvancedMarkerElement({
-            map,
-            position: coords,
-            title: gem.data.title,
-            content: div,
-          });
+          if (coords) {
+            console.log(`${gem.uid} - ${coords}`);
+            div.setAttribute("id", "map-gem-" + gem.uid);
+            div.classList.add("map-gem");
+            createRoot(div).render(
+              <GemIcon category={gem.data.category} marker classes="-translate-x-1/2 -translate-y-1/2" />
+            );
 
-          // List gem is already in view
-          if (focusedGem === gem.uid) {
-            div.classList.add("selected-gem");
-            marker.zIndex = 1;
-          }
-
-          // Include marker in init map boundary
-          bounds.extend(coords);
-
-          marker.addListener("click", () => {
-            const viewerHeight = props.viewerRef.offsetTop + props.viewerRef.clientHeight;
-
-            const listGemPos =
-              (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin);
-
-            // Keep map in view if gem at bottom of list
-            const scrollPos =
-              orientation === "landscape" && listGemPos + window.innerHeight > viewerHeight
-                ? viewerHeight - window.innerHeight
-                : listGemPos;
-
-            clicked = true; // Wait until auto scroll and zoom finish
-            clickedTimer !== null && clearTimeout(clickedTimer);
-
-            clickedTimer = setTimeout(() => {
-              clicked = false;
-            }, 1000);
-
-            window.scrollTo({
-              top: scrollPos,
-              behavior: "smooth",
+            // Add marker to map
+            const marker = new window.google.maps.marker.AdvancedMarkerElement({
+              map,
+              position: coords,
+              title: gem.data.title,
+              content: div,
             });
 
-            // Zoom and center marker
-            if (!clickedGem) {
-              if (focusedGem !== gem.uid) {
-                resetMapGems(); // Needed because markers can't be styled if not visible on map
-              }
-
-              map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
-              initZoom && map.setZoom(initZoom + 2);
+            // List gem is already in view
+            if (focusedGem === gem.uid) {
+              div.classList.add("selected-gem");
+              marker.zIndex = 1;
             }
 
-            clickedGem = gem.uid;
-          });
+            // Include marker in init map boundary
+            bounds.extend(coords);
+
+            marker.addListener("click", () => {
+              const viewerHeight = props.viewerRef.offsetTop + props.viewerRef.clientHeight;
+
+              const listGemPos =
+                (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin);
+
+              // Keep map in view if gem at bottom of list
+              const scrollPos =
+                orientation === "landscape" && listGemPos + window.innerHeight > viewerHeight
+                  ? viewerHeight - window.innerHeight
+                  : listGemPos;
+
+              clicked = true; // Wait until auto scroll and zoom finish
+              clickedTimer !== null && clearTimeout(clickedTimer);
+
+              clickedTimer = setTimeout(() => {
+                clicked = false;
+              }, 1000);
+
+              window.scrollTo({
+                top: scrollPos,
+                behavior: "smooth",
+              });
+
+              // Zoom and center marker
+              if (!clickedGem) {
+                if (focusedGem !== gem.uid) {
+                  resetMapGems(); // Needed because markers can't be styled if not visible on map
+                }
+
+                map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
+                initZoom && map.setZoom(initZoom + 2);
+              }
+
+              clickedGem = gem.uid;
+            });
+          }
         } else {
           alert("Gem place ID missing: " + gem.data.title);
         }
