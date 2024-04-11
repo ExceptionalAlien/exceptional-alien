@@ -7,7 +7,8 @@ export async function GET(request: Request, { params }: { params: { uid: string 
     fetchOptions: {
       cache: "no-store",
     },
-    fetch: "gem.title,gem.category,gem.playbooks,gem.description,gem.address,gem.image,gem.about,gem.website",
+    fetch:
+      "gem.title,gem.category,gem.playbooks,gem.description,gem.address,gem.image,gem.about,gem.website,gem.location",
     fetchLinks:
       "playbook.sub_title,playbook.creator,playbook.app_title,playbook.destination,playbook.slices,playbook.locked,playbook.image,creator.profile_image,creator.first_name,creator.last_name,creator.title,destination.title",
   });
