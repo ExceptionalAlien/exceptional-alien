@@ -114,6 +114,15 @@
           "placeholder": "YouTube link"
         }
       },
+      "hidden": {
+        "type": "Boolean",
+        "config": {
+          "label": "Hidden",
+          "default_value": false,
+          "placeholder_true": "true",
+          "placeholder_false": "false"
+        }
+      },
       "related": {
         "type": "Group",
         "config": {

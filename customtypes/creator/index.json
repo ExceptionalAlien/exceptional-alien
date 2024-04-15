@@ -144,6 +144,15 @@
           "customtypes": ["creator"]
         }
       },
+      "hidden": {
+        "type": "Boolean",
+        "config": {
+          "label": "Hidden",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
       "playbooks": {
         "type": "Group",
         "config": {

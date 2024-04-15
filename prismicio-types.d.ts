@@ -341,6 +341,18 @@ interface CreatorDocumentData {
   nomination: prismic.ContentRelationshipField<"creator">;
 
   /**
+   * Hidden field in *Creator*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: creator.hidden
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hidden: prismic.BooleanField;
+
+  /**
    * Playbooks field in *Creator*
    *
    * - **Field Type**: Group
@@ -1155,6 +1167,18 @@ interface PlaybookDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   video: prismic.EmbedField;
+
+  /**
+   * Hidden field in *Playbook*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: playbook.hidden
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hidden: prismic.BooleanField;
 
   /**
    * Related field in *Playbook*
