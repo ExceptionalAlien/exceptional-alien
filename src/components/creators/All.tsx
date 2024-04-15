@@ -12,6 +12,7 @@ export default function All(props: AllProps) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  console.log(props.creators);
 
   useEffect(() => {
     setResults(ref.current!.children.length); // Count results
@@ -35,8 +36,9 @@ export default function All(props: AllProps) {
       >
         {props.creators.map((item, i) => {
           if (
-            query.length <= 1 ||
+            (query.length <= 1 && !item.data.hidden) ||
             (query.length > 1 &&
+              !item.data.hidden &&
               `${item.data.first_name} ${item.data.last_name}`.match(new RegExp(query, "gi")) !== null)
           ) {
             return <CreatorThumb key={i} creator={item as Content.CreatorDocument} />;

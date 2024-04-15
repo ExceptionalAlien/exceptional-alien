@@ -89,7 +89,8 @@ const getData = async () => {
   const client = createClient();
 
   const data = await client.getAllByType("creator", {
-    fetch: "creator.first_name,creator.last_name,creator.profile_image,creator.title,creator.current_city",
+    fetch:
+      "creator.first_name,creator.last_name,creator.profile_image,creator.title,creator.current_city,creator.hidden",
     orderings: [
       {
         field: "my.creator.first_name",

@@ -35,13 +35,16 @@ export default function All(props: AllProps) {
       >
         {props.playbooks.map((item, i) => {
           if (
-            query.length <= 1 ||
-            (query.length > 1 && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
+            (query.length <= 1 && !item.data.hidden) ||
+            (query.length > 1 && !item.data.hidden && item.data.title?.match(new RegExp(query, "gi")) !== null) ||
             (query.length > 1 &&
+              !item.data.hidden &&
+              (item.data.destination as unknown as Content.DestinationDocument).data?.title &&
               (item.data.destination as unknown as Content.DestinationDocument).data?.title?.match(
                 new RegExp(query, "gi")
               ) !== null) ||
             (query.length > 1 &&
+              !item.data.hidden &&
               `${(item.data.creator as unknown as Content.CreatorDocument).data.first_name} ${
                 (item.data.creator as unknown as Content.CreatorDocument).data.last_name
               }`.match(new RegExp(query, "gi")) !== null)

@@ -89,7 +89,7 @@ const getData = async () => {
   const client = createClient();
 
   const data = await client.getAllByType("playbook", {
-    fetch: "playbook.title,playbook.image,playbook.locked,playbook.creator,playbook.destination",
+    fetch: "playbook.title,playbook.image,playbook.locked,playbook.creator,playbook.destination,playbook.hidden",
     fetchLinks: "destination.title,creator.first_name,creator.last_name",
     orderings: [
       {
