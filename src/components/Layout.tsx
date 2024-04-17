@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import localFont from "next/font/local";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import { Content } from "@prismicio/client";
 import { CreatorsContext } from "@/context/CreatorsContext";
 import { PlaybooksContext } from "@/context/PlaybooksContext";
@@ -36,6 +37,7 @@ const helveticaMonospaced = localFont({
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [creators, setCreators] = useState<Content.CreatorDocument<string>[]>([]);
   const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
   const [gems, setGems] = useState<Gems>({});
@@ -49,6 +51,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   });
 
   const [showingSearchBox, setShowingSearchBox] = useState(false);
+
+  const css = `
+  .gem-icon {
+    color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"};
+  }
+
+  .selected-gem .gem-icon-bg {
+    color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"} !important;
+  }
+`;
 
   useEffect(() => {
     // Hack! - https://github.com/vercel/next.js/issues/37141
@@ -71,6 +83,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <GemsContext.Provider value={{ gems, setGems }}>
           <SearchContext.Provider value={{ searchResults, setSearchResults }}>
             <SearchBoxContext.Provider value={{ showingSearchBox, setShowingSearchBox }}>
+              <style>{css}</style>
+
               <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
                 <div className="bg-white">
                   <div className="p-safe [&>main>section]:mt-8 [&>main>section]:pl-4 [&>main>section]:pr-4 [&>main>section]:md:mt-12 [&>main>section]:md:pl-6 [&>main>section]:md:pr-6 [&>main]:m-auto [&>main]:mt-12 [&>main]:min-h-[calc(100vh-336px)] [&>main]:pb-16 [&>main]:md:mt-20 [&>main]:md:min-h-[calc(100vh-368px)] [&>main]:md:pb-24">

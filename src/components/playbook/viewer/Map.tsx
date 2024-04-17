@@ -1,12 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import { useSearchParams } from "next/navigation";
 import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/shared/GemIcon";
 
 function GoogleMap(props: MapProps) {
-  const searchParams = useSearchParams();
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -162,7 +160,6 @@ function GoogleMap(props: MapProps) {
               <GemIcon
                 category={gem.data.category}
                 creator={(gem.data.creator as unknown as Content.CreatorDocument)?.data.profile_image.url}
-                color={searchParams?.get("c")}
                 marker
                 classes="-translate-x-1/2 -translate-y-1/2"
               />
