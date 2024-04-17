@@ -893,6 +893,17 @@ interface GemDocumentData {
   website: prismic.LinkField;
 
   /**
+   * Creator field in *Gem*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.creator
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+
+  /**
    * Playbooks field in *Gem*
    *
    * - **Field Type**: Group

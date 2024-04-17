@@ -124,6 +124,14 @@
           "select": null
         }
       },
+      "creator": {
+        "type": "Link",
+        "config": {
+          "label": "Creator",
+          "select": "document",
+          "customtypes": ["creator"]
+        }
+      },
       "playbooks": {
         "type": "Group",
         "config": {

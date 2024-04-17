@@ -30,11 +30,11 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@slicemachine/adapter-next": "^0.3.35",
+    "@slicemachine/adapter-next": "^0.3.38",
     "@svgr/webpack": "^8.1.0",
     "@types/google.maps": "^3.54.1",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
-    "slice-machine-ui": "^1.24.0"
+    "slice-machine-ui": "^1.26.0"
   }
 }
