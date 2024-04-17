@@ -61,16 +61,6 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-/* Gems */
-
-.selected-gem .gem-icon-bg {
-  color: #2220c1 !important;
-}
-
-.selected-gem .gem-icon-category {
-  color: white !important;
-}
-
 /* Audio player */
 
 audio::-webkit-media-controls-enclosure {

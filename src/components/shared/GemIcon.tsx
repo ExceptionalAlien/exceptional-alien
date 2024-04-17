@@ -9,18 +9,35 @@ type GemIconProps = {
   marker?: boolean; // Markers use different border and background
   hideBg?: boolean;
   creator?: string | null | undefined;
+  color?: string | null | undefined;
   classes?: string;
 };
 
 export default function GemIcon(props: GemIconProps) {
+  const css = `
+  .gem-icon {
+    color: #${props.color ? props.color : "2220c1"};
+  }
+
+  .selected-gem .gem-icon-bg {
+    color: #${props.color ? props.color : "2220c1"} !important;
+  }
+  
+  .selected-gem .gem-icon-category {
+    color: white !important;
+  }
+`;
+
   return (
     <div
-      className={`gem-icon flex items-center justify-center text-ex-blue [&>svg]:overflow-visible [&>svg]:transition-[color] [&>svg]:duration-300 [&>svg]:ease-in-out ${
+      className={`gem-icon flex items-center justify-center [&>svg]:overflow-visible [&>svg]:transition-[color] [&>svg]:duration-300 [&>svg]:ease-in-out ${
         props.hideBg
           ? "h-5 w-5 [&>svg]:h-full [&>svg]:w-full"
           : "absolute h-10 w-10 md:h-12 md:w-12 [&>svg]:absolute [&>svg]:h-2/5 [&>svg]:w-2/5"
       } ${props.classes}`}
     >
+      <style>{css}</style>
+
       {props.creator ? (
         <Image
           src={props.creator}
