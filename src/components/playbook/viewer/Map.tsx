@@ -152,7 +152,7 @@ function GoogleMap(props: MapProps) {
             lng: gem.data.location?.longitude,
           };
 
-          if (coords) {
+          if (coords.lat && coords.lat) {
             //console.log(`${gem.uid} - ${coords}`);
             div.setAttribute("id", "map-gem-" + gem.uid);
             div.classList.add("map-gem");
@@ -218,6 +218,8 @@ function GoogleMap(props: MapProps) {
 
               clickedGem = gem.uid;
             });
+          } else {
+            alert("Gem coords missing: " + gem.data.title);
           }
         } else {
           alert("Gem place ID missing: " + gem.data.title);

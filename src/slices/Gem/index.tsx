@@ -93,22 +93,24 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
         >
           <PrismicRichText field={slice.primary.description} />
 
-          {!creator.data ? (
+          {!creator.data && asText(slice.primary.description).charAt(0) === '"' ? (
             <p className="mt-2 !text-sm !font-normal md:mt-3 md:!text-base">
               {context.creator.data.first_name} {context.creator.data.last_name?.toUpperCase()}
             </p>
           ) : (
-            <Link
-              href={`/contributors/${creator.uid}`}
-              className="float-right mt-2 transition-[opacity] duration-300 ease-in-out hover:opacity-60 md:mt-3"
-            >
-              <CreatorIcon
-                firstName={creator.data.first_name as string}
-                lastName={creator.data.last_name as string}
-                image={creator.data.profile_image}
-                classes="[&>p]:text-ex-blue [&>img]:h-10 [&>img]:w-10 [&>img]:border-ex-blue"
-              />
-            </Link>
+            creator.uid && (
+              <Link
+                href={`/contributors/${creator.uid}`}
+                className="float-right mt-2 transition-[opacity] duration-300 ease-in-out hover:opacity-60 md:mt-3"
+              >
+                <CreatorIcon
+                  firstName={creator.data.first_name as string}
+                  lastName={creator.data.last_name as string}
+                  image={creator.data.profile_image}
+                  classes="[&>p]:text-ex-blue [&>img]:h-10 [&>img]:w-10 [&>img]:border-ex-blue"
+                />
+              </Link>
+            )
           )}
         </div>
 
