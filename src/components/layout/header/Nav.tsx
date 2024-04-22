@@ -22,7 +22,7 @@ export default function Nav(props: Props) {
         props.showingNav ? "h-full" : "h-0 md:h-full"
       }`}
     >
-      {/* Download app */}
+      {/* Download app
       <Link
         href="/download"
         onClick={hideNav}
@@ -50,7 +50,7 @@ export default function Nav(props: Props) {
           />
         </svg>
         New App Soon!
-      </Link>
+      </Link> */}
 
       <PrimaryLink page="destinations" hideNav={hideNav} scrollY={props.scrollY} />
       <PrimaryLink page="travel-playbooks" hideNav={hideNav} scrollY={props.scrollY} />
