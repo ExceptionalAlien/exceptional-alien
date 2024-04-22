@@ -85,7 +85,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
         )}
 
         <div
-          className={`float-left mb-6 w-3/5 pb-[25px] pl-2 md:mb-9 md:pl-3 [&>p]:font-bold [&>p]:text-ex-blue ${
+          className={`gem-text float-left mb-6 w-3/5 pb-[25px] pl-2 md:mb-9 md:pl-3 [&>p]:font-bold [&>p]:text-ex-blue ${
             asText(slice.primary.description).length > 120
               ? "[&>p]:text-sm [&>p]:md:text-base"
               : "[&>p]:text-base [&>p]:md:text-lg"
