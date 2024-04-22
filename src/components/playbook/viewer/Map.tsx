@@ -13,7 +13,7 @@ function GoogleMap(props: MapProps) {
     const isMobile = window.innerWidth >= 768 ? false : true;
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
-    const portraitMapHeight = isMobile ? 224 : 384;
+    const portraitMapHeight = isMobile ? 256 : 384;
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 24 : 16;
     const top = globalHeaderheight + titleHeight;
@@ -247,7 +247,7 @@ function GoogleMap(props: MapProps) {
   return (
     <div
       ref={ref}
-      className={`!fixed left-0 top-12 z-10 h-56 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+      className={`!fixed left-0 top-12 z-10 h-64 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />
