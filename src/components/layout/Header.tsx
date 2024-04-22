@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import Nav from "./header/Nav";
 import { SearchBoxContext, SearchBoxContextType } from "@/context/SearchBoxContext";
 import LogoText from "@/img/logo.svg";
@@ -13,6 +14,7 @@ import Gem from "@/img/icon-gem.svg";
 
 export default function Header() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { showingSearchBox, setShowingSearchBox } = useContext<SearchBoxContextType>(SearchBoxContext);
   const [scrollY, setScrollY] = useState(0);
   const [showingNav, setShowingNav] = useState(false);
@@ -46,17 +48,17 @@ export default function Header() {
 
       <header
         className={`p-safe fixed top-0 z-10 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
-          scrollY > 1 ? "bg-ex-blue" : "bg-white"
+          scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"
         }`}
       >
         <h1>
           <Link
             href="/"
             className={`block p-2 transition-[color] duration-300 ease-in-out md:p-4 ${
-              scrollY > 1 ? "text-white" : "text-ex-blue"
+              scrollY > 1 ? "text-white" : searchParams?.get("c") ? `text-black` : "text-ex-blue"
             } ${router.pathname === "/" ? "m-2" : "m-1 ml-2"}`}
           >
-            {router.pathname === "/" ? (
+            {router.pathname === "/" || searchParams?.get("c") ? (
               <LogoText className="w-48 md:w-80" title="Exceptional ALIEN" />
             ) : (
               <LogoIcon className="h-6 md:h-10" title="Exceptional ALIEN" />
@@ -70,10 +72,8 @@ export default function Header() {
           className={`flex items-center text-2xl font-bold capitalize transition-[color] duration-300 ease-in-out md:text-4xl [&>svg]:ml-1 [&>svg]:h-5 [&>svg]:md:ml-2 [&>svg]:md:h-6 ${
             scrollY > 1 ? "text-white" : "text-ex-blue"
           } ${
-            page !== "contributors" &&
-            page !== "travel-playbooks" &&
-            page !== "destinations" &&
-            page !== "gems" &&
+            ((page !== "contributors" && page !== "travel-playbooks" && page !== "destinations" && page !== "gems") ||
+              searchParams?.get("c")) &&
             "hidden"
           }`}
         >
@@ -105,7 +105,9 @@ export default function Header() {
               ? "text-ex-light-grey"
               : scrollY > 1
                 ? "text-white"
-                : "text-ex-blue"
+                : searchParams?.get("c")
+                  ? "text-black"
+                  : "text-ex-blue"
           }`}
         >
           <svg
@@ -129,7 +131,7 @@ export default function Header() {
           onClick={() => setShowingNav(true)}
           title="Menu"
           className={`p-3 pr-4 transition-[color] duration-300 ease-in-out md:hidden ${
-            scrollY > 1 ? "text-white" : "text-ex-blue"
+            scrollY > 1 ? "text-white" : searchParams?.get("c") ? "text-black" : "text-ex-blue"
           }`}
         >
           <svg

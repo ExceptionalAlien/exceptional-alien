@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import PrimaryLink from "./nav/PrimaryLink";
 import LogoIcon from "@/img/logo-icon.svg";
 
@@ -11,6 +12,7 @@ type Props = {
 
 export default function Nav(props: Props) {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const hideNav = () => {
     props.setShowingNav(false);
@@ -58,11 +60,15 @@ export default function Nav(props: Props) {
 
       {/* Logo */}
       <Link href="/" onClick={hideNav} className="absolute left-6 top-6 md:!hidden" title="Home">
-        <LogoIcon className="h-10 text-ex-blue" />
+        <LogoIcon className={`h-10 ${searchParams?.get("c") ? "text-black" : "text-ex-blue"}`} />
       </Link>
 
       {/* Close */}
-      <button onClick={hideNav} title="Close menu" className="absolute right-0 top-0 p-6 text-ex-blue md:!hidden">
+      <button
+        onClick={hideNav}
+        title="Close menu"
+        className={`absolute right-0 top-0 p-6 md:!hidden ${searchParams?.get("c") ? "text-black" : "text-ex-blue"}`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

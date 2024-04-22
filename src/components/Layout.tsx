@@ -53,8 +53,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [showingSearchBox, setShowingSearchBox] = useState(false);
 
   const css = `
-  .gem-icon, .selected-gem .gem-icon-bg, .gem-text p {
+  body {
+    background-color: ${searchParams?.get("c") ? "black" : "#2220c1"};
+  }
+
+  .gem-icon, .selected-gem .gem-icon-bg, .gem-text p, .tab-button:hover {
     color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"} !important;
+  }
+
+  .tab-button:hover {
+    border-color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"};
   }
 `;
 
