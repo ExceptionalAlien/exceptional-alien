@@ -114,6 +114,14 @@
           "placeholder": "YouTube link"
         }
       },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "hidden": {
         "type": "Boolean",
         "config": {

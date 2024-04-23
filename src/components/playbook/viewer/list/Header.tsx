@@ -13,6 +13,7 @@ type HeaderProps = {
   title: string;
   creator: Content.CreatorDocument;
   destination: Content.DestinationDocument;
+  logo?: ImageField | undefined;
 };
 
 export default function Header(props: HeaderProps) {
@@ -70,10 +71,10 @@ export default function Header(props: HeaderProps) {
         />
       )}
 
-      <ImageShadow />
+      <ImageShadow size={props.logo ? "full" : "bottom"} />
 
       {/* Destination */}
-      {props.destination.uid && (
+      {props.destination.uid && !props.logo && (
         <Link
           href={"/destinations/" + props.destination.uid}
           className="[&>div]:transition-[background-color] [&>div]:duration-300 [&>div]:ease-in-out hover:[&>div]:bg-opacity-50"
@@ -83,6 +84,17 @@ export default function Header(props: HeaderProps) {
       )}
 
       <Share title={props.title} route="travel-playbooks" classes="absolute right-2 top-2 md:right-3 md:top-3" />
+
+      {/* Logo */}
+      {props.logo && (
+        <Image
+          src={props.logo?.url as string}
+          width={props.logo?.dimensions?.width}
+          height={props.logo?.dimensions?.height}
+          alt={props.title}
+          className="absolute top-0 m-2 h-16 w-auto md:m-3 md:h-20"
+        />
+      )}
 
       {/* Title */}
       <div className="absolute bottom-0 flex h-16 w-full items-center justify-between md:h-20">

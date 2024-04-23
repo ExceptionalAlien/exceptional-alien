@@ -1180,6 +1180,17 @@ interface PlaybookDocumentData {
   video: prismic.EmbedField;
 
   /**
+   * logo field in *Playbook*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
    * Hidden field in *Playbook*
    *
    * - **Field Type**: Boolean

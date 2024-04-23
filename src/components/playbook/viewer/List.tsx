@@ -18,6 +18,7 @@ export default function List(props: ListProps) {
         title={props.data.title as string}
         creator={props.data.creator as unknown as Content.CreatorDocument}
         destination={props.data.destination as unknown as Content.DestinationDocument}
+        logo={props.data.logo.url ? props.data.logo : undefined}
       />
 
       <div className="m-2 my-4 grid gap-y-6 md:m-3 md:my-6 md:gap-y-9">
