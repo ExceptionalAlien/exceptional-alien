@@ -41,7 +41,10 @@ export default function Header() {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content={scrollY > 1 && !showingNav ? "#2220C1" : "#FFFFFF"} />
+        <meta
+          name="theme-color"
+          content={scrollY <= 1 && !showingNav ? "#FFFFFF" : searchParams?.get("c") ? "#000000" : "#2220C1"}
+        />
         <meta property="og:type" content="website" />
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
       </Head>
