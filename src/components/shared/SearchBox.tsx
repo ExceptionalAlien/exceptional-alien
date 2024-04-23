@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import type { GroupField, KeyTextField } from "@prismicio/client";
 import Field from "./search-box/Field";
 import Recommended from "./search-box/Recommended";
@@ -15,6 +16,7 @@ type Props = {
 
 export default function SearchBox(props: Props) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { showingSearchBox, setShowingSearchBox } = useContext<SearchBoxContextType>(SearchBoxContext);
   const [query, setQuery] = useState<string | string[]>("");
   const [scrollY, setScrollY] = useState(0);
@@ -64,7 +66,7 @@ export default function SearchBox(props: Props) {
   return (
     <div
       className={`z-10 mt-12 flex flex-col items-center justify-center pl-4 pr-4 transition-[height] duration-300 ease-in-out md:mt-20 md:pl-6 md:pr-6 md:transition-[background-color,height] ${
-        scrollY > 1 ? "bg-ex-blue" : "bg-white"
+        scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? "bg-black" : "bg-ex-blue"
       } ${!showingSearchBox && props.hidden && "!h-0"} ${
         props.hidden ? "fixed top-0 h-80 w-full overflow-hidden shadow-md md:h-72" : "h-96 md:h-80"
       } ${props.classes}`}

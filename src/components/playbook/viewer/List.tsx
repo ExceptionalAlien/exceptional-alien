@@ -12,7 +12,7 @@ type ListProps = {
 
 export default function List(props: ListProps) {
   return (
-    <div className="w-1/2 min-[1152px]:w-[576px] portrait:mt-64 portrait:w-full portrait:min-[768px]:mt-96">
+    <div className="w-1/2 min-[1152px]:w-[576px] portrait:mt-60 portrait:w-full portrait:min-[768px]:mt-96">
       <Header
         image={props.data.image}
         title={props.data.title as string}

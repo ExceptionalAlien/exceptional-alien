@@ -27,7 +27,7 @@ export default function Header(props: HeaderProps) {
       const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
       const titleHeight = !isMobile ? 80 : 64;
       const globalHeaderheight = !isMobile ? 80 : 48;
-      const portraitMapHeight = isMobile ? 256 : 384;
+      const portraitMapHeight = isMobile ? 240 : 384;
       const top = orientation === "landscape" ? globalHeaderheight : portraitMapHeight + globalHeaderheight;
       const stickyPos = titleHeight - header?.clientHeight + top;
 
