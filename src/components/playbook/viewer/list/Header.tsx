@@ -92,7 +92,10 @@ export default function Header(props: HeaderProps) {
           width={props.logo?.dimensions?.width}
           height={props.logo?.dimensions?.height}
           alt={props.title}
-          className="absolute top-0 m-2 h-16 w-auto md:m-3 md:h-20"
+          className="absolute top-0 m-2 h-20 w-20 md:m-3 md:h-24 md:w-24"
+          style={{
+            objectFit: "contain",
+          }}
         />
       )}
 
