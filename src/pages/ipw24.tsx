@@ -5,8 +5,8 @@ import { createClient } from "@/prismicio";
 import SearchBox from "@/components/shared/SearchBox";
 import TabHeading from "@/components/shared/TabHeading";
 import Socials from "@/components/shared/Socials";
-import Slider from "@/components/shared/Slider";
 import Logo from "@/img/logo-alt-x.svg";
+import Place from "@/img/icon-place.svg";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -40,44 +40,45 @@ export default function IPW24({ search }: PageProps) {
           <p>Personal recommendations from exceptional people, curated with first party data.</p>
         </section>
 
-        <section className="[&>*]:m-auto [&>*]:flex [&>*]:h-9 [&>*]:max-w-sm [&>*]:items-center [&>*]:justify-center [&>*]:whitespace-nowrap [&>*]:rounded-full [&>*]:border [&>*]:border-ex-blue [&>*]:pl-3 [&>*]:pr-3 [&>*]:text-ex-blue [&>*]:transition-[background-color,color] [&>*]:duration-300 [&>*]:ease-in-out hover:[&>*]:bg-ex-blue hover:[&>*]:text-white">
-          <Link href="/destinations/los-angeles">Check out our Los Angeles curation</Link>
+        <section className="[&>*]:m-auto [&>*]:flex [&>*]:max-w-sm [&>*]:items-center [&>*]:justify-center [&>*]:whitespace-nowrap [&>*]:rounded-full [&>*]:bg-ex-blue [&>*]:p-3 [&>*]:text-lg [&>*]:text-white [&>*]:md:text-xl">
+          <Link href="/destinations/los-angeles">
+            <Place className="mr-1 h-6 w-6" />
+            Check out our Los Angeles curation
+          </Link>
         </section>
 
-        <section className="!pl-0 !pr-0">
-          <h3 className="p-4 !pt-0 pb-2 text-2xl font-bold md:p-6 md:pb-3 md:text-4xl">Partnership examples</h3>
+        <section>
+          <h3 className="text-2xl font-bold md:text-4xl">Partnership examples</h3>
 
-          <Slider>
-            <div className="aspect-video w-4/5 [&>iframe]:h-full [&>iframe]:w-full">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/K2HT6kAJ0BE?si=_G_MCyAWkvQ8RYuk"
-                title="YouTube video player"
-                allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              ></iframe>
-            </div>
+          <div className="mt-2 aspect-video md:mt-3 [&>iframe]:h-full [&>iframe]:w-full">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/K2HT6kAJ0BE?si=_G_MCyAWkvQ8RYuk"
+              title="YouTube video player"
+              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            ></iframe>
+          </div>
 
-            <div className="aspect-video w-4/5 [&>iframe]:h-full [&>iframe]:w-full">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/1gVce3Vbcyk?si=2hvHeLqIT2ZxrUI3"
-                title="YouTube video player"
-                allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              ></iframe>
-            </div>
+          <div className="mt-4 aspect-video md:mt-6 [&>iframe]:h-full [&>iframe]:w-full">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/1gVce3Vbcyk?si=2hvHeLqIT2ZxrUI3"
+              title="YouTube video player"
+              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            ></iframe>
+          </div>
 
-            <div className="aspect-video w-4/5 [&>iframe]:h-full [&>iframe]:w-full">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/9DtR-7k7plU?si=aJ-PrqA9YAuq-mC7"
-                title="YouTube video player"
-                allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              ></iframe>
-            </div>
-          </Slider>
+          <div className="mt-4 aspect-video md:mt-6 [&>iframe]:h-full [&>iframe]:w-full">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/9DtR-7k7plU?si=aJ-PrqA9YAuq-mC7"
+              title="YouTube video player"
+              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            ></iframe>
+          </div>
         </section>
 
         <section className="pb-8 pt-8 md:pb-12 md:pt-12">
