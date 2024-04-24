@@ -43,7 +43,7 @@ export default function IPW24({ search }: PageProps) {
         <section className="[&>*]:m-auto [&>*]:flex [&>*]:max-w-sm [&>*]:items-center [&>*]:justify-center [&>*]:whitespace-nowrap [&>*]:rounded-full [&>*]:bg-ex-blue [&>*]:p-3 [&>*]:text-lg [&>*]:text-white [&>*]:md:text-xl">
           <Link href="/destinations/los-angeles">
             <Place className="mr-1 h-6 w-6" />
-            Check out our Los Angeles curation
+            Check out our LA curation
           </Link>
         </section>
 
