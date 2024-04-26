@@ -81,7 +81,7 @@ export default function IPW24({ search }: PageProps) {
         </section>
 
         <section>
-          <h3 className="text-2xl font-bold md:text-4xl">What's a Travel Playbook?</h3>
+          <h3 className="text-2xl font-bold md:text-4xl">What&apos;s a Travel Playbook?</h3>
 
           <div className="mt-2 aspect-video w-full md:mt-3 [&>iframe]:h-full [&>iframe]:w-full">
             <iframe
