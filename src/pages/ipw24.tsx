@@ -99,7 +99,7 @@ export default function IPW24({ search }: PageProps) {
             <Socials classes="absolute top-0 right-0 [&>a]:!text-black" />
           </TabHeading>
 
-          <div className="text-ex-grey [&>h4]:mt-4 [&>h4]:text-xl [&>h4]:font-bold [&>h4]:md:text-2xl [&>p>a]:underline [&>p>a]:transition-[color] [&>p>a]:duration-300 [&>p>a]:ease-in-out hover:[&>p>a]:text-ex-light-grey [&>p]:mt-4">
+          <div className="text-ex-grey [&>h4]:mt-4 [&>h4]:text-xl [&>h4]:font-bold [&>h4]:md:text-2xl [&>p>a]:underline [&>p>a]:transition-[color] [&>p>a]:duration-300 [&>p>a]:ease-in-out hover:[&>p>a]:text-ex-light-grey [&>p]:mt-4 [&>p]:leading-snug">
             <p>Exceptional ALIEN is a travel platform powered by a global creative community.</p>
 
             <p>
