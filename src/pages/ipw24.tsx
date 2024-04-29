@@ -37,7 +37,7 @@ export default function IPW24({ search }: PageProps) {
         </section>
 
         <section className="m-auto text-2xl font-bold text-ex-blue md:max-w-3xl md:text-4xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-          <p>Personal recommendations from exceptional people, curated with first party data.</p>
+          <p>Personal recommendations from exceptional people, curated with first-party data.</p>
         </section>
 
         <section>
