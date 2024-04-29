@@ -61,7 +61,8 @@ export default function Header() {
               scrollY > 1 ? "text-white" : searchParams?.get("c") ? `text-black` : "text-ex-blue"
             } ${router.pathname === "/" ? "m-2" : "m-1 ml-2"}`}
           >
-            {router.pathname === "/" || searchParams?.get("c") || router.pathname === "/ipw24" ? (
+            {(page !== "contributors" && page !== "travel-playbooks" && page !== "destinations" && page !== "gems") ||
+            searchParams?.get("c") ? (
               <LogoText className="w-48 md:w-80" title="Exceptional ALIEN" />
             ) : (
               <LogoIcon className="h-6 md:h-10" title="Exceptional ALIEN" />
