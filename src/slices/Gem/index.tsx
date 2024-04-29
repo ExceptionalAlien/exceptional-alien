@@ -35,11 +35,7 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
 
       <Link href={"/gems/" + gem.uid} className="mr-10 block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight">
         <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>
-
-        <h5>
-          {gem.data.description?.charAt(0).toUpperCase()}
-          {gem.data.description?.substring(1).toLowerCase()}
-        </h5>
+        <h5>{gem.data.description}</h5>
       </Link>
 
       {/* Address */}

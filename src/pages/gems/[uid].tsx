@@ -87,11 +87,7 @@ export default function Gem({ page, search }: PageProps) {
           <div className="absolute top-0 w-full p-4 text-white md:p-6">
             <hgroup className="float-left w-3/5 pr-2 md:pr-3">
               <h2 className="text-3xl font-bold md:text-6xl">{page.data.title}</h2>
-
-              <h3 className="text-lg !leading-tight md:text-2xl">
-                {page.data.description?.charAt(0).toUpperCase()}
-                {page.data.description?.substring(1).toLowerCase()}
-              </h3>
+              <h3 className="text-lg !leading-tight md:text-2xl">{page.data.description}</h3>
             </hgroup>
 
             <p className={`float-right w-2/5 text-right font-mono text-xs md:text-sm ${!placeCoords.lat && "hidden"}`}>
