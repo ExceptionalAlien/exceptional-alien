@@ -19,10 +19,10 @@ export default function IPW24({ search }: PageProps) {
         <meta name="robots" content="noindex" />
       </Head>
 
-      <main className="pt-12 md:max-w-3xl md:pt-16 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-        <TabHeading classes="uppercase ml-4 mr-4 md:ml-6 md:mr-6">
-          <p>IPW 2024</p>
-        </TabHeading>
+      <main className="px-2 pt-12 md:max-w-3xl md:px-12 md:pt-16 lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <section className="m-auto text-xl md:max-w-3xl md:text-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+          <p>Welcome to Exceptional Alien. Your ally for a new era of traveller.</p>
+        </section>
 
         <section>
           <div className="aspect-video w-full">
@@ -36,8 +36,22 @@ export default function IPW24({ search }: PageProps) {
           </div>
         </section>
 
-        <section className="m-auto text-2xl font-bold text-ex-blue md:max-w-3xl md:text-4xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
+        <section className="m-auto text-lg md:max-w-3xl md:text-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
           <p>Personal recommendations from exceptional people, curated with first-party data.</p>
+        </section>
+
+        <section>
+          <h3 className="text-xl md:text-3xl">What&apos;s a Travel Playbook?</h3>
+
+          <div className="mt-2 aspect-video w-full md:mt-3">
+            <iframe
+              src="https://player.vimeo.com/video/809928936?h=bbad705da6&color=2220C1&title=0&byline=0&portrait=0"
+              width="640"
+              height="360"
+              allow="autoplay; fullscreen; picture-in-picture"
+              className="h-full w-full"
+            ></iframe>
+          </div>
         </section>
 
         <section>
@@ -51,7 +65,7 @@ export default function IPW24({ search }: PageProps) {
         </section>
 
         <section>
-          <h3 className="text-2xl font-bold md:text-4xl">Partner with EA</h3>
+          <h3 className="text-xl md:text-3xl">Case Studies</h3>
 
           <div className="mt-2 aspect-video md:mt-3">
             <iframe
@@ -63,42 +77,6 @@ export default function IPW24({ search }: PageProps) {
               className="h-full w-full"
             ></iframe>
           </div>
-
-          <div className="mt-4 aspect-video md:mt-6">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/1gVce3Vbcyk?si=2hvHeLqIT2ZxrUI3"
-              title="YouTube video player"
-              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              className="h-full w-full"
-            ></iframe>
-          </div>
-
-          <div className="mt-4 aspect-video md:mt-6">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/9DtR-7k7plU?si=aJ-PrqA9YAuq-mC7"
-              title="YouTube video player"
-              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              className="h-full w-full"
-            ></iframe>
-          </div>
-        </section>
-
-        <section>
-          <h3 className="text-2xl font-bold md:text-4xl">What&apos;s a Travel Playbook?</h3>
-
-          <div className="mt-2 aspect-video w-full md:mt-3">
-            <iframe
-              src="https://player.vimeo.com/video/809928936?h=bbad705da6&color=2220C1&title=0&byline=0&portrait=0"
-              width="640"
-              height="360"
-              allow="autoplay; fullscreen; picture-in-picture"
-              className="h-full w-full"
-            ></iframe>
-          </div>
         </section>
 
         <TabHeading classes="uppercase relative ml-4 mr-4 md:ml-6 md:mr-6 mt-8 md:mt-12">
@@ -106,7 +84,7 @@ export default function IPW24({ search }: PageProps) {
           <Socials classes="absolute top-0 right-0 [&>a]:!text-black" />
         </TabHeading>
 
-        <section className="!mt-0 text-ex-grey [&>*]:mt-4 [&>*]:leading-snug [&>p>a]:underline [&>p>a]:transition-[color] [&>p>a]:duration-300 [&>p>a]:ease-in-out hover:[&>p>a]:text-ex-light-grey [&>p>span]:font-bold">
+        <section className="!mt-0 text-sm [&>*]:mt-4 [&>*]:leading-snug [&>p>a]:underline [&>p>a]:transition-[color] [&>p>a]:duration-300 [&>p>a]:ease-in-out hover:[&>p>a]:text-ex-light-grey">
           <p>
             Exceptional ALIEN is a travel platform powered by a global creative community.
             <br />
@@ -118,7 +96,7 @@ export default function IPW24({ search }: PageProps) {
             We share their stories and trusted recommendations via our website, mobile app, and multimedia storytelling.
           </p>
 
-          <h4 className="text-xl font-bold md:text-2xl">For more information please get in touch</h4>
+          <h4>For more information please get in touch</h4>
 
           <p>
             <span>Roberta MACDONALD</span>
@@ -151,6 +129,10 @@ export default function IPW24({ search }: PageProps) {
             <br />
             <a href="mailto:guy@exceptionalalien.com">guy@exceptionalalien.com</a>
           </p>
+        </section>
+
+        <section className="flex justify-center">
+          <a href="mailto:info@exceptionalalien.com">info@exceptionalalien.com</a>
         </section>
 
         <section className="pb-8 pt-8 md:pb-12 md:pt-12">
