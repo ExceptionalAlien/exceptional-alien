@@ -96,7 +96,7 @@ export default function IPW24({ search }: PageProps) {
             We share their stories and trusted recommendations via our website, mobile app, and multimedia storytelling.
           </p>
 
-          <h4>For more information please get in touch</h4>
+          <h4>For more information please get in touch:</h4>
 
           <p>
             <span>Roberta MACDONALD</span>
