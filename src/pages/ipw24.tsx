@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -9,6 +10,10 @@ import Place from "@/img/icon-place.svg";
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function IPW24({ search }: PageProps) {
+  useEffect(() => {
+    window.localStorage.setItem("ipw24", "true"); // Use this to show IPW link in main nav
+  }, []);
+
   return (
     <>
       <Head>

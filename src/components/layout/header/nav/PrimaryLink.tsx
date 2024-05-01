@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import Place from "@/img/icon-place.svg";
 import Playbook from "@/img/icon-playbook.svg";
 import Person from "@/img/icon-person.svg";
+import Globe from "@/img/globe.svg";
 
 type PrimaryLinkProps = {
   page: string;
@@ -30,9 +31,17 @@ export default function PrimaryLink(props: PrimaryLinkProps) {
         }`}
       ></span>
 
-      {props.page === "destinations" ? <Place /> : props.page === "travel-playbooks" ? <Playbook /> : <Person />}
+      {props.page === "destinations" ? (
+        <Place />
+      ) : props.page === "travel-playbooks" ? (
+        <Playbook />
+      ) : props.page === "contributors" ? (
+        <Person />
+      ) : (
+        <Globe />
+      )}
 
-      {props.page.replace("-", " ")}
+      {props.page.replace("-", " ").replace("ipw24", "IPW 24")}
     </Link>
   );
 }
