@@ -24,7 +24,7 @@ export default function IPW24({ search }: PageProps) {
 
       <main className="pt-12 text-ex-blue md:max-w-2xl md:pt-16 lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl">
         <section className="m-auto text-xl md:max-w-3xl md:text-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-          <p className="text-center">Welcome to Exceptional Alien. Your ally for a new era of travel.</p>
+          <p className="text-center">Welcome to Exceptional ALIEN. Your ally for a new era of travel.</p>
         </section>
 
         <section>
