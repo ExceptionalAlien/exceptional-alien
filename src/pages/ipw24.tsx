@@ -41,21 +41,20 @@ export default function IPW24({ search }: PageProps) {
 
         <section className="m-auto text-base md:max-w-3xl md:text-lg lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>p]:text-center">
           <p className="text-center leading-snug">
-            We connect travelers with personalised recommendations - shared by people who are exceptional culture makers
-            including artists, athletes, actors, chefs, musicians, technologists, entrepreneurs and more. It&apos;s like
-            having an aspirational network of friends around the world.
+            We connect travelers with personalised recommendations - shared by exceptional culture makers. It&apos;s
+            like having an aspirational network of friends in your pocket.
             <br />
             <br />
             You can search global destinations and discover unique gems.
             <br />
             <br />
             Soon you will be able to curate and share itineraries, and book trusted experiences - with AI as your social
-            coordinator on the journey.
+            coordinator on your journey.
           </p>
         </section>
 
         <section>
-          <h3 className="text-xl md:text-3xl">What&apos;s a Travel Playbook?</h3>
+          <h3 className="text-xl md:text-3xl">Check out a Travel Playbook </h3>
 
           <div className="mt-2 aspect-video w-full md:mt-3">
             <iframe
@@ -79,7 +78,7 @@ export default function IPW24({ search }: PageProps) {
         </section>
 
         <section className="!pl-0 !pr-0">
-          <h3 className="px-4 text-xl md:px-6 md:text-3xl">Case Studies</h3>
+          <h3 className="px-4 text-xl md:px-6 md:text-3xl">Check out our recent partnerships</h3>
 
           <Slider classes="mt-2 md:mt-3">
             <div className="aspect-video w-4/5">
