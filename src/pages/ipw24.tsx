@@ -41,9 +41,6 @@ export default function IPW24({ search }: PageProps) {
 
         <section className="m-auto text-base md:max-w-3xl md:text-lg lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>p]:text-center">
           <p className="text-center leading-snug">
-            EA is your ally from travel inspiration to action.
-            <br />
-            <br />
             We connect travelers with personalised recommendations - shared by people who are exceptional culture makers
             including artists, athletes, actors, chefs, musicians, technologists, entrepreneurs and more. It&apos;s like
             having an aspirational network of friends around the world.
