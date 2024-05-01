@@ -96,7 +96,7 @@ export default function IPW24({ search }: PageProps) {
               <iframe
                 width="560"
                 height="315"
-                src="https://www.youtube.com/embed/9DtR-7k7plU?si=hYQ0UV2oetRhT7YW"
+                src="https://www.youtube.com/embed/oSXE7JzyhCM?si=MazONFbMg-lkABrI"
                 title="YouTube video player"
                 allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 className="h-full w-full"
@@ -107,7 +107,7 @@ export default function IPW24({ search }: PageProps) {
               <iframe
                 width="560"
                 height="315"
-                src="https://www.youtube.com/embed/1gVce3Vbcyk?si=nPWVZDDLsltTG4z0"
+                src="https://www.youtube.com/embed/9DtR-7k7plU?si=hYQ0UV2oetRhT7YW"
                 title="YouTube video player"
                 allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 className="h-full w-full"
