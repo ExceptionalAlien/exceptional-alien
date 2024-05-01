@@ -2,6 +2,7 @@ import type { InferGetStaticPropsType, GetStaticPropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { createClient } from "@/prismicio";
+import Slider from "@/components/shared/Slider";
 import SearchBox from "@/components/shared/SearchBox";
 import Place from "@/img/icon-place.svg";
 
@@ -63,19 +64,43 @@ export default function IPW24({ search }: PageProps) {
           </Link>
         </section>
 
-        <section>
-          <h3 className="text-xl md:text-3xl">Case Studies</h3>
+        <section className="!pl-0 !pr-0">
+          <h3 className="px-4 text-xl md:px-6 md:text-3xl">Case Studies</h3>
 
-          <div className="mt-2 aspect-video md:mt-3">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/K2HT6kAJ0BE?si=_G_MCyAWkvQ8RYuk"
-              title="YouTube video player"
-              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              className="h-full w-full"
-            ></iframe>
-          </div>
+          <Slider classes="mt-2 md:mt-3">
+            <div className="aspect-video w-4/5">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/K2HT6kAJ0BE?si=_G_MCyAWkvQ8RYuk"
+                title="YouTube video player"
+                allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                className="h-full w-full"
+              ></iframe>
+            </div>
+
+            <div className="aspect-video w-4/5">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/9DtR-7k7plU?si=hYQ0UV2oetRhT7YW"
+                title="YouTube video player"
+                allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                className="h-full w-full"
+              ></iframe>
+            </div>
+
+            <div className="aspect-video w-4/5">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/1gVce3Vbcyk?si=nPWVZDDLsltTG4z0"
+                title="YouTube video player"
+                allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                className="h-full w-full"
+              ></iframe>
+            </div>
+          </Slider>
         </section>
 
         <section className="text-sm [&>*]:mt-4 [&>*]:leading-snug [&>p>a]:underline [&>p>a]:transition-[color] [&>p>a]:duration-300 [&>p>a]:ease-in-out hover:[&>p>a]:text-ex-light-grey">
