@@ -39,9 +39,21 @@ export default function IPW24({ search }: PageProps) {
           </div>
         </section>
 
-        <section className="m-auto text-lg md:max-w-3xl md:text-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
-          <p className="text-center">
-            Personal recommendations from exceptional people, curated with first-party data.
+        <section className="m-auto text-base md:max-w-3xl md:text-lg lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl [&>p]:text-center">
+          <p className="text-center leading-snug">
+            EA is your ally from travel inspiration to action.
+            <br />
+            <br />
+            We connect travelers with personalised recommendations – shared by people who are exceptional culture makers
+            including artists, athletes, actors, chefs, musicians, technologists, entrepreneurs and more. It's like
+            having an aspirational network of friends around the world.
+            <br />
+            <br />
+            You can search global destinations and discover unique gems.
+            <br />
+            <br />
+            Soon you will be able to curate and share itineraries, and book trusted experiences - with AI as your social
+            coordinator on the journey.
           </p>
         </section>
 
