@@ -44,8 +44,8 @@ export default function IPW24({ search }: PageProps) {
             EA is your ally from travel inspiration to action.
             <br />
             <br />
-            We connect travelers with personalised recommendations – shared by people who are exceptional culture makers
-            including artists, athletes, actors, chefs, musicians, technologists, entrepreneurs and more. It's like
+            We connect travelers with personalised recommendations - shared by people who are exceptional culture makers
+            including artists, athletes, actors, chefs, musicians, technologists, entrepreneurs and more. It&apos;s like
             having an aspirational network of friends around the world.
             <br />
             <br />
