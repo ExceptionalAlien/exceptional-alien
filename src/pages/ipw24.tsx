@@ -30,7 +30,7 @@ export default function IPW24({ search }: PageProps) {
         <section>
           <div className="aspect-video w-full">
             <iframe
-              src="https://player.vimeo.com/video/809928936?h=bbad705da6&color=2220C1&title=0&byline=0&portrait=0"
+              src="https://player.vimeo.com/video/942236692?h=bbad705da6&color=2220C1&title=0&byline=0&portrait=0"
               width="640"
               height="360"
               allow="autoplay; fullscreen; picture-in-picture"
