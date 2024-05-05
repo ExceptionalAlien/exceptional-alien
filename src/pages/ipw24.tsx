@@ -122,7 +122,7 @@ export default function IPW24({ search }: PageProps) {
           <p>
             Roberta MACDONALD
             <br />
-            CEO
+            Global Partnerships
             <br />
             <a href="mailto:roberta@exceptionalalien.com">roberta@exceptionalalien.com</a>
           </p>
