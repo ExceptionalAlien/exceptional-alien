@@ -41,7 +41,7 @@ export default function PrimaryLink(props: PrimaryLinkProps) {
         <Globe />
       )}
 
-      {props.page.replace("-", " ").replace("ipw24", "IPW 2024")}
+      {props.page.replace("-", " ")}
     </Link>
   );
 }

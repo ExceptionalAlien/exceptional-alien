@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
 import PrimaryLink from "./nav/PrimaryLink";
 import LogoIcon from "@/img/logo-icon.svg";
@@ -12,17 +10,11 @@ type Props = {
 };
 
 export default function Nav(props: Props) {
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const [showIPW, setShowIPW] = useState(false);
 
   const hideNav = () => {
     props.setShowingNav(false);
   };
-
-  useEffect(() => {
-    setShowIPW(window.localStorage.getItem("ipw24") ? true : false);
-  }, [router]);
 
   return (
     <nav
@@ -60,7 +52,6 @@ export default function Nav(props: Props) {
         New App Soon!
       </Link> */}
 
-      {showIPW && <PrimaryLink page="ipw24" hideNav={hideNav} scrollY={props.scrollY} />}
       <PrimaryLink page="destinations" hideNav={hideNav} scrollY={props.scrollY} />
       <PrimaryLink page="travel-playbooks" hideNav={hideNav} scrollY={props.scrollY} />
       <PrimaryLink page="contributors" hideNav={hideNav} scrollY={props.scrollY} />
