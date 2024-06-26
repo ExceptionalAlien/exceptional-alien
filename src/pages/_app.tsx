@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Layout>
       <Component {...pageProps} />
-      <GoogleTagManager gtmId="G-KN3G218XJ3" />
+      <GoogleTagManager gtmId="GTM-PGM6BHXN" />
       <PrismicPreview repositoryName={repositoryName} />
     </Layout>
   );
