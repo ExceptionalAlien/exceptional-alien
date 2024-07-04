@@ -10,6 +10,7 @@ import { SearchContext, SearchResults } from "@/context/SearchContext";
 import { SearchBoxContext } from "@/context/SearchBoxContext";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
+import MailingList from "./layout/MailingList";
 
 const neueHaasGrotesk = localFont({
   src: [
@@ -98,6 +99,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
                 <Footer />
                 <Header />
+                <MailingList />
               </div>
             </SearchBoxContext.Provider>
           </SearchContext.Provider>

@@ -46,7 +46,7 @@ export default function Field(props: Props) {
         placeholder="Search"
         id="search"
         disabled={props.disabled}
-        className={`placeholder-opacity ml-2 w-full rounded-none border-b bg-transparent pr-6 text-2xl outline-none transition-[border-color,color] duration-300 ease-in-out md:text-4xl ${
+        className={`ml-2 w-full rounded-none border-b bg-transparent pr-6 text-2xl placeholder-opacity-25 outline-none transition-[border-color,color] duration-300 ease-in-out md:text-4xl ${
           props.scrollY > 1
             ? "border-white text-white placeholder-white"
             : searchParams?.get("c")
