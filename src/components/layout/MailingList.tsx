@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function MailingList() {
   useEffect(() => {}, []);
@@ -25,9 +26,9 @@ export default function MailingList() {
 
         <p className="text-xs text-white">
           By joining you agree to our{" "}
-          <a href="/terms-and-privacy" className="underline">
+          <Link href="/terms-and-privacy" className="underline">
             Terms &amp; Privacy
-          </a>
+          </Link>
           .
         </p>
       </form>
