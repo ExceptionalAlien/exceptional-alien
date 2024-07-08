@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@next/third-parties": "^14.0.4",
     "@prismicio/client": "^7.3.1",
     "@prismicio/next": "^1.5.0",

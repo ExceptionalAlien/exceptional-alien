@@ -1,25 +1,95 @@
-import { useState, useEffect } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 export default function MailingList() {
-  useEffect(() => {}, []);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
+  const inputEmail = useRef<HTMLInputElement>(null);
+
+  const close = () => {
+    setShowPopUp(false);
+    window.localStorage.setItem("eamlc", "1");
+  };
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitting(true);
+
+    const res = await fetch("/api/subscribe", {
+      body: JSON.stringify({
+        email: inputEmail.current?.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    const { error } = await res.json();
+
+    if (error) {
+      console.log(error);
+    } else {
+      window.localStorage.setItem("eaml", "true"); // Store that user has joined
+    }
+
+    inputEmail.current!.value = ""; // Clear
+    setSignedUp(true);
+
+    setTimeout(() => {
+      setShowPopUp(false); // Close
+    }, 3000);
+  };
+
+  useEffect(() => {
+    //localStorage.clear(); // Used for testing
+    const joined = window.localStorage.getItem("eaml");
+    const count = window.localStorage.getItem("eamlc");
+
+    // Show if user is new, has never closed pop-up or re-visited 10 times since last closing pop-up
+    if ((!joined && !count) || (!joined && count === "10")) {
+      setShowPopUp(true);
+    } else if (!joined) {
+      // Update visit count
+      const updatedCount = Number(count) + 1;
+      window.localStorage.setItem("eamlc", String(updatedCount));
+    }
+  }, []);
 
   return (
-    <div className="fixed bottom-0 z-10 w-full bg-ex-blue p-4 md:m-6 md:w-96 md:p-6 md:shadow-md">
-      <form className="flex flex-col gap-3 md:gap-4">
+    <div
+      className={`fixed bottom-0 z-10 w-full border border-white bg-ex-blue p-4 md:m-6 md:w-96 md:p-6 md:shadow-md ${
+        !showPopUp && "hidden"
+      }`}
+    >
+      <form onSubmit={submit} className="flex flex-col gap-3 md:gap-4">
         <hgroup className="text-white">
-          <h5 className="text-xl font-bold md:text-2xl">Join our mailing list</h5>
-          <h6 className="text-xs md:text-sm">Be the first to know when new Playbooks drop.</h6>
+          <h5 className="text-xl font-bold md:text-2xl">
+            {signedUp ? "Thanks for joining!" : "Join our mailing list"}
+          </h5>
+
+          <h6 className="text-xs md:text-sm">
+            {signedUp ? "We will be in touch soon." : "Be the first to know when new Playbooks drop."}
+          </h6>
         </hgroup>
 
         <div className="flex gap-3 md:gap-4">
           <input
             type="email"
+            id="email-input"
+            ref={inputEmail}
+            name="email"
             placeholder="Enter your email"
             className="grow border-b border-white bg-transparent text-white placeholder-white placeholder-opacity-25"
+            required
+            disabled={submitting}
           />
 
-          <button className="rounded-full border border-white p-2 px-3 text-sm leading-none text-white duration-300 ease-in-out hover:bg-white hover:text-ex-blue">
+          <button
+            className="rounded-full border border-white p-2 px-3 text-sm leading-none text-white duration-300 ease-in-out hover:bg-white hover:text-ex-blue"
+            disabled={submitting}
+          >
             JOIN
           </button>
         </div>
@@ -33,7 +103,7 @@ export default function MailingList() {
         </p>
       </form>
 
-      <button className="absolute right-0 top-0 p-2 text-white md:p-3">
+      <button onClick={close} className="absolute right-0 top-0 p-2 text-white md:p-3" title="Close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
