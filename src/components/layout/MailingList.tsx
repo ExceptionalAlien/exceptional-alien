@@ -3,6 +3,7 @@ import Link from "next/link";
 
 export default function MailingList() {
   const [showPopUp, setShowPopUp] = useState(false);
+  const [animate, setAnimate] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [signedUp, setSignedUp] = useState(false);
   const inputEmail = useRef<HTMLInputElement>(null);
@@ -43,6 +44,7 @@ export default function MailingList() {
   };
 
   useEffect(() => {
+    var timeout: undefined | ReturnType<typeof setTimeout>;
     //localStorage.clear(); // Used for testing
     const joined = window.localStorage.getItem("eaml");
     const count = window.localStorage.getItem("eamlc");
@@ -50,18 +52,25 @@ export default function MailingList() {
     // Show if user is new, has never closed pop-up or re-visited 10 times since last closing pop-up
     if ((!joined && !count) || (!joined && count === "10")) {
       setShowPopUp(true);
+
+      // Wait 2 secs before animtaing in
+      timeout = setTimeout(() => {
+        setAnimate(true);
+      }, 2000);
     } else if (!joined) {
       // Update visit count
       const updatedCount = Number(count) + 1;
       window.localStorage.setItem("eamlc", String(updatedCount));
     }
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
     <div
-      className={`fixed bottom-0 z-10 w-full border border-white bg-ex-blue p-4 md:m-6 md:w-96 md:p-6 md:shadow-md ${
+      className={`fixed z-10 w-full border-white bg-ex-blue p-4 transition-[bottom] duration-300 ease-out md:m-6 md:w-96 md:border md:p-6 md:shadow-md ${
         !showPopUp && "hidden"
-      }`}
+      } ${animate ? "bottom-0" : "-bottom-40 md:-bottom-52"}`}
     >
       <form onSubmit={submit} className="flex flex-col gap-3 md:gap-4">
         <hgroup className="text-white">
