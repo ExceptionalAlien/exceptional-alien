@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Content, asText } from "@prismicio/client";
+import { Content, asLink, asText } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import TabButton from "@/components/shared/TabButton";
 import GemIcon from "@/components/shared/GemIcon";
@@ -110,8 +110,16 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
           )}
         </div>
 
-        <div className="!absolute bottom-0 right-0 w-3/5">
-          <TabButton text="MORE INFO" route={"/gems/" + gem.uid} classes="ml-2 md:ml-3" />
+        <div
+          className={`!absolute bottom-0 right-0 flex w-3/5 gap-2 pl-2 md:gap-3 md:pl-3 ${
+            gem.data.booking ? "[&>*]:w-1/2" : "[&>*]:w-full"
+          }`}
+        >
+          {gem.data.booking && (
+            <TabButton text="BOOK" route={asLink(gem.data.booking) as string} target="_blank" book />
+          )}
+
+          <TabButton text="MORE" route={"/gems/" + gem.uid} />
         </div>
       </div>
     </section>
