@@ -893,6 +893,17 @@ interface GemDocumentData {
   website: prismic.LinkField;
 
   /**
+   * Booking field in *Gem*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.booking
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  booking: prismic.LinkField;
+
+  /**
    * Creator field in *Gem*
    *
    * - **Field Type**: Content Relationship

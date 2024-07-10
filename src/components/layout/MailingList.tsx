@@ -31,10 +31,9 @@ export default function MailingList() {
 
     if (error) {
       console.log(error);
-    } else {
-      window.localStorage.setItem("eaml", "true"); // Store that user has joined
     }
 
+    window.localStorage.setItem("eaml", "true"); // Store that user has joined
     inputEmail.current!.value = ""; // Clear
     setSignedUp(true);
 

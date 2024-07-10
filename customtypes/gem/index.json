@@ -124,6 +124,15 @@
           "select": null
         }
       },
+      "booking": {
+        "type": "Link",
+        "config": {
+          "label": "Booking",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
       "creator": {
         "type": "Link",
         "config": {
