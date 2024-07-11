@@ -108,9 +108,14 @@ export default function Gem({ page, search }: PageProps) {
                 href={asLink(page.data.booking) as string}
                 target="_blank"
                 title="Book"
-                className="absolute right-10 top-[2px] flex items-center gap-1 p-2 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
+                className="absolute right-10 top-0 flex items-center gap-1 p-2 transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:top-[2px]"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="size-6 md:size-5"
+                >
                   <path d="M5.25 12a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75V12ZM6 13.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V14a.75.75 0 0 0-.75-.75H6ZM7.25 12a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H8a.75.75 0 0 1-.75-.75V12ZM8 13.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V14a.75.75 0 0 0-.75-.75H8ZM9.25 10a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H10a.75.75 0 0 1-.75-.75V10ZM10 11.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V12a.75.75 0 0 0-.75-.75H10ZM9.25 14a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H10a.75.75 0 0 1-.75-.75V14ZM12 9.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V10a.75.75 0 0 0-.75-.75H12ZM11.25 12a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H12a.75.75 0 0 1-.75-.75V12ZM12 13.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V14a.75.75 0 0 0-.75-.75H12ZM13.25 10a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H14a.75.75 0 0 1-.75-.75V10ZM14 11.25a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 0 0 .75-.75V12a.75.75 0 0 0-.75-.75H14Z" />
                   <path
                     fillRule="evenodd"
@@ -119,7 +124,7 @@ export default function Gem({ page, search }: PageProps) {
                   />
                 </svg>
 
-                <span>BOOK NOW</span>
+                <span className="hidden md:inline">BOOK NOW</span>
               </a>
             )}
 
@@ -137,12 +142,12 @@ export default function Gem({ page, search }: PageProps) {
 
             {/* Address */}
             {openStatus && openStatus !== "OPERATIONAL" ? (
-              <p className="mr-26 inline-block text-ex-red">{openStatus.replace("_", " ")}</p>
+              <p className="mr-20 inline-block text-ex-red md:mr-36">{openStatus.replace("_", " ")}</p>
             ) : (
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${page.data.title}&query_place_id=${page.data.google_maps_id}`}
                 target="_blank"
-                className="mr-36 inline-block text-pretty transition-[color] duration-300 ease-in-out hover:text-ex-light-grey"
+                className="mr-20 inline-block text-pretty transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:mr-36"
               >
                 {page.data.address}
 
