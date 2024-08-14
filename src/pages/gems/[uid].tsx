@@ -179,6 +179,21 @@ export default function Gem({ page, search }: PageProps) {
           <div className="clear-both"></div>
         </section>
 
+        {page.data?.insider_tip &&
+        <section className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3">
+          <div className="p-5 w-auto bg-ex-blue text-white">  {/* md:w-[calc((100%/3)-16px)] md:w-2/4 */}
+            <h6 className="relative font-bold mb-2">
+              <svg className="absolute -top-[3px]" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M9 20.5H15V22.5H9V20.5ZM16.906 14.212C17.936 13.006 19 11.759 19 9.5C19 5.641 15.859 2.5 12 2.5C8.141 2.5 5 5.641 5 9.5C5 11.785 6.067 13.028 7.101 14.23C7.459 14.648 7.83 15.081 8.185 15.579C8.329 15.785 8.565 16.575 8.776 17.5H8V19.5H16V17.5H15.226C15.439 16.573 15.676 15.781 15.819 15.575C16.171 15.072 16.545 14.635 16.906 14.212ZM14.182 14.425C13.748 15.042 13.386 16.5 13.176 17.5H10.825C10.616 16.498 10.253 15.037 9.814 14.42C9.43876 13.9043 9.03966 13.4065 8.618 12.928C7.644 11.794 7 11.044 7 9.5C7 6.743 9.243 4.5 12 4.5C14.757 4.5 17 6.743 17 9.5C17 11.021 16.357 11.774 15.385 12.913C15.012 13.351 14.589 13.846 14.182 14.425Z"
+                  fill="white" />
+              </svg><span className="ml-[30px]">Insider Tip</span>
+            </h6>
+            <p>{page.data.insider_tip}</p>
+          </div>
+        </section>
+        }
+
         {unlockedPlaybooks.length ? (
           <PlaybooksGrid heading="Featured In" list={unlockedPlaybooks as GroupField} showCreator={true} />
         ) : (

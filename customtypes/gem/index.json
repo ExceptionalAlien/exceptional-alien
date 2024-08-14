@@ -115,6 +115,13 @@
           "multi": "paragraph"
         }
       },
+      "insider_tip": {
+        "type": "Text",
+        "config": {
+          "label": "Insider Tip",
+          "placeholder": ""
+        }
+      },
       "website": {
         "type": "Link",
         "config": {

@@ -882,6 +882,17 @@ interface GemDocumentData {
   about: prismic.RichTextField;
 
   /**
+   * Insider Tip field in *Gem*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.insider_tip
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  insider_tip: prismic.KeyTextField;
+
+  /**
    * Website field in *Gem*
    *
    * - **Field Type**: Link
@@ -1563,35 +1574,35 @@ export type AllDocumentTypes =
   | TermsAndPrivacyDocument;
 
 /**
- * Primary content in *Gem → Primary*
+ * Primary content in *Gem → Default → Primary*
  */
 export interface GemSliceDefaultPrimary {
   /**
-   * Gem field in *Gem → Primary*
+   * Gem field in *Gem → Default → Primary*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: gem.primary.gem
+   * - **API ID Path**: gem.default.primary.gem
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   gem: prismic.ContentRelationshipField<"gem">;
 
   /**
-   * Description field in *Gem → Primary*
+   * Description field in *Gem → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: gem.primary.description
+   * - **API ID Path**: gem.default.primary.description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
 
   /**
-   * Creator field in *Gem → Primary*
+   * Creator field in *Gem → Default → Primary*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: gem.primary.creator
+   * - **API ID Path**: gem.default.primary.creator
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   creator: prismic.ContentRelationshipField<"creator">;
@@ -1621,15 +1632,15 @@ type GemSliceVariation = GemSliceDefault;
 export type GemSlice = prismic.SharedSlice<"gem", GemSliceVariation>;
 
 /**
- * Primary content in *Highlight → Primary*
+ * Primary content in *Highlight → Default → Primary*
  */
 export interface HighlightSliceDefaultPrimary {
   /**
-   * Text field in *Highlight → Primary*
+   * Text field in *Highlight → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: highlight.primary.text
+   * - **API ID Path**: highlight.default.primary.text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   text: prismic.RichTextField;
@@ -1663,36 +1674,36 @@ type HighlightSliceVariation = HighlightSliceDefault;
 export type HighlightSlice = prismic.SharedSlice<"highlight", HighlightSliceVariation>;
 
 /**
- * Primary content in *Playbooks → Primary*
+ * Primary content in *Playbooks → Default → Primary*
  */
 export interface PlaybooksSliceDefaultPrimary {
   /**
-   * Title field in *Playbooks → Primary*
+   * Title field in *Playbooks → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: playbooks.primary.title
+   * - **API ID Path**: playbooks.default.primary.title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Size field in *Playbooks → Primary*
+   * Size field in *Playbooks → Default → Primary*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: playbooks.primary.size
+   * - **API ID Path**: playbooks.default.primary.size
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   size: prismic.BooleanField;
 
   /**
-   * More field in *Playbooks → Primary*
+   * More field in *Playbooks → Default → Primary*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
-   * - **API ID Path**: playbooks.primary.more
+   * - **API ID Path**: playbooks.default.primary.more
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   more: prismic.ContentRelationshipField<"destination" | "playbook">;
@@ -1741,15 +1752,15 @@ type PlaybooksSliceVariation = PlaybooksSliceDefault;
 export type PlaybooksSlice = prismic.SharedSlice<"playbooks", PlaybooksSliceVariation>;
 
 /**
- * Primary content in *SingleHeading → Primary*
+ * Primary content in *SingleHeading → Default → Primary*
  */
 export interface SingleHeadingSliceDefaultPrimary {
   /**
-   * Heading field in *SingleHeading → Primary*
+   * Heading field in *SingleHeading → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
-   * - **API ID Path**: single_heading.primary.heading
+   * - **API ID Path**: single_heading.default.primary.heading
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField;
@@ -1783,15 +1794,15 @@ type SingleHeadingSliceVariation = SingleHeadingSliceDefault;
 export type SingleHeadingSlice = prismic.SharedSlice<"single_heading", SingleHeadingSliceVariation>;
 
 /**
- * Primary content in *TextBlock → Primary*
+ * Primary content in *TextBlock → Default → Primary*
  */
 export interface TextBlockSliceDefaultPrimary {
   /**
-   * Text field in *TextBlock → Primary*
+   * Text field in *TextBlock → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_block.primary.text
+   * - **API ID Path**: text_block.default.primary.text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   text: prismic.RichTextField;
@@ -1825,25 +1836,25 @@ type TextBlockSliceVariation = TextBlockSliceDefault;
 export type TextBlockSlice = prismic.SharedSlice<"text_block", TextBlockSliceVariation>;
 
 /**
- * Primary content in *TextWithHeading → Primary*
+ * Primary content in *TextWithHeading → Default → Primary*
  */
 export interface TextWithHeadingSliceDefaultPrimary {
   /**
-   * Heading field in *TextWithHeading → Primary*
+   * Heading field in *TextWithHeading → Default → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_with_heading.primary.heading
+   * - **API ID Path**: text_with_heading.default.primary.heading
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField;
 
   /**
-   * Text field in *TextWithHeading → Primary*
+   * Text field in *TextWithHeading → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_with_heading.primary.text
+   * - **API ID Path**: text_with_heading.default.primary.text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   text: prismic.RichTextField;
@@ -1863,25 +1874,25 @@ export type TextWithHeadingSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Primary content in *TextWithHeading → Primary*
+ * Primary content in *TextWithHeading → Columns → Primary*
  */
 export interface TextWithHeadingSliceColumnsPrimary {
   /**
-   * Heading field in *TextWithHeading → Primary*
+   * Heading field in *TextWithHeading → Columns → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_with_heading.primary.heading
+   * - **API ID Path**: text_with_heading.columns.primary.heading
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField;
 
   /**
-   * Text field in *TextWithHeading → Primary*
+   * Text field in *TextWithHeading → Columns → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_with_heading.primary.text
+   * - **API ID Path**: text_with_heading.columns.primary.text
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   text: prismic.RichTextField;
@@ -1915,15 +1926,15 @@ type TextWithHeadingSliceVariation = TextWithHeadingSliceDefault | TextWithHeadi
 export type TextWithHeadingSlice = prismic.SharedSlice<"text_with_heading", TextWithHeadingSliceVariation>;
 
 /**
- * Primary content in *VideoEmbed → Primary*
+ * Primary content in *VideoEmbed → Default → Primary*
  */
 export interface VideoEmbedSliceDefaultPrimary {
   /**
-   * Embed field in *VideoEmbed → Primary*
+   * Embed field in *VideoEmbed → Default → Primary*
    *
    * - **Field Type**: Embed
    * - **Placeholder**: *None*
-   * - **API ID Path**: video_embed.primary.embed
+   * - **API ID Path**: video_embed.default.primary.embed
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   embed: prismic.EmbedField;
