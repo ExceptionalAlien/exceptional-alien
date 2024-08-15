@@ -103,7 +103,7 @@ export default function Playbook({ page, search }: PageProps) {
       <main className={`${!hasRelated && "!pb-0"}`}>
         {(!page.data.locked || hasAccess) && (
           <>
-            <Viewer data={page.data} setShowVideo={setShowVideo} />
+            <Viewer data={page.data} setShowVideo={setShowVideo} pageId={page.id} pageSlug={page.uid} />
             {hasRelated && <Related playbooks={page.data.related} />}
           </>
         )}

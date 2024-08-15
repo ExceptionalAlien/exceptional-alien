@@ -6,6 +6,8 @@ import List from "./viewer/List";
 type ViewerProps = {
   data: Content.PlaybookDocumentData;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
+  pageId: string;
+  pageSlug: string;
 };
 
 export default function Viewer(props: ViewerProps) {
@@ -18,7 +20,7 @@ export default function Viewer(props: ViewerProps) {
 
   return (
     <div className="flex items-end justify-end" ref={ref}>
-      <List data={props.data} setShowVideo={props.setShowVideo} />
+      <List data={props.data} setShowVideo={props.setShowVideo} pageId={props.pageId} pageSlug={props.pageSlug} />
       <Map gems={props.data.slices} viewerRef={viewerRef!} />
     </div>
   );
