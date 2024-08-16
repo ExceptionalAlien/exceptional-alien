@@ -8,6 +8,7 @@ import Viewer from "@/components/playbook/Viewer";
 import Video from "@/components/playbook/Video";
 import Related from "@/components/playbook/Related";
 import SearchBox from "@/components/shared/SearchBox";
+import { element } from "prop-types";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
