@@ -100,7 +100,12 @@ export default function Hotel({ page }: PageProps) {
       <section className="relative block overflow-auto !pl-0 !pr-0">
         <div className="h-[calc(100vh-80px)] md:h-[calc(100vh-80px)]">
           <div className="absolute top-[48px] md:top-[80px] w-full h-[80vh] bg-ex-blue">
-            <p className="inline-block absolute bottom-9 md:bottom-12 uppercase text-xs md:text-base w-full pl-3 md:pl-5 [writing-mode:sideways-lr] text-white font-semibold [letter-spacing: tracking-widest">
+            <p className="inline-block absolute bottom-9 md:bottom-12 uppercase text-xs md:text-base w-full -mb-11 md:-mb-9 pt-3 md:pt-5 text-white font-semibold tracking-widest"
+              style={{
+                transform: `rotate(-90deg)`,
+                transformOrigin: `0 0`,
+              }}
+            >
               In partnership with {page.data.title}</p>
             <LogoIcon onClick={() => { return false; }}
               className="p-safe absolute top-4 left-3 md:top-4 md:left-4 box-content h-6 md:h-10 text-white opacity-35"
