@@ -60,6 +60,13 @@
           ]
         }
       },
+      "video": {
+        "type": "Embed",
+        "config": {
+          "label": "Video",
+          "placeholder": "YouTube link"
+        }
+      },
       "google_maps_id": {
         "type": "Text",
         "config": {
@@ -78,6 +85,30 @@
         "config": {
           "label": "Address",
           "placeholder": ""
+        }
+      },
+      "destination": {
+        "type": "Link",
+        "config": {
+          "label": "Destination",
+          "select": "document",
+          "customtypes": ["destination"]
+        }
+      },
+      "creator": {
+        "type": "Link",
+        "config": {
+          "label": "Influencer",
+          "select": "document",
+          "customtypes": ["creator"]
+        }
+      },
+      "hotel_playbook": {
+        "type": "Link",
+        "config": {
+          "label": "Hotel Playbook",
+          "select": "document",
+          "customtypes": ["playbook"]
         }
       },
       "slices": {

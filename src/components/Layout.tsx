@@ -52,7 +52,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const [showingSearchBox, setShowingSearchBox] = useState(false);
 
-  const css = `
+  let css = ` 
+  footer {
+      background-color: ${router.pathname.startsWith('/hotel') ? "black" : "inherit"};
+  }
+  
   body {
     background-color: ${searchParams?.get("c") ? "black" : "#2220c1"};
   }
