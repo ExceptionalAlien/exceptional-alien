@@ -54,7 +54,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   let css = ` 
   footer {
-      background-color: ${router.pathname.startsWith('/hotel') ? "black" : "inherit"};
+      background-color: ${(router.pathname.startsWith('/hotel') || router.pathname.startsWith('/concierge')) ? "black" : "inherit"};
   }
   
   body {
@@ -62,7 +62,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }
 
   .gem-icon, .selected-gem .gem-icon-bg, .gem-text p, .tab-button:hover {
-    color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"} !important;
+    color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"};
   }
 
   .tab-button:hover {

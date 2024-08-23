@@ -1,6 +1,5 @@
 import {default as NextHead} from "next/head";
 import { asText, KeyTextField, RichTextField, ImageField } from "@prismicio/client";
-//import { GemDocumentData } from "../../../prismicio-types";
 
 type SharedProps = {
   page: {
@@ -47,6 +46,8 @@ export default function Head({ page }: SharedProps) {
                 : "https://exceptionalalien.com/img/og.png"
         }
       />
+
+      {/* {page.data.locked && <meta name="robots" content="noindex" />} */}
     </NextHead>
   );
 }

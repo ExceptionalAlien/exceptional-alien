@@ -37,7 +37,7 @@ export default function Hotel({ page }: PageProps) {
 
   const influencer = page.data.creator as unknown as Content.CreatorDocument
   const playbook = page.data.hotel_playbook as unknown as Content.PlaybookDocument
-  const playbookLink = '/travel-playbooks/' + (playbook ? playbook.uid : '')
+  const playbookLink = '/hotel-playbooks/' + (playbook ? playbook.uid : '')
 
   useEffect(() => {
     const handleResize = () => {
