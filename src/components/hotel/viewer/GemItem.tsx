@@ -10,18 +10,22 @@ import ShowMoreButton from "@/components/shared/ShowMoreButton";
 
 /**
  * Props for `Gem`.
+ * SliceComponentProps
  */
-export type GemProps = SliceComponentProps<
-  Content.GemSlice,
-  {
-    creator: Content.CreatorDocument;
+export type GemProps = {
+  slice: Content.GemSlice,
+  context: {
+    creator: unknown
   }
->;
+/*{
+  creator: Content.CreatorDocument;
+}*/
+};
 
 /**
  * Component for "Gem" Slices.
  */
-const Gem = ({ slice, context }: GemProps): JSX.Element => {
+const GemItem = ({ slice, context }: GemProps): JSX.Element => {
   const gem = slice.primary.gem as unknown as Content.GemDocument;
   const creator = slice.primary.creator as unknown as Content.CreatorDocument;
 
@@ -115,4 +119,4 @@ const Gem = ({ slice, context }: GemProps): JSX.Element => {
   );
 };
 
-export default Gem;
+export default GemItem;

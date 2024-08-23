@@ -156,7 +156,7 @@ export default function Hotel({ page }: PageProps) {
           <h2 className="text-2xl font-bold md:text-5xl mb-9">
             Discover Local Gems</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-9">
-            <Link href={playbookLink} className="group hover:scale-[1.01] cursor-pointer ease-out duration-300 transition-[transform,background-size] relative md:col-span-2 md:row-span-2 min-h-[50vh] bg-green-200 bg-[url('/img/categories/food.jpeg')] bg-cover bg-no-repeat bg-center">
+            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:col-span-2 md:row-span-2 min-h-[50vh] bg-green-200 bg-[url('/img/categories/food.jpeg')] bg-cover bg-no-repeat bg-center">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Food & Drink" classes={`!h-16 !w-16`}></GemIcon>
@@ -167,7 +167,7 @@ export default function Hotel({ page }: PageProps) {
               </div>
             </Link>
 
-            <Link href={playbookLink} className="group hover:scale-[1.01] cursor-pointer ease-out duration-300 transition-[transform] relative md:row-span-2 min-h-[50vh] bg-red-200 bg-[url('/img/categories/outdoor.jpeg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:row-span-2 min-h-[50vh] bg-red-200 bg-[url('/img/categories/outdoor.jpeg')] bg-cover bg-no-repeat bg-cente">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Neighbourhoods" classes={`!h-16 !w-16`}></GemIcon>
@@ -178,7 +178,7 @@ export default function Hotel({ page }: PageProps) {
               </div>
             </Link>
 
-            <Link href={playbookLink} className="group hover:scale-[1.01] cursor-pointer ease-out duration-300 transition-[transform] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/retail.jpeg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/retail.jpeg')] bg-cover bg-no-repeat bg-cente">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Retail" classes={`!h-16 !w-16`}></GemIcon>
@@ -191,7 +191,7 @@ export default function Hotel({ page }: PageProps) {
               </div>
             </Link>
 
-            <Link href={playbookLink} className="group hover:scale-[1.01] cursor-pointer ease-out duration-300 transition-[transform] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/events.jpeg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/events.jpeg')] bg-cover bg-no-repeat bg-cente">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Events" classes={`!h-16 !w-16`}></GemIcon>

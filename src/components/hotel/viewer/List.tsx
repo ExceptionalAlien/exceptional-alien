@@ -23,7 +23,6 @@ export default function List(props: ListProps) {
         }} />
       </div>
 
-      {/* [&>.gem]:bg-white [&>.gem]:p-5 [&>.gem>.gem-icon]:r-5 */}
       <div className="grid gap-y-6 md:gap-y-6 [&>.gem]:bg-white [&>.gem]:p-5 [&>.gem>.gem-icon]:r-5">
         <section className="grid gap-y-3 md:gap-y-4 bg-white p-5 pt-0 [&>p]:text-black [&>p]:text-sm">
           <h1 className="text-2xl sm:text-3xl uppercase font-bold">{props.data.title}</h1>
@@ -38,7 +37,7 @@ export default function List(props: ListProps) {
         </section>
 
         {props.data.slices.map((slice, i) => {
-          return <GemItem key={i} slice={slice} context={{ creator: props.data.creator }} />;
+          return <GemItem key={i} slice={slice} context={{ creator: null }} />;
         })}
 
         {/* <SliceZone slices={props.data.slices} components={components} context={{ creator: props.data.creator }} /> */}
