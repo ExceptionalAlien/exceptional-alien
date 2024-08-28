@@ -26,6 +26,22 @@
           "placeholder": ""
         }
       },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Horizontal logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "logo_icon": {
+        "type": "Image",
+        "config": {
+          "label": "Logo icon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "image": {
         "type": "Image",
         "config": {

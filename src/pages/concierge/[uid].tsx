@@ -24,6 +24,7 @@ import GemIcon from "@/components/shared/GemIcon";
 import Destination from "@/components/shared/Destination";
 import Video from "@/components/playbook/Video";
 import CreatorIcon from "@/components/shared/CreatorIcon";
+import VideoEmbed from "@/components/shared/VideoEmbed";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -122,7 +123,8 @@ export default function Hotel({ page }: PageProps) {
           >
             <div className="absolute bottom-0 w-full p-4 text-white md:p-20 text-gradient">
               <hgroup className="float-left w-full md:w-2/3 2xl:w-2/6 pr-2 md:pr-3">
-                <h1 className="text-3xl font-bold md:text-5xl mb-3">{page.data.title}</h1>
+                {!page.data.logo && <h1 className="text-3xl font-bold md:text-5xl mb-3">{page.data.title}</h1>}
+                {page.data.logo && <img src={`${page.data.logo.url}`} className="mb-3 max-w-[60%] h-auto" alt="Logo" />}
                 <hr className="border-gray-300 opacity-40 mb-3" />
                 <p className="w-auto text-left text-white text-sm md:text-base font-bold mb-5">
                   {(page.data.destination as unknown as Content.DestinationDocument).data.country}</p>
@@ -220,10 +222,9 @@ export default function Hotel({ page }: PageProps) {
             <div
               className="relative grid grid-cols-1 md:grid-cols-11 gap-9 h-auto min-h-[90vh] w-auto md:w-[calc(100%-130px)] ml-4 mr-4 md:mx-auto">
               <div className="relative col-span-1 md:col-span-6">
-                {(page.data.video) && <div
-                  className="relative aspect-video [&>iframe]:h-[75vh] [&>iframe]:w-full [&>iframe]:rounded-bl-[50px]"
-                  dangerouslySetInnerHTML={{ __html: page.data.video.html as TrustedHTML }}
-                />}
+                {(page.data.video) && <div className="relative aspect-video [&>iframe]:h-[75vh] [&>iframe]:w-full [&>iframe]:rounded-bl-[50px]">
+                  <VideoEmbed embed={page.data.video} />
+                </div>}
                 {(!page.data.video && (influencer.data?.hero_image as unknown as boolean)) && <div className={`w-full h-[75vh] rounded-bl-[50px] min-h-[20vh] bg-gray-100 bg-[url('${influencer.data?.hero_image?.url as string}')] bg-cover bg-no-repeat bg-center`} />}
               </div>
               <div className="relative block col-span-1 md:col-span-3">
@@ -270,7 +271,7 @@ export default function Hotel({ page }: PageProps) {
           <div className="absolute w-full h-full opacity-50 bg-black"></div>
           <div className="relative block text-center w-full md:w-1/2 m-auto p-5 md:p-0">
             <p className="text-3xl font-bold text-white mb-5 [&>svg]:h-9 [&>svg]:mr-1 [&>svg]:inline-block">
-              <Playbook /> Travel Playbook <span className="text-xl mx-3">+</span>{page.data.title}</p>
+              <Playbook /> Travel Playbook<span className="text-xl mx-3">+</span>{page.data.title}</p>
             <h2 className="text-white text-5xl font-bold uppercase leading-snug">Explore the <br />{page.data.title} Playbook</h2>
             <div id="playbookFloatingButtonBox" className="relative mt-9 h-12 w-2/3 flex justify-center mx-auto">
               <Link className={`fixed md:relative inline-block bottom-0 left-0 z-[1000] py-5 w-full sm:w-auto px-7 sm:py-3 bg-ex-blue text-white text-center ${((breakpoint >= 0) && ((breakpoint == 2) ? `!relative !z-10 !py-3 !scale-100`: `!fixed`))}`}
@@ -301,7 +302,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
     const page = await client.getByUID("hotel", params?.uid as string, {
       fetchLinks:
         "hotel.title,hotel.image,hotel.footer_image,hotel.address,hotel.location,hotel.description,hotel.address," +
-        "hotel.video," +
+        "hotel.video,hotel.logo,hotel.logo_icon," +
         "destination.title,destination.country," +
         "creator.title,creator.profile_image,creator.hero_image,creator.description,creator.short_description,creator.first_name,creator.last_name," +
         "playbook.uid"

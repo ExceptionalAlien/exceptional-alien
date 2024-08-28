@@ -1076,6 +1076,28 @@ interface HotelDocumentData {
   description: prismic.KeyTextField;
 
   /**
+   * Horizontal logo field in *Hotel*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * Logo icon field in *Hotel*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.logo_icon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo_icon: prismic.ImageField<never>;
+
+  /**
    * Hero Image field in *Hotel*
    *
    * - **Field Type**: Image
@@ -1505,6 +1527,17 @@ interface PlaybookDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   related: prismic.GroupField<Simplify<PlaybookDocumentDataRelatedItem>>;
+
+  /**
+   * Hotel field in *Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.hotel
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  hotel: prismic.ContentRelationshipField<"hotel">;
 
   /**
    * Slice Zone field in *Playbook*

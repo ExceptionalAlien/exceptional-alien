@@ -9,6 +9,8 @@ function GoogleMap(props: MapProps) {
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
+  const hotel = (props.hotel as unknown as Content.HotelDocument).data;
+
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
@@ -17,6 +19,7 @@ function GoogleMap(props: MapProps) {
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 24 : 16;
     const top = globalHeaderheight + titleHeight;
+    const scrollTrigger = isMobile ? 200 : 300;
     const bounds = new window.google.maps.LatLngBounds();
     var scrollTimer: NodeJS.Timeout;
     var initZoom: number | undefined;
@@ -24,6 +27,7 @@ function GoogleMap(props: MapProps) {
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
     var clicked = false;
+    var animating = false;
     var clickedTimer: NodeJS.Timeout;
 
     const resetMapGems = () => {
@@ -44,7 +48,7 @@ function GoogleMap(props: MapProps) {
         const gem = gems[i] as HTMLElement;
         const pos = gem.offsetTop + (gem.querySelector(".gem-content") as HTMLElement).offsetTop - window.scrollY;
 
-        if (pos >= top && pos < window.innerHeight && !focusedGem) {
+        if (pos >= (top+scrollTrigger) && pos < window.innerHeight && !focusedGem) {
           focusedGem = gems[i].id.replace("gem-", "");
         }
       }
@@ -111,6 +115,33 @@ function GoogleMap(props: MapProps) {
       gestureHandling: "greedy",
       zoomControl: isMobile ? false : true,
     });
+
+    const addHotelPin = () => {
+      if (hotel && hotel.location.latitude && hotel.logo_icon) {
+        const coords = {
+          lat: hotel.location.latitude,
+          lng: hotel.location.longitude,
+        };
+        const div = document.createElement("div");
+        div.setAttribute("id", "hotel");
+        createRoot(div).render(
+          <div
+            className="absolute shrink-0 overflow-hidden rounded-full border border-white bg-white h-10 w-10 z-[1] -translate-x-1/2 -translate-y-1/2">
+            <img src={`${hotel.logo_icon.url}`} className="w-full h-full" alt="Logo" />
+          </div>,
+        );
+
+        // Add marker to map
+        const marker = new window.google.maps.marker.AdvancedMarkerElement({
+          map,
+          position: coords,
+          title: hotel.title,
+          content: div,
+        });
+      } else {
+        console.warn('Hotel coordinates missing')
+      }
+    }
 
     const addMarkers = async () => {
       const getCoords = async (placeID: string, uid: string) => {
@@ -239,7 +270,9 @@ function GoogleMap(props: MapProps) {
       });
     };
 
-    addMarkers(); // Init
+    addMarkers();
+    addHotelPin();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll); // Clean up
   }, [props.gems]);
@@ -256,6 +289,7 @@ function GoogleMap(props: MapProps) {
 
 type MapProps = {
   gems: SliceZone<Content.GemSlice>;
+  hotel: Content.HotelDocument;
   viewerRef: HTMLDivElement;
 };
 

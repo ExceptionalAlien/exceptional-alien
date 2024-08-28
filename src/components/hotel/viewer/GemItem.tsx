@@ -55,7 +55,7 @@ const GemItem = ({ slice, context }: GemProps): JSX.Element => {
         }} />
       )}
 
-      <GemIcon category={gem.data.category} classes="left-7 top-7 !h-16 !w-16" />
+      <GemIcon category={gem.data.category} classes="left-8 top-8 !h-16 !w-16" />
 
       <div className="block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight">
         <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>

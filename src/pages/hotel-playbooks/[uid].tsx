@@ -52,7 +52,7 @@ export default function Playbook({ page, search }: PageProps) {
             {/*<Viewer data={page.data} setShowVideo={setShowVideo} />*/}
             <div className="flex items-end justify-end" ref={ref}>
               <List data={page.data} setShowVideo={() => { return false }} />
-              <Map gems={page.data.slices} viewerRef={viewerRef!} />
+              <Map gems={page.data.slices} hotel={page.data.hotel as unknown as Content.HotelDocument} viewerRef={viewerRef!} />
             </div>
           </>
         )}
@@ -82,7 +82,10 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
 
     const page = await client.getByUID("playbook", params?.uid as string, {
       fetchLinks:
-        "creator.first_name,creator.last_name,creator.profile_image,creator.uid,gem.title,gem.location,gem.image,gem.category,gem.creator,gem.address,gem.google_maps_id,gem.description,destination.title,playbook.title,playbook.locked,playbook.image,playbook.destination,playbook.creator",
+        "creator.first_name,creator.last_name,creator.profile_image,creator.uid," +
+        "hotel.title,hotel.logo_icon,hotel.location,hotel.video," +
+        "gem.title,gem.location,gem.image,gem.category,gem.creator,gem.address,gem.google_maps_id,gem.description," +
+        "destination.title,playbook.title,playbook.locked,playbook.image,playbook.destination,playbook.creator",
     });
 
     const search = await client.getSingle("search", {
@@ -98,7 +101,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
     };
   } catch (error) {
 
-    console.log(error)
+    //console.log(error)
 
     return { notFound: true };
   }
