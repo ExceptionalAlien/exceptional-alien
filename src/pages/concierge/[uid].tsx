@@ -25,6 +25,7 @@ import Destination from "@/components/shared/Destination";
 import Video from "@/components/playbook/Video";
 import CreatorIcon from "@/components/shared/CreatorIcon";
 import VideoEmbed from "@/components/shared/VideoEmbed";
+import EmailPlaybook from "@/components/hotel/EmailPlaybook";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -112,7 +113,7 @@ export default function Hotel({ page }: PageProps) {
               className="p-safe absolute top-4 left-3 md:top-4 md:left-4 box-content h-6 md:h-10 text-white opacity-35"
             />
             <div
-              className="absolute right-0 bottom-0 h-14 md:h-24 bg-white w-4/6 md:w-2/5 [clip-path:polygon(25%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(13%_0,100%_0,100%_100%,0%_100%)]"></div>
+              className="absolute right-0 -bottom-[1px] h-14 md:h-24 bg-white w-4/6 md:w-2/5 [clip-path:polygon(25%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(13%_0,100%_0,100%_100%,0%_100%)]"></div>
           </div>
 
           <div
@@ -155,7 +156,7 @@ export default function Hotel({ page }: PageProps) {
 
       <section className="relative block overflow-auto !pl-0 !pr-0 md:pb-24 pb-12">
         <div className="px-5 md:px-[65px]">
-          <h2 className="text-2xl font-bold md:text-5xl mb-9">
+          <h2 className="text-3xl font-bold md:text-5xl mb-9 uppercase">
             Discover Local Gems</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-9">
             <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:col-span-2 md:row-span-2 min-h-[50vh] bg-green-200 bg-[url('/img/categories/food.jpeg')] bg-cover bg-no-repeat bg-center">
@@ -217,7 +218,7 @@ export default function Hotel({ page }: PageProps) {
               className="absolute left-0 top-0 h-14 md:h-20 bg-white w-full">
             </div>
             <div
-              className="absolute right-0 bottom-0 h-14 md:h-24 bg-white w-4/6 md:w-2/5 [clip-path:polygon(25%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(13%_0,100%_0,100%_100%,0%_100%)]">
+              className="absolute right-0 -bottom-[1px] h-14 md:h-24 bg-white w-4/6 md:w-2/5 [clip-path:polygon(25%_0,100%_0,100%_100%,0%_100%)] md:[clip-path:polygon(13%_0,100%_0,100%_100%,0%_100%)]">
             </div>
             <div
               className="relative grid grid-cols-1 md:grid-cols-11 gap-9 h-auto min-h-[90vh] w-auto md:w-[calc(100%-130px)] ml-4 mr-4 md:mx-auto">
@@ -261,7 +262,21 @@ export default function Hotel({ page }: PageProps) {
         </div>
       </section>
 
-      <section id="playbookFooter" className="relative block overflow-auto !pl-0 !pr-0">
+      <section className="relative block !px-5 md:!px-[65px] py-12 md:py-24 !mt-0">
+        <div className="grid grid-cols-1 md:grid-cols-11 gap-9 w-full">
+          <div className="col-span-1 md:col-start-2 md:col-span-5">
+            <h2 className="text-3xl font-bold md:text-5xl text-ex-blue uppercase">
+              Get all these Gems<br />into your inbox</h2>
+          </div>
+          <div className="col-span-1 md:col-span-5">
+            <EmailPlaybook
+              title={`Get ${(page.data.destination as unknown as Content.DestinationDocument).data.title as string} Travel Playbook sent to your inbox` }
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="playbookFooter" className="relative block overflow-auto !pl-0 !pr-0 !mt-0">
         <div
           className={`relative flex justify-center items-center h-[calc(100vh-17vh-80px)] bg-cover bg-no-repeat bg-center`}
           style={{
@@ -271,7 +286,7 @@ export default function Hotel({ page }: PageProps) {
           <div className="absolute w-full h-full opacity-50 bg-black"></div>
           <div className="relative block text-center w-full md:w-1/2 m-auto p-5 md:p-0">
             <p className="text-3xl font-bold text-white mb-5 [&>svg]:h-9 [&>svg]:mr-1 [&>svg]:inline-block">
-              <Playbook /> Travel Playbook<span className="text-xl mx-3">+</span>{page.data.title}</p>
+              <Playbook /> Travel Playbook <span className="text-xl mx-2">+</span> {page.data.title}</p>
             <h2 className="text-white text-5xl font-bold uppercase leading-snug">Explore the <br />{page.data.title} Playbook</h2>
             <div id="playbookFloatingButtonBox" className="relative mt-9 h-12 w-2/3 flex justify-center mx-auto">
               <Link className={`fixed md:relative inline-block bottom-0 left-0 z-[1000] py-5 w-full sm:w-auto px-7 sm:py-3 bg-ex-blue text-white text-center ${((breakpoint >= 0) && ((breakpoint == 2) ? `!relative !z-10 !py-3 !scale-100`: `!fixed`))}`}
