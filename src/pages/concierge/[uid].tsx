@@ -287,7 +287,7 @@ export default function Hotel({ page }: PageProps) {
           <div className="relative block text-center w-full md:w-1/2 m-auto p-5 md:p-0">
             <p className="text-3xl font-bold text-white mb-5 [&>svg]:h-9 [&>svg]:mr-1 [&>svg]:inline-block">
               <Playbook /> Travel Playbook <span className="text-xl mx-2">+</span> {page.data.title}</p>
-            <h2 className="text-white text-5xl font-bold uppercase leading-snug">Explore the <br />{page.data.title} Playbook</h2>
+            <h2 className="text-white text-5xl font-bold uppercase leading-1 sm:leading-tight">Explore the <br />{page.data.title} Playbook</h2>
             <div id="playbookFloatingButtonBox" className="relative mt-9 h-12 w-2/3 flex justify-center mx-auto">
               <Link className={`fixed md:relative inline-block bottom-0 left-0 z-[1000] py-5 w-full sm:w-auto px-7 sm:py-3 bg-ex-blue text-white text-center ${((breakpoint >= 0) && ((breakpoint == 2) ? `!relative !z-10 !py-3 !scale-100`: `!fixed`))}`}
                     style={{

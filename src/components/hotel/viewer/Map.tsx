@@ -18,7 +18,7 @@ function GoogleMap(props: MapProps) {
     const portraitMapHeight = isMobile ? 240 : 384;
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 24 : 16;
-    const top = globalHeaderheight + titleHeight;
+    const top = globalHeaderheight; // + titleHeight;
     const scrollTrigger = isMobile ? 200 : 300;
     const bounds = new window.google.maps.LatLngBounds();
     var scrollTimer: NodeJS.Timeout;
@@ -48,7 +48,7 @@ function GoogleMap(props: MapProps) {
         const gem = gems[i] as HTMLElement;
         const pos = gem.offsetTop + (gem.querySelector(".gem-content") as HTMLElement).offsetTop - window.scrollY;
 
-        if (pos >= (top+scrollTrigger) && pos < window.innerHeight && !focusedGem) {
+        if (pos >= (top+scrollTrigger) && pos < (window.innerHeight + scrollTrigger) && !focusedGem) {
           focusedGem = gems[i].id.replace("gem-", "");
         }
       }
@@ -101,7 +101,7 @@ function GoogleMap(props: MapProps) {
       }, 150);
     };
 
-    setGems(); // Init
+    setGems(); // Init for desktop
 
     // Create map
     const map = new window.google.maps.Map(ref.current!, {
@@ -280,7 +280,7 @@ function GoogleMap(props: MapProps) {
   {/* w was -576px todo: change height */}
   return (
     <div ref={ref}
-      className={`!fixed left-0 top-12 z-10 h-[45vh] w-1/2 shadow-xl sm:shadow-none touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+      className={`!fixed left-0 top-12 z-10 h-[30vh] w-1/2 shadow-xl sm:shadow-none touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />
