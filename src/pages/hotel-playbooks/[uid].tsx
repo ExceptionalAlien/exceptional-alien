@@ -30,8 +30,10 @@ export default function Playbook({ page, search }: PageProps) {
     }
     setViewerRef(ref.current!);
 
-    return () => detectDevice()
-  }, []);
+    detectDevice()
+    window.addEventListener("resize", detectDevice);
+    return () => window.removeEventListener("resize", detectDevice);
+  }, [isMobile]);
 
   /*
   useEffect(() => {
