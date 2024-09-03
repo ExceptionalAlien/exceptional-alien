@@ -93,11 +93,12 @@ audio::-webkit-media-controls-enclosure {
   color: black;
 }
 
-.gm-style .gm-style-iw {
-}
-
 .gm-style .gm-style-iw-c {
   padding: 0;
+}
+
+.gm-style-iw .gm-style-iw-c {
+
 }
 
 .gm-style .gm-style-iw-tc { /* pointer */
@@ -114,7 +115,7 @@ audio::-webkit-media-controls-enclosure {
 .gm-style .gm-style-iw-chr {
   display: block;
   position: absolute;
-  width: 100%;
+  width: 200px;
   top: 0;
   left: 0;
   z-index: 100;

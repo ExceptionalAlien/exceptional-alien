@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/shared/GemIcon";
+import Link from "next/link";
 
 function GoogleMap(props: MapProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
@@ -20,7 +21,7 @@ function GoogleMap(props: MapProps) {
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 24 : 16;
     const top = globalHeaderheight; // + titleHeight;
-    const scrollTrigger = -300;
+    //const scrollTrigger = -300;
     const bounds = new window.google.maps.LatLngBounds();
     var scrollTimer: NodeJS.Timeout;
     let initZoom: number | undefined;
@@ -57,6 +58,20 @@ function GoogleMap(props: MapProps) {
       allPopups.forEach((popup) => {
         popup.close()
       })
+    }
+
+    const detailsClick = (gemId: string) => {
+      console.log('ufo # ' + gemId)
+      let gem = (document.querySelector("#" + gemId) as HTMLElement)
+      const gemPosition = gem?.offsetTop + (innerHeight * 0.35);
+
+      props.setViewMode('list')
+      setTimeout(() => {
+        window.scrollTo({
+          top: gemPosition,
+          behavior: "smooth",
+        });
+      }, 500)
     }
 
     const resetMapGems = () => {
@@ -234,19 +249,19 @@ function GoogleMap(props: MapProps) {
 
             const infoBox = document.createElement("div");
             createRoot(infoBox).render(
-              <div className="relative w-auto max-w-[250px] min-w-[200px]">
-                <div className="max-w-[240px] h-[130px] bg-cover bg-no-repeat bg-center" style={{
+              <div className="relative !w-[200px]">
+                <div className="relative p-0 m-0 w-[200px] h-[130px] bg-cover bg-no-repeat bg-center" style={{
                   backgroundImage: `url(${gem.data.image.thumb.url as string})`,
                 }} />
-                <div className="p-3">
+                <div className="relative p-3 !w-[200px]">
                   <h6 className="font-bold">{gem.data.title}</h6>
                   <p className="mb-3">{gem.data.description}</p>
-                  <div className="flex justify-between">
-                    <a className="underline text-xs"
+                  <div className="relative flex justify-between">
+                    <Link className="underline text-xs"
                       href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
-                      target="_blank">Get Directions</a>
+                      target="_blank">Get Directions</Link>
                     <span>|</span>
-                    <button className="underline text-xs">More Details</button>
+                    <Link onClick={() => { detailsClick("gem-" + gem.uid) }} href="#" className="underline text-xs">More Details</Link>
                   </div>
                 </div>
               </div>
@@ -254,7 +269,6 @@ function GoogleMap(props: MapProps) {
 
             const infoWindow = new google.maps.InfoWindow({
               content: infoBox,
-              maxWidth: 250,
             });
             allPopups.push(infoWindow)
 
@@ -370,6 +384,7 @@ function GoogleMap(props: MapProps) {
 type MapProps = {
   gems: SliceZone<Content.GemSlice>;
   viewMode: string;
+  setViewMode: (arg: string) => void;
   hotel: Content.HotelDocument;
   viewerRef: HTMLDivElement;
 };

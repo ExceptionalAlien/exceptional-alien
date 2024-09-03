@@ -49,7 +49,7 @@ export default function Viewer(props: ViewerProps) {
       </div>
       <div id="splashCover" className="z-50 bg-ex-blue h-[100vh] w-full"></div>
       <MobileList data={props.data} viewMode={viewMode} setShowVideo={() => { return false; }} />
-      <MobileMap gems={props.data.slices} viewMode={viewMode} hotel={props.data.hotel as unknown as Content.HotelDocument} viewerRef={props.viewerRef!} />
+      <MobileMap gems={props.data.slices} setViewMode={setViewMode} viewMode={viewMode} hotel={props.data.hotel as unknown as Content.HotelDocument} viewerRef={props.viewerRef!} />
     </>
   );
 };
