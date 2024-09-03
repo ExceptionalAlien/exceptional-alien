@@ -159,7 +159,7 @@ export default function Hotel({ page }: PageProps) {
           <h2 className="text-3xl font-bold md:text-5xl mb-9 uppercase">
             Discover Local Gems</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-9">
-            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:col-span-2 md:row-span-2 min-h-[50vh] bg-green-200 bg-[url('/img/categories/food.jpeg')] bg-cover bg-no-repeat bg-center">
+            <Link href={`${playbookLink}?p=food-drink`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:col-span-2 md:row-span-2 min-h-[50vh] bg-green-200 bg-[url('/img/categories/food-1.jpeg')] bg-cover bg-no-repeat bg-center">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Food & Drink" classes={`!h-16 !w-16`}></GemIcon>
@@ -170,38 +170,38 @@ export default function Hotel({ page }: PageProps) {
               </div>
             </Link>
 
-            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:row-span-2 min-h-[50vh] bg-red-200 bg-[url('/img/categories/outdoor.jpeg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={`${playbookLink}?p=outdoors`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:row-span-2 min-h-[50vh] bg-red-200 bg-[url('/img/categories/outdoors.jpeg')] bg-cover bg-no-repeat bg-cente">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Neighbourhoods" classes={`!h-16 !w-16`}></GemIcon>
                 </div>
                 <div className="absolute bottom-0 text-gradient flex p-7 pt-12 w-full">
-                  <h3 className="text-white text-2xl font-bold">Neighbourhoods</h3>
+                  <h3 className="text-white text-2xl font-bold">Outdoors</h3>
                 </div>
               </div>
             </Link>
 
-            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/retail.jpeg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={`${playbookLink}?p=shopping`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/retail.jpeg')] bg-cover bg-no-repeat bg-cente">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Retail" classes={`!h-16 !w-16`}></GemIcon>
                 </div>
                 <div className="bg-orange-200">
                   <div className="absolute bottom-0 text-gradient flex p-7 pt-12 w-full">
-                    <h3 className="text-white text-2xl font-bold">Retail</h3>
+                    <h3 className="text-white text-2xl font-bold">Shopping</h3>
                   </div>
                 </div>
               </div>
             </Link>
 
-            <Link href={playbookLink} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/events.jpeg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={`${playbookLink}?p=dog-friendly`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-orange-200 min-h-[30vh] bg-[url('/img/categories/dogs.jpeg')] bg-cover bg-no-repeat bg-cente">
               <div>
                 <div className="absolute top-7 left-7">
-                  <GemIcon category="Events" classes={`!h-16 !w-16`}></GemIcon>
+                  <GemIcon category="Nature" classes={`!h-16 !w-16`}></GemIcon>
                 </div>
                 <div className="bg-orange-200">
                   <div className="absolute bottom-0 text-gradient flex p-7 pt-12 w-full">
-                    <h3 className="text-white text-2xl font-bold">Events</h3>
+                    <h3 className="text-white text-2xl font-bold">Dog Friendly</h3>
                   </div>
                 </div>
               </div>
@@ -270,7 +270,7 @@ export default function Hotel({ page }: PageProps) {
           </div>
           <div className="col-span-1 md:col-span-5">
             <EmailPlaybook
-              title={`Get ${(page.data.destination as unknown as Content.DestinationDocument).data.title as string} Travel Playbook sent to your inbox` }
+              title={`Enter your email to receive all our ${(page.data.destination as unknown as Content.DestinationDocument).data.title as string} gems` }
             />
           </div>
         </div>
@@ -285,9 +285,10 @@ export default function Hotel({ page }: PageProps) {
         >
           <div className="absolute w-full h-full opacity-50 bg-black"></div>
           <div className="relative block text-center w-full md:w-1/2 m-auto p-5 md:p-0">
-            <p className="text-3xl font-bold text-white mb-5 [&>svg]:h-9 [&>svg]:mr-1 [&>svg]:inline-block">
-              <Playbook /> Travel Playbook <span className="text-xl mx-2">+</span> {page.data.title}</p>
-            <h2 className="text-white text-5xl font-bold uppercase leading-1 sm:leading-tight">Explore the <br />{page.data.title} Playbook</h2>
+            {/*<p className="text-3xl font-bold text-white mb-5 [&>svg]:h-9 [&>svg]:mr-1 [&>svg]:inline-block">
+              <Playbook /> Travel Playbook <span className="text-xl mx-2">+</span> {page.data.title}</p>*/}
+            <h2 className="text-white text-5xl font-bold uppercase leading-1 sm:leading-tight">Explore the {page.data.title} <br />Travel Playbook
+            </h2>
             <div id="playbookFloatingButtonBox" className="relative mt-9 h-12 w-2/3 flex justify-center mx-auto">
               <Link className={`fixed md:relative inline-block bottom-0 left-0 z-[1000] py-5 w-full sm:w-auto px-7 sm:py-3 bg-ex-blue text-white text-center ${((breakpoint >= 0) && ((breakpoint == 2) ? `!relative !z-10 !py-3 !scale-100`: `!fixed`))}`}
                     style={{

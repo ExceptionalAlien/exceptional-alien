@@ -1,11 +1,11 @@
 import { Content, asLink } from "@prismicio/client";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
-import Header from "./list/Header";
-import Audio from "./list/Audio";
-import Buttons from "./list/Buttons";
+import Header from "../list/Header";
+import Audio from "../list/Audio";
+import Buttons from "../list/Buttons";
 import GemThumb from "@/components/shared/GemThumb";
-import GemItem from "@/components/hotel/viewer/GemItem";
+import GemItem from "@/components/hotel/desktop/GemItem";
 import Playbook from "@/img/icon-playbook.svg";
 import VideoEmbed, { VideoProps } from "@/components/shared/VideoEmbed";
 import { EmbedField, VideoOEmbed } from "@prismicio/types";
@@ -57,7 +57,7 @@ export default function List(props: ListProps) {
           if (i == 0 && hotel.data.video) {
             return <>
               {DOMelement}
-              <section className="relative">
+              <section className="relative" key="video">
                 <div className="relative [&>iframe]:h-[40vh] [&>iframe]:sm:h-[75vh] [&>iframe]:sm:w-full [&>iframe]:rounded-bl-[50px]">
                   {hotel.data.video && <VideoEmbed embed={hotel.data.video} />}
                 </div>

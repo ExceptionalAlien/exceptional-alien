@@ -8,8 +8,9 @@ import Video from "@/components/playbook/Video";
 import Related from "@/components/playbook/Related";
 import SearchBox from "@/components/shared/SearchBox";
 import { element } from "prop-types";
-import List from "@/components/hotel/viewer/List";
-import Map from "@/components/hotel/viewer/Map";
+import { default as DesktopList } from "@/components/hotel/desktop/List";
+import { default as DesktopMap } from "@/components/hotel/desktop/Map";
+import { default as MobileViewer } from "@/components/hotel/mobile/Viewer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -17,10 +18,20 @@ export default function Playbook({ page, search }: PageProps) {
   const router = useRouter();
   const [showVideo, setShowVideo] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
+  const [isMobile, setMobile] = useState(false);
   const hasRelated = page.data.related.length > 1 ? true : false;
 
   const [viewerRef, setViewerRef] = useState<HTMLDivElement>();
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function detectDevice() {
+      setMobile(window.innerWidth < 768)
+    }
+    setViewerRef(ref.current!);
+
+    return () => detectDevice()
+  }, []);
 
   /*
   useEffect(() => {
@@ -38,24 +49,24 @@ export default function Playbook({ page, search }: PageProps) {
     }
   }, []);*/
 
-  useEffect(() => {
-    setViewerRef(ref.current!);
-  }, []);
-
   return (
     <>
       <Head page={page} />
 
       <main className={`${!hasRelated && "!pb-0"}`}>
-        {(true || !page.data.locked || hasAccess) && (
-          <>
-            {/*<Viewer data={page.data} setShowVideo={setShowVideo} />*/}
-            <div className="flex items-end justify-end" ref={ref}>
-              <List data={page.data} setShowVideo={() => { return false }} />
-              <Map gems={page.data.slices} hotel={page.data.hotel as unknown as Content.HotelDocument} viewerRef={viewerRef!} />
-            </div>
-          </>
+        <div ref={ref}>
+        {isMobile && (
+          <div>
+            <MobileViewer data={page.data} setShowVideo={() => { return false }} viewerRef={viewerRef!} />
+          </div>
         )}
+        {!isMobile && (
+          <div className="flex items-end justify-end">
+            <DesktopList data={page.data} setShowVideo={() => { return false }} />
+            <DesktopMap gems={page.data.slices} hotel={page.data.hotel as unknown as Content.HotelDocument} viewerRef={viewerRef!} />
+          </div>
+        )}
+        </div>
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />

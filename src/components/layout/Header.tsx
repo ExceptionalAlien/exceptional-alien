@@ -49,7 +49,7 @@ export default function Header() {
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
       </Head>
 
-      <header
+      <header id="topNavigation"
         className={`p-safe fixed top-0 z-10 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
           scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"
         }`}

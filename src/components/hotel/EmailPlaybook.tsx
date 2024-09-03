@@ -74,8 +74,7 @@ export default function EmailPlaybook(props: EmailPlaybookProps) {
           </form>
         </div>
         <p className="text-gray-500 text-xs">By clicking the button you&apos;re joining our Newsletter and agreeing to
-          the
-          <Link className="underline" href="/terms-and-privacy" target="_blank">Terms and Conditions</Link></p>
+          the <Link className="underline" href="/terms-and-privacy" target="_blank">Terms and Conditions</Link></p>
       </>}
     </>
   )
