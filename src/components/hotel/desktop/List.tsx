@@ -8,7 +8,9 @@ import GemThumb from "@/components/shared/GemThumb";
 import GemItem from "@/components/hotel/desktop/GemItem";
 import Playbook from "@/img/icon-playbook.svg";
 import VideoEmbed, { VideoProps } from "@/components/shared/VideoEmbed";
-import { EmbedField, VideoOEmbed } from "@prismicio/types";
+import { EmbedField, SharedSlice, VideoOEmbed } from "@prismicio/types";
+import { GemSlice } from "../../../../prismicio-types";
+import { useEffect } from "react";
 
 type ListProps = {
   data: Content.PlaybookDocumentData;
@@ -17,6 +19,7 @@ type ListProps = {
 
 export default function List(props: ListProps) {
   const hotel = props.data.hotel as unknown as Content.HotelDocument;
+  let slices = props.data.slices;
 
   return (
     <div
@@ -51,7 +54,7 @@ export default function List(props: ListProps) {
           />
         </section>
 
-        {props.data.slices.map((slice, i) => {
+        {slices.map((slice, i) => {
           let DOMelement = <GemItem key={i} slice={slice} context={{ creator: null }} />
 
           if (i == 0 && hotel.data.video) {
@@ -67,8 +70,6 @@ export default function List(props: ListProps) {
 
           return DOMelement;
         })}
-
-        {/* <SliceZone slices={props.data.slices} components={components} context={{ creator: props.data.creator }} /> */}
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default function Playbook({ page, search }: PageProps) {
   const [showVideo, setShowVideo] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
   const [isMobile, setMobile] = useState(false);
-  const hasRelated = page.data.related.length > 1 ? true : false;
+  const hasRelated = page.data.related.length > 1;
 
   const [viewerRef, setViewerRef] = useState<HTMLDivElement>();
   const ref = useRef<HTMLDivElement>(null);

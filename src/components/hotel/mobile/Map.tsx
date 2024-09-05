@@ -9,8 +9,27 @@ function GoogleMap(props: MapProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
   const [scrollEndPortrait, setScrollEndPortrait] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
   const hotel = (props.hotel as unknown as Content.HotelDocument).data;
+  let allMarkers = useRef<any[]>(null);
+
+  useEffect(() => {
+    const clickFromList = (gemId: string) => {
+      let gemMarker = (document.querySelector("#map-gem-" + gemId) as HTMLElement)
+
+      ref.current?.focus()
+      setTimeout(() => {
+        if (gemMarker) {
+          gemMarker?.click(); // todo: markers list sometimes gone..
+        } else {
+          console.log("%c Markers gone from the map", "color: red;")
+        }
+
+      }, 300)
+    }
+
+    props.selectedGem && clickFromList(props.selectedGem)
+
+  }, [props.selectedGem]);
 
   useEffect(() => {
     const isMobile = true;
@@ -36,10 +55,23 @@ function GoogleMap(props: MapProps) {
     let debugEvents = false;
 
     initZoom = 15;
-    let initLatitudeShift = 0.012; // so the map is centered more to the top
+    let initLatitudeShift = 0.011; // so the map is centered more to the top
 
     // @ts-ignore
     let allPopups = [];
+
+    // Create map
+    const map = new window.google.maps.Map(ref?.current!, {
+      mapId: "a558980281942a22",
+      streetViewControl: false,
+      fullscreenControl: false,
+      mapTypeControl: false,
+      clickableIcons: false,
+      backgroundColor: "#C5C5C5",
+      scrollwheel: false,
+      gestureHandling: "greedy",
+      zoomControl: true, // todo: isMobile ? false : true,
+    });
 
     const mapInit = () => {
       mapInitialised = true;
@@ -61,7 +93,6 @@ function GoogleMap(props: MapProps) {
     }
 
     const detailsClick = (gemId: string) => {
-      console.log('ufo # ' + gemId)
       let gem = (document.querySelector("#" + gemId) as HTMLElement)
       const gemPosition = gem?.offsetTop + (innerHeight * 0.35);
 
@@ -74,7 +105,7 @@ function GoogleMap(props: MapProps) {
       }, 500)
     }
 
-    const resetMapGems = () => {
+    const clearGemSelections = () => {
       const mapGems = document.querySelectorAll(".map-gem");
 
       for (let i = 0; i < mapGems.length; i++) {
@@ -82,6 +113,25 @@ function GoogleMap(props: MapProps) {
         (mapGems[i].parentNode?.parentNode as HTMLElement).style.zIndex = "auto";
       }
     };
+
+    const clearListGemSelections = () => {
+      const listGems = document.querySelectorAll(".gem-icon");
+      // Reset all list gem icons
+      for (let i = 0; i < listGems.length; i++) {
+        listGems[i].classList.remove("selected-gem");
+      }
+    }
+
+    const selectMapGem = (gemId: string) => {
+      debugEvents && console.log('ufo > selecting gem ' + gemId)
+      clearGemSelections()
+      clearListGemSelections()
+
+      //document.querySelector(`section#gem-${gemId} .gem-icon`)?.classList
+      //    .add("selected-gem"); // Select gem icon on the list
+      let gemIcon = document.querySelector(`#map-gem-${gemId}`)
+      gemIcon?.classList.add("selected-gem"); // highlight map icon
+    }
 
     const setGems = (zoomed?: boolean) => {
       focusedGem = ""; // Reset
@@ -104,7 +154,7 @@ function GoogleMap(props: MapProps) {
         focusedGem = clickedGem;
       }
 
-      resetMapGems();
+      clearGemSelections();
 
       // Select map gem
       const mapGem = document.querySelector("div#map-gem-" + focusedGem);
@@ -133,10 +183,6 @@ function GoogleMap(props: MapProps) {
     };
 
     const handleScroll = () => {
-
-      //console.log(' ufo CLIENT_HEIGHT > ' + props.viewerRef!.clientHeight)
-      //console.log(' ufo MAP_H > ' + portraitMapHeight)
-
       const height = props.viewerRef.offsetTop + props.viewerRef.clientHeight;
       const scroll = window.scrollY + window.innerHeight;
       const offset = window.scrollY - props.viewerRef!.clientHeight;
@@ -153,19 +199,6 @@ function GoogleMap(props: MapProps) {
     };
 
     //setGems(); // Init for desktop
-
-    // Create map
-    const map = new window.google.maps.Map(ref.current!, {
-      mapId: "a558980281942a22",
-      streetViewControl: false,
-      fullscreenControl: false,
-      mapTypeControl: false,
-      clickableIcons: false,
-      backgroundColor: "#C5C5C5",
-      scrollwheel: false,
-      gestureHandling: "greedy",
-      zoomControl: true, // todo: isMobile ? false : true,
-    });
 
     const addHotelPin = () => {
       if (hotel && hotel.location.latitude && hotel.logo_icon) {
@@ -221,6 +254,8 @@ function GoogleMap(props: MapProps) {
         );
       };
 
+      console.log("%c ufo > ATTACHING MARKERS ", "color:green;")
+
       // Loop playbook gems
       for (let i = 0; i < props.gems.length; i++) {
         const gem = props.gems[i].primary.gem as unknown as Content.GemDocument;
@@ -248,23 +283,28 @@ function GoogleMap(props: MapProps) {
             );
 
             const infoBox = document.createElement("div");
+            infoBox.setAttribute('style', 'max-width: 210px');
+            /*createRoot(infoBox).render(<p style={{
+              display: `block`,
+              width: `100px`,
+              backgroundColor: `orange`
+            }}>HEY DUDE</p>)*/
             createRoot(infoBox).render(
-              <div className="relative !w-[200px]">
-                <div className="relative p-0 m-0 w-[200px] h-[130px] bg-cover bg-no-repeat bg-center" style={{
+              <>
+                <div className="relative p-0 m-0 w-[210px] h-[130px] bg-cover bg-no-repeat bg-center" style={{
                   backgroundImage: `url(${gem.data.image.thumb.url as string})`,
                 }} />
-                <div className="relative p-3 !w-[200px]">
+                <div className="relative p-3 !w-[210px]">
                   <h6 className="font-bold">{gem.data.title}</h6>
                   <p className="mb-3">{gem.data.description}</p>
                   <div className="relative flex justify-between">
-                    <Link className="underline text-xs"
-                      href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
-                      target="_blank">Get Directions</Link>
-                    <span>|</span>
                     <Link onClick={() => { detailsClick("gem-" + gem.uid) }} href="#" className="underline text-xs">More Details</Link>
+                    <Link className="underline text-xs"
+                          href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
+                          target="_blank">Get Directions</Link>
                   </div>
                 </div>
-              </div>
+              </>
             );
 
             const infoWindow = new google.maps.InfoWindow({
@@ -292,10 +332,11 @@ function GoogleMap(props: MapProps) {
             marker.addListener("click", () => {
               // close all
               closeAllPopups();
-
               infoWindow.open(map, marker)
 
               clickedGem = gem.uid;
+              focusedGem = gem.uid;
+              selectMapGem(gem.uid)
 
               /*
               const viewerHeight = props.viewerRef.offsetTop + props.viewerRef.clientHeight;
@@ -333,6 +374,12 @@ function GoogleMap(props: MapProps) {
 
               clickedGem = gem.uid;*/
             });
+
+            // after event listener attached
+
+            // @ts-ignore
+            allMarkers[gem.uid] = marker
+
           } else {
             alert("Gem coords missing: " + gem.data.title);
           }
@@ -374,7 +421,7 @@ function GoogleMap(props: MapProps) {
   */}
   return (
     <div ref={ref}
-      className={`!fixed left-0 top-12 z-10 h-[calc(100vh-48px)] w-full shadow-xl sm:shadow-none touch-none bg-ex-light-grey
+      className={`!fixed left-0 top-12 z-10 h-[calc(100vh-48px)] w-full shadow-none touch-none bg-ex-light-grey
         ${false && scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}
       `}
     />
@@ -385,6 +432,8 @@ type MapProps = {
   gems: SliceZone<Content.GemSlice>;
   viewMode: string;
   setViewMode: (arg: string) => void;
+  selectedGem: string,
+  setSelectedGem: (arg: string) => void;
   hotel: Content.HotelDocument;
   viewerRef: HTMLDivElement;
 };

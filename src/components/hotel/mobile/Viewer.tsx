@@ -15,11 +15,10 @@ type ViewerProps = {
 
 export default function Viewer(props: ViewerProps) {
   const [viewMode, setViewMode] = useState('init')
+  const [selectedGem, setSelectedGem] = useState('')
   //const {viewMode, setViewMode} = useContext<ViewModeContextType>(ViewModeContext);
 
   useEffect(() => {
-    let elem = (document.querySelector('#topNavigation') as HTMLElement)
-    elem.style.setProperty('display', 'none');
     let splashCover = (document.querySelector('#splashCover') as HTMLElement)
     setTimeout(() => {
       splashCover.style.setProperty('display', 'none');
@@ -48,8 +47,8 @@ export default function Viewer(props: ViewerProps) {
         </div>
       </div>
       <div id="splashCover" className="z-50 bg-ex-blue h-[100vh] w-full"></div>
-      <MobileList data={props.data} viewMode={viewMode} setShowVideo={() => { return false; }} />
-      <MobileMap gems={props.data.slices} setViewMode={setViewMode} viewMode={viewMode} hotel={props.data.hotel as unknown as Content.HotelDocument} viewerRef={props.viewerRef!} />
+      <MobileList data={props.data} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} setShowVideo={() => { return false; }} />
+      <MobileMap gems={props.data.slices} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} hotel={props.data.hotel as unknown as Content.HotelDocument} viewerRef={props.viewerRef!} />
     </>
   );
 };

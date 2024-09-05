@@ -7,6 +7,7 @@ import GemIcon from "@/components/shared/GemIcon";
 import CreatorIcon from "@/components/shared/CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 import ShowMoreButton from "@/components/shared/ShowMoreButton";
+import Globe from "@/img/globe.svg";
 
 /**
  * Props for `Gem`.
@@ -14,6 +15,9 @@ import ShowMoreButton from "@/components/shared/ShowMoreButton";
  */
 export type GemProps = {
   slice: Content.GemSlice,
+  setViewMode: (arg: string) => void,
+  selectedGem: string,
+  setSelectedGem: (arg: string) => void,
   context: {
     creator: unknown
   }
@@ -25,9 +29,14 @@ export type GemProps = {
 /**
  * Component for "Gem" Slices.
  */
-const GemItem = ({ slice, context }: GemProps): JSX.Element => {
+const GemItem = ({ slice, context, setViewMode, setSelectedGem }: GemProps): JSX.Element => {
   const gem = slice.primary.gem as unknown as Content.GemDocument;
   const creator = slice.primary.creator as unknown as Content.CreatorDocument;
+
+  const mapClick = (gemId: string) => {
+    setViewMode('map')
+    setSelectedGem(gemId)
+  }
 
   return (
     <section
@@ -57,9 +66,14 @@ const GemItem = ({ slice, context }: GemProps): JSX.Element => {
 
       <GemIcon category={gem.data.category} classes="left-8 top-8 !h-16 !w-16" />
 
-      <div className="block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight">
-        <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>
-        <h5>{gem.data.description}</h5>
+      <div className="relative">
+        <div className="block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight w-[calc(100%-40px)]">
+          <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>
+          <h5>{gem.data.description}</h5>
+        </div>
+        <button onClick={() => {mapClick(gem.uid)}} className="[&>svg]:text-black [&>svg]:w-[18px] [&>svg]:h-[18px] absolute right-0 top-[5px]" title="Map View">
+          <Globe />
+        </button>
       </div>
 
       {/* Address */}
@@ -68,8 +82,6 @@ const GemItem = ({ slice, context }: GemProps): JSX.Element => {
         target="_blank"
         className="inline-block items-center text-pretty pr-1 text-sm text-ex-grey transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:mr-12 md:pr-2 md:text-base"
       >
-        {gem.data.address}
-
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -81,7 +93,8 @@ const GemItem = ({ slice, context }: GemProps): JSX.Element => {
             d="M12.207 2.232a.75.75 0 00.025 1.06l4.146 3.958H6.375a5.375 5.375 0 000 10.75H9.25a.75.75 0 000-1.5H6.375a3.875 3.875 0 010-7.75h10.003l-4.146 3.957a.75.75 0 001.036 1.085l5.5-5.25a.75.75 0 000-1.085l-5.5-5.25a.75.75 0 00-1.06.025z"
             clipRule="evenodd"
           />
-        </svg>
+        </svg>&nbsp;
+        Get Directions
       </a>
 
       {/* Details */}
