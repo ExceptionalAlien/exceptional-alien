@@ -18,6 +18,8 @@ export type GemProps = {
   setViewMode: (arg: string) => void,
   selectedGem: string,
   setSelectedGem: (arg: string) => void,
+  openedGem: string,
+  setOpenedGem: (arg: any) => void,
   context: {
     creator: unknown
   }
@@ -29,13 +31,17 @@ export type GemProps = {
 /**
  * Component for "Gem" Slices.
  */
-const GemItem = ({ slice, context, setViewMode, setSelectedGem }: GemProps): JSX.Element => {
+const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem }: GemProps): JSX.Element => {
   const gem = slice.primary.gem as unknown as Content.GemDocument;
   const creator = slice.primary.creator as unknown as Content.CreatorDocument;
 
   const mapClick = (gemId: string) => {
     setViewMode('map')
     setSelectedGem(gemId)
+  }
+
+  const showMoreClick = (event: React.MouseEvent<HTMLElement>) => {
+    setOpenedGem(slice)
   }
 
   return (
@@ -76,7 +82,7 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem }: GemProps): JSX
         </button>
       </div>
 
-      {/* Address */}
+      {/* Address
       <a
         href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
         target="_blank"
@@ -95,12 +101,12 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem }: GemProps): JSX
           />
         </svg>&nbsp;
         Get Directions
-      </a>
+      </a>*/}
 
       {/* Details */}
-      <div className="gem-content mt-1 md:mt-2">
+      <div className="gem-content mt-2 md:mt-3">
 
-        <div className={`gem-text w-full text-justify sm:w-4/5 [&>p]:text-sm [&>p]:!text-black mb-4 sm:mb-2`}>
+        <div className={`gem-text w-full sm:w-4/5 [&>p]:text-base [&>p]:!text-black mb-4 sm:mb-2`}>
           <PrismicRichText field={slice.primary.description} />
 
           {/* !creator.data && asText(slice.primary.description).charAt(0) === '"' ? (
@@ -125,7 +131,10 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem }: GemProps): JSX
         </div>
 
         <div className="relative w-auto flex justify-end">
-          <ShowMoreButton text="Show More" route={"/gems/" + gem.uid} classes="" />
+          <button onClick={showMoreClick} className={`tab-button relative block border border-black px-2.5 py-2 text-sm transition-[border-color,color] duration-300 ease-in-out hover:border-ex-blue hover:text-ex-blue`}>
+            <span className="mr-5">Show More</span>
+            <span className="absolute top-[0.255rem] right-[0.755rem] text-lg">&#x2b;</span>
+          </button>
         </div>
       </div>
     </section>

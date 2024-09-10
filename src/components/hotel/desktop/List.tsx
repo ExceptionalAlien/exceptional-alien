@@ -41,9 +41,9 @@ export default function List(props: ListProps) {
       </div>
 
       <div className="grid gap-y-6 md:gap-y-6 [&>.gem]:bg-white [&>.gem]:p-5 [&>.gem>.gem-icon]:r-5">
-        <section className="grid gap-y-3 md:gap-y-4 bg-white p-5 pt-0 [&>p]:text-black [&>p]:text-sm">
+        <section className="grid gap-y-3 md:gap-y-4 bg-white p-5 pt-0 [&>p]:text-black [&>p]:text-base">
           <h1 className="text-2xl sm:text-3xl uppercase font-bold -mb-3">{props.data.title}</h1>
-          <p className="text-base text-black font-bold">Travel experience curated together with {hotel.data.title} concierge</p>
+          {/*<p className="text-base text-black font-bold">Travel experience curated together with {hotel.data.title} concierge</p>*/}
           {props.data.description.length !== 0 && <PrismicRichText field={props.data.description} />}
           {(props.data.audio as any).url && <Audio file={(props.data.audio as any).url as string} />}
 

@@ -66,7 +66,7 @@ const GemItem = ({ slice, context }: GemProps): JSX.Element => {
       <a
         href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
         target="_blank"
-        className="inline-block items-center text-pretty pr-1 text-sm text-ex-grey transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:mr-12 md:pr-2 md:text-base"
+        className="inline-block items-center text-pretty pr-1 text-base text-ex-grey transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:mr-12 md:pr-2 md:text-base"
       >
         {gem.data.address}
 
@@ -87,7 +87,7 @@ const GemItem = ({ slice, context }: GemProps): JSX.Element => {
       {/* Details */}
       <div className="gem-content mt-1 md:mt-2">
 
-        <div className={`gem-text w-full text-justify sm:w-4/5 [&>p]:text-sm [&>p]:!text-black mb-4 sm:mb-2`}>
+        <div className={`gem-text w-full [&>p]:text-base [&>p]:!text-black mb-4 sm:mb-2`}>
           <PrismicRichText field={slice.primary.description} />
 
           {/* !creator.data && asText(slice.primary.description).charAt(0) === '"' ? (

@@ -97,7 +97,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
       fetchLinks:
         "creator.first_name,creator.last_name,creator.profile_image,creator.uid," +
         "hotel.title,hotel.logo_icon,hotel.location,hotel.video," +
-        "gem.title,gem.location,gem.image,gem.category,gem.creator,gem.address,gem.google_maps_id,gem.description," +
+        "gem.title,gem.location,gem.image,gem.category,gem.creator,gem.address,gem.google_maps_id,gem.description,gem.insider_tip,gem.website,gem.about," +
         "destination.title,playbook.title,playbook.locked,playbook.image,playbook.destination,playbook.creator",
     });
 
@@ -113,9 +113,6 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
       },
     };
   } catch (error) {
-
-    //console.log(error)
-
     return { notFound: true };
   }
 }

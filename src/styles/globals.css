@@ -95,6 +95,7 @@ audio::-webkit-media-controls-enclosure {
 
 .gm-style .gm-style-iw-c {
   padding: 0;
+  border-radius: 0 !important;
 }
 .gm-style-iw-d { /* very important for Safari/WebKit engine */
   overflow: hidden !important;
