@@ -72,7 +72,7 @@ export default function Playbook({ page, search }: PageProps) {
       </main>
 
       <SearchBox recommended={search.data.recommended} hidden={true} />
-      <Video iframe={page.data.video.html} showVideo={showVideo} setShowVideo={setShowVideo} />
+      {/*<Video iframe={page.data.video.html} showVideo={showVideo} setShowVideo={setShowVideo} />*/}
     </>
   );
 }

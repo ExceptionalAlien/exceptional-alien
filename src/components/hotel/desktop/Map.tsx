@@ -22,13 +22,17 @@ function GoogleMap(props: MapProps) {
     const scrollTrigger = isMobile ? 200 : 300;
     const bounds = new window.google.maps.LatLngBounds();
     var scrollTimer: NodeJS.Timeout;
-    var initZoom: number | undefined;
+    let initZoom: number | undefined;
     var initCenter: google.maps.LatLng | undefined;
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
     var clicked = false;
     var animating = false;
     var clickedTimer: NodeJS.Timeout;
+    let mapAnimated = false;
+
+    //initZoom = 15; todo: don't set zoom here!
+    let initLatitudeShift = 0.011;
 
     const resetMapGems = () => {
       const mapGems = document.querySelectorAll(".map-gem");
@@ -36,6 +40,17 @@ function GoogleMap(props: MapProps) {
       for (let i = 0; i < mapGems.length; i++) {
         mapGems[i].classList.remove("selected-gem");
         (mapGems[i].parentNode?.parentNode as HTMLElement).style.zIndex = "auto";
+      }
+    };
+
+    const mapAnimate = () => {
+      mapAnimated = true;
+      map.setZoom(15); // initialise zoom here..
+      if (hotel.location.latitude) {
+        map.setCenter({
+          lat: hotel.location.latitude - initLatitudeShift,
+          lng: hotel.location.longitude,
+        });
       }
     };
 
@@ -105,7 +120,7 @@ function GoogleMap(props: MapProps) {
 
     // Create map
     const map = new window.google.maps.Map(ref.current!, {
-      mapId: "a558980281942a22",
+      mapId: "1cecc1f65b3b89b8",
       streetViewControl: false,
       fullscreenControl: false,
       mapTypeControl: false,
@@ -264,6 +279,9 @@ function GoogleMap(props: MapProps) {
           // Save initial zoom number and center position for map reset
           initZoom = map.getZoom();
           initCenter = map.getCenter();
+        }
+        if (!mapAnimated) {
+          mapAnimate();
         }
 
         setGems(true); // Set gems after map zoom or drag

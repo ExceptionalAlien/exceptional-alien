@@ -52,7 +52,7 @@ function GoogleMap(props: MapProps) {
     let mapAnimated = false;
     let debugEvents = false;
 
-    initZoom = 15;
+    //initZoom = 15;
     let initLatitudeShift = 0.011; // so the map is centered more to the top
 
     // @ts-ignore
@@ -60,7 +60,7 @@ function GoogleMap(props: MapProps) {
 
     // Create map
     const map = new window.google.maps.Map(ref?.current!, {
-      mapId: "a558980281942a22",
+      mapId: "1cecc1f65b3b89b8",
       streetViewControl: false,
       fullscreenControl: false,
       mapTypeControl: false,
@@ -73,7 +73,7 @@ function GoogleMap(props: MapProps) {
 
     const mapAnimate = () => {
       mapAnimated = true;
-      map.setZoom(initZoom);
+      map.setZoom(15);
       if (hotel.location.latitude) {
         map.setCenter({
           lat: hotel.location.latitude - initLatitudeShift,
@@ -168,7 +168,7 @@ function GoogleMap(props: MapProps) {
       // Reset zoom and center (on scroll only)
       if (!zoomed && clickedGem && clickedGem !== focusedGem) {
         debugEvents && console.log('ufo > resetting zoom')
-        map.setZoom(initZoom);
+        map.setZoom(initZoom!);
         map.setCenter(initCenter as google.maps.LatLng);
         clickedGem = "";
       }
@@ -244,14 +244,14 @@ function GoogleMap(props: MapProps) {
             );
 
             const infoBox = document.createElement("div");
-            infoBox.setAttribute('style', 'max-width: 210px');
+            infoBox.setAttribute('style', 'max-width: 230px');
             createRoot(infoBox).render(
               <>
-                <div className="relative p-0 m-0 w-[210px] h-[130px] bg-cover bg-no-repeat bg-center" style={{
+                <div className="relative p-0 m-0 w-[230px] h-[130px] bg-cover bg-no-repeat bg-center" style={{
                   backgroundImage: `url(${gem.data.image.thumb.url as string})`,
                 }} />
-                <div className="relative p-3 !w-[210px]">
-                  <h6 className="font-bold text-base">{gem.data.title}</h6>
+                <div className="relative p-3 !w-[230px]">
+                  <h6 className="font-bold text-base leading-tight">{gem.data.title}</h6>
                   <p className="mb-3 text-sm">{gem.data.description}</p>
                   <div className="relative flex justify-between">
                     <Link className="underline text-sm"
