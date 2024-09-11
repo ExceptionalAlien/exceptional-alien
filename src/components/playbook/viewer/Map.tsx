@@ -244,10 +244,11 @@ function GoogleMap(props: MapProps) {
     return () => window.removeEventListener("scroll", handleScroll); // Clean up
   }, [props.gems]);
 
+  // todo: top-12 md:top-20 removed :] landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)]
   return (
     <div
       ref={ref}
-      className={`!fixed left-0 top-12 z-10 h-60 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+      className={`!fixed left-0 top-0 z-10 h-60 w-1/2 touch-none bg-ex-light-grey min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%)] md:landscape:h-[calc(100%)] ${
         scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />

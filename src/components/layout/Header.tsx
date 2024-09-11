@@ -18,6 +18,7 @@ export default function Header() {
   const { showingSearchBox, setShowingSearchBox } = useContext<SearchBoxContextType>(SearchBoxContext);
   const [scrollY, setScrollY] = useState(0);
   const [showingNav, setShowingNav] = useState(false);
+  const [hideNav, setHideNav] = useState(false);
   const page = router.pathname.split("/")[1];
 
   const searchClick = () => {
@@ -27,6 +28,12 @@ export default function Header() {
       setShowingSearchBox(!showingSearchBox); // Toggle
     }
   };
+
+  useEffect(() => {
+    if (router.isReady && router.pathname.startsWith('/travel-playbook') && router.query.iframe) {
+      setHideNav(true)
+    }
+  }, [router.isReady]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -53,6 +60,9 @@ export default function Header() {
         className={`p-safe fixed top-0 z-10 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
           scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"
         }`}
+        style={{
+          display: hideNav ? `none` : `flex`
+        }}
       >
         <h1>
           <Link
