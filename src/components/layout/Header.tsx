@@ -17,6 +17,7 @@ export default function Header() {
   const searchParams = useSearchParams();
   const { showingSearchBox, setShowingSearchBox } = useContext<SearchBoxContextType>(SearchBoxContext);
   const [scrollY, setScrollY] = useState(0);
+  const [hidden, setHidden]  = useState(false);
   const [showingNav, setShowingNav] = useState(false);
   const page = router.pathname.split("/")[1];
 
@@ -27,6 +28,14 @@ export default function Header() {
       setShowingSearchBox(!showingSearchBox); // Toggle
     }
   };
+
+  useEffect(() => {
+    if (window.innerWidth < 768 && router.pathname.startsWith('/hotel-playbooks/')) {
+      setHidden(true)
+    } else {
+      setHidden(false)
+    }
+  }, [router]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -49,10 +58,11 @@ export default function Header() {
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
       </Head>
 
-      <header
+      <header id="topNavigation"
         className={`p-safe fixed top-0 z-10 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
-          scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"
-        }`}
+          scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"} 
+          ${hidden && `hidden`}
+        `}
       >
         <h1>
           <Link

@@ -1,0 +1,166 @@
+{
+  "format": "page",
+  "id": "hotel",
+  "label": "Hotel",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description",
+          "placeholder": ""
+        }
+      },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Horizontal logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "logo_icon": {
+        "type": "Image",
+        "config": {
+          "label": "Logo icon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 1200,
+              "height": 900
+            }
+          ]
+        }
+      },
+      "footer_image": {
+        "type": "Image",
+        "config": {
+          "label": "Footer Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 1200,
+              "height": 900
+            }
+          ]
+        }
+      },
+      "video": {
+        "type": "Embed",
+        "config": {
+          "label": "Video",
+          "placeholder": "YouTube link"
+        }
+      },
+      "google_maps_id": {
+        "type": "Text",
+        "config": {
+          "label": "Google Maps ID",
+          "placeholder": ""
+        }
+      },
+      "location": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Location"
+        }
+      },
+      "address": {
+        "type": "Text",
+        "config": {
+          "label": "Address",
+          "placeholder": ""
+        }
+      },
+      "destination": {
+        "type": "Link",
+        "config": {
+          "label": "Destination",
+          "select": "document",
+          "customtypes": ["destination"]
+        }
+      },
+      "creator": {
+        "type": "Link",
+        "config": {
+          "label": "Influencer",
+          "select": "document",
+          "customtypes": ["creator"]
+        }
+      },
+      "hotel_playbook": {
+        "type": "Link",
+        "config": {
+          "label": "Hotel Playbook",
+          "select": "document",
+          "customtypes": ["playbook"]
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

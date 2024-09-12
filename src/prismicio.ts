@@ -42,6 +42,14 @@ const routes: prismic.ClientConfig["routes"] = [
     type: "playbook",
     path: "/travel-playbooks/:uid",
   },
+  /*{
+    type: "playbook",
+    path: "/hotel-playbooks/:uid",
+  },
+  {
+    type: "hotel",
+    path: "/hotels/:uid",
+  },*/
   {
     type: "destinations",
     path: "/destinations",

@@ -1047,6 +1047,310 @@ export type HomeDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >;
 
+type HotelDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Hotel documents
+ */
+interface HotelDocumentData {
+  /**
+   * Title field in *Hotel*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Hotel*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Horizontal logo field in *Hotel*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * Logo icon field in *Hotel*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.logo_icon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo_icon: prismic.ImageField<never>;
+
+  /**
+   * Hero Image field in *Hotel*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<"mobile">;
+
+  /**
+   * Footer Image field in *Hotel*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.footer_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  footer_image: prismic.ImageField<"mobile">;
+
+  /**
+   * Video field in *Hotel*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: YouTube link
+   * - **API ID Path**: hotel.video
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video: prismic.EmbedField;
+
+  /**
+   * Google Maps ID field in *Hotel*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.google_maps_id
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  google_maps_id: prismic.KeyTextField;
+
+  /**
+   * Location field in *Hotel*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  location: prismic.GeoPointField;
+
+  /**
+   * Address field in *Hotel*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.address
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  address: prismic.KeyTextField;
+
+  /**
+   * Destination field in *Hotel*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.destination
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  destination: prismic.ContentRelationshipField<"destination">;
+
+  /**
+   * Influencer field in *Hotel*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.creator
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+
+  /**
+   * Hotel Playbook field in *Hotel*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.hotel_playbook
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  hotel_playbook: prismic.ContentRelationshipField<"playbook">;
+
+  /**
+   * Slice Zone field in *Hotel*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HotelDocumentDataSlicesSlice> /**
+   * Meta Description field in *Hotel*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: hotel.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Hotel*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Hotel*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: hotel.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Hotel document from Prismic
+ *
+ * - **API ID**: `hotel`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HotelDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<HotelDocumentData>,
+  "hotel",
+  Lang
+>;
+
+type HotelPlaybookDocumentDataSlicesSlice = GemSlice;
+
+/**
+ * Content for Hotel Playbook documents
+ */
+interface HotelPlaybookDocumentData {
+  /**
+   * Title field in *Hotel Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel_playbook.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Hotel field in *Hotel Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel_playbook.hotel
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  hotel: prismic.ContentRelationshipField<"hotel">;
+
+  /**
+   * Influencer field in *Hotel Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel_playbook.creator
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  creator: prismic.ContentRelationshipField<"creator">;
+
+  /**
+   * Slice Zone field in *Hotel Playbook*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel_playbook.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HotelPlaybookDocumentDataSlicesSlice> /**
+   * Meta Description field in *Hotel Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: hotel_playbook.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Hotel Playbook*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hotel_playbook.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Hotel Playbook*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: hotel_playbook.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Hotel Playbook document from Prismic
+ *
+ * - **API ID**: `hotel_playbook`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HotelPlaybookDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+  Simplify<HotelPlaybookDocumentData>,
+  "hotel_playbook",
+  Lang
+>;
+
 /**
  * Item in *Playbook → Related*
  */
@@ -1223,6 +1527,17 @@ interface PlaybookDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   related: prismic.GroupField<Simplify<PlaybookDocumentDataRelatedItem>>;
+
+  /**
+   * Hotel field in *Playbook*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.hotel
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  hotel: prismic.ContentRelationshipField<"hotel">;
 
   /**
    * Slice Zone field in *Playbook*
@@ -1568,6 +1883,8 @@ export type AllDocumentTypes =
   | DestinationsDocument
   | GemDocument
   | HomeDocument
+  | HotelDocument
+  | HotelPlaybookDocument
   | PlaybookDocument
   | PlaybooksDocument
   | SearchDocument
@@ -2003,6 +2320,12 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      HotelDocument,
+      HotelDocumentData,
+      HotelDocumentDataSlicesSlice,
+      HotelPlaybookDocument,
+      HotelPlaybookDocumentData,
+      HotelPlaybookDocumentDataSlicesSlice,
       PlaybookDocument,
       PlaybookDocumentData,
       PlaybookDocumentDataRelatedItem,

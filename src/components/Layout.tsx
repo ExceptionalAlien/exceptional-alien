@@ -52,13 +52,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const [showingSearchBox, setShowingSearchBox] = useState(false);
 
-  const css = `
+  let css = ` 
+  footer {
+      background-color: ${(router.pathname.startsWith('/hotel') || router.pathname.startsWith('/concierge')) ? "black" : "inherit"};
+  }
+  
   body {
     background-color: ${searchParams?.get("c") ? "black" : "#2220c1"};
   }
 
   .gem-icon, .selected-gem .gem-icon-bg, .gem-text p, .tab-button:hover {
-    color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"} !important;
+    color: #${searchParams?.get("c") ? searchParams.get("c") : "2220c1"};
   }
 
   .tab-button:hover {
