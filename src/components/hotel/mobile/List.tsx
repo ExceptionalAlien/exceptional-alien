@@ -64,6 +64,9 @@ export default function List(props: ListProps) {
             </section>
 
             {props.data.slices.map((slice, i) => {
+              if ((slice.primary.gem as unknown as Content.GemDocument).data === undefined) {
+                return null // prevents crash if empty gem added in CMS
+              }
               let DOMelement = <GemItem key={i} slice={slice} selectedGem={props.selectedGem} setSelectedGem={props.setSelectedGem} setViewMode={props.setViewMode} context={{ creator: null }} openedGem={props.openedGem} setOpenedGem={props.setOpenedGem} />
 
               if (i == 0 && hotel.data.video) {

@@ -141,7 +141,7 @@ function GoogleMap(props: MapProps) {
         div.setAttribute("id", "hotel");
         createRoot(div).render(
           <div
-            className="absolute shrink-0 overflow-hidden rounded-full border border-white bg-white h-10 w-10 z-[1] -translate-x-1/2 -translate-y-1/2">
+            className="absolute shrink-0 overflow-hidden rounded-full border border-white bg-white h-11 w-11 z-[100] -translate-x-1/2 -translate-y-1/2">
             <img src={`${hotel.logo_icon.url}`} className="w-full h-full" alt="Logo" />
           </div>,
         );
@@ -153,6 +153,8 @@ function GoogleMap(props: MapProps) {
           title: hotel.title,
           content: div,
         });
+        marker.zIndex = 100;
+
       } else {
         console.warn('Hotel coordinates missing')
       }
@@ -188,6 +190,9 @@ function GoogleMap(props: MapProps) {
       // Loop playbook gems
       for (let i = 0; i < props.gems.length; i++) {
         const gem = props.gems[i].primary.gem as unknown as Content.GemDocument;
+        if (gem.data === undefined) {
+          continue // prevents crash if empty gem added in CMS
+        }
 
         if (gem.data.google_maps_id) {
           const div = document.createElement("div");
@@ -207,7 +212,7 @@ function GoogleMap(props: MapProps) {
                 category={gem.data.category}
                 creator={(gem.data.creator as unknown as Content.CreatorDocument)?.data.profile_image.url}
                 marker
-                classes="-translate-x-1/2 -translate-y-1/2"
+                classes="-translate-x-1/2 -translate-y-1/2 !h-11 !w-11"
               />
             );
 

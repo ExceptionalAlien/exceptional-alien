@@ -212,6 +212,8 @@ function GoogleMap(props: MapProps) {
           title: hotel.title,
           content: div,
         });
+        marker.zIndex = 100;
+
       } else {
         console.warn('Hotel coordinates missing')
       }
@@ -223,6 +225,9 @@ function GoogleMap(props: MapProps) {
       // Loop playbook gems
       for (let i = 0; i < props.gems.length; i++) {
         const gem = props.gems[i].primary.gem as unknown as Content.GemDocument;
+        if (gem.data === undefined) {
+          continue // prevents crash if empty gem added in CMS
+        }
 
         if (gem.data.google_maps_id) {
           const div = document.createElement("div");
