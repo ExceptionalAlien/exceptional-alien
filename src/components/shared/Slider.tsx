@@ -45,7 +45,7 @@ export default function Slider({ minItems = 2, ...props }: SliderProps) {
 
   return (
     <div
-      className={`relative [&>button]:absolute [&>button]:top-1/2 [&>button]:hidden [&>button]:h-12 [&>button]:w-12 [&>button]:-translate-y-1/2 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-black [&>button]:bg-opacity-20 [&>button]:text-white [&>button]:backdrop-blur [&>button]:transition-[background-color] [&>button]:duration-300 [&>button]:ease-in-out hover:[&>button]:bg-opacity-50 [&>button]:md:flex ${props.classes}`}
+      className={`relative [&>button]:absolute [&>button]:top-1/2 [&>button]:hidden [&>button]:h-12 [&>button]:w-12 [&>button]:-translate-y-1/2 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white [&>button]:bg-opacity-30 [&>button]:text-black [&>button]:backdrop-blur [&>button]:transition-[background-color] [&>button]:duration-300 [&>button]:ease-in-out hover:[&>button]:bg-opacity-50 [&>button]:md:flex ${props.classes}`}
     >
       <div
         className="slider scrolling-touch no-scrollbar flex snap-x snap-mandatory scroll-px-4 overflow-x-scroll pr-4 md:scroll-px-6 md:pr-6 [&>*]:ml-4 [&>*]:flex-none [&>*]:snap-start [&>*]:snap-always [&>*]:md:ml-6"

@@ -18,6 +18,7 @@ import LogoIcon from "@/img/logo-icon.svg";
 type GemPopupProps = {
   openedGem: any,
   setOpenedGem: (arg: any) => void,
+  contain?: boolean
 }
 
 export const GemPopup = (props: GemPopupProps) => {
@@ -111,13 +112,13 @@ export const GemPopup = (props: GemPopupProps) => {
   }
 
   return (
-    <div className="fixed left-0 top-0 w-full h-[100vh] !overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9"
+    <div className={`!overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9 ${props.contain ? `fixed right-0 top-20 w-[calc(50%-20px)] min-[1152px]:w-[556px] portrait:mt-[30vh] h-[calc(100vh-80px)]` : `fixed left-0 top-0 w-full h-[100vh]`}`}
       style={{
         display: props.openedGem ? 'block' : 'none'
       }}
     >
     {object && <>
-      <div className="relative bg-black h-12 z-50 w-full flex justify-between content-center">
+      <div className="fixed bg-black h-12 z-50 w-[inherit] flex justify-between content-center">
         <div><p className="text-white text-sm px-3 py-3.5 [&>svg]:h-4 [&>svg]:mr-1 [&>svg]:inline-block text-nowrap">
           <DiamondIcon /> {object.primary.gem.data.title}</p></div>
         <div className="flex justify-end pr-3">
@@ -127,7 +128,7 @@ export const GemPopup = (props: GemPopupProps) => {
         </div>
       </div>
       <div>
-        <div className="relative p-5">
+        <div className="relative p-5 mt-12">
           {object.primary.gem.data.image && (
             <div className="w-full h-[30vh] md:h-[40vh] bg-cover bg-no-repeat bg-center mb-5" style={{
               backgroundImage: `url('${object.primary.gem.data.image.thumb.url}')`,
@@ -166,7 +167,7 @@ export const GemPopup = (props: GemPopupProps) => {
         <hr className="mx-5 mb-5" />
         <h4 className="text-xl font-bold md:text-2xl px-5 mb-4">Recommended by</h4>
         <div className="px-[3px]">
-          <Slider minItems={3}>
+          <Slider minItems={1}>
             {quotes.map((item, i) => (
             <Quote
               key={i}

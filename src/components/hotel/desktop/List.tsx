@@ -4,13 +4,12 @@ import { components } from "@/slices";
 import Header from "../list/Header";
 import Audio from "../list/Audio";
 import Buttons from "../list/Buttons";
-import GemThumb from "@/components/shared/GemThumb";
 import GemItem from "@/components/hotel/desktop/GemItem";
 import Playbook from "@/img/icon-playbook.svg";
 import VideoEmbed, { VideoProps } from "@/components/shared/VideoEmbed";
 import { EmbedField, SharedSlice, VideoOEmbed } from "@prismicio/types";
-import { GemSlice } from "../../../../prismicio-types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { GemPopup } from "@/components/hotel/mobile/GemPopup";
 
 type ListProps = {
   data: Content.PlaybookDocumentData;
@@ -20,8 +19,10 @@ type ListProps = {
 export default function List(props: ListProps) {
   const hotel = props.data.hotel as unknown as Content.HotelDocument;
   let slices = props.data.slices;
+  const [openedGem, setOpenedGem] = useState()
 
   return (
+  <>
     <div
       className="w-1/2 min-[1152px]:w-[576px] portrait:mt-[30vh] portrait:w-full portrait:min-[768px]:mt-96 p-5 bg-[#62b8e9]">
       {/* bg-[#9c9c9c]  min-[1152px]:w-[576px] portrait:min-[768px]:mt-96 */}
@@ -58,7 +59,7 @@ export default function List(props: ListProps) {
           if ((slice.primary.gem as unknown as Content.GemDocument).data === undefined) {
             return null // prevents crash if empty gem added in CMS
           }
-          let DOMelement = <GemItem key={i} slice={slice} context={{ creator: null }} />
+          let DOMelement = <GemItem hotel={hotel} setOpenedGem={setOpenedGem} key={i} slice={slice} context={{ creator: null }} />
           if (i == 0 && hotel.data.video) {
             return <>
               {DOMelement}
@@ -74,5 +75,8 @@ export default function List(props: ListProps) {
         })}
       </div>
     </div>
+
+    <GemPopup openedGem={openedGem} setOpenedGem={setOpenedGem} contain={true} />
+  </>
   );
 }

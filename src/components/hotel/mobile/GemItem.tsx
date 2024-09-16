@@ -8,6 +8,7 @@ import CreatorIcon from "@/components/shared/CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 import ShowMoreButton from "@/components/shared/ShowMoreButton";
 import Globe from "@/img/globe.svg";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 /**
  * Props for `Gem`.
@@ -20,6 +21,7 @@ export type GemProps = {
   setSelectedGem: (arg: string) => void,
   openedGem: string,
   setOpenedGem: (arg: any) => void,
+  hotel: Content.HotelDocument,
   context: {
     creator: unknown
   }
@@ -31,7 +33,7 @@ export type GemProps = {
 /**
  * Component for "Gem" Slices.
  */
-const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem }: GemProps): JSX.Element => {
+const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem, hotel }: GemProps): JSX.Element => {
   const gem = slice.primary.gem as unknown as Content.GemDocument;
   const creator = slice.primary.creator as unknown as Content.CreatorDocument;
 
@@ -42,6 +44,8 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem }: 
 
   const showMoreClick = (event: React.MouseEvent<HTMLElement>) => {
     setOpenedGem(slice)
+
+    sendGTMEvent({ event: 'c_list_click', campaign: hotel.data.title, type: 'gem_details', source: gem.uid });
   }
 
   return (
@@ -77,7 +81,7 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem }: 
           <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>
           <h5>{gem.data.description}</h5>
         </div>
-        <button onClick={() => {mapClick(gem.uid)}} className="[&>svg]:text-black [&>svg]:w-[18px] [&>svg]:h-[18px] absolute right-0 top-[5px]" title="Map View">
+        <button onClick={() => { mapClick(gem.uid); sendGTMEvent({ event: 'c_list_click', campaign: hotel.data.title, type: 'gem_location', source: gem.uid }); }} className="[&>svg]:text-black [&>svg]:w-[18px] [&>svg]:h-[18px] absolute right-0 top-[5px]" title="Map View">
           <Globe />
         </button>
       </div>

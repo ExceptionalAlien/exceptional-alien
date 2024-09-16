@@ -7,6 +7,7 @@ import GemIcon from "@/components/shared/GemIcon";
 import CreatorIcon from "@/components/shared/CreatorIcon";
 import { shimmer, toBase64 } from "@/utils/shimmer";
 import ShowMoreButton from "@/components/shared/ShowMoreButton";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 /**
  * Props for `Gem`.
@@ -14,6 +15,8 @@ import ShowMoreButton from "@/components/shared/ShowMoreButton";
  */
 export type GemProps = {
   slice: Content.GemSlice,
+  setOpenedGem: (arg: any) => void,
+  hotel: Content.HotelDocument,
   context: {
     creator: unknown
   }
@@ -25,9 +28,14 @@ export type GemProps = {
 /**
  * Component for "Gem" Slices.
  */
-const GemItem = ({ slice, context }: GemProps): JSX.Element => {
+const GemItem = ({ slice, context, hotel, setOpenedGem }: GemProps): JSX.Element => {
   const gem = slice.primary.gem as unknown as Content.GemDocument;
   const creator = slice.primary.creator as unknown as Content.CreatorDocument;
+
+  const showMoreClick = (event: React.MouseEvent<HTMLElement>) => {
+    setOpenedGem(slice)
+    sendGTMEvent({ event: 'c_desktop_list_click', campaign: hotel.data.title, type: 'gem_details', source: gem.uid });
+  }
 
   return (
     <section
@@ -112,7 +120,11 @@ const GemItem = ({ slice, context }: GemProps): JSX.Element => {
         </div>
 
         <div className="relative w-auto flex justify-end">
-          <ShowMoreButton text="Show More" route={"/gems/" + gem.uid} classes="" />
+          <button onClick={showMoreClick}
+                  className={`tab-button relative block border border-black px-2.5 py-2 text-sm transition-[border-color,color] duration-300 ease-in-out hover:border-ex-blue hover:text-ex-blue`}>
+            <span className="mr-5">Show More</span>
+            <span className="absolute top-[0.255rem] right-[0.755rem] text-lg">&#x2b;</span>
+          </button>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/shared/GemIcon";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 function GoogleMap(props: MapProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
@@ -268,6 +269,8 @@ function GoogleMap(props: MapProps) {
               }
 
               clickedGem = gem.uid;
+
+              sendGTMEvent({ event: 'c_desktop_map_click', campaign: hotel.title, type: 'map_gem_click', source: gem.uid });
             });
           } else {
             alert("Gem coords missing: " + gem.data.title);

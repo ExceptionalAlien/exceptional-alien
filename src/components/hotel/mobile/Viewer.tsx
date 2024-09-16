@@ -7,6 +7,7 @@ import { ViewModeContext, ViewModeContextType } from "@/components/hotel/mobile/
 import Globe from "@/img/globe.svg";
 import List from "@/img/icon-list.svg";
 import Link from "next/link";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 type ViewerProps = {
   data: Content.PlaybookDocumentData;
@@ -20,6 +21,7 @@ export default function Viewer(props: ViewerProps) {
   const [openedGem, setOpenedGem] = useState()
   //const {viewMode, setViewMode} = useContext<ViewModeContextType>(ViewModeContext);
   const landingPageLink = '/concierge/' + (props.data.hotel as unknown as Content.HotelDocument).uid
+  const hotel = (props.data.hotel as unknown as Content.HotelDocument).data
 
   useEffect(() => {
     let splashCover = (document.querySelector('#splashCover') as HTMLElement)
@@ -37,12 +39,12 @@ export default function Viewer(props: ViewerProps) {
           className="text-white text-sm px-3 py-3.5 [&>svg]:h-4 [&>svg]:mr-1 [&>svg]:inline-block text-nowrap">
           <Playbook /> {(props.data.hotel as unknown as Content.HotelDocument).data.title} Playbook</p></Link>
         <div className="flex justify-end pr-3">
-          {viewMode == 'map' && <button onClick={() => { setViewMode('list') }}
+          {viewMode == 'map' && <button onClick={() => { setViewMode('list'); sendGTMEvent({ event: 'c_map_click', campaign: hotel.title, type: 'list_view', source: 'map' }); }}
             className="my-auto grow-0 inline text-sm text-white bg-transparent border border-1 border-white px-2 py-1 [&>svg]:h-4 [&>svg]:mr-2 [&>svg]:inline-block [&>svg]:absolute [&>svg]:top-[16px]">
             <List />
             <span className="ml-6">List View</span>
           </button>}
-          {( viewMode == 'init' || viewMode == 'list') && <button onClick={() => { setViewMode('map') } }
+          {( viewMode == 'init' || viewMode == 'list') && <button onClick={() => { setViewMode('map'); sendGTMEvent({ event: 'c_list_click', campaign: hotel.title, type: 'map_view', source: 'list' }); } }
             className="my-auto grow-0 inline text-sm text-white bg-transparent border border-1 border-white px-2 py-1 [&>svg]:h-4 [&>svg]:mr-2 [&>svg]:inline-block [&>svg]:absolute [&>svg]:top-[16px] [&>svg]:text-white">
             <Globe />
             <span className="ml-6">Map View</span>
