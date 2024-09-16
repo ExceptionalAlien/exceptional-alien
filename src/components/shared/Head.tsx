@@ -47,7 +47,6 @@ export default function Head({ page }: SharedProps) {
         }
       />
 
-      {/* {page.data.locked && <meta name="robots" content="noindex" />} */}
     </NextHead>
   );
 }
