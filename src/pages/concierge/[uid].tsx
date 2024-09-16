@@ -170,7 +170,7 @@ export default function Hotel({ page }: PageProps) {
               </div>
             </Link>
 
-            <Link href={`${playbookLink}?p=outdoors`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:row-span-2 min-h-[50vh] bg-zinc-300 bg-[url('/img/categories/outdoors-1.jpg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={`${playbookLink}?p=outdoors`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:row-span-2 min-h-[50vh] bg-zinc-300 bg-[url('/img/categories/outdoors-1.jpg')] bg-cover bg-no-repeat bg-bottom">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Neighbourhoods" classes={`!h-16 !w-16`}></GemIcon>
@@ -181,7 +181,7 @@ export default function Hotel({ page }: PageProps) {
               </div>
             </Link>
 
-            <Link href={`${playbookLink}?p=shopping`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-zinc-300 min-h-[30vh] bg-[url('/img/categories/shopping-1.jpg')] bg-cover bg-no-repeat bg-cente">
+            <Link href={`${playbookLink}?p=shopping`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative col-span-1 bg-zinc-300 min-h-[30vh] bg-[url('/img/categories/shopping-1.jpg')] bg-cover bg-no-repeat bg-bottom">
               <div>
                 <div className="absolute top-7 left-7">
                   <GemIcon category="Retail" classes={`!h-16 !w-16`}></GemIcon>
