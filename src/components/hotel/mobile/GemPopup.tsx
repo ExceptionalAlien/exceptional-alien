@@ -144,13 +144,13 @@ export const GemPopup = (props: GemPopupProps) => {
             </div>
           </div>
 
-          <div className={`gem-text w-full sm:w-4/5 [&>p]:text-base [&>p]:!text-black mb-4 sm:mb-2`}>
+          <div className={`gem-text w-full [&>p]:text-base [&>p]:!text-black mb-4 sm:mb-2`}>
             <PrismicRichText field={object.primary.gem.data.about} />
           </div>
 
           {object.primary.gem.data?.insider_tip &&
-            <section className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3">
-              <div className="p-5 w-auto bg-ex-blue text-white">
+            <section className="w-full md:w-[calc(80%+16px)] mt-5">
+              <div className="p-3 w-auto bg-ex-blue text-white">
                 <h6 className="relative font-bold mb-2 [&>svg]:absolute [&>svg]:top-[1px] [&>svg]:w-auto [&>svg]:h-[20px]">
                   <LogoIcon />
                   <span className="ml-[26px]">EA Tip</span>
@@ -166,7 +166,7 @@ export const GemPopup = (props: GemPopupProps) => {
       {(quotes.length > 0) && <div className="">
         <hr className="mx-5 mb-5" />
         <h4 className="text-xl font-bold md:text-2xl px-5 mb-4">Recommended by</h4>
-        <div className="px-[3px]">
+        <div className="">
           <Slider minItems={1}>
             {quotes.map((item, i) => (
             <Quote
