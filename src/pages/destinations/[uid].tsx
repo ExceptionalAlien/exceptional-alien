@@ -17,7 +17,7 @@ export default function Creator({ page, search }: PageProps) {
 
   const loadGems = async () => {
     const data = await getData(page.id);
-    console.log(page.id);
+    //console.log(page.id);
     setGems({ ...gems, [page.uid]: data }); // Store in context with destination as key
   };
 

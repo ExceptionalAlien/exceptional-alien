@@ -17,8 +17,8 @@ export default function Header() {
   const searchParams = useSearchParams();
   const { showingSearchBox, setShowingSearchBox } = useContext<SearchBoxContextType>(SearchBoxContext);
   const [scrollY, setScrollY] = useState(0);
+  const [hidden, setHidden]  = useState(false);
   const [showingNav, setShowingNav] = useState(false);
-  const [hideNav, setHideNav] = useState(false);
   const page = router.pathname.split("/")[1];
 
   const searchClick = () => {
@@ -30,8 +30,10 @@ export default function Header() {
   };
 
   useEffect(() => {
-    if (router.isReady && router.pathname.startsWith('/travel-playbook') && router.query.iframe) {
-      setHideNav(true)
+    if (router.isReady && ((window.innerWidth < 768 && router.pathname.startsWith('/hotel-playbooks/')) || router.query.iframe )) {
+      setHidden(true)
+    } else {
+      setHidden(false)
     }
   }, [router.isReady]);
 
@@ -61,7 +63,7 @@ export default function Header() {
           scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"
         }`}
         style={{
-          display: hideNav ? `none` : `flex`
+          display: hidden ? `none` : `flex`
         }}
       >
         <h1>

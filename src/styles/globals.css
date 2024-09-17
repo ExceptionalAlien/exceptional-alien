@@ -77,3 +77,69 @@ audio::-webkit-media-controls-enclosure {
 .placeholder-opacity::placeholder {
   opacity: 0.2;
 }
+
+.text-gradient {
+  background-image: linear-gradient(0deg, rgba(28,28,28,1) 0%, rgba(28,28,28,0.6) 50%, rgba(0,0,0,0) 100%);
+}
+
+/* Webkit / Safari */
+input {
+  -webkit-appearance: none;
+}
+
+/* Map InfoWindow */
+
+.gm-style .gm-style-iw-a {
+  /*background-color: #2220c1;*/
+  color: black;
+}
+
+.gm-style .gm-style-iw-t {
+  color: black;
+}
+
+.gm-style .gm-style-iw-c {
+  padding: 0;
+  border-radius: 0 !important;
+}
+.gm-style-iw-d { /* very important for Safari/WebKit engine */
+  overflow: hidden !important;
+}
+
+.gm-style .gm-style-iw-tc { /* pointer */
+  background-color: transparent;
+  /*&:after {
+    background-color: #2220c1;
+  }*/
+}
+
+.gm-style .gm-style-iw-ch {
+  display: none;
+}
+
+.gm-style .gm-style-iw-chr {
+  display: block;
+  position: absolute;
+  width: 230px;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.gm-style .gm-style-iw-chr button {
+  display: block;
+  float: right;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 7px !important;
+  background-color: white !important;
+  border-radius: 20px;
+  opacity: 80%;
+}
+.gm-style .gm-style-iw-chr button span {
+  text-align: center;
+  width: 24px;
+  height: 24px;
+  margin: 6px !important;
+  color: #616161;
+}

@@ -147,6 +147,14 @@
           }
         }
       },
+      "hotel": {
+        "type": "Link",
+        "config": {
+          "label": "Hotel",
+          "select": "document",
+          "customtypes": ["hotel"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
