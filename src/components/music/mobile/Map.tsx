@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/shared/GemIcon";
+import Link from "next/link";
+import { sendGTMEvent } from '@next/third-parties/google';
 
 function GoogleMap(props: MapProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
@@ -10,23 +12,91 @@ function GoogleMap(props: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const isMobile = window.innerWidth >= 768 ? false : true;
+    const clickFromList = (gemId: string) => {
+      let gemMarker = (document.querySelector("#map-gem-" + gemId) as HTMLElement)
+
+      ref.current?.focus()
+      setTimeout(() => {
+        if (gemMarker) {
+          gemMarker?.click();
+        } else {
+          console.log("%c Markers gone from the map", "color: red;")
+        }
+      }, 300)
+      props.setSelectedGem('')
+    }
+
+    props.selectedGem && clickFromList(props.selectedGem)
+
+  }, [props.selectedGem]);
+
+  useEffect(() => {
+    const isMobile = true;
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
+    // todo: obsolete
     const portraitMapHeight = isMobile ? 240 : 384;
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 24 : 16;
-    const top = globalHeaderheight + titleHeight;
+    const top = globalHeaderheight; // + titleHeight;
+    //const scrollTrigger = -300;
     const bounds = new window.google.maps.LatLngBounds();
     var scrollTimer: NodeJS.Timeout;
-    var initZoom: number | undefined;
+    let initZoom: number | undefined;
     var initCenter: google.maps.LatLng | undefined;
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
     var clicked = false;
     var clickedTimer: NodeJS.Timeout;
 
-    const resetMapGems = () => {
+    let mapAnimated = false;
+    let debugEvents = false;
+
+    //initZoom = 15;
+    let initLatitudeShift = 0.011; // so the map is centered more to the top
+
+    // @ts-ignore
+    let allPopups = [];
+
+    // Create map
+    const map = new window.google.maps.Map(ref?.current!, {
+      mapId: "1cecc1f65b3b89b8",
+      streetViewControl: false,
+      fullscreenControl: false,
+      mapTypeControl: false,
+      clickableIcons: false,
+      backgroundColor: "#62b8e9",
+      scrollwheel: false,
+      gestureHandling: "greedy",
+      zoomControl: true, // todo: isMobile ? false : true,
+    });
+
+    const mapAnimate = () => {
+      mapAnimated = true;
+      map.setZoom(15);
+    };
+
+    const closeAllPopups = () => {
+      // @ts-ignore
+      allPopups.forEach((popup) => {
+        popup.close()
+      })
+    }
+
+    const detailsClick = (gemId: string) => {
+      let gem = (document.querySelector("#" + gemId) as HTMLElement)
+      const gemPosition = gem?.offsetTop + (innerHeight * 0.35);
+
+      props.setViewMode('list')
+      setTimeout(() => {
+        window.scrollTo({
+          top: gemPosition,
+          behavior: "smooth",
+        });
+      }, 500)
+    }
+
+    const clearGemSelections = () => {
       const mapGems = document.querySelectorAll(".map-gem");
 
       for (let i = 0; i < mapGems.length; i++) {
@@ -35,7 +105,23 @@ function GoogleMap(props: MapProps) {
       }
     };
 
-    const setGems = (zoomed?: boolean) => {
+    const clearListGemSelections = () => {
+      const listGems = document.querySelectorAll(".gem-icon");
+      // Reset all list gem icons
+      for (let i = 0; i < listGems.length; i++) {
+        listGems[i].classList.remove("selected-gem");
+      }
+    }
+
+    const selectMapGem = (gemId: string) => {
+      debugEvents && console.log('ufo > selecting gem ' + gemId)
+      clearGemSelections()
+      clearListGemSelections()
+      let gemIcon = document.querySelector(`#map-gem-${gemId}`)
+      gemIcon?.classList.add("selected-gem"); // highlight map icon
+    }
+
+    const lightUpGems = (zoomed?: boolean) => {
       focusedGem = ""; // Reset
       const gems = document.querySelectorAll("section.gem");
 
@@ -54,7 +140,7 @@ function GoogleMap(props: MapProps) {
         focusedGem = clickedGem;
       }
 
-      resetMapGems();
+      clearGemSelections();
 
       // Select map gem
       const mapGem = document.querySelector("div#map-gem-" + focusedGem);
@@ -75,7 +161,8 @@ function GoogleMap(props: MapProps) {
 
       // Reset zoom and center (on scroll only)
       if (!zoomed && clickedGem && clickedGem !== focusedGem) {
-        initZoom && map.setZoom(initZoom);
+        debugEvents && console.log('ufo > resetting zoom')
+        map.setZoom(initZoom!);
         map.setCenter(initCenter as google.maps.LatLng);
         clickedGem = "";
       }
@@ -92,68 +179,29 @@ function GoogleMap(props: MapProps) {
       setScrollEndPortrait(offset >= -portraitMapHeight ? true : false);
 
       // Scroll has ended
-      scrollTimer = setTimeout(() => {
-        setGems();
-      }, 150);
+      /*scrollTimer = setTimeout(() => {
+        lightUpGems();
+      }, 150);*/
     };
 
-    setGems(); // Init
-
-    // Create map
-    const map = new window.google.maps.Map(ref.current!, {
-      mapId: "a558980281942a22",
-      streetViewControl: false,
-      fullscreenControl: false,
-      mapTypeControl: false,
-      clickableIcons: false,
-      backgroundColor: "#C5C5C5",
-      scrollwheel: false,
-      gestureHandling: "greedy",
-      zoomControl: isMobile ? false : true,
-    });
-
     const addMarkers = async () => {
-      const getCoords = async (placeID: string, uid: string) => {
-        // Return place lat and lng from Google API
-        const service = new google.maps.places.PlacesService(map);
-
-        const request = {
-          placeId: placeID,
-          fields: ["geometry"],
-        };
-
-        return new Promise((resolve) =>
-          service.getDetails(request, (place, status) => {
-            if (
-              status === google.maps.places.PlacesServiceStatus.OK &&
-              place &&
-              place.geometry &&
-              place.geometry.location
-            ) {
-              resolve(place.geometry.location);
-            } else {
-              resolve(null);
-              console.log(`${status} (${uid})`);
-            }
-          })
-        );
-      };
+      debugEvents && console.log("%c ufo > ATTACHING MARKERS ", "color:green;")
 
       // Loop playbook gems
       for (let i = 0; i < props.gems.length; i++) {
         const gem = props.gems[i].primary.gem as unknown as Content.GemDocument;
+        if (gem.data === undefined) {
+          continue // prevents crash if empty gem added in CMS
+        }
 
         if (gem.data.google_maps_id) {
           const div = document.createElement("div");
-          //const coords = (await getCoords(gem.data.google_maps_id as string, gem.uid)) as google.maps.LatLng;
-
           const coords = {
             lat: gem.data.location?.latitude,
             lng: gem.data.location?.longitude,
           };
 
           if (coords.lat && coords.lat) {
-            //console.log(`${gem.uid} - ${coords}`);
             div.setAttribute("id", "map-gem-" + gem.uid);
             div.classList.add("map-gem");
             createRoot(div).render(
@@ -164,6 +212,31 @@ function GoogleMap(props: MapProps) {
                 classes="-translate-x-1/2 -translate-y-1/2"
               />
             );
+
+            const infoBox = document.createElement("div");
+            infoBox.setAttribute('style', 'max-width: 230px');
+            createRoot(infoBox).render(
+              <>
+                <div className="relative p-0 m-0 w-[230px] h-[130px] bg-cover bg-no-repeat bg-center" style={{
+                  backgroundImage: `url(${gem.data.image.thumb.url as string})`,
+                }} />
+                <div className="relative p-3 !w-[230px]">
+                  <h6 className="font-bold text-base leading-tight">{gem.data.title}</h6>
+                  <p className="mb-3 text-sm">{gem.data.description}</p>
+                  <div className="relative flex justify-between">
+                    <Link className="underline text-sm" onClick={() => { sendGTMEvent({ event: 'c_map_click', campaign: 'music_city', type: 'directions', source: gem.uid }) }}
+                          href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
+                          target="_blank">Get Directions</Link>
+                    <Link onClick={() => { sendGTMEvent({ event: 'c_map_click', campaign: 'music_city', type: 'details_list', source: gem.uid }); detailsClick("gem-" + gem.uid) }} href="#" className="underline text-sm">More Details</Link>
+                  </div>
+                </div>
+              </>
+            );
+
+            const infoWindow = new google.maps.InfoWindow({
+              content: infoBox,
+            });
+            allPopups.push(infoWindow)
 
             // Add marker to map
             const marker = new window.google.maps.marker.AdvancedMarkerElement({
@@ -183,41 +256,17 @@ function GoogleMap(props: MapProps) {
             bounds.extend(coords);
 
             marker.addListener("click", () => {
-              const viewerHeight = props.viewerRef.offsetTop + props.viewerRef.clientHeight;
-
-              const listGemPos =
-                (document.querySelector("section#gem-" + gem.uid) as HTMLElement)?.offsetTop - (top + margin);
-
-              // Keep map in view if gem at bottom of list
-              const scrollPos =
-                orientation === "landscape" && listGemPos + window.innerHeight > viewerHeight
-                  ? viewerHeight - window.innerHeight
-                  : listGemPos;
-
-              clicked = true; // Wait until auto scroll and zoom finish
-              clickedTimer !== null && clearTimeout(clickedTimer);
-
-              clickedTimer = setTimeout(() => {
-                clicked = false;
-              }, 1000);
-
-              window.scrollTo({
-                top: scrollPos,
-                behavior: "smooth",
-              });
-
-              // Zoom and center marker
-              if (!clickedGem) {
-                if (focusedGem !== gem.uid) {
-                  resetMapGems(); // Needed because markers can't be styled if not visible on map
-                }
-
-                map.setCenter({ lat: marker.position?.lat as number, lng: marker.position?.lng as number });
-                initZoom && map.setZoom(initZoom + 2);
-              }
+              // close all
+              closeAllPopups();
+              infoWindow.open(map, marker)
 
               clickedGem = gem.uid;
+              focusedGem = gem.uid;
+              selectMapGem(gem.uid)
             });
+
+            // after event listener attached
+
           } else {
             alert("Gem coords missing: " + gem.data.title);
           }
@@ -229,33 +278,38 @@ function GoogleMap(props: MapProps) {
       props.gems.length && map.fitBounds(bounds); // Show all gems on map on init
 
       google.maps.event.addListener(map, "idle", () => {
+        // triggers after markers are set
         if (!initZoom) {
           // Save initial zoom number and center position for map reset
           initZoom = map.getZoom();
           initCenter = map.getCenter();
         }
-
-        setGems(true); // Set gems after map zoom or drag
+        /*if (!mapAnimated) {
+          mapAnimate();
+        }*/
       });
     };
 
-    addMarkers(); // Init
+    addMarkers();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll); // Clean up
   }, [props.gems]);
 
   return (
-    <div
-      ref={ref}
-      className={`!fixed left-0 top-12 z-10 h-60 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
-        scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
-      } ${scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
+    <div ref={ref}
+      className={`!fixed left-0 top-12 z-10 h-[calc(100vh-48px)] w-full shadow-none touch-none bg-ex-light-grey`}
     />
   );
 }
 
 type MapProps = {
   gems: SliceZone<Content.GemSlice>;
+  viewMode: string;
+  setViewMode: (arg: string) => void;
+  selectedGem: string,
+  setSelectedGem: (arg: string) => void;
+  openedGem: string | undefined,
   viewerRef: HTMLDivElement;
 };
 

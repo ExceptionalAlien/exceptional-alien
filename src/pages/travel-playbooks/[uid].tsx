@@ -17,7 +17,6 @@ export default function Playbook({ page, search }: PageProps) {
   const [showVideo, setShowVideo] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
   const hasRelated = page.data.related.length > 1 ? true : false;
-  const [hideNav, setHideNav] = useState(false);
 
   useEffect(() => {
     // Redirect to home if Playbook locked and user does not have access
@@ -33,12 +32,6 @@ export default function Playbook({ page, search }: PageProps) {
       }
     }
   }, []);
-
-  useEffect(() => {
-    if (router.isReady && router.pathname.startsWith('/travel-playbook') && router.query.iframe) {
-      setHideNav(true)
-    }
-  }, [router.isReady]);
 
   return (
     <>
@@ -108,14 +101,10 @@ export default function Playbook({ page, search }: PageProps) {
         {page.data.locked && <meta name="robots" content="noindex" />}
       </Head>
 
-      <main className={`${!hasRelated && "!pb-0"}`}
-        style={{
-          marginTop: hideNav ? `0` : `inherit`
-        }}
-      >
+      <main className={`${!hasRelated && "!pb-0"}`}>
         {(!page.data.locked || hasAccess) && (
           <>
-            <Viewer data={page.data} setShowVideo={setShowVideo} pageId={page.id} pageSlug={page.uid} />
+            <Viewer data={page.data} setShowVideo={setShowVideo} />
             {hasRelated && <Related playbooks={page.data.related} />}
           </>
         )}

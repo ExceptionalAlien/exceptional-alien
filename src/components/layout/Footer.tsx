@@ -18,7 +18,7 @@ export default function Footer() {
   }, []);
 
   useEffect(() => {
-    if (router.isReady && router.pathname.startsWith('/travel-playbook') && router.query.iframe) {
+    if (router.isReady && router.pathname.startsWith('/music-playbook') && router.query.iframe) {
       setHideNav(true)
     }
   }, [router.isReady]);

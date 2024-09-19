@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { SliceZone, Content } from "@prismicio/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import GemIcon from "@/components/shared/GemIcon";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 function GoogleMap(props: MapProps) {
   const [scrollEndLandscape, setScrollEndLandscape] = useState(false);
@@ -10,21 +11,27 @@ function GoogleMap(props: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const isMobile = window.innerWidth >= 768 ? false : true;
+    const isMobile = window.innerWidth < 768;
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
     const portraitMapHeight = isMobile ? 240 : 384;
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 24 : 16;
-    const top = globalHeaderheight + titleHeight;
+    const top = globalHeaderheight; // + titleHeight;
+    const scrollTrigger = isMobile ? 200 : 300;
     const bounds = new window.google.maps.LatLngBounds();
     var scrollTimer: NodeJS.Timeout;
-    var initZoom: number | undefined;
+    let initZoom: number | undefined;
     var initCenter: google.maps.LatLng | undefined;
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
     var clicked = false;
+    var animating = false;
     var clickedTimer: NodeJS.Timeout;
+    let mapAnimated = false;
+
+    //initZoom = 15; todo: don't set zoom here!
+    let initLatitudeShift = 0.011;
 
     const resetMapGems = () => {
       const mapGems = document.querySelectorAll(".map-gem");
@@ -33,6 +40,12 @@ function GoogleMap(props: MapProps) {
         mapGems[i].classList.remove("selected-gem");
         (mapGems[i].parentNode?.parentNode as HTMLElement).style.zIndex = "auto";
       }
+    };
+
+    const mapAnimate = () => {
+      mapAnimated = true;
+      map.setZoom(15); // initialise zoom here..
+      // set map center
     };
 
     const setGems = (zoomed?: boolean) => {
@@ -44,7 +57,7 @@ function GoogleMap(props: MapProps) {
         const gem = gems[i] as HTMLElement;
         const pos = gem.offsetTop + (gem.querySelector(".gem-content") as HTMLElement).offsetTop - window.scrollY;
 
-        if (pos >= top && pos < window.innerHeight && !focusedGem) {
+        if (pos >= (top+scrollTrigger) && pos < (window.innerHeight + scrollTrigger) && !focusedGem) {
           focusedGem = gems[i].id.replace("gem-", "");
         }
       }
@@ -97,16 +110,16 @@ function GoogleMap(props: MapProps) {
       }, 150);
     };
 
-    setGems(); // Init
+    setGems(); // Init for desktop
 
     // Create map
     const map = new window.google.maps.Map(ref.current!, {
-      mapId: "a558980281942a22",
+      mapId: "1cecc1f65b3b89b8",
       streetViewControl: false,
       fullscreenControl: false,
       mapTypeControl: false,
       clickableIcons: false,
-      backgroundColor: "#C5C5C5",
+      backgroundColor: "#62b8e9",
       scrollwheel: false,
       gestureHandling: "greedy",
       zoomControl: isMobile ? false : true,
@@ -142,6 +155,9 @@ function GoogleMap(props: MapProps) {
       // Loop playbook gems
       for (let i = 0; i < props.gems.length; i++) {
         const gem = props.gems[i].primary.gem as unknown as Content.GemDocument;
+        if (gem.data === undefined) {
+          continue // prevents crash if empty gem added in CMS
+        }
 
         if (gem.data.google_maps_id) {
           const div = document.createElement("div");
@@ -161,7 +177,7 @@ function GoogleMap(props: MapProps) {
                 category={gem.data.category}
                 creator={(gem.data.creator as unknown as Content.CreatorDocument)?.data.profile_image.url}
                 marker
-                classes="-translate-x-1/2 -translate-y-1/2"
+                classes="-translate-x-1/2 -translate-y-1/2 !h-11 !w-11"
               />
             );
 
@@ -217,6 +233,9 @@ function GoogleMap(props: MapProps) {
               }
 
               clickedGem = gem.uid;
+
+              // todo: event - playbook
+              //sendGTMEvent({ event: 'c_desktop_map_click', campaign: hotel.title, type: 'map_gem_click', source: gem.uid });
             });
           } else {
             alert("Gem coords missing: " + gem.data.title);
@@ -234,20 +253,24 @@ function GoogleMap(props: MapProps) {
           initZoom = map.getZoom();
           initCenter = map.getCenter();
         }
+        /*if (!mapAnimated) {
+          mapAnimate();
+        }*/
 
         setGems(true); // Set gems after map zoom or drag
       });
     };
 
-    addMarkers(); // Init
+    addMarkers();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll); // Clean up
   }, [props.gems]);
 
+  {/* w was -576px todo: change height */}
   return (
-    <div
-      ref={ref}
-      className={`!fixed left-0 top-12 z-10 h-60 w-1/2 touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
+    <div ref={ref}
+      className={`!fixed left-0 top-12 z-10 h-[30vh] w-1/2 shadow-xl sm:shadow-none touch-none bg-ex-light-grey md:top-20 min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)] ${
         scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />
