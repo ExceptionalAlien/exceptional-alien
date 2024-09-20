@@ -17,6 +17,7 @@ type ListProps = {
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
   allowedPlaybooks: Map<string, string>;
   pageSlug: string;
+  iframeMode: boolean;
 };
 
 export default function List(props: ListProps) {
@@ -26,8 +27,8 @@ export default function List(props: ListProps) {
   return (
   <>
     <div
-      className="w-1/2 min-[1152px]:w-[576px] portrait:mt-[30vh] portrait:w-full portrait:min-[768px]:mt-96 p-5 bg-[#62b8e9]">
-      {/* bg-[#9c9c9c]  min-[1152px]:w-[576px] portrait:min-[768px]:mt-96 */}
+      className="w-1/2 min-[1152px]:w-[576px] p-5 bg-[#62b8e9]">
+      {/* bg-[#9c9c9c]  min-[1152px]:w-[576px] portrait:mt-[30vh] portrait:w-full portrait:min-[768px]:mt-96 */}
       <div className="bg-white p-5">
         <div className="relative w-full h-[30vh] md:h-[40vh] bg-cover bg-no-repeat bg-center" style={{
           backgroundImage: `url('${props.data.image.url}')`,
@@ -71,7 +72,7 @@ export default function List(props: ListProps) {
       </div>
     </div>
 
-    <GemPopup openedGem={openedGem} setOpenedGem={setOpenedGem} contain={true} />
+    <GemPopup iframeMode={props.iframeMode} openedGem={openedGem} setOpenedGem={setOpenedGem} contain={true} />
   </>
   );
 }

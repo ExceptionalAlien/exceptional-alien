@@ -41,6 +41,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [creators, setCreators] = useState<Content.CreatorDocument<string>[]>([]);
   const [playbooks, setPlaybooks] = useState<Content.PlaybookDocument<string>[]>([]);
   const [gems, setGems] = useState<Gems>({});
+  const [iframeMode, setIframeMode] = useState<boolean>(false)
 
   const [searchResults, setSearchResults] = useState<SearchResults>({
     destinations: [],
@@ -85,6 +86,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(timeout);
   }, [router.asPath]);
 
+  useEffect(() => {
+    if (router.isReady && router.query.iframe && router.pathname.startsWith('/music-playbook')) {
+      setIframeMode(true)
+    }
+  }, [router.isReady]);
+
   return (
     <CreatorsContext.Provider value={{ creators, setCreators }}>
       <PlaybooksContext.Provider value={{ playbooks, setPlaybooks }}>
@@ -95,7 +102,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
               <div className={`${helveticaMonospaced.variable} font-mono, ${neueHaasGrotesk.variable} font-sans`}>
                 <div className="bg-white">
-                  <div className="p-safe [&>main>section]:mt-8 [&>main>section]:pl-4 [&>main>section]:pr-4 [&>main>section]:md:mt-12 [&>main>section]:md:pl-6 [&>main>section]:md:pr-6 [&>main]:m-auto [&>main]:mt-12 [&>main]:min-h-[calc(100vh-336px)] [&>main]:pb-16 [&>main]:md:mt-20 [&>main]:md:min-h-[calc(100vh-368px)] [&>main]:md:pb-24">
+                  <div className={`p-safe [&>main>section]:mt-8 [&>main>section]:pl-4 [&>main>section]:pr-4 [&>main>section]:md:mt-12 [&>main>section]:md:pl-6 [&>main>section]:md:pr-6 [&>main]:m-auto [&>main]:mt-12 [&>main]:min-h-[calc(100vh-336px)] [&>main]:pb-16 [&>main]:md:min-h-[calc(100vh-368px)] [&>main]:md:pb-24 ${!iframeMode && `[&>main]:md:mt-20`} ${iframeMode && `[&>main]:md:mt-0`}`}>
                     {children}
                   </div>
                 </div>

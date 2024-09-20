@@ -14,6 +14,7 @@ type ViewerProps = {
   viewerRef: HTMLDivElement;
   allowedPlaybooks: Map<string, string>;
   pageSlug: string;
+  iframeMode: boolean;
 };
 
 export default function Viewer(props: ViewerProps) {
@@ -50,8 +51,8 @@ export default function Viewer(props: ViewerProps) {
         </div>
       </div>
       <div id="splashCover" className="z-50 bg-[#62b8e9] h-[100vh] w-full"></div>
-      <MobileList data={props.data} allowedPlaybooks={props.allowedPlaybooks} pageSlug={props.pageSlug} openedGem={openedGem} setOpenedGem={setOpenedGem} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} setShowVideo={() => { return false; }} />
-      <MobileMap gems={props.data.slices} openedGem={openedGem} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} viewerRef={props.viewerRef!} />
+      <MobileList iframeMode={props.iframeMode} data={props.data} allowedPlaybooks={props.allowedPlaybooks} pageSlug={props.pageSlug} openedGem={openedGem} setOpenedGem={setOpenedGem} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} setShowVideo={() => { return false; }} />
+      <MobileMap gems={props.data.slices} iframeMode={props.iframeMode} openedGem={openedGem} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} viewerRef={props.viewerRef!} />
     </>
   );
 };

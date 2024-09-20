@@ -43,7 +43,7 @@ function GoogleMap(props: MapProps) {
     const bounds = new window.google.maps.LatLngBounds();
     var scrollTimer: NodeJS.Timeout;
     let initZoom: number | undefined;
-    var initCenter: google.maps.LatLng | undefined;
+    var initCenter: google.maps.LatLng | google.maps.LatLngLiteral | undefined;
     var focusedGem: string | undefined;
     var clickedGem: string | undefined;
     var clicked = false;
@@ -68,7 +68,7 @@ function GoogleMap(props: MapProps) {
       backgroundColor: "#62b8e9",
       scrollwheel: false,
       gestureHandling: "greedy",
-      zoomControl: true, // todo: isMobile ? false : true,
+      zoomControl: true,
     });
 
     const mapAnimate = () => {
@@ -224,9 +224,9 @@ function GoogleMap(props: MapProps) {
                   <h6 className="font-bold text-base leading-tight">{gem.data.title}</h6>
                   <p className="mb-3 text-sm">{gem.data.description}</p>
                   <div className="relative flex justify-between">
-                    <Link className="underline text-sm" onClick={() => { sendGTMEvent({ event: 'c_map_click', campaign: 'music_city', type: 'directions', source: gem.uid }) }}
+                    {!props.iframeMode && <Link className="underline text-sm" onClick={() => { sendGTMEvent({ event: 'c_map_click', campaign: 'music_city', type: 'directions', source: gem.uid }) }}
                           href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
-                          target="_blank">Get Directions</Link>
+                          target="_blank">Get Directions</Link>}
                     <Link onClick={() => { sendGTMEvent({ event: 'c_map_click', campaign: 'music_city', type: 'details_list', source: gem.uid }); detailsClick("gem-" + gem.uid) }} href="#" className="underline text-sm">More Details</Link>
                   </div>
                 </div>
@@ -285,8 +285,26 @@ function GoogleMap(props: MapProps) {
           initCenter = map.getCenter();
         }
         /*if (!mapAnimated) {
-          mapAnimate();
+          //mapAnimate();
+          let center = map.getCenter()
+          if (center) {
+            let shiftedLat = center.lat() - initLatitudeShift
+            initCenter = { lat: shiftedLat, lng: center.lng() }
+            //map.setCenter(initCenter)
+            initZoom = map.getZoom();
+          }
         }*/
+      });
+
+      google.maps.event.addListenerOnce(map,'bounds_changed', function() {
+        let center = map.getCenter()
+        if (center && !mapAnimated) {
+          let shiftedLat = center.lat() - initLatitudeShift
+          initCenter = { lat: shiftedLat, lng: center.lng() }
+          map.setCenter(initCenter)
+          initZoom = map.getZoom();
+          mapAnimated = true
+        }
       });
     };
 
@@ -311,6 +329,7 @@ type MapProps = {
   setSelectedGem: (arg: string) => void;
   openedGem: string | undefined,
   viewerRef: HTMLDivElement;
+  iframeMode: boolean;
 };
 
 export default function Map(props: MapProps) {

@@ -18,7 +18,8 @@ import LogoIcon from "@/img/logo-icon.svg";
 type GemPopupProps = {
   openedGem: any,
   setOpenedGem: (arg: any) => void,
-  contain?: boolean
+  contain?: boolean,
+  iframeMode: boolean,
 }
 
 export const GemPopup = (props: GemPopupProps) => {
@@ -112,9 +113,15 @@ export const GemPopup = (props: GemPopupProps) => {
   }
 
   return (
-    <div className={`!overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9 ${props.contain ? `fixed right-0 top-20 w-[calc(50%-20px)] min-[1152px]:w-[556px] portrait:mt-[30vh] h-[calc(100vh-80px)]` : `fixed left-0 top-0 w-full h-[100vh]`}`}
+    <div className={`!overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9 ${props.contain ? `fixed right-0 w-[calc(50%-20px)] min-[1152px]:w-[556px] portrait:mt-[30vh]` : `fixed left-0 w-full`}`}
       style={{
-        display: props.openedGem ? 'block' : 'none'
+        display: props.openedGem ? 'block' : 'none',
+        top: props.iframeMode ? '0' :
+          props.contain
+            ? '80px' : '0',
+        height: props.iframeMode ? '100vh' :
+          props.contain
+            ? 'calc(100vh - 80px)' : '100vh'
       }}
     >
     {object && <>
@@ -200,15 +207,15 @@ export const GemPopup = (props: GemPopupProps) => {
           </span>
         </p>}
 
-        {object.primary.gem.data.website &&
+        {!props.iframeMode && object.primary.gem.data.website &&
           <Link href={(object.primary.gem.data.website.url as string)} target="_blank" className="block text-black mb-3">
           <span className="relative [&>svg]:h-auto [&>svg]:w-3.5 [&>svg]:absolute [&>svg]:top-[2px] [&>svg]:left-[2px] mr-2 bg-orange-200"><CurvedArrowIcon /></span>
           <span className="pl-4 text-ex-blue underline">Visit website</span>
         </Link>}
 
-        <a href={`https://www.google.com/maps/search/?api=1&query=${object.primary.gem.data.title}&query_place_id=${object.primary.gem.data.google_maps_id}`} target="_blank" className={`relative mt-2 inline-block border border-ex-blue px-5 py-2 bg-ex-blue text-white text-sm transition-[border-color,color] duration-300 ease-in-out hover:bg-white hover:text-ex-blue`}>
+        {!props.iframeMode && <a href={`https://www.google.com/maps/search/?api=1&query=${object.primary.gem.data.title}&query_place_id=${object.primary.gem.data.google_maps_id}`} target="_blank" className={`relative mt-2 inline-block border border-ex-blue px-5 py-2 bg-ex-blue text-white text-sm transition-[border-color,color] duration-300 ease-in-out hover:bg-white hover:text-ex-blue`}>
           Get Directions
-        </a>
+        </a>}
       </div>
 
       {openingHours && <div className="p-5">

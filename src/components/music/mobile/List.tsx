@@ -23,6 +23,7 @@ type ListProps = {
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
   allowedPlaybooks: Map<string, string>;
   pageSlug: string;
+  iframeMode: boolean;
 };
 
 export default function List(props: ListProps) {
@@ -78,7 +79,7 @@ export default function List(props: ListProps) {
           </div>
         </div>
 
-        <GemPopup openedGem={props.openedGem} setOpenedGem={props.setOpenedGem} />
+        <GemPopup iframeMode={props.iframeMode} openedGem={props.openedGem} setOpenedGem={props.setOpenedGem} />
       </>
   );
 }
