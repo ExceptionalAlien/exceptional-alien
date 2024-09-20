@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import Socials from "../shared/Socials";
 import Nav from "./footer/Nav";
 import LogoIcon from "@/img/logo-icon.svg";
+import { useRouter } from "next/router";
 
 export default function Footer() {
+  const router = useRouter();
+  const [hideNav, setHideNav] = useState(false);
   const [year, setyear] = useState(0);
 
   const scrollToTop = () => {
@@ -14,8 +17,18 @@ export default function Footer() {
     setyear(new Date().getFullYear());
   }, []);
 
+  useEffect(() => {
+    if (router.isReady && router.pathname.startsWith('/music-playbook') && router.query.iframe) {
+      setHideNav(true)
+    }
+  }, [router.isReady]);
+
   return (
-    <footer className="p-safe relative h-72">
+    <footer className="p-safe relative h-72"
+      style={{
+        display: hideNav ? `none` : `flex`
+      }}
+    >
       <Nav />
       <Socials classes="p-safe absolute top-2 md:top-4 right-2 md:right-4" />
 

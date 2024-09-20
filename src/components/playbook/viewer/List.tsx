@@ -4,6 +4,7 @@ import { components } from "@/slices";
 import Header from "./list/Header";
 import Audio from "./list/Audio";
 import Buttons from "./list/Buttons";
+import SponsoredButton from "@/components/shared/SponsoredButton";
 
 type ListProps = {
   data: Content.PlaybookDocumentData;

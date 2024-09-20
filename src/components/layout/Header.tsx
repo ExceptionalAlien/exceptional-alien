@@ -30,12 +30,12 @@ export default function Header() {
   };
 
   useEffect(() => {
-    if (window.innerWidth < 768 && router.pathname.startsWith('/hotel-playbooks/')) {
+    if (router.isReady && ((window.innerWidth < 768 && router.pathname.startsWith('/hotel-playbooks/')) || router.query.iframe )) {
       setHidden(true)
     } else {
       setHidden(false)
     }
-  }, [router]);
+  }, [router.isReady]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -58,11 +58,13 @@ export default function Header() {
         <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
       </Head>
 
-      <header id="topNavigation"
+      <header
         className={`p-safe fixed top-0 z-10 flex h-12 w-full items-center md:h-20 md:transition-[background-color] md:duration-300 md:ease-in-out ${
-          scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"} 
-          ${hidden && `hidden`}
-        `}
+          scrollY <= 1 ? "bg-white" : searchParams?.get("c") ? `bg-black` : "bg-ex-blue"
+        }`}
+        style={{
+          display: hidden ? `none` : `flex`
+        }}
       >
         <h1>
           <Link
