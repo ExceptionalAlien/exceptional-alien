@@ -33,8 +33,8 @@ export default function SponsoredButton(props: SponsoredButtonProps) {
   }
 
   return (
-    <Link className="inline-block py-1.5 px-7 w-full bg-ex-blue text-white border border-ex-blue text-center rounded-full transition-[background-color,color] duration-300 hover:bg-white hover:text-ex-blue whitespace-nowrap"
-      href="#" data-link={props.link as string} target="_blank" rel="sponsored" onClick={clickOut}>{props.title}
-    </Link>
+    <button className="inline-block py-1.5 px-7 w-full bg-ex-blue text-white border border-ex-blue text-center rounded-full transition-[background-color,color] duration-300 hover:bg-white hover:text-ex-blue whitespace-nowrap"
+            tabIndex={0} role="link" data-link={props.link as string} rel="sponsored" onClick={clickOut}>{props.title}
+    </button>
   )
 }

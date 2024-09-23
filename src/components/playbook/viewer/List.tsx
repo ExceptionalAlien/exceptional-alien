@@ -9,9 +9,18 @@ import SponsoredButton from "@/components/shared/SponsoredButton";
 type ListProps = {
   data: Content.PlaybookDocumentData;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
+  pageUid: string;
 };
 
+const southAfrica = new Map([
+  [ 'cape-town-with-zola-nene', 'https://www.skyscanner.net/flights-to/cpt/' ],
+  [ 'western-cape-with-tanika-hoffman', 'https://www.skyscanner.net/flights-to/cpt/' ],
+  [ 'gauteng-with-kevin-richardson', 'https://www.skyscanner.net/flights-to/jnb/' ],
+]);
+
 export default function List(props: ListProps) {
+  const destination = props.data.destination as unknown as Content.DestinationDocument
+
   return (
     <div className="w-1/2 min-[1152px]:w-[576px] portrait:mt-60 portrait:w-full portrait:min-[768px]:mt-96">
       <Header
@@ -32,6 +41,12 @@ export default function List(props: ListProps) {
             story={asLink(props.data.story) as string}
             setShowVideo={props.setShowVideo}
           />
+
+          {southAfrica.get(props.pageUid) &&
+            <div className="grid grid-cols-1 md:grid-cols-2 md:col-span-1 md:gap-3">
+              <SponsoredButton link={southAfrica.get(props.pageUid) as string} title={`Flights to ${destination.data?.title}`}
+                               source={props.pageUid} campaign='skyscanner-south-africa' />
+            </div>}
         </section>
 
         <SliceZone slices={props.data.slices} components={components} context={{ creator: props.data.creator }} />
