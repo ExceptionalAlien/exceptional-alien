@@ -926,6 +926,17 @@ interface GemDocumentData {
   playbooks: prismic.GroupField<Simplify<GemDocumentDataPlaybooksItem>>;
 
   /**
+   * Music City List Text field in *Gem*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gem.alternative_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  alternative_text: prismic.RichTextField;
+
+  /**
    * Slice Zone field in *Gem*
    *
    * - **Field Type**: Slice Zone

@@ -110,7 +110,7 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem }: 
       <div className="gem-content mt-2 md:mt-3">
 
         <div className={`gem-text w-full sm:w-4/5 [&>p]:text-base [&>p]:!text-black mb-4 sm:mb-2`}>
-          <PrismicRichText field={gem.data.about} />
+          <PrismicRichText field={gem.data.alternative_text} />
 
           {/* !creator.data && asText(slice.primary.description).charAt(0) === '"' ? (
             <p className="mt-2 !text-sm !font-normal md:mt-3 md:!text-base">
