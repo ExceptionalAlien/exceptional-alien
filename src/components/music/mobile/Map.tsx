@@ -207,7 +207,7 @@ function GoogleMap(props: MapProps) {
             createRoot(div).render(
               <GemIcon
                 category={gem.data.category}
-                creator={(gem.data.creator as unknown as Content.CreatorDocument)?.data.profile_image.url}
+                /*creator={(gem.data.creator as unknown as Content.CreatorDocument)?.data.profile_image.url}*/
                 marker
                 classes="-translate-x-1/2 -translate-y-1/2"
               />
