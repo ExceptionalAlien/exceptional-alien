@@ -172,6 +172,9 @@ function GoogleMap(props: MapProps) {
             //console.log(`${gem.uid} - ${coords}`);
             div.setAttribute("id", "map-gem-" + gem.uid);
             div.classList.add("map-gem");
+            div.classList.add("[&>div>svg:nth-child(4)]:text-sky-blue");
+            div.classList.add("[&>div>svg:nth-child(5)]:text-sky-blue");
+            div.classList.add("[&.selected-gem>div>svg:nth-child(2)]:text-sky-blue");
             createRoot(div).render(
               <GemIcon
                 category={gem.data.category}

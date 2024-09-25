@@ -18,6 +18,10 @@ const config: Config = {
         "ex-grey": "rgb(var(--color-grey) / <alpha-value>)",
         "ex-light-grey": "rgb(var(--color-light-grey) / <alpha-value>)",
         "ex-red": "rgb(var(--color-red) / <alpha-value>)",
+        // Partner brand
+        "sky-blue": "rgb(var(--color-sky-blue) / <alpha-value>)",
+        "sky-green": "rgb(var(--color-sky-green) / <alpha-value>)",
+        "sky-navy": "rgb(var(--color-sky-navy) / <alpha-value>)",
       },
     },
   },

@@ -7,6 +7,9 @@
   --color-grey: 124 124 124;
   --color-light-grey: 197 197 197;
   --color-red: 255 60 0;
+  --color-sky-blue: 0 98 227;
+  --color-sky-green: 15 161 169;
+  --color-sky-navy: 5 32 60;
 }
 
 body {

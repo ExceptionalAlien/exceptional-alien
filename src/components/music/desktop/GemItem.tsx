@@ -63,7 +63,7 @@ const GemItem = ({ slice, context, setOpenedGem }: GemProps): JSX.Element => {
         }} />
       )}
 
-      <GemIcon category={gem.data.category} classes="left-8 top-8 !h-16 !w-16" />
+      <GemIcon category={gem.data.category} classes="left-8 top-8 !h-16 !w-16 [&>svg:nth-child(4)]:text-sky-blue [&>svg:nth-child(5)]:text-sky-blue [&.selected-gem>svg:nth-child(2)]:text-sky-blue" marker={true} />
 
       <div className="block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight">
         <h4 className="text-xl font-bold md:text-2xl">{gem.data.title}</h4>
@@ -71,26 +71,9 @@ const GemItem = ({ slice, context, setOpenedGem }: GemProps): JSX.Element => {
       </div>
 
       {/* Address */}
-      <a
-        href={`https://www.google.com/maps/search/?api=1&query=${gem.data.title}&query_place_id=${gem.data.google_maps_id}`}
-        target="_blank"
-        className="inline-block items-center text-pretty pr-1 text-base text-ex-grey transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:mr-12 md:pr-2 md:text-base"
-      >
+      <p className="inline-block items-center text-pretty pr-1 text-base text-ex-grey transition-[color] duration-300 ease-in-out hover:text-ex-light-grey md:mr-12 md:pr-2 md:text-base">
         {gem.data.address}
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="ml-1 inline h-4 w-4 align-[-3px]"
-        >
-          <path
-            fillRule="evenodd"
-            d="M12.207 2.232a.75.75 0 00.025 1.06l4.146 3.958H6.375a5.375 5.375 0 000 10.75H9.25a.75.75 0 000-1.5H6.375a3.875 3.875 0 010-7.75h10.003l-4.146 3.957a.75.75 0 001.036 1.085l5.5-5.25a.75.75 0 000-1.085l-5.5-5.25a.75.75 0 00-1.06.025z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </a>
+      </p>
 
       {/* Details */}
       <div className="gem-content mt-1 md:mt-2">
@@ -121,7 +104,7 @@ const GemItem = ({ slice, context, setOpenedGem }: GemProps): JSX.Element => {
 
         <div className="relative w-auto flex justify-end">
           <button onClick={showMoreClick}
-                  className={`tab-button relative block border border-black px-2.5 py-2 text-sm transition-[border-color,color] duration-300 ease-in-out hover:border-ex-blue hover:text-ex-blue`}>
+                  className={`tab-button relative block rounded-xl border border-black px-3 py-2 text-sm transition-[border-color,color] duration-300 ease-in-out hover:border-sky-blue hover:text-sky-blue`}>
             <span className="mr-5">Show More</span>
             <span className="absolute top-[0.255rem] right-[0.755rem] text-lg">&#x2b;</span>
           </button>

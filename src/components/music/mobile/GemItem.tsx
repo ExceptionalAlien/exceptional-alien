@@ -73,7 +73,7 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem }: 
         }} />
       )}
 
-      <GemIcon category={gem.data.category} classes="left-8 top-8 !h-16 !w-16" />
+      <GemIcon category={gem.data.category} classes="left-8 top-8 !h-16 !w-16 [&>svg:nth-child(4)]:text-sky-blue [&>svg:nth-child(5)]:text-sky-blue [&.selected-gem>svg:nth-child(2)]:text-sky-blue" marker />
 
       <div className="relative">
         <div className="block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight w-[calc(100%-40px)]">
@@ -134,7 +134,7 @@ const GemItem = ({ slice, context, setViewMode, setSelectedGem, setOpenedGem }: 
         </div>
 
         <div className="relative w-auto flex justify-end">
-          <button onClick={showMoreClick} className={`tab-button relative block border border-black px-2.5 py-2 text-sm transition-[border-color,color] duration-300 ease-in-out hover:border-ex-blue hover:text-ex-blue`}>
+          <button onClick={showMoreClick} className={`tab-button relative block rounded-xl border border-black px-2.5 py-2 text-sm transition-[border-color,color] duration-300 ease-in-out hover:border-sky-blue hover:text-sky-blue`}>
             <span className="mr-5">Show More</span>
             <span className="absolute top-[0.255rem] right-[0.755rem] text-lg">&#x2b;</span>
           </button>

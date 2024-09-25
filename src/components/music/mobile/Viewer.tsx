@@ -7,6 +7,7 @@ import Globe from "@/img/globe.svg";
 import List from "@/img/icon-list.svg";
 import Link from "next/link";
 import { sendGTMEvent } from "@next/third-parties/google";
+import MusicIcon from "@/img/icon-music.svg";
 
 type ViewerProps = {
   data: Content.PlaybookDocumentData;
@@ -33,10 +34,10 @@ export default function Viewer(props: ViewerProps) {
 
   return (
     <>
-      <div className="fixed top-0 bg-ex-blue h-12 z-50 w-full flex justify-between content-center">
+      <div className="fixed top-0 bg-sky-navy h-12 z-50 w-full flex justify-between content-center">
         <p
-          className="text-white text-sm px-3 py-3.5 [&>svg]:h-4 [&>svg]:mr-1 [&>svg]:inline-block text-nowrap">
-          <Playbook /> Music City Guide</p>
+          className="text-white text-sm px-3 py-3.5 [&>svg]:h-4 [&>svg]:mr-2 [&>svg]:inline-block text-nowrap">
+          <MusicIcon /> Music City Guide</p>
         <div className="flex justify-end pr-3">
           {viewMode == 'map' && <button onClick={() => { setViewMode('list'); sendGTMEvent({ event: 'm_map_click', campaign: 'music-city', type: 'list_view', source: 'map' }); }}
             className="my-auto grow-0 inline text-sm text-white bg-transparent border border-1 border-white px-2 py-1 [&>svg]:h-4 [&>svg]:mr-2 [&>svg]:inline-block [&>svg]:absolute [&>svg]:top-[16px]">

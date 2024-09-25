@@ -113,7 +113,7 @@ export const GemPopup = (props: GemPopupProps) => {
   }
 
   return (
-    <div className={`!overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9 ${props.contain ? `fixed right-0 w-[calc(50%-20px)] min-[1152px]:w-[556px] portrait:mt-[30vh]` : `fixed left-0 w-full`}`}
+    <div className={`!overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9 ${props.contain ? `fixed right-5 w-[calc(50%-20px)] min-[1152px]:w-[536px] portrait:mt-[30vh]` : `fixed left-0 w-full`}`}
       style={{
         display: props.openedGem ? 'block' : 'none',
         top: props.iframeMode ? '0' :
@@ -125,24 +125,25 @@ export const GemPopup = (props: GemPopupProps) => {
       }}
     >
     {object && <>
-      <div className="fixed bg-black h-12 z-50 w-[inherit] flex justify-between content-center">
+      <div className="fixed bg-white h-12 z-50 w-[inherit] flex justify-between content-center">
         <div><p className="text-white text-sm px-3 py-3.5 [&>svg]:h-4 [&>svg]:mr-1 [&>svg]:inline-block text-nowrap">
-          <DiamondIcon /> {object.primary.gem.data.title}</p></div>
+          {/*<DiamondIcon /> {object.primary.gem.data.title}*/}
+        </p></div>
         <div className="flex justify-end pr-3">
-          <button className="inline-block [&>svg]:text-white [&>svg]:h-3 [&>svg]:w-3 [&>svg]:block" onClick={handleClose}>
+          <button className="inline-block [&>svg]:text-black [&>svg]:h-3 [&>svg]:w-3 [&>svg]:block" onClick={handleClose}>
             <CloseIcon />
           </button>
         </div>
       </div>
       <div>
-        <div className="relative p-5 mt-12">
+        <div className="relative p-5 pt-0 mt-12">
           {object.primary.gem.data.image && (
             <div className="w-full h-[30vh] md:h-[40vh] bg-cover bg-no-repeat bg-center mb-5" style={{
               backgroundImage: `url('${object.primary.gem.data.image.thumb.url}')`,
             }} />
           )}
 
-          <GemIcon category={object.primary.gem.data.category} classes="left-8 top-8 !h-16 !w-16" />
+          <GemIcon category={object.primary.gem.data.category} classes="left-8 top-4 !h-16 !w-16 [&>svg:nth-child(4)]:text-sky-blue [&>svg:nth-child(5)]:text-sky-blue" marker={true} />
 
           <div className="relative mb-4 sm:mb-2">
             <div className="block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight w-[calc(100%-40px)]">
@@ -154,19 +155,6 @@ export const GemPopup = (props: GemPopupProps) => {
           <div className={`gem-text w-full [&>p]:text-base [&>p]:!text-black mb-4 sm:mb-2`}>
             <PrismicRichText field={object.primary.gem.data.about} />
           </div>
-
-          {object.primary.gem.data?.insider_tip &&
-            <section className="w-full md:w-[calc(80%+16px)] mt-5">
-              <div className="p-3 w-auto bg-ex-blue text-white">
-                <h6 className="relative font-bold mb-2 [&>svg]:absolute [&>svg]:top-[1px] [&>svg]:w-auto [&>svg]:h-[20px]">
-                  <LogoIcon />
-                  <span className="ml-[26px]">EA Tip</span>
-                </h6>
-                <p>{object.primary.gem.data.insider_tip}</p>
-              </div>
-            </section>
-          }
-
         </div>
       </div>
 
@@ -188,6 +176,21 @@ export const GemPopup = (props: GemPopupProps) => {
         </div>
       </div>}
 
+      {object.primary.gem.data?.insider_tip &&
+        <div className="p-5 pb-0">
+          <hr className="mb-5" />
+          <section className="w-full md:w-[calc(80%+16px)] mt-5">
+            <div className="p-3 w-auto bg-sky-blue text-white">
+              <h6 className="relative font-bold mb-2 [&>svg]:absolute [&>svg]:top-[1px] [&>svg]:w-auto [&>svg]:h-[20px]">
+                <LogoIcon />
+                <span className="ml-[26px]">EA Tip</span>
+              </h6>
+              <p>{object.primary.gem.data.insider_tip}</p>
+            </div>
+          </section>
+        </div>
+      }
+
       <div className="p-5 pb-0">
         <hr className="mb-5" />
         <h4 className="text-xl font-bold md:text-2xl mb-4">Location</h4>
@@ -195,13 +198,13 @@ export const GemPopup = (props: GemPopupProps) => {
         <p className="text-black mb-3">
           <span
             className="relative [&>svg]:h-auto [&>svg]:w-3.5 [&>svg]:absolute [&>svg]:top-[-1px] [&>svg]:left-[2px] mr-2 bg-orange-200"><PlaceIcon /></span>
-          <span className="pl-4 text-ex-blue">{object.primary.gem.data.address}</span>
+          <span className="pl-4 text-sky-blue">{object.primary.gem.data.address}</span>
         </p>
 
         {object.primary.gem.data.location.latitude && <p className="text-black mb-3">
           <span
             className="relative [&>svg]:h-auto [&>svg]:w-5 [&>svg]:absolute [&>svg]:top-[0] mr-2 bg-orange-200"><CompassIcon /></span>
-          <span className="pl-4 text-ex-blue">
+          <span className="pl-4 text-sky-blue">
             {Math.abs(object.primary.gem.data.location.latitude).toFixed(5)}°{object.primary.gem.data.location.latitude < 0 ? "S" : "N"},&nbsp;
             {Math.abs(object.primary.gem.data.location.longitude).toFixed(5)}°{object.primary.gem.data.location.longitude < 0 ? "W" : "E"}
           </span>
@@ -210,10 +213,10 @@ export const GemPopup = (props: GemPopupProps) => {
         {!props.iframeMode && object.primary.gem.data.website &&
           <Link href={(object.primary.gem.data.website.url as string)} target="_blank" className="block text-black mb-3">
           <span className="relative [&>svg]:h-auto [&>svg]:w-3.5 [&>svg]:absolute [&>svg]:top-[2px] [&>svg]:left-[2px] mr-2 bg-orange-200"><CurvedArrowIcon /></span>
-          <span className="pl-4 text-ex-blue underline">Visit website</span>
+          <span className="pl-4 text-sky-blue underline">Visit website</span>
         </Link>}
 
-        {!props.iframeMode && <a href={`https://www.google.com/maps/search/?api=1&query=${object.primary.gem.data.title}&query_place_id=${object.primary.gem.data.google_maps_id}`} target="_blank" className={`relative mt-2 inline-block border border-ex-blue px-5 py-2 bg-ex-blue text-white text-sm transition-[border-color,color] duration-300 ease-in-out hover:bg-white hover:text-ex-blue`}>
+        {!props.iframeMode && <a href={`https://www.google.com/maps/search/?api=1&query=${object.primary.gem.data.title}&query_place_id=${object.primary.gem.data.google_maps_id}`} target="_blank" className={`relative mt-2 inline-block rounded-xl border border-sky-blue px-5 py-2 bg-sky-blue text-white text-sm transition-[border-color,color] duration-300 ease-in-out hover:bg-white hover:text-sky-blue`}>
           Get Directions
         </a>}
       </div>
