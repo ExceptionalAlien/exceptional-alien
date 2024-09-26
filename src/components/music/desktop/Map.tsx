@@ -273,7 +273,7 @@ function GoogleMap(props: MapProps) {
   {/* w was -576px todo: change height */}
   return (
     <div ref={ref}
-      className={`!fixed left-0 ${!props.iframeMode && `md:top-20 top-12 landscape:h-[calc(100%-48px)] md:landscape:h-[calc(100%-80px)]`} ${props.iframeMode && `md:top-0 top-12 landscape:h-[100%] md:landscape:h-[100%]`} z-10 h-[30vh] w-1/2 shadow-xl sm:shadow-none touch-none bg-ex-light-grey min-[1152px]:w-[calc(100%-576px)] portrait:w-full portrait:min-[768px]:h-96 ${
+      className={`!fixed left-0 ${props.iframeMode && `md:top-0 top-12 landscape:h-[100%] md:landscape:h-[100%]`} ${!props.iframeMode && `md:top-20 top-12 h-[calc(100%-48px)] md:h-[calc(100%-80px)]`} z-10 h-[100vh] w-1/2 shadow-xl sm:shadow-none touch-none bg-ex-light-grey min-[1152px]:w-[calc(100%-576px)] ${
         scrollEndLandscape && "landscape:!absolute landscape:!top-auto"
       } ${scrollEndPortrait && "portrait:!absolute portrait:!top-auto"}`}
     />
