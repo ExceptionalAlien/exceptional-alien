@@ -37,10 +37,8 @@ export default function List(props: ListProps) {
             <MusicIcon /> Music City Guide</p>
         </div>
 
-        <div className="relative w-full h-[30vh] md:h-[40vh] bg-sky-blue bg-cover bg-no-repeat bg-center" style={{
-          backgroundImage: `url('${props.data.music_city_image.url}')`,
-        }}>
-          {/*<div className="absolute w-full h-full bg-gradient-to-t from-black/50 from-0% via-black/0 via-50% to-black/50 to-100%"></div>*/}
+        <div className="relative w-full block bg-sky-blue">
+          <img className='block h-auto' src={props.data.music_city_image.url as string} alt='City Image' />
         </div>
 
         <div className="mt-7 mb-2 w-5/6 mx-auto [&>svg]:w-full">

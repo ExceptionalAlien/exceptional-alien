@@ -36,16 +36,9 @@ export default function List(props: ListProps) {
             ${props.viewMode == 'list' && `top-12 z-20 bg-opacity-40 bg-black`} 
             ${props.viewMode == 'map' && `z-0`}
           `}>
-          <div className="bg-sky-blue p-5">
-            <div className="relative w-full h-[30vh] md:h-[40vh] bg-sky-blue bg-cover bg-no-repeat bg-center" style={{
-              backgroundImage: `url('${props.data.music_city_image.url}')`,
-            }}>
-              {/* <div className="absolute w-full h-full bg-gradient-to-t from-black/50 from-0% via-black/0 via-50% to-black/50 to-100%" /> */}
-              {/*<div className="absolute top-3 left-3 rounded-full bg-black bg-opacity-20 backdrop-blur">
-                <p className="text-white text-sm px-3 py-2.5 [&>svg]:h-4 [&>svg]:mr-1 [&>svg]:inline-block">
-                <Playbook /> City with Creator</p>
-              </div>*/}
-              {/* todo: creator's logo here */}
+          <div className="bg-sky-blue p-5 pt-7">
+            <div className="relative w-full block bg-sky-blue">
+              <img className="block h-auto" src={props.data.music_city_image.url as string} alt="City Image" />
             </div>
 
             <div className="mt-7 mb-2 mx-auto [&>svg]:w-full">
