@@ -131,6 +131,23 @@
           "placeholder_false": "false"
         }
       },
+      "music_city_image": {
+        "type": "Image",
+        "config": {
+          "label": "Music City Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "music_city_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Music City Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
       "related": {
         "type": "Group",
         "config": {

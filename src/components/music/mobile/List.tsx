@@ -36,13 +36,11 @@ export default function List(props: ListProps) {
             ${props.viewMode == 'list' && `top-12 z-20 bg-opacity-40 bg-black`} 
             ${props.viewMode == 'map' && `z-0`}
           `}>
-          {/* bg-[#9c9c9c]  min-[1152px]:w-[576px] portrait:min-[768px]:mt-96 */}
           <div className="bg-sky-blue p-5">
-            <div className="relative w-full h-[30vh] md:h-[40vh] bg-cover bg-no-repeat bg-center" style={{
-              backgroundImage: `url('${props.data.image.url}')`,
+            <div className="relative w-full h-[30vh] md:h-[40vh] bg-sky-blue bg-cover bg-no-repeat bg-center" style={{
+              backgroundImage: `url('${props.data.music_city_image.url}')`,
             }}>
-              <div
-                className="absolute w-full h-full bg-gradient-to-t from-black/50 from-0% via-black/0 via-50% to-black/50 to-100%" />
+              {/* <div className="absolute w-full h-full bg-gradient-to-t from-black/50 from-0% via-black/0 via-50% to-black/50 to-100%" /> */}
               {/*<div className="absolute top-3 left-3 rounded-full bg-black bg-opacity-20 backdrop-blur">
                 <p className="text-white text-sm px-3 py-2.5 [&>svg]:h-4 [&>svg]:mr-1 [&>svg]:inline-block">
                 <Playbook /> City with Creator</p>
@@ -58,7 +56,7 @@ export default function List(props: ListProps) {
           <div className="relative grid gap-y-6 md:gap-y-6 [&>.gem]:bg-white [&>.gem]:p-5 [&>.gem>.gem-icon]:r-5">
             <section className="p-5 bg-sky-navy [&>p]:text-white [&>p]:text-base [&>p]:mb-3">
               {/*<h1 className="text-2xl sm:text-3xl uppercase font-bold mb-3">{props.data.title}</h1>*/}
-              {props.data.description.length !== 0 && <PrismicRichText field={props.data.description} />}
+              {props.data.music_city_description.length !== 0 && <PrismicRichText field={props.data.music_city_description} />}
               {(props.data.audio as any).url && <Audio file={(props.data.audio as any).url as string} />}
 
               {props.allowedPlaybooks.get(props.pageSlug) === undefined && <Buttons
@@ -69,7 +67,7 @@ export default function List(props: ListProps) {
 
               {props.allowedPlaybooks.get(props.pageSlug) &&
                 <div className="grid grid-cols-1 md:grid-cols-2 mt-5">
-                    <SponsoredButton link={props.allowedPlaybooks.get(props.pageSlug) as string} source={props.pageSlug}
+                    <SponsoredButton link={(props.allowedPlaybooks.get(props.pageSlug) as any).flights as string} source={props.pageSlug}
                                      displayAsLink classes={'font-bold text-white'}
                                      campaign="skyscanner" title={"Flights to " + (props.data.destination as any).data.title as string} />
                 </div>}
@@ -84,7 +82,9 @@ export default function List(props: ListProps) {
           </div>
         </div>
 
-        <GemPopup iframeMode={props.iframeMode} openedGem={props.openedGem} setOpenedGem={props.setOpenedGem} />
+        <GemPopup iframeMode={props.iframeMode} openedGem={props.openedGem} setOpenedGem={props.setOpenedGem}
+          ctaLinkData={{destination: (props.data.destination as any).data.title as string, link: (props.allowedPlaybooks.get(props.pageSlug) as any).hotels as string, pageUid: props.pageSlug}}
+        />
       </>
   );
 }

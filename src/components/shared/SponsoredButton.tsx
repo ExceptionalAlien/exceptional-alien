@@ -9,6 +9,11 @@ export type SponsoredButtonProps = {
   campaign: string,
   displayAsLink?: boolean,
   classes?: string
+  utm?: {
+    campaign: string,
+    source: string,
+    medium: string,
+  }
 }
 
 export default function SponsoredButton(props: SponsoredButtonProps) {

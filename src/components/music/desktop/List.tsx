@@ -17,7 +17,7 @@ import MusicIcon from "@/img/icon-music.svg";
 type ListProps = {
   data: Content.PlaybookDocumentData;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
-  allowedPlaybooks: Map<string, string>;
+  allowedPlaybooks: Map<string, object>;
   pageSlug: string;
   iframeMode: boolean;
 };
@@ -37,11 +37,10 @@ export default function List(props: ListProps) {
             <MusicIcon /> Music City Guide</p>
         </div>
 
-        <div className="relative w-full h-[30vh] md:h-[40vh] bg-cover bg-no-repeat bg-center" style={{
-          backgroundImage: `url('${props.data.image.url}')`,
+        <div className="relative w-full h-[30vh] md:h-[40vh] bg-sky-blue bg-cover bg-no-repeat bg-center" style={{
+          backgroundImage: `url('${props.data.music_city_image.url}')`,
         }}>
-          <div
-            className="absolute w-full h-full bg-gradient-to-t from-black/50 from-0% via-black/0 via-50% to-black/50 to-100%"></div>
+          {/*<div className="absolute w-full h-full bg-gradient-to-t from-black/50 from-0% via-black/0 via-50% to-black/50 to-100%"></div>*/}
         </div>
 
         <div className="mt-7 mb-2 w-5/6 mx-auto [&>svg]:w-full">
@@ -52,7 +51,7 @@ export default function List(props: ListProps) {
       <div className="grid gap-y-6 md:gap-y-6 [&>.gem]:bg-white [&>.gem]:p-5 [&>.gem>.gem-icon]:r-5">
         <section className="grid gap-y-3 md:gap-y-4 bg-sky-navy p-5 py-7 [&>p]:text-white [&>p]:text-base">
           {/* <h1 className="text-2xl sm:text-3xl uppercase font-bold -mb-3">{props.data.title}</h1> */}
-          {props.data.description.length !== 0 && <PrismicRichText field={props.data.description} />}
+          {props.data.music_city_description.length !== 0 && <PrismicRichText field={props.data.music_city_description} />}
           {(props.data.audio as any).url && <Audio file={(props.data.audio as any).url as string} />}
 
           {props.allowedPlaybooks.get(props.pageSlug) === undefined && <Buttons
@@ -63,11 +62,9 @@ export default function List(props: ListProps) {
 
           {props.allowedPlaybooks.get(props.pageSlug) &&
             <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
-              <div>
-                <SponsoredButton link={props.allowedPlaybooks.get(props.pageSlug) as string} source={props.pageSlug}
-                                 displayAsLink={true} classes={'font-bold text-white'}
-                                 campaign="skyscanner" title={"Flights to " + (props.data.destination as any).data.title as string} />
-              </div>
+              <SponsoredButton link={(props.allowedPlaybooks.get(props.pageSlug) as any).flights as string} source={props.pageSlug}
+                               displayAsLink={true} classes={'font-bold text-white'}
+                               campaign="skyscanner" title={"Flights to " + (props.data.destination as any).data.title as string} />
             </div>}
         </section>
 
@@ -81,7 +78,9 @@ export default function List(props: ListProps) {
       </div>
     </div>
 
-    <GemPopup iframeMode={props.iframeMode} openedGem={openedGem} setOpenedGem={setOpenedGem} contain={true} />
+    <GemPopup iframeMode={props.iframeMode} openedGem={openedGem} setOpenedGem={setOpenedGem} contain={true}
+      ctaLinkData={{destination: (props.data.destination as any).data.title as string, link: (props.allowedPlaybooks.get(props.pageSlug) as any).hotels as string, pageUid: props.pageSlug}}
+    />
   </>
   );
 }

@@ -14,14 +14,33 @@ import { default as MobileViewer } from "@/components/music/mobile/Viewer";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const cityGuides = new Map([
-  [ 'discover-the-citys-hottest-music-venues', 'https://www.skyscanner.net/flights-to/nyca/' ], // New York, Jitwam
-  [ 'los-angeles-with-ny-oh', 'https://www.skyscanner.net/flights-to/laxa/' ],
-  [ 'toronto-with-valley', 'https://www.skyscanner.net/flights-to/ytoa/' ],
-  [ 'manchester-with-lusaint', 'https://www.skyscanner.net/flights-to/man/' ],
-  [ 'berlin-with-christian-rich', 'https://www.skyscanner.net/flights-to/ber/' ],
-  // [ 'copenhagen-with-mina-okabe','https://www.skyscanner.net/flights-to/ber/'] // todo: TEST Mina Okabe
+const cityGuides: Map<string, MusicCityObject> = new Map([
+  [ 'discover-the-citys-hottest-music-venues', { // New York, Jitwam
+      flights: 'https://www.skyscanner.net/flights-to/nyca/',
+      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27537542'
+  }],
+  [ 'los-angeles-with-ny-oh', {
+      flights: 'https://www.skyscanner.net/flights-to/laxa/',
+      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27536211'
+  }],
+  [ 'manchester-with-lusaint', {
+      flights: 'https://www.skyscanner.net/flights-to/man/',
+      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=46432027',
+  }],
+  [ 'toronto-with-valley', {
+      flights: 'https://www.skyscanner.net/flights-to/ytoa/',
+      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27536640'
+  }],
+  [ 'berlin-with-christian-rich', {
+      flights: 'https://www.skyscanner.net/flights-to/ber/',
+      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27547053',
+  }]
 ])
+
+type MusicCityObject = {
+  flights: string,
+  hotels: string
+}
 
 export default function Playbook({ page, search }: PageProps) {
   const router = useRouter();
@@ -95,7 +114,7 @@ export async function getStaticProps({ params, previewData }: GetStaticPropsCont
       fetchLinks:
         "creator.first_name,creator.last_name,creator.profile_image,creator.uid," +
         "gem.title,gem.location,gem.image,gem.category,gem.creator,gem.address,gem.google_maps_id,gem.description,gem.insider_tip,gem.website,gem.about,gem.alternative_text," +
-        "destination.title,playbook.title,playbook.locked,playbook.image,playbook.destination,playbook.creator",
+        "destination.title,playbook.title,playbook.locked,playbook.image,playbook.destination,playbook.creator,playbook.music_city_image,playbook.music_city_description",
     });
 
     const search = await client.getSingle("search", {

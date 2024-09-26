@@ -1529,6 +1529,28 @@ interface PlaybookDocumentData {
   hidden: prismic.BooleanField;
 
   /**
+   * Music City Image field in *Playbook*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.music_city_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  music_city_image: prismic.ImageField<never>;
+
+  /**
+   * Music City Description field in *Playbook*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playbook.music_city_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  music_city_description: prismic.RichTextField;
+
+  /**
    * Related field in *Playbook*
    *
    * - **Field Type**: Group

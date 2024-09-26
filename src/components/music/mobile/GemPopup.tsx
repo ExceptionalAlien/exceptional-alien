@@ -14,12 +14,18 @@ import Quote, { QuoteProps } from "@/components/music/Quote";
 import { GroupField, RichTextField } from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import LogoIcon from "@/img/logo-icon.svg";
+import SponsoredButton from "@/components/shared/SponsoredButton";
 
 type GemPopupProps = {
   openedGem: any,
   setOpenedGem: (arg: any) => void,
   contain?: boolean,
   iframeMode: boolean,
+  ctaLinkData?: {
+    destination: string,
+    link: string,
+    pageUid: string,
+  }
 }
 
 export const GemPopup = (props: GemPopupProps) => {
@@ -155,6 +161,12 @@ export const GemPopup = (props: GemPopupProps) => {
           <div className={`gem-text w-full [&>p]:text-base [&>p]:!text-black mb-4 sm:mb-2`}>
             <PrismicRichText field={object.primary.gem.data.about} />
           </div>
+
+          {props?.ctaLinkData?.link && <div className="mt-5 w-full lg:w-1/2">
+            <SponsoredButton link={props.ctaLinkData.link as string} source={props.ctaLinkData.pageUid}
+                             classes={'!text-sky-blue bg-white border-sky-blue rounded-xl hover:!bg-sky-blue hover:!text-white'}
+                             campaign="skyscanner" title={`Find Hotels in ${props.ctaLinkData.destination}`} />
+          </div>}
         </div>
       </div>
 

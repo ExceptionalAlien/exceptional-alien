@@ -13,7 +13,7 @@ type ViewerProps = {
   data: Content.PlaybookDocumentData;
   setShowVideo: React.Dispatch<React.SetStateAction<boolean>>;
   viewerRef: HTMLDivElement;
-  allowedPlaybooks: Map<string, string>;
+  allowedPlaybooks: Map<string, any>;
   pageSlug: string;
   iframeMode: boolean;
 };
