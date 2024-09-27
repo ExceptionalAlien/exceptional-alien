@@ -16,24 +16,24 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const cityGuides: Map<string, MusicCityObject> = new Map([
   [ 'discover-the-citys-hottest-music-venues', { // New York, Jitwam
-      flights: 'https://www.skyscanner.net/flights-to/nyca/',
-      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27537542'
+      flights: 'https://skyscanner.pxf.io/PyJxPz', // 'https://www.skyscanner.net/flights-to/nyca/',
+      hotels: 'https://skyscanner.pxf.io/k0D6xz', // https://www.skyscanner.net/hotels/search?entity_id=27537542'
   }],
   [ 'los-angeles-with-ny-oh', {
-      flights: 'https://www.skyscanner.net/flights-to/laxa/',
-      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27536211'
+      flights: 'https://skyscanner.pxf.io/rQkM7R', // 'https://www.skyscanner.net/flights-to/laxa/',
+      hotels: 'https://skyscanner.pxf.io/jrxbv5', // https://www.skyscanner.net/hotels/search?entity_id=27536211'
   }],
   [ 'manchester-with-lusaint', {
-      flights: 'https://www.skyscanner.net/flights-to/man/',
-      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=46432027',
+      flights: 'https://skyscanner.pxf.io/EKrB4P', // 'https://www.skyscanner.net/flights-to/man/',
+      hotels: 'https://skyscanner.pxf.io/ba4Xn9', // https://www.skyscanner.net/hotels/search?entity_id=46432027',
   }],
   [ 'toronto-with-valley', {
-      flights: 'https://www.skyscanner.net/flights-to/ytoa/',
-      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27536640'
+      flights: 'https://skyscanner.pxf.io/0ZEqeV', // https://www.skyscanner.net/flights-to/ytoa/',
+      hotels: 'https://skyscanner.pxf.io/ba4XEx', // https://www.skyscanner.net/hotels/search?entity_id=27536640'
   }],
   [ 'berlin-with-christian-rich', {
-      flights: 'https://www.skyscanner.net/flights-to/ber/',
-      hotels: 'https://www.skyscanner.net/hotels/search?entity_id=27547053',
+      flights: 'https://skyscanner.pxf.io/y2JM02', // https://www.skyscanner.net/flights-to/ber/',
+      hotels: 'https://skyscanner.pxf.io/Kjab1x', // https://www.skyscanner.net/hotels/search?entity_id=27547053',
   }]
 ])
 

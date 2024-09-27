@@ -4,7 +4,7 @@ import DiamondIcon from "@/img/icon-gem.svg";
 import CloseIcon from "@/img/icon-close.svg";
 import { useEffect, useState } from "react";
 import GemIcon from "@/components/shared/GemIcon";
-import { PrismicRichText } from "@prismicio/react";
+import { PrismicRichText, PrismicText } from "@prismicio/react";
 import Footer from "@/components/layout/Footer";
 import PlaceIcon from "@/img/icon-place.svg";
 import CompassIcon from "@/img/icon-compass.svg";
@@ -136,7 +136,7 @@ export const GemPopup = (props: GemPopupProps) => {
           {/*<DiamondIcon /> {object.primary.gem.data.title}*/}
         </p></div>
         <div className="flex justify-end pr-3">
-          <button className="inline-block [&>svg]:text-black [&>svg]:h-3 [&>svg]:w-3 [&>svg]:block" onClick={handleClose}>
+          <button className="inline-block [&>svg]:text-black [&>svg]:h-4 [&>svg]:w-4 [&>svg]:block" onClick={handleClose}>
             <CloseIcon />
           </button>
         </div>
@@ -149,7 +149,7 @@ export const GemPopup = (props: GemPopupProps) => {
             }} />
           )}
 
-          <GemIcon category={object.primary.gem.data.category} classes="left-8 top-4 !h-16 !w-16 [&>svg:nth-child(4)]:text-sky-blue [&>svg:nth-child(5)]:text-sky-blue" marker={true} />
+          <GemIcon category={object.primary.gem.data.category} classes="left-8 top-4 !h-16 !w-16 [&>svg:nth-child(4)]:text-sky-blue [&>svg:nth-child(5)]:text-white [&>svg:nth-child(2)]:text-sky-blue" marker={true} />
 
           <div className="relative mb-4 sm:mb-2">
             <div className="block pr-1 md:mr-12 md:pr-2 [&>*]:leading-tight w-[calc(100%-40px)]">

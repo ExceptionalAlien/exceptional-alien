@@ -65,7 +65,7 @@ function GoogleMap(props: MapProps) {
       fullscreenControl: false,
       mapTypeControl: false,
       clickableIcons: false,
-      backgroundColor: "#62b8e9",
+      backgroundColor: "#f3f3f3",
       scrollwheel: false,
       gestureHandling: "greedy",
       zoomControl: true,

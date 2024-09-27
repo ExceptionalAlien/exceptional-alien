@@ -51,7 +51,7 @@ export default function Viewer(props: ViewerProps) {
           </button>}
         </div>
       </div>
-      <div id="splashCover" className="z-50 bg-[#62b8e9] h-[100vh] w-full"></div>
+      <div id="splashCover" className="z-50 bg-[#f3f3f3] h-[100vh] w-full"></div>
       <MobileList iframeMode={props.iframeMode} data={props.data} allowedPlaybooks={props.allowedPlaybooks} pageSlug={props.pageSlug} openedGem={openedGem} setOpenedGem={setOpenedGem} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} setShowVideo={() => { return false; }} />
       <MobileMap gems={props.data.slices} iframeMode={props.iframeMode} openedGem={openedGem} selectedGem={selectedGem} setSelectedGem={setSelectedGem} setViewMode={setViewMode} viewMode={viewMode} viewerRef={props.viewerRef!} />
     </>
