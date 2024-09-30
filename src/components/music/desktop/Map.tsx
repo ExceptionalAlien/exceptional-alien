@@ -14,7 +14,7 @@ function GoogleMap(props: MapProps) {
     const isMobile = window.innerWidth < 768;
     const orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
     const titleHeight = (orientation === "landscape" && !isMobile) || window.innerWidth === 768 ? 80 : 64;
-    const portraitMapHeight = isMobile ? 240 : 384;
+    const portraitMapHeight = window.innerHeight
     const globalHeaderheight = !isMobile ? 80 : 48 + portraitMapHeight;
     const margin = !isMobile ? 24 : 16;
     const top = globalHeaderheight; // + titleHeight;

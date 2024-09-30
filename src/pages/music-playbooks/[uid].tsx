@@ -74,7 +74,7 @@ export default function Playbook({ page, search }: PageProps) {
     <>
       <Head page={page} />
 
-      <main className={`${!hasRelated && "!pb-0"}`}>
+      <main className={`!pb-0`}>
         <div ref={ref}>
         {isMobile && (
           <div>

@@ -112,7 +112,7 @@ export const GemPopup = (props: GemPopupProps) => {
   }
 
   return (
-    <div className={`!overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9 ${props.contain ? `fixed right-0 top-20 w-[calc(50%-20px)] min-[1152px]:w-[556px] portrait:mt-[30vh] h-[calc(100vh-80px)]` : `fixed left-0 top-0 w-full h-[100vh]`}`}
+    <div className={`!overflow-y-scroll z-50 bg-white transition-all duration-500 ease-in pb-9 ${props.contain ? `fixed right-0 top-20 w-[calc(50%-20px)] min-[1152px]:w-[556px] h-[calc(100vh-80px)]` : `fixed left-0 top-0 w-full h-[100vh]`}`}
       style={{
         display: props.openedGem ? 'block' : 'none'
       }}
