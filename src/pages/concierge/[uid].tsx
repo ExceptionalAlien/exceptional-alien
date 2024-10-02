@@ -211,7 +211,7 @@ export default function Hotel({ page }: PageProps) {
         </div>
       </section>
 
-      <section className="relative block !pl-0 !pr-0">
+      <section className="relative block !pl-0 !pr-0 pb-24">
         <div className="h-auto min-h-[calc(100vh-70px)] md:min-h-[calc(100vh-70px)]">
           <div className="relative block w-full h-auto min-h-[70vh] bg-ex-blue">
             <div
@@ -262,7 +262,7 @@ export default function Hotel({ page }: PageProps) {
         </div>
       </section>
 
-      <section className="relative block !px-5 md:!px-[65px] py-12 md:py-24 !mt-0">
+      {/*<section className="relative block !px-5 md:!px-[65px] py-12 md:py-24 !mt-0">
         <div className="grid grid-cols-1 md:grid-cols-11 gap-9 w-full">
           <div className="col-span-1 md:col-start-2 md:col-span-5">
             <h2 className="text-3xl font-bold md:text-5xl text-ex-blue uppercase">
@@ -274,7 +274,7 @@ export default function Hotel({ page }: PageProps) {
             />
           </div>
         </div>
-      </section>
+      </section>*/}
 
       <section id="playbookFooter" className="relative block overflow-auto !pl-0 !pr-0 !mt-0">
         <div
