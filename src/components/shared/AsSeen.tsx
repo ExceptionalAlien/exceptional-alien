@@ -7,7 +7,7 @@ type AsSeenProps = {
 export function AsSeen(props: AsSeenProps) {
   return (
     <>
-      <h4 className="text-center text-xl font-bold text-ex-blue w-36 pr-6 md:pr-9">{props.title ?? 'As Seen in'}</h4>
+      <h4 className="text-center text-xl text-nowrap font-bold text-ex-blue w-36 pr-6 md:pr-9">{props.title ?? 'As Seen in'}</h4>
 
       <a
         href="https://www.forbes.com/sites/afdhelaziz/2023/04/25/how-this-exceptional-travel-platform-is-redefining-authentic-storytelling-and-cultural-connection/"

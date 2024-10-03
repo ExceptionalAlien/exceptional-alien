@@ -123,9 +123,9 @@ export default function Hotel({ page }: PageProps) {
             }}
           >
             <div className="absolute bottom-0 w-full p-4 text-white md:p-20 text-gradient">
-              <hgroup className="float-left w-full md:w-2/3 2xl:w-2/6 pr-2 md:pr-3">
+              <hgroup className="float-left w-full md:w-full xl:w-2/3 2xl:w-2/6 pr-2 md:pr-3">
                 {!page.data.logo && <h1 className="text-3xl font-bold md:text-5xl mb-3">{page.data.title}</h1>}
-                {page.data.logo && <img src={`${page.data.logo.url}`} className="mb-3 max-w-[60%] h-auto" alt="Logo" />}
+                {page.data.logo && <img src={`${page.data.logo.url}`} className="mb-3 max-w-[60%] md:max-w-[40%] h-auto" alt="Logo" />}
                 <hr className="border-gray-300 opacity-40 mb-3" />
                 <p className="w-auto text-left text-white text-sm md:text-base font-bold mb-5">
                   {(page.data.destination as unknown as Content.DestinationDocument).data.country}</p>
@@ -154,11 +154,11 @@ export default function Hotel({ page }: PageProps) {
         </div>
       </section>
 
-      <section className="relative block overflow-auto !pl-0 !pr-0 md:pb-24 pb-12">
+      <section className="relative block overflow-auto !pl-0 !pr-0 xl:pb-24 pb-12 !mt-9 xl:!mt-12">
         <div className="px-5 md:px-[65px]">
           <h2 className="text-3xl font-bold md:text-5xl mb-9 uppercase">
             Discover Local Gems</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-9">
+          <div className="grid grid-cols-1 gap-5 md:gap-9 md:grid-cols-2 xl:grid-cols-4">
             <Link href={`${playbookLink}?p=food-drink`} className="group hover:drop-shadow-[5px_5px_5px_rgba(0,0,0,0.55)] cursor-pointer ease-out duration-300 transition-[transform, shadow, drop-shadow] relative md:col-span-2 md:row-span-2 min-h-[50vh] bg-zinc-300 bg-[url('/img/categories/food-2.jpg')] bg-cover bg-no-repeat bg-center">
               <div>
                 <div className="absolute top-7 left-7">
@@ -211,7 +211,7 @@ export default function Hotel({ page }: PageProps) {
         </div>
       </section>
 
-      <section className="relative block !pl-0 !pr-0 pb-24">
+      <section className="relative block !pl-0 !pr-0 pb-9 xl:pb-24">
         <div className="h-auto min-h-[calc(100vh-70px)] md:min-h-[calc(100vh-70px)]">
           <div className="relative block w-full h-auto min-h-[70vh] bg-ex-blue">
             <div
@@ -222,13 +222,13 @@ export default function Hotel({ page }: PageProps) {
             </div>
             <div
               className="relative grid grid-cols-1 md:grid-cols-11 gap-9 h-auto min-h-[90vh] w-auto md:w-[calc(100%-130px)] ml-4 mr-4 md:mx-auto">
-              <div className="relative col-span-1 md:col-span-6">
-                {(page.data.video) && <div className="relative aspect-video [&>iframe]:h-[75vh] [&>iframe]:w-full [&>iframe]:rounded-bl-[50px]">
+              <div className="relative col-span-1 md:col-span-11 xl:col-span-6">
+                {(page.data.video) && <div className="relative aspect-video [&>iframe]:h-[60vh] md:[&>iframe]:h-[40vh] lg:[&>iframe]:h-[65vh] xl:[&>iframe]:h-[75vh] [&>iframe]:w-full [&>iframe]:rounded-bl-[50px]">
                   <VideoEmbed embed={page.data.video} />
                 </div>}
                 {(!page.data.video && (influencer.data?.hero_image as unknown as boolean)) && <div className={`w-full h-[75vh] rounded-bl-[50px] min-h-[20vh] bg-gray-100 bg-[url('${influencer.data?.hero_image?.url as string}')] bg-cover bg-no-repeat bg-center`} />}
               </div>
-              <div className="relative block col-span-1 md:col-span-3">
+              <div className="relative block col-span-1 md:col-span-6 xl:col-span-3">
                 <img src={influencer.data?.profile_image?.url as string} className="block w-full h-auto min-h-[30vh] mb-9 bg-gray-100" alt="Profile Image" />
                 <p className="block text-white text-1xl mb-9">{influencer.data?.short_description}</p>
                 <div className="relative inline-block mb-12 md:mb-9">
@@ -254,7 +254,7 @@ export default function Hotel({ page }: PageProps) {
                   onClick={() => {
                     return false;
                   }}
-                  className="hidden md:block relative mx-auto mt-36 box-content h-6 md:h-36 text-white opacity-35"
+                  className="hidden md:block relative mx-auto ml-24 mt-24 xl:ml-10 xl:mt-36 box-content h-6 md:h-36 text-white opacity-35"
                 />
               </div>
             </div>
@@ -278,13 +278,13 @@ export default function Hotel({ page }: PageProps) {
 
       <section id="playbookFooter" className="relative block overflow-auto !pl-0 !pr-0 !mt-0">
         <div
-          className={`relative flex justify-center items-center h-[calc(100vh-17vh-80px)] bg-cover bg-no-repeat bg-center`}
+          className={`relative flex justify-center items-center h-[60vh] xl:h-[calc(100vh-17vh-80px)] md:h-[calc(45vh)] bg-cover bg-no-repeat bg-center`}
           style={{
             backgroundImage: `url('${footerImage.url}')`
           }}
         >
           <div className="absolute w-full h-full opacity-50 bg-black"></div>
-          <div className="relative block text-center w-full md:w-1/2 m-auto p-5 md:p-0">
+          <div className="relative block text-center w-full md:w-3/4 xl:w-1/2 m-auto p-5 md:p-0">
             {/*<p className="text-3xl font-bold text-white mb-5 [&>svg]:h-9 [&>svg]:mr-1 [&>svg]:inline-block">
               <Playbook /> Travel Playbook <span className="text-xl mx-2">+</span> {page.data.title}</p>*/}
             <h2 className="text-white text-5xl font-bold uppercase leading-1 sm:leading-tight">Explore the {page.data.title} <br />Travel Playbook
@@ -301,7 +301,7 @@ export default function Hotel({ page }: PageProps) {
       </section>
 
       <section className="relative block overflow-auto !pl-0 !pr-0 !mt-14 md:!mt-0 pb-14 md:pb-0">
-        <div className="flex flex-wrap md:flex-nowrap h-auto md:h-[18vh] gap-9 px-5 md:px-[65px] w-full
+        <div className="flex flex-wrap md:flex-nowrap h-auto md:h-[15vh] xl:h-[18vh] gap-9 px-5 md:px-[65px] w-full
                         items-center justify-around md:justify-between [&>a>img]:h-auto">
           <AsSeen />
         </div>
