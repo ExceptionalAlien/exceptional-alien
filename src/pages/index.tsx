@@ -84,10 +84,16 @@ export default function Home({ page, search }: PageProps) {
 export async function getStaticProps({ previewData }: GetStaticPropsContext) {
   const client = createClient({ previewData });
 
-  const page = await client.getSingle("home", {
+  let page = await client.getSingle("home", {
     fetchLinks:
       "playbook.title,playbook.locked,playbook.image,playbook.destination,playbook.description,playbook.creator,destination.title,creator.first_name,creator.last_name,creator.profile_image",
   });
+
+  let url: string = '';
+  for (let i=0; i < 3; i++) {
+    url = (page.data.slices[0]?.items[i]?.playbook as any).url as string
+    (page.data.slices[0]?.items[i]?.playbook as any).url = url.replace('travel-', 'music-')
+  }
 
   const search = await client.getSingle("search", {
     fetch: "search.recommended,search.description",

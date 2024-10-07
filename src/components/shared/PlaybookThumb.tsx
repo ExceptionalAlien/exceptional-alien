@@ -36,7 +36,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 
   return (
     <Link
-      href={"/travel-playbooks/" + props.playbook.uid}
+      href={props.playbook.url as string}
       className={`group/link relative max-w-xl ${props.size === "xlg" && "w-11/12 lg:w-5/12"} ${
         props.size === "lrg" && "w-10/12 lg:w-4/12"
       } ${props.playbook.data?.locked && !hasAccess && "pointer-events-none"} ${props.classes}`}
