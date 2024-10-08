@@ -162,11 +162,11 @@ export const GemPopup = (props: GemPopupProps) => {
             <PrismicRichText field={object.primary.gem.data.about} />
           </div>
 
-          {/* props?.ctaLinkData?.link && <div className="mt-5 w-full lg:w-1/2">
-            <SponsoredButton link={props.ctaLinkData.link as string} source={props.ctaLinkData.pageUid}
-                             classes={'!text-sky-blue bg-white border-sky-blue rounded-xl hover:!bg-sky-blue hover:!text-white'}
+          {props?.ctaLinkData?.link && <div className="mt-5 w-full lg:w-1/2">
+            <SponsoredButton link={props.ctaLinkData.link as string} source={props.ctaLinkData.pageUid} displayAsLink
+                             classes={'font-bold text-black'}
                              campaign="skyscanner" title={`Find Hotels in ${props.ctaLinkData.destination}`} />
-          </div>*/}
+          </div>}
         </div>
       </div>
 
