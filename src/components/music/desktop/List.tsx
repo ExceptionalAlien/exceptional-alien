@@ -20,6 +20,7 @@ type ListProps = {
   allowedPlaybooks: Map<string, object>;
   pageSlug: string;
   iframeMode: boolean;
+  variant: string;
 };
 
 export default function List(props: ListProps) {
@@ -38,18 +39,26 @@ export default function List(props: ListProps) {
         </div>
 
         <div className="relative w-full block bg-sky-blue">
-          <img className='block h-auto' src={props.data.music_city_image.url as string} alt='City Image' />
+          {props.variant === "artist"
+            ? <img className="block h-auto" src={props.data.image.url as string} alt="City Image" />
+            : <img className="block h-auto" src={props.data.music_city_image.url as string} alt="City Image" />}
         </div>
 
-        <div className="mt-7 mb-2 w-5/6 mx-auto [&>svg]:w-full">
-          <PartnershipLogo />
-        </div>
+        {props.variant === "artist"
+          ? <h1 className="text-2xl sm:text-3xl uppercase font-bold text-white mt-5">{props.data.title}</h1>
+          : <div className="mt-7 mb-2 w-5/6 mx-auto [&>svg]:w-full">
+            <PartnershipLogo />
+          </div>
+        }
       </div>
 
       <div className="grid gap-y-6 md:gap-y-6 [&>.gem]:bg-white [&>.gem]:p-5 [&>.gem>.gem-icon]:r-5">
         <section className="grid gap-y-3 md:gap-y-4 bg-sky-navy p-5 py-7 [&>p]:text-white [&>p]:text-base">
           {/* <h1 className="text-2xl sm:text-3xl uppercase font-bold -mb-3">{props.data.title}</h1> */}
-          {props.data.music_city_description.length !== 0 && <PrismicRichText field={props.data.music_city_description} />}
+          {props.variant === 'artist'
+            ? props.data.description.length !== 0 && <PrismicRichText field={props.data.description} />
+            : props.data.music_city_description.length !== 0 && <PrismicRichText field={props.data.music_city_description} />
+          }
           {(props.data.audio as any).url && <Audio file={(props.data.audio as any).url as string} />}
 
           {props.allowedPlaybooks.get(props.pageSlug) === undefined && <Buttons

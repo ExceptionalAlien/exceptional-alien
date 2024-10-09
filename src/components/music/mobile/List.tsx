@@ -25,6 +25,7 @@ type ListProps = {
   allowedPlaybooks: Map<string, string>;
   pageSlug: string;
   iframeMode: boolean;
+  variant: string;
 };
 
 export default function List(props: ListProps) {
@@ -38,18 +39,26 @@ export default function List(props: ListProps) {
           `}>
           <div className="bg-sky-blue p-5 pt-7">
             <div className="relative w-full block bg-sky-blue">
-              <img className="block h-auto" src={props.data.music_city_image.url as string} alt="City Image" />
+              {props.variant === "artist"
+                ? <img className="block h-auto" src={props.data.image.url as string} alt="City Image" />
+                : <img className="block h-auto" src={props.data.music_city_image.url as string} alt="City Image" />}
             </div>
 
-            <div className="mt-7 mb-2 mx-auto [&>svg]:w-full">
-              <PartnershipLogo />
-            </div>
+            {props.variant === "artist"
+              ? <h1 className="text-2xl sm:text-3xl uppercase font-bold text-white mt-5">{props.data.title}</h1>
+              : <div className="mt-7 mb-2 mx-auto [&>svg]:w-full">
+                <PartnershipLogo />
+              </div>
+            }
           </div>
 
           <div className="relative grid gap-y-6 md:gap-y-6 [&>.gem]:bg-white [&>.gem]:p-5 [&>.gem>.gem-icon]:r-5">
             <section className="p-5 bg-sky-navy [&>p]:text-white [&>p]:text-base [&>p]:mb-3">
               {/*<h1 className="text-2xl sm:text-3xl uppercase font-bold mb-3">{props.data.title}</h1>*/}
-              {props.data.music_city_description.length !== 0 && <PrismicRichText field={props.data.music_city_description} />}
+              {props.variant === 'artist'
+                ? props.data.description.length !== 0 && <PrismicRichText field={props.data.description} />
+                : props.data.music_city_description.length !== 0 && <PrismicRichText field={props.data.music_city_description} />
+              }
               {(props.data.audio as any).url && <Audio file={(props.data.audio as any).url as string} />}
 
               {props.allowedPlaybooks.get(props.pageSlug) === undefined && <Buttons

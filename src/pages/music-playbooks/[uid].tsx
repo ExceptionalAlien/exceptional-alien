@@ -49,6 +49,7 @@ export default function Playbook({ page, search }: PageProps) {
   const [isMobile, setMobile] = useState(false);
   const hasRelated = page.data.related.length > 1;
   const [iframeMode, setIframeMode] = useState<boolean>(false)
+  const [variant, setVariant] = useState<string>('')
 
   const [viewerRef, setViewerRef] = useState<HTMLDivElement>();
   const ref = useRef<HTMLDivElement>(null);
@@ -68,6 +69,9 @@ export default function Playbook({ page, search }: PageProps) {
     if (router.isReady && router.query.iframe) {
       setIframeMode(true)
     }
+    if (router.isReady && router.query.variant) {
+      setVariant(router.query.variant as string)
+    }
   }, [router.isReady]);
 
   return (
@@ -78,12 +82,12 @@ export default function Playbook({ page, search }: PageProps) {
         <div ref={ref}>
         {isMobile && (
           <div>
-            <MobileViewer iframeMode={iframeMode} data={page.data} setShowVideo={() => { return false }} allowedPlaybooks={cityGuides} viewerRef={viewerRef!} pageSlug={page.uid} />
+            <MobileViewer variant={variant} iframeMode={iframeMode} data={page.data} setShowVideo={() => { return false }} allowedPlaybooks={cityGuides} viewerRef={viewerRef!} pageSlug={page.uid} />
           </div>
         )}
         {!isMobile && (
           <div className="flex items-end justify-end">
-            <DesktopList iframeMode={iframeMode} data={page.data} setShowVideo={() => { return false }} allowedPlaybooks={cityGuides} pageSlug={page.uid} />
+            <DesktopList variant={variant} iframeMode={iframeMode} data={page.data} setShowVideo={() => { return false }} allowedPlaybooks={cityGuides} pageSlug={page.uid} />
             <DesktopMap iframeMode={iframeMode} gems={page.data.slices} viewerRef={viewerRef!} />
           </div>
         )}
